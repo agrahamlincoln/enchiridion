@@ -2,6 +2,21 @@
 
 # Install Powerline-tmux
 
+# Check for prerequisites
+TMUX_VERSION=$(tmux -V | awk '{print $2}')
+
+# This is sloppy, but should catch most offenders
+isXltY() {
+  awk -v n1="$1" -v n2="$2" 'BEGIN {printf (n1<n2?"0":"1") "\n", n1, n2}';
+}
+if [ $TMUX_VERSION == "master" ]; then
+    echo "tmux is running on latest."
+elif isXltY TMUX_VERSION 2.3; then
+    echo "tmux-powerline requires tmux 2.1+"
+    echo "please update tmux and then try again"
+    exit 1
+fi
+
 if [ -d ~/projects/tmux-powerline/ ]; then
     echo "tmux-powerline already installed!"
     echo "please uninstall and then try again"
