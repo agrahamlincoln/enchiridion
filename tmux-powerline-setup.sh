@@ -7,11 +7,12 @@ TMUX_VERSION=$(tmux -V | awk '{print $2}')
 
 # This is sloppy, but should catch most offenders
 isXltY() {
-  awk -v n1="$1" -v n2="$2" 'BEGIN {printf (n1<n2?"0":"1") "\n", n1, n2}';
+  awk -v x="$1" -v y="$2" 'BEGIN {printf (x<y?"0":"1") "\n", x, y}';
 }
+TMUX_OUTDATED=$(isXltY 2.1 "$TMUX_VERSION")
 if [ $TMUX_VERSION == "master" ]; then
     echo "tmux is running on latest."
-elif isXltY TMUX_VERSION 2.3; then
+elif [ $TMUX_OUTDATED ]; then
     echo "tmux-powerline requires tmux 2.1+"
     echo "please update tmux and then try again"
     exit 1
