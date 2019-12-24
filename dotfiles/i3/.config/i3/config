@@ -9,7 +9,7 @@ set $mod Mod4
 font pango:NotoSans Nerd Font 8
 
 # Start applet and bars
-set $start $HOME/.config/i3/scripts/safe-start.sh
+set $start $HOME/.config/i3/safe-start.sh
 # Polybar doesn't render properly if it's not restarted
 exec_always --no-startup-id $start --unsafe -- polybar main -c ~/.config/polybar/config.ini
 # Safe start some things
