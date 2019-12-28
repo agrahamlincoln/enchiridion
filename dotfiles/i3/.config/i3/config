@@ -6,7 +6,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Fira Code 8
+font pango:Fira Code Bold 9
 
 # cmd wrapper to check for running processes
 set $start $HOME/.config/i3/safe-start.sh
@@ -179,16 +179,16 @@ bindsym $mod+p mode "resize"
 ## THEMING
 
 # i3-gaps
-# hide the titlebar (i3-gaps don't like it)
 for_window [class="^.*"] border pixel 4
+for_window [class="^.*"] title_format " %title"
 gaps outer 0
 gaps inner 4
 
 ## class                border  backgr. text    indicator child_border
-client.focused          #1793d0 #1793d0 #eaeaea #1793d0   #1793d0
+client.focused          #1793d0 #1793d0 #eaeaea #63c3ff   #1793d0
 client.focused_inactive #626262 #626262 #eaeaea #626262   #383838
 client.unfocused        #383838 #383838 #eaeaea #383838   #383838
-client.urgent           #9a0007 #9a0007 #eaeaea #9a0007   #9a0007
+client.urgent           #ff000f #ff000f #000000 #ff000f   #ff000f
 client.placeholder      #000000 #0c0c0c #eaeaea #000000   #0c0c0c
 
 client.background       #ffffff
