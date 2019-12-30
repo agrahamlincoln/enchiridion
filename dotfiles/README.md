@@ -17,3 +17,20 @@ stow -t ~ -S tmux vim
 # sway waybar kitty combo
 # stow -t ~ -S sway waybar kitty
 ```
+
+## Required packages
+
+### i3-polybar combo
+
+the i3-polybar combo requires the following packages:
+
+* python-i3ipc
+* ttf-fira-code [aur]
+* udiskie
+* rofi
+* redshift
+* pulseaudio
+* scrot
+* i3-gaps
+* polybar
+* python-fontawesome [aur]
