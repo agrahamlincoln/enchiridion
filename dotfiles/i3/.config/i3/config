@@ -25,8 +25,10 @@ exec_always --no-startup-id $start --unsafe -- polybar main -c ~/.config/polybar
 exec_always --no-startup-id $start redshift-gtk
 # USB Disk Manager & tray icon
 exec_always --no-startup-id $start --unsafe udiskie --tray
-# labels i3 workspaces
+# Automatically Label i3 workspaces
 exec_always --no-startup-id $HOME/.config/i3/scripts/autoname_workspaces.py > $HOME/.config/i3/anw.log 2>&1
+# Bluetooth Tray menu
+exec_always --no-startup-id $start blueman-applet
 
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
