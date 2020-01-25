@@ -2,22 +2,22 @@
 
 # Custom Rofi Script
 
-BORDER="#383C4A"
-SEPARATOR="#383C4A"
-FOREGROUND="#B0B0B0"
-BACKGROUND="#383C4A"
-BACKGROUND_ALT="#3C4150"
-HIGHLIGHT_BACKGROUND="#476B99"
-HIGHLIGHT_FOREGROUND="#FFFFFF"
+BORDER="#ffd835"
+SEPARATOR="#1c2028"
+FOREGROUND="#EAEAEA"
+BACKGROUND="#232832"
+BACKGROUND_ALT="#1c2028"
+HIGHLIGHT_BACKGROUND="#ffd835"
+HIGHLIGHT_FOREGROUND="#1c2028"
 
 BLACK="#000000"
 WHITE="#ffffff"
 RED="#e53935"
 GREEN="#43a047"
-YELLOW="#fdd835"
+YELLOW="#ffd835"
 BLUE="#1e88e5"
-MAGENTA="#00897b"
-CYAN="#00acc1"
+MAGENTA="#FF00FF"
+CYAN="#039be5"
 PINK="#d81b60"
 PURPLE="#8e24aa"
 INDIGO="#3949ab"
@@ -34,13 +34,13 @@ LIGHT_BLUE="#039be5"
 LIGHT_GREEN="#7cb342"
 
 # Launch Rofi
-MENU="$(rofi -no-lazy-grab -sep "|" -dmenu -i -p 'System :' \
+MENU="$(rofi -no-lazy-grab -sep "|" -dmenu -i -p 'System' \
 -hide-scrollbar true \
--bw 0 \
+-bw 3 \
 -lines 5 \
 -line-padding 10 \
--padding 20 \
--width 15 \
+-padding 0 \
+-width 5 \
 -xoffset -10 -yoffset 40 \
 -location 3 \
 -columns 1 \
