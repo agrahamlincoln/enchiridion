@@ -5,9 +5,16 @@
 # Check for prerequisites
 TMUX_VERSION=$(tmux -V | awk '{print $2}')
 
-# This is sloppy, but should catch most offenders
+# This should compare the versions as decimal numbers
+# it is sloppy, but should catch most offenders
 isXltY() {
-  awk -v x="$1" -v y="$2" 'BEGIN {printf (x<y?"0":"1") "\n", x, y}';
+  X="$1"
+  Y="$2"
+  if (( $(echo "$X < $Y" | bc -l) )); then
+    return 0
+  else
+    return 1 
+  fi
 }
 TMUX_OUTDATED=$(isXltY 2.1 "$TMUX_VERSION")
 if [ $TMUX_VERSION == "master" ]; then

@@ -18,13 +18,16 @@ bindsym $mod+Shift+l exec ~/.config/polybar/scripts/sysmenu
 bindsym $mod+grave exec ~/.config/polybar/scripts/applauncher
 
 # init polybar
-exec_always --no-startup-id $start --unsafe -- polybar main -c ~/.config/polybar/config.ini
+exec_always --no-startup-id $start --unsafe -- polybar -c ~/.config/polybar/config.ini main >> /tmp/start
+exec_always --no-startup-id $start --unsafe -- polybar -c ~/.config/polybar/config.ini secondary >> /tmp/start
 
 # Safe start some things
 # Screen tinter for eye strain
 exec_always --no-startup-id $start redshift-gtk
 # USB Disk Manager & tray icon
 exec_always --no-startup-id $start --unsafe udiskie --tray
+# Bluetooth
+exec_always --no-startup-id $start blueman-applet
 # labels i3 workspaces
 exec_always --no-startup-id $HOME/.config/i3/scripts/autoname_workspaces.py > $HOME/.config/i3/anw.log 2>&1
 
@@ -175,6 +178,8 @@ mode "resize" {
 }
 
 bindsym $mod+p mode "resize"
+
+bindsym $mod+Shift+z exec i3lock-fancy
 
 ## THEMING
 
