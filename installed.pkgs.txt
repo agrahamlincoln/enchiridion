@@ -1,0 +1,5305 @@
+Name            : acpid
+Version         : 2.0.32-1
+Description     : A daemon for delivering ACPI power management events with netlink support
+Architecture    : x86_64
+URL             : https://sourceforge.net/projects/acpid2/
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : bash
+Optional Deps   : perl: use perl based examples [installed]
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : acpid2
+Installed Size  : 154.00 KiB
+Packager        : Morten Linderud <foxboron@archlinux.org>
+Build Date      : Sun 22 Sep 2019 03:41:14 AM PDT
+Install Date    : Thu 26 Sep 2019 09:39:27 AM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : arandr
+Version         : 0.1.10-4
+Description     : Provide a simple visual front end for XRandR 1.2.
+Architecture    : any
+URL             : https://christian.amsuess.com/tools/arandr/
+Licenses        : GPL3
+Groups          : None
+Provides        : None
+Depends On      : gtk3  python-cairo  python-gobject  xorg-xrandr
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 285.93 KiB
+Packager        : Evangelos Foutras <evangelos@foutrelis.com>
+Build Date      : Mon 04 Nov 2019 01:32:13 AM PST
+Install Date    : Sun 17 Nov 2019 08:59:29 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : archey3
+Version         : 0.5-10
+Description     : Output a logo and various system information
+Architecture    : any
+URL             : https://lclarkmichalek.github.io/archey3/
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : python
+Optional Deps   : imagemagick: for default screenshot command [installed]
+                  python-logbook: alternative logging system
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 28.96 KiB
+Packager        : Felix Yan <felixonmars@archlinux.org>
+Build Date      : Sun 03 Nov 2019 10:10:18 PM PST
+Install Date    : Sun 17 Nov 2019 08:59:29 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : aurutils
+Version         : 2.3.3-1
+Description     : helper tools for the arch user repository
+Architecture    : any
+URL             : https://github.com/AladW/aurutils
+Licenses        : custom:ISC
+Groups          : None
+Provides        : None
+Depends On      : git  jq  expac  diffstat  pacutils  parallel  wget
+Optional Deps   : bash-completion: bash completion
+                  devtools: aur-chroot [installed]
+                  vifm: build file interaction [installed]
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 79.97 KiB
+Packager        : Unknown Packager
+Build Date      : Mon 30 Dec 2019 11:10:41 AM PST
+Install Date    : Mon 30 Dec 2019 11:10:44 AM PST
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : None
+
+Name            : autoconf
+Version         : 2.69-6
+Description     : A GNU tool for automatically configuring source code
+Architecture    : any
+URL             : https://www.gnu.org/software/autoconf
+Licenses        : GPL2  GPL3  custom
+Groups          : base-devel
+Provides        : None
+Depends On      : awk  m4  diffutils  sh
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 2047.05 KiB
+Packager        : Evangelos Foutras <evangelos@foutrelis.com>
+Build Date      : Wed 13 Nov 2019 11:27:22 AM PST
+Install Date    : Wed 27 Nov 2019 03:49:40 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : automake
+Version         : 1.16.1-2
+Description     : A GNU tool for automatically creating Makefiles
+Architecture    : any
+URL             : https://www.gnu.org/software/automake
+Licenses        : GPL
+Groups          : base-devel
+Provides        : None
+Depends On      : perl  bash
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 1594.15 KiB
+Packager        : Felix Yan <felixonmars@archlinux.org>
+Build Date      : Wed 13 Nov 2019 09:26:50 AM PST
+Install Date    : Wed 27 Nov 2019 03:49:40 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : autorandr
+Version         : 1.9-1
+Description     : Auto-detect connected display hardware and load appropiate X11 setup using xrandr
+Architecture    : any
+URL             : https://github.com/phillipberndt/autorandr
+Licenses        : GPL3
+Groups          : None
+Provides        : None
+Depends On      : python-setuptools  xorg-xrandr
+Optional Deps   : bash-completion: auto-completion for autorandr
+                  xorg-xdpyinfo: For detecting the primary XRandR output [installed]
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 237.45 KiB
+Packager        : David Runge <dvzrv@archlinux.org>
+Build Date      : Thu 19 Dec 2019 08:14:47 AM PST
+Install Date    : Mon 30 Dec 2019 10:58:58 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : aws-cli
+Version         : 1.17.9-1
+Description     : Universal Command Line Interface for Amazon Web Services
+Architecture    : any
+URL             : https://github.com/aws/aws-cli
+Licenses        : Apache
+Groups          : None
+Provides        : None
+Depends On      : python-botocore  python-dateutil  python-jmespath  python-colorama  python-docutils  python-rsa  python-s3transfer  python-yaml
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 7.39 MiB
+Packager        : Jonathan Steel <jsteel@archlinux.org>
+Build Date      : Tue 28 Jan 2020 06:14:07 AM PST
+Install Date    : Fri 31 Jan 2020 10:38:17 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : baobab
+Version         : 3.34.0-1
+Description     : A graphical directory tree analyzer
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Apps/DiskUsageAnalyzer
+Licenses        : GPL2
+Groups          : gnome
+Provides        : None
+Depends On      : dconf  gtk3  gsettings-desktop-schemas  librsvg
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 1329.00 KiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Fri 13 Sep 2019 02:17:10 AM PDT
+Install Date    : Fri 20 Sep 2019 11:52:52 AM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : bash
+Version         : 5.0.011-2
+Description     : The GNU Bourne Again shell
+Architecture    : x86_64
+URL             : https://www.gnu.org/software/bash/bash.html
+Licenses        : GPL
+Groups          : None
+Provides        : sh
+Depends On      : readline>=7.0  glibc  ncurses
+Optional Deps   : bash-completion: for tab completion
+Required By     : acpid  arch-install-scripts  autoconf  automake  bind-tools  bison  bzip2  ca-certificates-utils  db  devtools  dhcpcd  diffutils  dmenu  e2fsprogs  fakeroot  fftw  findutils  flex  freetype2  gawk  gdbm  geos  gettext  gmp  gpm  gzip  i3lock-fancy-multimonitor-git  icu  ijs  iptables  java-runtime-common  js52  js60  keyutils  libdca  libgpg-error  libksba  libnet  libpaper  libpcap  libpng  libteam  libtool  lvm2  m4  man-db  mkinitcpio  mtools  nano  nspr  nss  openresolv  pacman  pcre  pcre2  pkgconf  rpcbind  sane  swaylock-fancy-git  systemd  testssl.sh  texinfo  unzip  vde2  vte-common  which  xdg-user-dirs  xdg-utils  xfsprogs  xz
+Optional For    : vim-runtime
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 8.03 MiB
+Packager        : Evangelos Foutras <evangelos@foutrelis.com>
+Build Date      : Wed 13 Nov 2019 09:31:49 AM PST
+Install Date    : Wed 27 Nov 2019 03:49:29 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : bemenu-git
+Version         : r288.c6eda7f-1
+Description     : Dynamic menu library and client program inspired by dmenu with support for wayland compositors.
+Architecture    : x86_64
+URL             : https://github.com/Cloudef/bemenu
+Licenses        : GPL3  LGPL3
+Groups          : None
+Provides        : bemenu
+Depends On      : pango
+Optional Deps   : wayland: For the wayland backend. [installed]
+                  libxkbcommon: For the wayland backend. [installed]
+                  libxinerama: For the x11 backend. [installed]
+                  ncurses: For the curses backend. [installed]
+Required By     : None
+Optional For    : j4-dmenu-desktop
+Conflicts With  : bemenu
+Replaces        : None
+Installed Size  : 212.00 KiB
+Packager        : Unknown Packager
+Build Date      : Sat 03 Aug 2019 02:13:09 PM PDT
+Install Date    : Sat 03 Aug 2019 02:13:46 PM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : SHA-256 Sum
+
+Name            : bind-tools
+Version         : 9.14.10-1
+Description     : The ISC DNS tools
+Architecture    : x86_64
+URL             : https://www.isc.org/software/bind/
+Licenses        : MPL2
+Groups          : None
+Provides        : dnsutils=9.14.10
+Depends On      : glibc  libcap  libxml2  zlib  krb5  e2fsprogs  python  bash  openssl  readline  libidn2  dnssec-anchors  json-c  lmdb  xz  icu  python-ply  libmaxminddb
+Optional Deps   : None
+Required By     : testssl.sh
+Optional For    : None
+Conflicts With  : dnsutils
+Replaces        : dnsutils  host
+Installed Size  : 5.88 MiB
+Packager        : Sébastien Luttringer <seblu@seblu.net>
+Build Date      : Sat 25 Jan 2020 02:43:42 AM PST
+Install Date    : Mon 27 Jan 2020 08:19:53 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : binutils
+Version         : 2.33.1-2
+Description     : A set of programs to assemble and manipulate binary and object files
+Architecture    : x86_64
+URL             : https://www.gnu.org/software/binutils/
+Licenses        : GPL
+Groups          : base-devel
+Provides        : None
+Depends On      : glibc  zlib
+Optional Deps   : None
+Required By     : gcc  namcap
+Optional For    : None
+Conflicts With  : binutils-multilib
+Replaces        : binutils-multilib
+Installed Size  : 29.25 MiB
+Packager        : Evangelos Foutras <evangelos@foutrelis.com>
+Build Date      : Wed 13 Nov 2019 09:58:34 AM PST
+Install Date    : Wed 27 Nov 2019 03:49:42 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : bison
+Version         : 3.5-1
+Description     : The GNU general-purpose parser generator
+Architecture    : x86_64
+URL             : https://www.gnu.org/software/bison/bison.html
+Licenses        : GPL3
+Groups          : base-devel
+Provides        : None
+Depends On      : glibc  m4  sh
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 2.07 MiB
+Packager        : Lukas Fleischer <lfleischer@archlinux.org>
+Build Date      : Fri 13 Dec 2019 06:33:51 PM PST
+Install Date    : Mon 30 Dec 2019 10:59:00 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : blueman
+Version         : 2.1.1-2
+Description     : GTK+ Bluetooth Manager
+Architecture    : x86_64
+URL             : https://github.com/blueman-project/blueman
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : bluez  bluez-libs  gtk3  libnm  python-cairo  python-gobject
+Optional Deps   : dnsmasq: Network Access Point (NAP) support
+                  iproute2: Network Access Point (NAP) support [installed]
+                  networkmanager: Dial Up Networking (DUN) and Personal Area Networking (PAN) support [installed]
+                  pulseaudio-bluetooth: audio devices support [installed]
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 3.44 MiB
+Packager        : Felix Yan <felixonmars@archlinux.org>
+Build Date      : Sun 03 Nov 2019 10:33:47 PM PST
+Install Date    : Sun 17 Nov 2019 08:59:32 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : bluez-utils
+Version         : 5.52-2
+Description     : Development and debugging utilities for the bluetooth protocol stack
+Architecture    : x86_64
+URL             : http://www.bluez.org/
+Licenses        : GPL2
+Groups          : None
+Provides        : bluez-hcidump
+Depends On      : dbus  systemd  glib2
+Optional Deps   : ell: for btpclient
+Required By     : None
+Optional For    : None
+Conflicts With  : bluez-hcidump
+Replaces        : bluez-hcidump  bluez<=4.101
+Installed Size  : 5.32 MiB
+Packager        : Andreas Radke <andyrtr@archlinux.org>
+Build Date      : Sun 22 Dec 2019 06:38:06 AM PST
+Install Date    : Mon 30 Dec 2019 10:59:02 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : bzip2
+Version         : 1.0.8-3
+Description     : A high-quality data compression program
+Architecture    : x86_64
+URL             : https://sourceware.org/bzip2/
+Licenses        : custom
+Groups          : None
+Provides        : None
+Depends On      : glibc  sh
+Optional Deps   : None
+Required By     : boost-libs  ffmpeg  file  freetype2  gnupg  imlib2  libarchive  libelf  libgsf  pcre  pcre2  python  python2  unzip  yelp  zip
+Optional For    : mkinitcpio
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 144.00 KiB
+Packager        : Allan McRae <allan@archlinux.org>
+Build Date      : Tue 12 Nov 2019 04:52:56 AM PST
+Install Date    : Sun 17 Nov 2019 08:59:07 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : cheese
+Version         : 3.34.0-2
+Description     : Take photos and videos with your webcam, with fun graphical effects
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Apps/Cheese
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : gtk3  gstreamer  gst-plugins-bad  gst-plugins-base  gst-plugins-good  clutter-gst  clutter-gtk  libcanberra  librsvg  gnome-desktop  libgudev  dconf  gnome-video-effects
+Optional Deps   : None
+Required By     : gnome-contacts  gnome-control-center
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 3.12 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Sun 15 Sep 2019 04:23:43 AM PDT
+Install Date    : Fri 20 Sep 2019 11:52:53 AM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : code
+Version         : 1.41.1-1
+Description     : The Open Source build of Visual Studio Code (vscode) editor
+Architecture    : x86_64
+URL             : https://github.com/microsoft/vscode
+Licenses        : MIT
+Groups          : None
+Provides        : None
+Depends On      : electron6  libsecret  libx11  libxkbfile  ripgrep
+Optional Deps   : bash-completion: Bash completions
+                  zsh-completions: ZSH completitons
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 65.78 MiB
+Packager        : Filipe Laíns <lains@archlinux.org>
+Build Date      : Fri 20 Dec 2019 02:57:30 AM PST
+Install Date    : Mon 30 Dec 2019 11:05:23 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : coreutils
+Version         : 8.31-3
+Description     : The basic file, shell and text manipulation utilities of the GNU operating system
+Architecture    : x86_64
+URL             : https://www.gnu.org/software/coreutils/
+Licenses        : GPL3
+Groups          : None
+Provides        : None
+Depends On      : glibc  acl  attr  gmp  libcap  openssl
+Optional Deps   : None
+Required By     : arch-install-scripts  ca-certificates-utils  java-runtime-common  linux  mkinitcpio  netctl  swaylock-fancy-git  testssl.sh  util-linux
+Optional For    : usbutils
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 15.39 MiB
+Packager        : Allan McRae <allan@archlinux.org>
+Build Date      : Tue 12 Nov 2019 03:00:56 AM PST
+Install Date    : Sun 17 Nov 2019 08:59:17 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : cryptsetup
+Version         : 2.2.2-1
+Description     : Userspace setup tool for transparent encryption of block devices using dm-crypt
+Architecture    : x86_64
+URL             : https://gitlab.com/cryptsetup/cryptsetup/
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : device-mapper  openssl  popt  libutil-linux  json-c  argon2
+Optional Deps   : None
+Required By     : systemd  volume_key
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 2.14 MiB
+Packager        : Christian Hesse <arch@eworm.de>
+Build Date      : Fri 01 Nov 2019 01:03:39 PM PDT
+Install Date    : Sun 17 Nov 2019 08:59:17 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : cura
+Version         : 4.4.1-1
+Description     : A software solution for 3D printing aimed at RepRaps and the Ultimaker.
+Architecture    : any
+URL             : https://ultimaker.com/en/products/cura-software
+Licenses        : LGPL
+Groups          : None
+Provides        : cura
+Depends On      : python-pyqt5  qt5-svg  python-scipy  python-pyserial  python-numpy  uranium  python-requests  curaengine  cura-binary-data  cura-resources-materials  libsavitar  qt5-graphicaleffects  python-certifi
+Optional Deps   : python-zeroconf: network printing support
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 86.53 MiB
+Packager        : Jelle van der Waa <jelle@vdwaa.nl>
+Build Date      : Sun 12 Jan 2020 08:33:13 AM PST
+Install Date    : Mon 20 Jan 2020 09:05:30 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : device-mapper
+Version         : 2.02.186-5
+Description     : Device mapper userspace library and tools
+Architecture    : x86_64
+URL             : http://sourceware.org/dm/
+Licenses        : GPL2  LGPL2.1
+Groups          : None
+Provides        : None
+Depends On      : glibc  systemd-libs
+Optional Deps   : None
+Required By     : cryptsetup  dmraid  docker  lvm2  parted  xfsprogs
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 832.35 KiB
+Packager        : Christian Hesse <arch@eworm.de>
+Build Date      : Thu 02 Jan 2020 11:26:51 PM PST
+Install Date    : Tue 07 Jan 2020 10:04:24 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : devtools
+Version         : 20191227-2
+Description     : Tools for Arch Linux package maintainers
+Architecture    : any
+URL             : https://git.archlinux.org/devtools.git/
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : bash  openssh  subversion  rsync  arch-install-scripts  git  bzr  mercurial  diffutils  util-linux  awk
+Optional Deps   : btrfs-progs: btrfs support [installed]
+Required By     : None
+Optional For    : aurutils
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 157.91 KiB
+Packager        : Levente Polyak <anthraxx@archlinux.org>
+Build Date      : Fri 27 Dec 2019 08:05:16 AM PST
+Install Date    : Tue 07 Jan 2020 10:04:25 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : dhcpcd
+Version         : 8.1.6-1
+Description     : RFC2131 compliant DHCP client daemon
+Architecture    : x86_64
+URL             : https://roy.marples.name/projects/dhcpcd/
+Licenses        : BSD
+Groups          : None
+Provides        : dhcp-client
+Depends On      : glibc  sh  udev  systemd-libs
+Optional Deps   : openresolv: resolvconf support [installed]
+Required By     : None
+Optional For    : netctl
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 414.71 KiB
+Packager        : Antonio Rojas <arojas@archlinux.org>
+Build Date      : Wed 29 Jan 2020 02:07:37 PM PST
+Install Date    : Fri 31 Jan 2020 10:38:19 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : diffutils
+Version         : 3.7-3
+Description     : Utility programs used for creating patch files
+Architecture    : x86_64
+URL             : https://www.gnu.org/software/diffutils
+Licenses        : GPL3
+Groups          : None
+Provides        : None
+Depends On      : glibc  bash
+Optional Deps   : None
+Required By     : autoconf  devtools  mkinitcpio
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 1420.72 KiB
+Packager        : Evangelos Foutras <evangelos@foutrelis.com>
+Build Date      : Wed 13 Nov 2019 09:27:09 AM PST
+Install Date    : Wed 27 Nov 2019 03:49:40 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : dmenu
+Version         : 4.9-1
+Description     : Generic menu for X
+Architecture    : x86_64
+URL             : https://tools.suckless.org/dmenu/
+Licenses        : MIT
+Groups          : None
+Provides        : None
+Depends On      : sh  libxinerama  libxft  freetype2
+Optional Deps   : None
+Required By     : None
+Optional For    : i3-gaps  j4-dmenu-desktop  sway-git
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 84.00 KiB
+Packager        : Levente Polyak <anthraxx@archlinux.org>
+Build Date      : Thu 07 Feb 2019 11:56:23 AM PST
+Install Date    : Tue 19 Feb 2019 09:33:19 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : docker
+Version         : 1:19.03.5-1
+Description     : Pack, ship and run any application as a lightweight container
+Architecture    : x86_64
+URL             : https://www.docker.com/
+Licenses        : Apache
+Groups          : None
+Provides        : None
+Depends On      : glibc  bridge-utils  iproute2  device-mapper  sqlite  systemd-libs  libseccomp  libtool  runc  containerd
+Optional Deps   : btrfs-progs: btrfs backend support [installed]
+                  pigz: parallel gzip compressor support
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 181.99 MiB
+Packager        : Sébastien Luttringer <seblu@seblu.net>
+Build Date      : Thu 14 Nov 2019 07:17:51 PM PST
+Install Date    : Sun 17 Nov 2019 08:59:48 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : e2fsprogs
+Version         : 1.45.5-1
+Description     : Ext2/3/4 filesystem utilities
+Architecture    : x86_64
+URL             : http://e2fsprogs.sourceforge.net
+Licenses        : GPL  LGPL  MIT
+Groups          : None
+Provides        : None
+Depends On      : sh  libutil-linux
+Optional Deps   : None
+Required By     : bind-tools  btrfs-progs  krb5  libldap  libvirt
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 4.76 MiB
+Packager        : Christian Hesse <arch@eworm.de>
+Build Date      : Tue 07 Jan 2020 12:16:58 PM PST
+Install Date    : Mon 20 Jan 2020 09:05:22 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : eog
+Version         : 3.34.2-1
+Description     : Eye of Gnome: An image viewing and cataloging program
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Apps/EyeOfGnome
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : gnome-desktop  libexif  lcms2  exempi  libpeas  librsvg  dconf
+Optional Deps   : eog-plugins: Additional features
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 9.30 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Sat 04 Jan 2020 03:39:15 PM PST
+Install Date    : Tue 07 Jan 2020 10:04:25 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : epiphany
+Version         : 3.34.3.1-1
+Description     : A GNOME web browser based on the WebKit rendering engine
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Apps/Web
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : webkit2gtk  gcr  icu  libdazzle  libhandy
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 11.36 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Fri 03 Jan 2020 09:16:30 PM PST
+Install Date    : Tue 07 Jan 2020 10:04:25 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : evince
+Version         : 3.34.2-1
+Description     : Document viewer (PDF, Postscript, djvu, tiff, dvi, XPS, SyncTex support with gedit, comics books (cbr,cbz,cb7 and cbt))
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Apps/Evince
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : gtk3  libgxps  libspectre  gsfonts  poppler-glib  djvulibre  t1lib  dconf  libsecret  libsynctex  gsettings-desktop-schemas  gnome-desktop  libarchive  gst-plugins-base-libs  gspell
+Optional Deps   : texlive-bin: DVI support
+                  gvfs: bookmark support and session saving [installed]
+Required By     : gnome-documents  sushi
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 13.31 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Sat 23 Nov 2019 12:38:17 PM PST
+Install Date    : Wed 27 Nov 2019 03:49:52 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : fakeroot
+Version         : 1.24-2
+Description     : Tool for simulating superuser privileges
+Architecture    : x86_64
+URL             : https://packages.debian.org/fakeroot
+Licenses        : GPL
+Groups          : base-devel
+Provides        : None
+Depends On      : glibc  filesystem  sed  util-linux  sh
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 133.78 KiB
+Packager        : Felix Yan <felixonmars@archlinux.org>
+Build Date      : Wed 13 Nov 2019 08:10:43 AM PST
+Install Date    : Wed 27 Nov 2019 03:49:55 PM PST
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : Signature
+
+Name            : feh
+Version         : 3.3-2
+Description     : Fast and light imlib2-based image viewer
+Architecture    : x86_64
+URL             : https://feh.finalrewind.org/
+Licenses        : custom:MIT
+Groups          : None
+Provides        : None
+Depends On      : imlib2  curl  libxinerama  libexif
+Optional Deps   : imagemagick: support more file formats [installed]
+                  jpegexiforient: set exif rotation tag
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 438.64 KiB
+Packager        : Gaetan Bisson <bisson@archlinux.org>
+Build Date      : Mon 16 Dec 2019 10:39:48 PM PST
+Install Date    : Mon 30 Dec 2019 10:59:13 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : file
+Version         : 5.38-3
+Description     : File type identification utility
+Architecture    : x86_64
+URL             : https://www.darwinsys.com/file/
+Licenses        : custom
+Groups          : base-devel
+Provides        : libmagic.so=1-64
+Depends On      : glibc  zlib  xz  bzip2  libseccomp  libseccomp.so=2-64
+Optional Deps   : None
+Required By     : file-roller  nano  subversion  xdg-utils
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 5.75 MiB
+Packager        : Sébastien Luttringer <seblu@seblu.net>
+Build Date      : Fri 24 Jan 2020 08:12:51 AM PST
+Install Date    : Fri 31 Jan 2020 10:38:19 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : file-roller
+Version         : 3.32.3-1
+Description     : Create and modify archives
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Apps/FileRoller
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : gtk3  dconf  libarchive  file  json-glib  libnotify  zip  unzip
+Optional Deps   : p7zip: 7z, arj, exe and encrypted zip files support
+                  unrar: better RAR archive support
+                  unace: ACE archive support
+                  lrzip: lrzip archive support
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 3.71 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Sat 23 Nov 2019 12:38:11 PM PST
+Install Date    : Wed 27 Nov 2019 03:49:55 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : filesystem
+Version         : 2019.10-2
+Description     : Base Arch Linux files
+Architecture    : x86_64
+URL             : https://www.archlinux.org
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : iana-etc
+Optional Deps   : None
+Required By     : fakeroot  glibc  mkinitcpio
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 40.42 KiB
+Packager        : Felix Yan <felixonmars@archlinux.org>
+Build Date      : Wed 13 Nov 2019 08:23:02 AM PST
+Install Date    : Wed 27 Nov 2019 03:49:26 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : findutils
+Version         : 4.7.0-2
+Description     : GNU utilities to locate files
+Architecture    : x86_64
+URL             : https://www.gnu.org/software/findutils/
+Licenses        : GPL3
+Groups          : base-devel
+Provides        : None
+Depends On      : glibc  sh
+Optional Deps   : None
+Required By     : ca-certificates-utils  java-runtime-common  mkinitcpio
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 1619.28 KiB
+Packager        : Allan McRae <allan@archlinux.org>
+Build Date      : Tue 12 Nov 2019 04:37:08 AM PST
+Install Date    : Sun 17 Nov 2019 08:59:20 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : firefox
+Version         : 72.0.2-1
+Description     : Standalone web browser from mozilla.org
+Architecture    : x86_64
+URL             : https://www.mozilla.org/firefox/
+Licenses        : MPL  GPL  LGPL
+Groups          : None
+Provides        : None
+Depends On      : gtk3  libxt  startup-notification  mime-types  dbus-glib  ffmpeg  nss  ttf-font  libpulse
+Optional Deps   : networkmanager: Location detection via available WiFi networks [installed]
+                  libnotify: Notification integration [installed]
+                  pulseaudio: Audio support [installed]
+                  speech-dispatcher: Text-to-Speech [installed]
+                  hunspell-en_US: Spell checking, American English
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 185.89 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Mon 20 Jan 2020 06:18:07 AM PST
+Install Date    : Mon 20 Jan 2020 09:05:34 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : flex
+Version         : 2.6.4-3
+Description     : A tool for generating text-scanning programs
+Architecture    : x86_64
+URL             : https://github.com/westes/flex
+Licenses        : custom
+Groups          : base-devel
+Provides        : None
+Depends On      : glibc  m4  sh
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 971.00 KiB
+Packager        : Evangelos Foutras <evangelos@foutrelis.com>
+Build Date      : Wed 13 Nov 2019 09:43:31 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:01 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gawk
+Version         : 5.0.1-2
+Description     : GNU version of awk
+Architecture    : x86_64
+URL             : https://www.gnu.org/software/gawk/
+Licenses        : GPL
+Groups          : base-devel
+Provides        : awk
+Depends On      : sh  glibc  mpfr
+Optional Deps   : None
+Required By     : arch-install-scripts  autoconf  devtools  mkinitcpio  swaylock-fancy-git
+Optional For    : vim-runtime
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 2.77 MiB
+Packager        : Allan McRae <allan@archlinux.org>
+Build Date      : Tue 12 Nov 2019 04:22:46 AM PST
+Install Date    : Sun 17 Nov 2019 08:59:41 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gcc
+Version         : 9.2.0-4
+Description     : The GNU Compiler Collection - C and C++ frontends
+Architecture    : x86_64
+URL             : https://gcc.gnu.org
+Licenses        : GPL  LGPL  FDL  custom
+Groups          : base-devel
+Provides        : gcc-multilib
+Depends On      : gcc-libs=9.2.0-4  binutils>=2.28  libmpc
+Optional Deps   : lib32-gcc-libs: for generating code for 32-bit ABI
+Required By     : None
+Optional For    : xorg-xrdb
+Conflicts With  : None
+Replaces        : gcc-multilib
+Installed Size  : 144.83 MiB
+Packager        : Bartłomiej Piotrowski <bpiotrowski@archlinux.org>
+Build Date      : Wed 30 Oct 2019 07:24:00 AM PDT
+Install Date    : Sun 17 Nov 2019 09:00:05 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gcc-libs
+Version         : 9.2.0-4
+Description     : Runtime libraries shipped by GCC
+Architecture    : x86_64
+URL             : https://gcc.gnu.org
+Licenses        : GPL  LGPL  FDL  custom
+Groups          : base
+Provides        : gcc-libs-multilib  libgo.so=14-64  libgfortran.so=5-64  libgphobos.so=76-64  libubsan.so=1-64  libasan.so=5-64  libtsan.so=0-64  liblsan.so=0-64
+Depends On      : glibc>=2.27
+Optional Deps   : None
+Required By     : aom  aspell  augeas  blas  brotli  db  double-conversion  exempi  exiv2  fftw  flac  gc  gcc  geos  gettext  glslang  gmp  gnutls  gptfdisk  graphite  groff  hunspell  icu  intel-gmmlib  intel-media-driver  intel-media-sdk  intel-tbb  jack  js52  js60  jsoncpp  jsonnet  ladspa  libcdio  libde265  libelf  libgme  libmfx  libmodplug  libmp4v2  libproxy  libpst  libsigc++  libsoxr  libvirt  libvoikko  libwpe  llvm-libs  luajit  mjpegtools  ncurses  ninja  nlopt  openal  pcre  pcre2  polyclipping  poppler  portaudio  protobuf  pugixml  re2  ripgrep  shaderc  snappy  spirv-tools  thin-provisioning-tools  v4l-utils  vid.stab  virtualbox  webrtc-audio-processing  wxgtk-common  x265  zeromq  zita-alsa-pcmi  zita-resampler
+Optional For    : None
+Conflicts With  : None
+Replaces        : gcc-libs-multilib  libgphobos
+Installed Size  : 149.55 MiB
+Packager        : Bartłomiej Piotrowski <bpiotrowski@archlinux.org>
+Build Date      : Wed 30 Oct 2019 07:24:00 AM PDT
+Install Date    : Sun 17 Nov 2019 08:59:07 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gdm
+Version         : 3.34.1-1
+Description     : Display manager and login screen
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Projects/GDM
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : gnome-shell  gnome-session  upower  xorg-xrdb  xorg-server  xorg-xhost  libgdm
+Optional Deps   : fprintd: fingerprint authentication
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 4.18 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Mon 07 Oct 2019 04:20:03 AM PDT
+Install Date    : Mon 07 Oct 2019 10:22:15 AM PDT
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : Signature
+
+Name            : gedit
+Version         : 3.34.1-1
+Description     : GNOME Text Editor
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Apps/Gedit
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : gtksourceview4  gsettings-desktop-schemas  libpeas  gspell  python-gobject  dconf
+Optional Deps   : gedit-plugins: Additional features
+Required By     : None
+Optional For    : None
+Conflicts With  : gedit-code-assistance<=3.16.0+4+gd19b879-1
+Replaces        : None
+Installed Size  : 14.29 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Thu 21 Nov 2019 02:16:55 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:02 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gettext
+Version         : 0.20.1-3
+Description     : GNU internationalization library
+Architecture    : x86_64
+URL             : https://www.gnu.org/software/gettext/
+Licenses        : GPL
+Groups          : base-devel
+Provides        : None
+Depends On      : gcc-libs  acl  sh  glib2  libunistring  libcroco
+Optional Deps   : git: for autopoint infrastructure updates [installed]
+Required By     : libvirt
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 7.29 MiB
+Packager        : Evangelos Foutras <evangelos@foutrelis.com>
+Build Date      : Wed 13 Nov 2019 09:51:20 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:02 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gimp
+Version         : 2.10.14-1
+Description     : GNU Image Manipulation Program
+Architecture    : x86_64
+URL             : https://www.gimp.org/
+Licenses        : GPL  LGPL
+Groups          : None
+Provides        : None
+Depends On      : babl  dbus-glib  desktop-file-utils  gegl  glib-networking  hicolor-icon-theme  jasper  lcms2  libheif  libexif  libgudev  libmng  libmypaint  librsvg  libwebp  libwmf  libxmu  libxpm  mypaint-brushes1  openexr  poppler-data  pygtk
+Optional Deps   : gutenprint: for sophisticated printing only as gimp has built-in cups print support
+                  poppler-glib: for pdf support [installed]
+                  alsa-lib: for MIDI event controller module [installed]
+                  curl: for URI support [installed]
+                  ghostscript: for postscript support [installed]
+Required By     : None
+Optional For    : None
+Conflicts With  : gimp-plugin-wavelet-decompose
+Replaces        : gimp-plugin-wavelet-decompose
+Installed Size  : 104.30 MiB
+Packager        : Christian Hesse <arch@eworm.de>
+Build Date      : Sat 09 Nov 2019 09:07:56 AM PST
+Install Date    : Sun 17 Nov 2019 09:00:12 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : git
+Version         : 2.25.0-1
+Description     : the fast distributed version control system
+Architecture    : x86_64
+URL             : https://git-scm.com/
+Licenses        : GPL2
+Groups          : None
+Provides        : None
+Depends On      : curl  expat  perl  perl-error  perl-mailtools  openssl  pcre2  grep  shadow
+Optional Deps   : tk: gitk and git gui
+                  perl-libwww: git svn
+                  perl-term-readkey: git svn and interactive.singlekey setting
+                  perl-mime-tools: git send-email
+                  perl-net-smtp-ssl: git send-email TLS support
+                  perl-authen-sasl: git send-email TLS support
+                  perl-mediawiki-api: git mediawiki support
+                  perl-datetime-format-iso8601: git mediawiki support
+                  perl-lwp-protocol-https: git mediawiki https support
+                  perl-cgi: gitweb (web interface) support
+                  python: git svn & git p4 [installed]
+                  subversion: git svn [installed]
+                  org.freedesktop.secrets: keyring credential helper [installed]
+                  libsecret: libsecret credential helper [installed]
+Required By     : aurutils  devtools  tig  yay
+Optional For    : gettext
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 37.42 MiB
+Packager        : Christian Hesse <arch@eworm.de>
+Build Date      : Mon 13 Jan 2020 11:17:22 AM PST
+Install Date    : Mon 20 Jan 2020 09:05:34 PM PST
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : Signature
+
+Name            : gitkraken
+Version         : 6.5.0-1
+Description     : The intuitive, fast, and beautiful cross-platform Git client.
+Architecture    : x86_64
+URL             : https://www.gitkraken.com/
+Licenses        : custom
+Groups          : None
+Provides        : gitkraken
+Depends On      : nss  libxtst  libgnome-keyring  alsa-lib  libxss
+Optional Deps   : git-lfs: git-lfs support
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 304.39 MiB
+Packager        : Unknown Packager
+Build Date      : Mon 27 Jan 2020 08:26:23 PM PST
+Install Date    : Mon 27 Jan 2020 08:29:00 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : None
+
+Name            : glibc
+Version         : 2.30-3
+Description     : GNU C Library
+Architecture    : x86_64
+URL             : https://www.gnu.org/software/libc
+Licenses        : GPL  LGPL
+Groups          : None
+Provides        : None
+Depends On      : linux-api-headers>=4.10  tzdata  filesystem
+Optional Deps   : gd: for memusagestat [installed]
+Required By     : alsa-lib  argon2  attr  babl  bash  bind-tools  binutils  bison  bluez-libs  bridge-utils  btrfs-progs  bubblewrap  bzip2  c-ares  cdparanoia  ceph-libs  confuse  coreutils  cracklib  dav1d  device-mapper  dhcpcd  diffstat  diffutils  docker  dosfstools  dotconf  expat  faac  faad2  fakeroot  fftw  file  findutils  flex  fluidsynth  freerdp  fribidi  fuse2  fuse3  gavl  gawk  gcc-libs  gdbm  giflib  go-tools  grep  gsm  gzip  hspell  http-parser  hyphen  ijs  iproute2  jack  jansson  jemalloc  jq  json-c  kbd  keyutils  kmod  kubectl  l-smash  less  libass  libasyncns  libatomic_ops  libbsd  libcap  libcap-ng  libcddb  libcue  libcurl-compat  libcurl-gnutls  libdatrie  libdvdread  libepoxy  libev  libevdev  libexif  libffi  libgpg-error  libgssglue  libical  libice  libidn  libiptcdata  libiscsi  libksba  liblouis  libmaxminddb  libmms  libmnl  libmpcdec  libmpeg2  libmypaint  libndp  libnet  libnfnetlink  libnfs  libnghttp2  libnl  libnm-glib  libogg  libomxil-bellagio  libpcap  libpciaccess  libpgm  libpipeline  libraw1394  libsamplerate  libseccomp  libsndfile  libsodium  libstemmer  libsynctex  libtasn1  libtool  libunistring  libunwind  libusb  libutempter  libuv  libvisual  libwbclient  libx86  libxau  libxdg-basedir  libxdmcp  libxkbcommon  libxshmfence  libytnef  lilv  lmdb  lsof  lz4  lzo  m4  make  mbedtls  md4c  mdadm  metis  mkinitcpio-busybox  mtdev  ncurses  nspr  oath-toolkit  opencore-amr  opus  orc  p11-kit  pacman  pam  patch  pciutils  perl  perl-io-tty  pixman  pkgconf  popt  ppp  protobuf  qhull  readline  rhash  rpcbind  rtmpdump  run-parts  sbc  sdl  sdl2  sed  serd  shaderc  slack-desktop  snappy  sord  speexdsp  sratom  sudo  sysfsutils  systemd-libs  talloc  tar  tslib  twolame  vid.stab  vim  virtualbox  vulkan-icd-loader  wavpack  wayland  wget  which  xorg-bdftopcf  xvidcore  zita-alsa-pcmi  zita-resampler  zlib
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 46.00 MiB
+Packager        : Evangelos Foutras <evangelos@foutrelis.com>
+Build Date      : Wed 13 Nov 2019 08:16:32 AM PST
+Install Date    : Wed 27 Nov 2019 03:49:27 PM PST
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : Signature
+
+Name            : gnome-backgrounds
+Version         : 3.34.0-1
+Description     : Background images and data for GNOME
+Architecture    : any
+URL             : https://gitlab.gnome.org/GNOME/gnome-backgrounds
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : None
+Optional Deps   : None
+Required By     : lightdm-webkit2-greeter
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 33.49 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Thu 12 Sep 2019 03:09:36 PM PDT
+Install Date    : Thu 12 Sep 2019 08:23:59 PM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-boxes
+Version         : 3.34.3-1
+Description     : Simple GNOME application to access remote or virtual systems
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Apps/Boxes
+Licenses        : LGPL
+Groups          : gnome
+Provides        : None
+Depends On      : cdrtools  gtk-vnc  libarchive  libgudev  libosinfo  libsecret  libvirt-glib  mtools  qemu  spice-gtk  tracker  webkit2gtk  freerdp
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 5.51 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Mon 06 Jan 2020 10:33:10 AM PST
+Install Date    : Tue 07 Jan 2020 10:04:27 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-calculator
+Version         : 3.34.1-1
+Description     : GNOME Scientific calculator
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Apps/Calculator
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : gtk3  dconf  gtksourceview4  mpfr  libsoup  libmpc  libgee
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 5.51 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Mon 07 Oct 2019 04:12:20 AM PDT
+Install Date    : Mon 07 Oct 2019 10:22:15 AM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-calendar
+Version         : 3.34.2-1
+Description     : Simple and beautiful calendar application designed to perfectly fit the GNOME desktop
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Apps/Calendar
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : evolution-data-server  gsettings-desktop-schemas  gnome-control-center  libdazzle
+Optional Deps   : evolution: ICS file import [installed]
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 1431.00 KiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Wed 09 Oct 2019 01:36:08 PM PDT
+Install Date    : Mon 14 Oct 2019 03:43:35 PM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-characters
+Version         : 3.32.1-1
+Description     : A character map application
+Architecture    : x86_64
+URL             : https://gitlab.gnome.org/GNOME/gnome-characters
+Licenses        : GPL2
+Groups          : gnome
+Provides        : None
+Depends On      : gjs  gtk3  libunistring  gnome-desktop
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 793.00 KiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Mon 08 Apr 2019 03:37:59 AM PDT
+Install Date    : Tue 09 Apr 2019 02:15:48 PM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-clocks
+Version         : 3.34.0-1
+Description     : Clocks applications for GNOME
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Apps/Clocks
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : gtk3  libcanberra  libgweather  gnome-desktop  geoclue2  geocode-glib  gsound
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 1322.00 KiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Thu 12 Sep 2019 01:46:02 PM PDT
+Install Date    : Fri 20 Sep 2019 11:53:04 AM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-color-manager
+Version         : 3.32.0-2
+Description     : GNOME Color Profile Tools
+Architecture    : x86_64
+URL             : https://gitlab.gnome.org/GNOME/gnome-color-manager
+Licenses        : GPL2
+Groups          : gnome
+Provides        : None
+Depends On      : libcanberra  vte3  exiv2  shared-color-targets  colord-gtk  libexif
+Optional Deps   : argyllcms: color calibration
+Required By     : gnome-control-center
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 4.08 MiB
+Packager        : Evangelos Foutras <evangelos@foutrelis.com>
+Build Date      : Sat 18 May 2019 12:59:39 AM PDT
+Install Date    : Wed 29 May 2019 11:18:37 AM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-contacts
+Version         : 3.34.1-1
+Description     : Contacts Manager for GNOME
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Apps/Contacts
+Licenses        : GPL2
+Groups          : gnome
+Provides        : None
+Depends On      : gtk3  folks  gnome-desktop  dconf  gnome-online-accounts  libgee  cheese  libhandy
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 1543.40 KiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Sun 05 Jan 2020 04:42:28 PM PST
+Install Date    : Tue 07 Jan 2020 10:04:27 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-control-center
+Version         : 3.34.2-1
+Description     : GNOME's main interface to configure various aspects of the desktop
+Architecture    : x86_64
+URL             : https://gitlab.gnome.org/GNOME/gnome-control-center
+Licenses        : GPL2
+Groups          : gnome
+Provides        : None
+Depends On      : accountsservice  cups-pk-helper  gnome-bluetooth  gnome-desktop  gnome-online-accounts  gnome-settings-daemon  gsettings-desktop-schemas  gtk3  libgtop  nm-connection-editor  sound-theme-freedesktop  upower  libpwquality  gnome-color-manager  smbclient  libmm-glib  libgnomekbd  grilo  libibus  cheese  libgudev  bolt  udisks2  libhandy  gsound
+Optional Deps   : system-config-printer: Printer settings
+                  gnome-user-share: Bluetooth and WebDAV file sharing [installed]
+                  gnome-remote-desktop: screen sharing [installed]
+                  rygel: media sharing [installed]
+                  openssh: remote login [installed]
+Required By     : gnome-calendar
+Optional For    : gnome-shell
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 19.33 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Mon 25 Nov 2019 07:09:23 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:08 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-dictionary
+Version         : 3.26.1-1
+Description     : Look up words in dictionary sources
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Apps/Dictionary
+Licenses        : GPL2
+Groups          : gnome
+Provides        : None
+Depends On      : dconf  gtk3
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 2.61 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Sun 01 Oct 2017 02:45:27 PM PDT
+Install Date    : Wed 28 Nov 2018 10:48:17 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-disk-utility
+Version         : 3.34.0-2
+Description     : Disk Management Utility for GNOME
+Architecture    : x86_64
+URL             : https://gitlab.gnome.org/GNOME/gnome-disk-utility
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : udisks2  gtk3  libsecret  libpwquality  libcanberra  libdvdread  libnotify  parted  systemd-libs
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 6.04 MiB
+Packager        : Antonio Rojas <arojas@archlinux.org>
+Build Date      : Thu 07 Nov 2019 01:46:10 PM PST
+Install Date    : Sun 17 Nov 2019 09:00:13 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-documents
+Version         : 3.33.90+7+gcc19ed47-1
+Description     : A document manager application for GNOME
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Apps/Documents
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : evince  gjs  gtk3  gnome-desktop  gnome-online-accounts  libgdata  tracker-miners  libzapojit  webkit2gtk  gnome-online-miners  librsvg  libgepub  gnome-epub-thumbnailer
+Optional Deps   : libreoffice-fresh: Support for Libreoffice document types
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 2.87 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Thu 12 Sep 2019 02:53:54 PM PDT
+Install Date    : Fri 20 Sep 2019 11:53:04 AM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-font-viewer
+Version         : 3.34.0-1
+Description     : A font viewer utility for GNOME
+Architecture    : x86_64
+URL             : https://gitlab.gnome.org/GNOME/gnome-font-viewer
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : gtk3  gnome-desktop
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 843.00 KiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Sun 15 Sep 2019 04:21:09 AM PDT
+Install Date    : Fri 20 Sep 2019 11:53:05 AM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-getting-started-docs
+Version         : 3.34.1-1
+Description     : Help a new user get started in GNOME
+Architecture    : any
+URL             : https://gitlab.gnome.org/GNOME/gnome-getting-started-docs
+Licenses        : CCPL:by-sa
+Groups          : gnome
+Provides        : None
+Depends On      : yelp  gst-plugins-base  gst-plugins-good
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 61.41 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Tue 29 Oct 2019 12:58:54 PM PDT
+Install Date    : Sun 17 Nov 2019 09:00:14 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-keyring
+Version         : 1:3.34.0-2
+Description     : Stores passwords and encryption keys
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Projects/GnomeKeyring
+Licenses        : GPL  LGPL
+Groups          : gnome
+Provides        : org.freedesktop.secrets
+Depends On      : gcr  libcap-ng  pam  openssh
+Optional Deps   : None
+Required By     : None
+Optional For    : git  google-chrome  libgnome-keyring  libsecret  slack-desktop
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 4.26 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Tue 29 Oct 2019 02:38:19 AM PDT
+Install Date    : Sun 17 Nov 2019 09:00:15 PM PST
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : Signature
+
+Name            : gnome-logs
+Version         : 3.34.0-1
+Description     : A log viewer for the systemd journal
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Apps/Logs
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : systemd  gtk3  gsettings-desktop-schemas
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 1395.00 KiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Fri 13 Sep 2019 01:48:38 AM PDT
+Install Date    : Fri 20 Sep 2019 11:53:05 AM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-maps
+Version         : 3.34.3-1
+Description     : A simple GNOME 3 maps application
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Apps/Maps
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : geocode-glib  geoclue2  gjs  libchamplain  libgee  folks  gfbgraph
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 2.68 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Sat 04 Jan 2020 07:20:53 AM PST
+Install Date    : Tue 07 Jan 2020 10:04:27 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-menus
+Version         : 3.32.0-1
+Description     : GNOME menu specifications
+Architecture    : x86_64
+URL             : https://www.gnome.org
+Licenses        : GPL  LGPL
+Groups          : gnome
+Provides        : None
+Depends On      : glib2
+Optional Deps   : None
+Required By     : None
+Optional For    : gnome-shell-extensions
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 648.00 KiB
+Packager        : Bartlomiej Piotrowski <bpiotrowski@archlinux.org>
+Build Date      : Fri 15 Mar 2019 05:08:39 AM PDT
+Install Date    : Tue 09 Apr 2019 02:15:53 PM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-music
+Version         : 1:3.34.3-1
+Description     : Music player and management application
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Apps/Music
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : grilo  grilo-plugins  tracker-miners  libdmapsharing  libmediaart  gtk3  gvfs  python-gobject  python-cairo  gst-plugins-base  python-requests  libdazzle
+Optional Deps   : gst-plugins-good: Extra media codecs [installed]
+                  gst-plugins-ugly: Extra media codecs
+                  gst-plugins-bad: Extra media codecs [installed]
+                  gst-libav: Extra media codecs
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 2.77 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Sat 04 Jan 2020 04:24:54 PM PST
+Install Date    : Tue 07 Jan 2020 10:04:27 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-photos
+Version         : 3.34.0-1
+Description     : Access, organize, and share your photos on GNOME
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Apps/Photos
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : exempi  gtk3  libexif  librsvg  babl  gegl  gsettings-desktop-schemas  grilo-plugins  lcms2  tracker-miners  geocode-glib  grilo  gfbgraph  libgdata  libgexiv2  libraw  gnome-online-accounts  gnome-online-miners  dleyna-server  dleyna-renderer  libdazzle
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 3.37 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Wed 11 Sep 2019 05:01:54 PM PDT
+Install Date    : Thu 12 Sep 2019 08:24:00 PM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-remote-desktop
+Version         : 0.1.7-1
+Description     : GNOME Remote Desktop server
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Projects/Mutter/RemoteDesktop
+Licenses        : GPL2
+Groups          : gnome
+Provides        : None
+Depends On      : glib2  pipewire  systemd  libvncserver  libsecret  libnotify  dconf
+Optional Deps   : None
+Required By     : None
+Optional For    : gnome-control-center
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 109.00 KiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Thu 28 Feb 2019 06:37:10 AM PST
+Install Date    : Mon 04 Mar 2019 12:12:43 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-screenshot
+Version         : 3.34.0-1
+Description     : Take pictures of your screen
+Architecture    : x86_64
+URL             : https://gitlab.gnome.org/GNOME/gnome-screenshot
+Licenses        : GPL2
+Groups          : gnome
+Provides        : None
+Depends On      : gtk3  libcanberra
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 891.00 KiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Mon 14 Oct 2019 01:00:28 PM PDT
+Install Date    : Mon 14 Oct 2019 03:43:36 PM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-session
+Version         : 3.34.2-1
+Description     : The GNOME Session Handler
+Architecture    : x86_64
+URL             : https://gitlab.gnome.org/GNOME/gnome-session
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : systemd  dconf  gsettings-desktop-schemas  gtk3  gnome-desktop  json-glib  libgl  libsm  libxtst  systemd
+Optional Deps   : None
+Required By     : gdm  gnome-shell
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 1379.62 KiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Thu 28 Nov 2019 06:20:20 AM PST
+Install Date    : Mon 02 Dec 2019 09:52:11 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-settings-daemon
+Version         : 3.34.2-1
+Description     : GNOME Settings Daemon
+Architecture    : x86_64
+URL             : https://gitlab.gnome.org/GNOME/gnome-settings-daemon
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : dconf  gnome-desktop  gsettings-desktop-schemas  libcanberra-pulse  libnotify  systemd-libs  libwacom  pulseaudio  pulseaudio-alsa  upower  librsvg  libgweather  geocode-glib  geoclue2  nss  libgudev  gtk3-print-backends  libnm  gcr
+Optional Deps   : None
+Required By     : gnome-control-center  gnome-shell  mutter
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 4.90 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Tue 17 Dec 2019 02:55:37 PM PST
+Install Date    : Mon 30 Dec 2019 10:59:25 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-shell
+Version         : 1:3.34.3-1
+Description     : Next generation desktop shell
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Projects/GnomeShell
+Licenses        : GPL2
+Groups          : gnome
+Provides        : None
+Depends On      : accountsservice  gcr  gjs  gnome-bluetooth  upower  gnome-session  gnome-settings-daemon  gnome-themes-extra  gsettings-desktop-schemas  libcanberra-pulse  libcroco  libgdm  libsecret  mutter  nm-connection-editor  unzip  gstreamer  libibus  gnome-autoar
+Optional Deps   : gnome-control-center: System settings [installed]
+                  evolution-data-server: Evolution calendar integration [installed]
+Required By     : gdm  gnome-shell-extensions
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 9.04 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Sun 05 Jan 2020 05:09:07 AM PST
+Install Date    : Tue 07 Jan 2020 10:04:27 AM PST
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : Signature
+
+Name            : gnome-shell-extensions
+Version         : 3.34.2-1
+Description     : Extensions for GNOME shell, including classic mode
+Architecture    : any
+URL             : https://wiki.gnome.org/Projects/GnomeShell/Extensions
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : gnome-shell
+Optional Deps   : gnome-menus: applications menu extension [installed]
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 877.72 KiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Thu 12 Dec 2019 01:13:33 PM PST
+Install Date    : Mon 30 Dec 2019 10:59:26 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-software
+Version         : 3.34.2-1
+Description     : GNOME Software Tools
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Apps/Software/
+Licenses        : GPL2
+Groups          : gnome
+Provides        : None
+Depends On      : libxmlb  gnome-desktop  gsettings-desktop-schemas  gspell  libpackagekit-glib  gnome-online-accounts  appstream-glib
+Optional Deps   : flatpak: Flatpak support plugin
+                  fwupd: fwupd support plugin
+                  ostree: OSTree support plugin
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 14.00 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Mon 25 Nov 2019 04:01:46 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:09 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-system-monitor
+Version         : 3.32.1-1
+Description     : View current processes and monitor system state
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Apps/SystemMonitor
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : libgtop  gtkmm3  librsvg  systemd
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 3.72 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Tue 09 Apr 2019 01:12:20 AM PDT
+Install Date    : Tue 09 Apr 2019 02:15:55 PM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-themes-extra
+Version         : 3.28-1
+Description     : Extra Themes for GNOME Applications
+Architecture    : x86_64
+URL             : https://gitlab.gnome.org/GNOME/gnome-themes-extra
+Licenses        : LGPL2.1
+Groups          : gnome
+Provides        : gnome-themes-standard=3.28
+Depends On      : cantarell-fonts
+Optional Deps   : gtk-engines: HighContrast GTK2 theme
+Required By     : gnome-shell
+Optional For    : gtk2  libxcursor
+Conflicts With  : gnome-themes-standard
+Replaces        : gnome-themes-standard<3.27.92
+Installed Size  : 4.52 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Thu 22 Mar 2018 12:44:05 PM PDT
+Install Date    : Wed 28 Nov 2018 10:48:04 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-todo
+Version         : 3.28.1+22+gd56e14e-1
+Description     : Task manager for GNOME
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Apps/Todo
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : evolution-data-server  libpeas  python
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 1972.00 KiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Sun 15 Sep 2019 05:03:46 AM PDT
+Install Date    : Fri 20 Sep 2019 11:53:05 AM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-user-docs
+Version         : 3.34.1-1
+Description     : User documentation for GNOME
+Architecture    : any
+URL             : https://gitlab.gnome.org/GNOME/gnome-user-docs
+Licenses        : FDL
+Groups          : gnome
+Provides        : None
+Depends On      : yelp
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 47.31 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Tue 29 Oct 2019 12:58:52 PM PDT
+Install Date    : Sun 17 Nov 2019 09:00:21 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-user-share
+Version         : 3.34.0-1
+Description     : Easy to use user-level file sharing for GNOME
+Architecture    : x86_64
+URL             : https://gitlab.gnome.org/GNOME/gnome-user-share
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : mod_dnssd  dconf  gtk3  libnotify  libcanberra
+Optional Deps   : None
+Required By     : None
+Optional For    : gnome-control-center
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 275.00 KiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Thu 12 Sep 2019 03:17:50 PM PDT
+Install Date    : Fri 20 Sep 2019 11:53:05 AM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gnome-video-effects
+Version         : 0.5.0+4+g9554041-1
+Description     : Collection of GStreamer effects for GNOME
+Architecture    : any
+URL             : https://gitlab.gnome.org/GNOME/gnome-video-effects
+Licenses        : GPL2
+Groups          : gnome
+Provides        : None
+Depends On      : gst-plugins-good  gst-plugins-bad  frei0r-plugins
+Optional Deps   : None
+Required By     : cheese
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 185.00 KiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Thu 12 Sep 2019 10:59:20 AM PDT
+Install Date    : Thu 12 Sep 2019 08:24:02 PM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : google-chrome
+Version         : 79.0.3945.130-1
+Description     : The popular and trusted web browser by Google (Stable Channel)
+Architecture    : x86_64
+URL             : https://www.google.com/chrome
+Licenses        : custom:chrome
+Groups          : None
+Provides        : None
+Depends On      : alsa-lib  gtk3  libcups  libxss  libxtst  nss
+Optional Deps   : kdialog: for file dialogs in KDE
+                  gnome-keyring: for storing passwords in GNOME keyring [installed]
+                  kwallet: for storing passwords in KWallet
+                  gtk3-print-backends: for printing [installed]
+                  libunity: for download progress on KDE
+                  ttf-liberation: fix fonts for some PDFs (CRBug #369991)
+                  xdg-utils [installed]
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 210.47 MiB
+Packager        : Unknown Packager
+Build Date      : Mon 27 Jan 2020 08:43:51 PM PST
+Install Date    : Mon 27 Jan 2020 08:46:00 PM PST
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : None
+
+Name            : grep
+Version         : 3.4-1
+Description     : A string search utility
+Architecture    : x86_64
+URL             : https://www.gnu.org/software/grep/
+Licenses        : GPL3
+Groups          : base-devel
+Provides        : None
+Depends On      : glibc  pcre
+Optional Deps   : None
+Required By     : git  mkinitcpio  swaylock-fancy-git
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 696.86 KiB
+Packager        : Sébastien Luttringer <seblu@seblu.net>
+Build Date      : Fri 03 Jan 2020 04:24:51 AM PST
+Install Date    : Tue 07 Jan 2020 10:04:25 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : grilo-plugins
+Version         : 0.3.10-1
+Description     : A collection of plugins for the Grilo framework
+Architecture    : x86_64
+URL             : https://gitlab.gnome.org/GNOME/grilo-plugins
+Licenses        : LGPL
+Groups          : gnome
+Provides        : None
+Depends On      : grilo  lua  libmediaart  libgdata  tracker  gom  libdmapsharing  chromaprint  gst-plugins-bad  gmime3
+Optional Deps   : dleyna-server: DLNA plugin [installed]
+                  tracker-miners: Tracker plugin [installed]
+Required By     : gnome-music  gnome-photos
+Optional For    : grilo  totem
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 2.29 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Thu 12 Sep 2019 10:53:55 AM PDT
+Install Date    : Thu 12 Sep 2019 08:24:00 PM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gucharmap
+Version         : 12.0.1-1
+Description     : Gnome Unicode Charmap
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Apps/Gucharmap
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : dconf  gtk3
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 8.76 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Fri 15 Mar 2019 02:27:41 PM PDT
+Install Date    : Tue 09 Apr 2019 02:16:00 PM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gvfs
+Version         : 1.42.2-1
+Description     : Virtual filesystem implementation for GIO
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Projects/gvfs
+Licenses        : LGPL
+Groups          : gnome
+Provides        : None
+Depends On      : avahi  dconf  fuse3  libarchive  libcdio-paranoia  libsoup  udisks2  libsecret  libbluray  libgudev  gcr  psmisc  gsettings-desktop-schemas
+Optional Deps   : gvfs-afc: AFC (mobile devices) support [installed]
+                  gvfs-smb: SMB/CIFS (Windows client) support [installed]
+                  gvfs-gphoto2: gphoto2 (PTP camera/MTP media player) support [installed]
+                  gvfs-mtp: MTP device support [installed]
+                  gvfs-goa: gnome-online-accounts (e.g. OwnCloud) support [installed]
+                  gvfs-nfs: NFS support [installed]
+                  gvfs-google: Google Drive support [installed]
+                  gtk3: Recent files support [installed]
+Required By     : gnome-music  gvfs-afc  gvfs-goa  gvfs-gphoto2  gvfs-mtp  gvfs-nfs  gvfs-smb  nautilus
+Optional For    : evince  thunar
+Conflicts With  : None
+Replaces        : gvfs-obexftp  gvfs-afp
+Installed Size  : 5.10 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Fri 22 Nov 2019 02:45:17 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:08 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gvfs-afc
+Version         : 1.42.2-1
+Description     : Virtual filesystem implementation for GIO (AFC backend; Apple mobile devices)
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Projects/gvfs
+Licenses        : LGPL
+Groups          : gnome
+Provides        : None
+Depends On      : gvfs=1.42.2  libimobiledevice  usbmuxd
+Optional Deps   : None
+Required By     : None
+Optional For    : gvfs
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 148.07 KiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Fri 22 Nov 2019 02:45:17 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:09 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gvfs-goa
+Version         : 1.42.2-1
+Description     : Virtual filesystem implementation for GIO (Gnome Online Accounts backend; cloud storage)
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Projects/gvfs
+Licenses        : LGPL
+Groups          : gnome
+Provides        : None
+Depends On      : gvfs=1.42.2  gnome-online-accounts
+Optional Deps   : None
+Required By     : gvfs-google
+Optional For    : gnome-online-accounts  gvfs
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 98.24 KiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Fri 22 Nov 2019 02:45:17 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:09 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gvfs-google
+Version         : 1.42.2-1
+Description     : Virtual filesystem implementation for GIO (Google Drive backend)
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Projects/gvfs
+Licenses        : LGPL
+Groups          : gnome
+Provides        : None
+Depends On      : gvfs-goa=1.42.2  libgdata
+Optional Deps   : None
+Required By     : None
+Optional For    : gnome-online-accounts  gvfs
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 65.83 KiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Fri 22 Nov 2019 02:45:17 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:09 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gvfs-gphoto2
+Version         : 1.42.2-1
+Description     : Virtual filesystem implementation for GIO (gphoto2 backend; PTP camera, MTP media player)
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Projects/gvfs
+Licenses        : LGPL
+Groups          : gnome
+Provides        : None
+Depends On      : gvfs=1.42.2  libgphoto2
+Optional Deps   : None
+Required By     : None
+Optional For    : gvfs
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 164.08 KiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Fri 22 Nov 2019 02:45:17 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:09 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gvfs-mtp
+Version         : 1.42.2-1
+Description     : Virtual filesystem implementation for GIO (MTP backend; Android, media player)
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Projects/gvfs
+Licenses        : LGPL
+Groups          : gnome
+Provides        : None
+Depends On      : gvfs=1.42.2  libmtp
+Optional Deps   : None
+Required By     : None
+Optional For    : gvfs
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 164.05 KiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Fri 22 Nov 2019 02:45:17 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:09 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gvfs-nfs
+Version         : 1.42.2-1
+Description     : Virtual filesystem implementation for GIO (NFS backend)
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Projects/gvfs
+Licenses        : LGPL
+Groups          : gnome
+Provides        : None
+Depends On      : gvfs=1.42.2  libnfs
+Optional Deps   : None
+Required By     : None
+Optional For    : gvfs
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 53.89 KiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Fri 22 Nov 2019 02:45:17 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:09 PM PST
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : Signature
+
+Name            : gvfs-smb
+Version         : 1.42.2-1
+Description     : Virtual filesystem implementation for GIO (SMB/CIFS backend; Windows client)
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Projects/gvfs
+Licenses        : LGPL
+Groups          : gnome
+Provides        : None
+Depends On      : gvfs=1.42.2  smbclient
+Optional Deps   : None
+Required By     : None
+Optional For    : gvfs
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 92.19 KiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Fri 22 Nov 2019 02:45:17 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:09 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : gzip
+Version         : 1.10-3
+Description     : GNU compression utility
+Architecture    : x86_64
+URL             : https://www.gnu.org/software/gzip/
+Licenses        : GPL3
+Groups          : base-devel
+Provides        : None
+Depends On      : glibc  bash  less
+Optional Deps   : None
+Required By     : logrotate  mkinitcpio  texinfo
+Optional For    : man-db
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 156.95 KiB
+Packager        : Felix Yan <felixonmars@archlinux.org>
+Build Date      : Wed 13 Nov 2019 07:54:22 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:09 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : htop
+Version         : 2.2.0-3
+Description     : Interactive process viewer
+Architecture    : x86_64
+URL             : https://hisham.hm/htop/
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : ncurses  libnl
+Optional Deps   : lsof: show files opened by a process [installed]
+                  strace: attach to a running process
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 199.27 KiB
+Packager        : Christian Hesse <arch@eworm.de>
+Build Date      : Tue 21 Jan 2020 12:12:00 PM PST
+Install Date    : Mon 27 Jan 2020 08:19:54 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : i3-gaps
+Version         : 4.17.1-1
+Description     : A fork of i3wm tiling window manager with more features, including gaps
+Architecture    : x86_64
+URL             : https://github.com/Airblader/i3
+Licenses        : BSD
+Groups          : i3
+Provides        : i3-wm
+Depends On      : xcb-util-keysyms  xcb-util-wm  libev  yajl  startup-notification  pango  perl  xcb-util-cursor  xcb-util-xrm  libxkbcommon-x11
+Optional Deps   : rxvt-unicode: The terminal emulator used in the default config.
+                  dmenu: As menu. [installed]
+                  i3lock: For locking your screen. [installed]
+                  i3status: To display system information with a bar. [installed]
+                  perl-json-xs: For i3-save-tree [installed]
+                  perl-anyevent-i3: For i3-save-tree [installed]
+Required By     : None
+Optional For    : polybar  rofi
+Conflicts With  : i3-wm
+Replaces        : None
+Installed Size  : 1552.00 KiB
+Packager        : Morten Linderud <foxboron@archlinux.org>
+Build Date      : Sun 01 Sep 2019 04:10:28 AM PDT
+Install Date    : Thu 05 Sep 2019 03:03:14 PM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : i3lock-fancy-multimonitor-git
+Version         : r17.98ef6f5-1
+Description     : Blurry lock screen for i3lock with multimonitor support
+Architecture    : any
+URL             : https://github.com/guimeira/i3lock-fancy-multimonitor
+Licenses        : MIT
+Groups          : None
+Provides        : i3lock-fancy
+Depends On      : bash  i3lock  imagemagick  scrot  xorg-xrandr
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : i3lock-fancy-git
+Replaces        : None
+Installed Size  : 50.00 KiB
+Packager        : Unknown Packager
+Build Date      : Wed 20 Feb 2019 09:33:49 AM PST
+Install Date    : Wed 20 Feb 2019 09:34:58 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : SHA-256 Sum
+
+Name            : i3status
+Version         : 2.13-2
+Description     : Generates status bar to use with i3bar, dzen2 or xmobar
+Architecture    : x86_64
+URL             : https://i3wm.org/i3status/
+Licenses        : BSD
+Groups          : i3
+Provides        : None
+Depends On      : alsa-lib  confuse  libnl  libpulse  yajl
+Optional Deps   : None
+Required By     : None
+Optional For    : i3-gaps  sway-git
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 111.00 KiB
+Packager        : Daniel M. Capella <polyzen@archlinux.org>
+Build Date      : Thu 18 Jul 2019 01:57:23 PM PDT
+Install Date    : Wed 24 Jul 2019 10:14:43 AM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : icedtea-web
+Version         : 1.8.3-1
+Description     : Additional components for OpenJDK - Browser plug-in and Web Start implementation
+Architecture    : x86_64
+URL             : https://github.com/AdoptOpenJDK/IcedTea-Web
+Licenses        : GPL2
+Groups          : None
+Provides        : java-web-start
+Depends On      : java-runtime-openjdk  desktop-file-utils
+Optional Deps   : rhino: for using proxy auto config files
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 3.65 MiB
+Packager        : Levente Polyak <anthraxx@archlinux.org>
+Build Date      : Thu 10 Oct 2019 01:47:32 PM PDT
+Install Date    : Mon 14 Oct 2019 03:43:45 PM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : iio-sensor-proxy
+Version         : 2.8-1
+Description     : IIO accelerometer sensor to input device proxy
+Architecture    : x86_64
+URL             : https://github.com/hadess/iio-sensor-proxy
+Licenses        : GPL2
+Groups          : None
+Provides        : None
+Depends On      : systemd  libgudev  gtk3
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 179.00 KiB
+Packager        : Filipe Laíns <lains@archlinux.org>
+Build Date      : Sun 08 Sep 2019 07:39:51 AM PDT
+Install Date    : Wed 11 Sep 2019 01:44:21 PM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : ike-scan
+Version         : 1.9-3
+Description     : A tool that uses IKE protocol to discover, fingerprint and test IPSec VPN servers
+Architecture    : x86_64
+URL             : https://github.com/royhills/ike-scan
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : openssl
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 4.06 MiB
+Packager        : Unknown Packager
+Build Date      : Mon 03 Dec 2018 06:55:21 PM PST
+Install Date    : Mon 03 Dec 2018 06:59:05 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : SHA-256 Sum
+
+Name            : illum-git
+Version         : 0.4.r58.g21284b8-1
+Description     : A daemon that responds to brightness keys by changing the backlight level
+Architecture    : x86_64
+URL             : https://github.com/jmesmon/illum
+Licenses        : AGPL3
+Groups          : None
+Provides        : illum
+Depends On      : libevdev  libev
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : illum
+Replaces        : None
+Installed Size  : 38.00 KiB
+Packager        : Unknown Packager
+Build Date      : Mon 21 Jan 2019 11:47:19 AM PST
+Install Date    : Mon 21 Jan 2019 11:50:08 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : SHA-256 Sum
+
+Name            : inetutils
+Version         : 1.9.4-8
+Description     : A collection of common network programs
+Architecture    : x86_64
+URL             : https://www.gnu.org/software/inetutils/
+Licenses        : GPL3
+Groups          : None
+Provides        : None
+Depends On      : pam  libcap
+Optional Deps   : None
+Required By     : testssl.sh  xorg-xinit
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 1138.61 KiB
+Packager        : Evangelos Foutras <evangelos@foutrelis.com>
+Build Date      : Wed 13 Nov 2019 09:45:06 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:09 PM PST
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : Signature
+
+Name            : intel-ucode
+Version         : 20191115-3
+Description     : Microcode update files for Intel CPUs
+Architecture    : any
+URL             : https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files
+Licenses        : custom
+Groups          : None
+Provides        : None
+Depends On      : None
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : microcode_ctl
+Installed Size  : 2.98 MiB
+Packager        : Christian Hesse <arch@eworm.de>
+Build Date      : Wed 11 Dec 2019 04:32:02 AM PST
+Install Date    : Mon 30 Dec 2019 10:59:41 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : iproute2
+Version         : 5.5.0-1
+Description     : IP Routing Utilities
+Architecture    : x86_64
+URL             : https://git.kernel.org/pub/scm/network/iproute2/iproute2.git
+Licenses        : GPL2
+Groups          : None
+Provides        : iproute
+Depends On      : glibc  iptables  libelf
+Optional Deps   : linux-atm: ATM support
+Required By     : docker  libvirt  netctl  networkmanager  openvpn  strongswan
+Optional For    : blueman
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 2.59 MiB
+Packager        : Christian Hesse <arch@eworm.de>
+Build Date      : Mon 27 Jan 2020 06:14:36 AM PST
+Install Date    : Fri 31 Jan 2020 10:38:21 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : iputils
+Version         : 20190709-2
+Description     : Network monitoring tools, including ping
+Architecture    : x86_64
+URL             : http://www.skbuff.net/iputils/
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : openssl  libcap  libidn2
+Optional Deps   : xinetd: for tftpd
+Required By     : None
+Optional For    : None
+Conflicts With  : netkit-base  arping  netkit-tftpd
+Replaces        : netkit-base
+Installed Size  : 284.06 KiB
+Packager        : Evangelos Foutras <evangelos@foutrelis.com>
+Build Date      : Wed 13 Nov 2019 08:14:51 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:09 PM PST
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : Signature
+
+Name            : j4-dmenu-desktop
+Version         : 2.17-1
+Description     : A much faster replacement for i3-dmenu-desktop. Its purpose is to find .desktop files and offer you a menu to start an application using dmenu.
+Architecture    : any
+URL             : https://github.com/enkore/j4-dmenu-desktop
+Licenses        : GPL3
+Groups          : None
+Provides        : None
+Depends On      : None
+Optional Deps   : dmenu: install for the default backend [installed]
+                  bemenu: an alternative backend [installed]
+Required By     : None
+Optional For    : None
+Conflicts With  : j4-dmenu-desktop-git
+Replaces        : None
+Installed Size  : 119.00 KiB
+Packager        : Unknown Packager
+Build Date      : Sat 03 Aug 2019 12:50:54 PM PDT
+Install Date    : Sat 03 Aug 2019 02:27:24 PM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : SHA-256 Sum
+
+Name            : java-runtime-common
+Version         : 3-2
+Description     : Common files for Java Runtime Environments
+Architecture    : any
+URL             : https://www.archlinux.org/packages/extra/any/java-common/
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : bash  findutils  coreutils
+Optional Deps   : None
+Required By     : jre-openjdk-headless
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 5.25 KiB
+Packager        : Levente Polyak <anthraxx@archlinux.org>
+Build Date      : Thu 05 Dec 2019 02:06:15 PM PST
+Install Date    : Mon 30 Dec 2019 10:59:41 AM PST
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : Signature
+
+Name            : jfsutils
+Version         : 1.1.15-7
+Description     : JFS filesystem utilities
+Architecture    : x86_64
+URL             : http://jfs.sourceforge.net
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : util-linux
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 1040.68 KiB
+Packager        : Felix Yan <felixonmars@archlinux.org>
+Build Date      : Wed 13 Nov 2019 08:23:53 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:10 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : jsoncpp
+Version         : 1.9.1-1
+Description     : C++ library for interacting with JSON
+Architecture    : x86_64
+URL             : https://github.com/open-source-parsers/jsoncpp
+Licenses        : MIT  custom:Public_Domain
+Groups          : None
+Provides        : libjsoncpp.so=21-64
+Depends On      : gcc-libs
+Optional Deps   : jsoncpp-doc: documentation
+Required By     : cmake  polybar  waybar-git
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 1666.00 KiB
+Packager        : Levente Polyak <anthraxx@archlinux.org>
+Build Date      : Fri 13 Sep 2019 11:16:07 AM PDT
+Install Date    : Fri 20 Sep 2019 11:52:54 AM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : jsonnet
+Version         : 0.14.0-1
+Description     : The data templating language
+Architecture    : x86_64
+URL             : https://jsonnet.org/
+Licenses        : Apache
+Groups          : None
+Provides        : None
+Depends On      : gcc-libs
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 3.25 MiB
+Packager        : Unknown Packager
+Build Date      : Mon 27 Jan 2020 08:37:54 PM PST
+Install Date    : Mon 27 Jan 2020 08:38:52 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : None
+
+Name            : kitty
+Version         : 0.16.0-1
+Description     : A modern, hackable, featureful, OpenGL-based terminal emulator
+Architecture    : x86_64
+URL             : https://github.com/kovidgoyal/kitty
+Licenses        : GPL3
+Groups          : None
+Provides        : None
+Depends On      : python3  freetype2  fontconfig  wayland  libx11  libxkbcommon-x11  libxi  hicolor-icon-theme  libgl  libcanberra  kitty-terminfo
+Optional Deps   : imagemagick: viewing images with icat [installed]
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 10.99 MiB
+Packager        : Sven-Hendrik Haase <svenstaro@gmail.com>
+Build Date      : Tue 28 Jan 2020 03:57:29 AM PST
+Install Date    : Fri 31 Jan 2020 10:38:21 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : kubectl
+Version         : 1.17.2-1
+Description     : Kubernetes.io client binary
+Architecture    : x86_64
+URL             : https://kubernetes.io
+Licenses        : Apache
+Groups          : None
+Provides        : None
+Depends On      : glibc
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 55.18 MiB
+Packager        : Christian Rebischke <Chris.Rebischke@archlinux.org>
+Build Date      : Sat 25 Jan 2020 01:52:51 PM PST
+Install Date    : Mon 27 Jan 2020 05:57:21 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : less
+Version         : 551-3
+Description     : A terminal based program for viewing text files
+Architecture    : x86_64
+URL             : http://www.greenwoodsoftware.com/less
+Licenses        : GPL3
+Groups          : None
+Provides        : None
+Depends On      : glibc  ncurses  pcre
+Optional Deps   : None
+Required By     : gzip  man-db
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 237.49 KiB
+Packager        : Felix Yan <felixonmars@archlinux.org>
+Build Date      : Wed 13 Nov 2019 07:57:29 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:09 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : libu2f-host
+Version         : 1.1.10-2
+Description     : Yubico Universal 2nd Factor (U2F) Host C Library
+Architecture    : x86_64
+URL             : https://github.com/Yubico/libu2f-host
+Licenses        : BSD
+Groups          : None
+Provides        : None
+Depends On      : json-c  hidapi
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 143.48 KiB
+Packager        : Christian Hesse <arch@eworm.de>
+Build Date      : Mon 04 Nov 2019 06:49:35 AM PST
+Install Date    : Sun 17 Nov 2019 09:00:40 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : licenses
+Version         : 20191011-2
+Description     : Standard licenses distribution package
+Architecture    : any
+URL             : https://www.archlinux.org/
+Licenses        : custom:none
+Groups          : None
+Provides        : None
+Depends On      : None
+Optional Deps   : None
+Required By     : namcap
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 415.86 KiB
+Packager        : Evangelos Foutras <evangelos@foutrelis.com>
+Build Date      : Wed 13 Nov 2019 09:26:13 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:10 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : lightdm
+Version         : 1:1.30.0-2
+Description     : A lightweight display manager
+Architecture    : x86_64
+URL             : https://www.freedesktop.org/wiki/Software/LightDM/
+Licenses        : GPL3  LGPL3
+Groups          : None
+Provides        : None
+Depends On      : glib2  libgcrypt  libx11  libxcb  libxdmcp  libxklavier  pam  polkit
+Optional Deps   : accountsservice: Enhanced user accounts handling [installed]
+                  lightdm-gtk-greeter: GTK greeter
+                  xorg-server-xephyr: LightDM test mode
+Required By     : lightdm-slick-greeter  lightdm-webkit-theme-aether  lightdm-webkit2-greeter
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 1959.00 KiB
+Packager        : Maxime Gauduin <alucryd@archlinux.org>
+Build Date      : Fri 17 May 2019 07:59:29 AM PDT
+Install Date    : Wed 03 Jul 2019 11:27:31 AM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : lightdm-slick-greeter
+Version         : 1.3.2-1
+Description     : A slick-looking LightDM greeter
+Architecture    : x86_64
+URL             : https://github.com/linuxmint/slick-greeter
+Licenses        : GPL3
+Groups          : None
+Provides        : None
+Depends On      : cairo  freetype2  gtk3  libcanberra  libxext  lightdm  pixman  python  xorg-server
+Optional Deps   : numlockx: enable numerical keypad on supported keyboard
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 940.95 KiB
+Packager        : Unknown Packager
+Build Date      : Mon 27 Jan 2020 08:33:47 PM PST
+Install Date    : Mon 27 Jan 2020 08:34:32 PM PST
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : None
+
+Name            : lightdm-webkit-theme-aether
+Version         : 2.2.2-1
+Description     : A sleek, customizable Archlinux theme for lightdm.
+Architecture    : any
+URL             : https://github.com/NoiSek/Aether
+Licenses        : GPL3
+Groups          : None
+Provides        : None
+Depends On      : lightdm  lightdm-webkit2-greeter>=2.2.3  ttf-opensans
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 29.03 MiB
+Packager        : Unknown Packager
+Build Date      : Thu 29 Nov 2018 09:25:44 PM PST
+Install Date    : Thu 29 Nov 2018 09:27:19 PM PST
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : SHA-256 Sum
+
+Name            : lightdm-webkit2-greeter
+Version         : 2.2.5-2
+Description     : LightDM greeter that uses WebKit2 for theming via HTML/JavaScript.
+Architecture    : x86_64
+URL             : https://github.com/antergos/web-greeter
+Licenses        : GPL3
+Groups          : None
+Provides        : None
+Depends On      : lightdm  webkit2gtk  accountsservice  gnome-backgrounds
+Optional Deps   : None
+Required By     : lightdm-webkit-theme-aether
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 2.78 MiB
+Packager        : Filipe Laíns <lains@archlinux.org>
+Build Date      : Sun 16 Sep 2018 02:03:25 PM PDT
+Install Date    : Thu 29 Nov 2018 09:23:42 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : linux
+Version         : 5.4.15.arch1-1
+Description     : The Linux kernel and modules
+Architecture    : x86_64
+URL             : https://git.archlinux.org/linux.git/log/?h=v5.4.15-arch1
+Licenses        : GPL2
+Groups          : None
+Provides        : None
+Depends On      : coreutils  kmod  initramfs
+Optional Deps   : crda: to set the correct wireless channels of your country
+                  linux-firmware: firmware images needed for some devices [installed]
+Required By     : virtualbox-host-modules-arch
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 73.32 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Sun 26 Jan 2020 01:48:50 AM PST
+Install Date    : Mon 27 Jan 2020 08:19:57 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : linux-firmware
+Version         : 20191220.6871bff-1
+Description     : Firmware files for Linux
+Architecture    : any
+URL             : https://git.kernel.org/?p=linux/kernel/git/firmware/linux-firmware.git;a=summary
+Licenses        : GPL2  GPL3  custom
+Groups          : None
+Provides        : None
+Depends On      : None
+Optional Deps   : None
+Required By     : None
+Optional For    : linux
+Conflicts With  : linux-firmware-git  kernel26-firmware  ar9170-fw  iwlwifi-1000-ucode  iwlwifi-3945-ucode  iwlwifi-4965-ucode  iwlwifi-5000-ucode  iwlwifi-5150-ucode  iwlwifi-6000-ucode  rt2870usb-fw  rt2x00-rt61-fw  rt2x00-rt71w-fw
+Replaces        : kernel26-firmware  ar9170-fw  iwlwifi-1000-ucode  iwlwifi-3945-ucode  iwlwifi-4965-ucode  iwlwifi-5000-ucode  iwlwifi-5150-ucode  iwlwifi-6000-ucode  rt2870usb-fw  rt2x00-rt61-fw  rt2x00-rt71w-fw
+Installed Size  : 518.18 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Mon 23 Dec 2019 07:49:17 PM PST
+Install Date    : Mon 30 Dec 2019 11:00:00 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : logrotate
+Version         : 3.15.1-2
+Description     : Rotates system logs automatically
+Architecture    : x86_64
+URL             : https://github.com/logrotate/logrotate
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : popt  gzip  acl
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 103.07 KiB
+Packager        : Evangelos Foutras <evangelos@foutrelis.com>
+Build Date      : Wed 13 Nov 2019 08:46:31 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:27 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : lvm2
+Version         : 2.02.186-5
+Description     : Logical Volume Manager 2 utilities
+Architecture    : x86_64
+URL             : https://sourceware.org/lvm2/
+Licenses        : GPL2  LGPL2.1
+Groups          : None
+Provides        : None
+Depends On      : bash  device-mapper>=2.02.186  systemd-libs  libutil-linux  readline  thin-provisioning-tools
+Optional Deps   : None
+Required By     : libblockdev
+Optional For    : None
+Conflicts With  : lvm  mkinitcpio<0.7
+Replaces        : None
+Installed Size  : 6.61 MiB
+Packager        : Christian Hesse <arch@eworm.de>
+Build Date      : Thu 02 Jan 2020 11:26:51 PM PST
+Install Date    : Tue 07 Jan 2020 10:04:27 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : m4
+Version         : 1.4.18-3
+Description     : The GNU macro processor
+Architecture    : x86_64
+URL             : https://www.gnu.org/software/m4
+Licenses        : GPL3
+Groups          : base-devel
+Provides        : None
+Depends On      : glibc  bash
+Optional Deps   : None
+Required By     : autoconf  bison  flex
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 260.55 KiB
+Packager        : Evangelos Foutras <evangelos@foutrelis.com>
+Build Date      : Wed 13 Nov 2019 09:50:25 AM PST
+Install Date    : Wed 27 Nov 2019 03:49:40 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : make
+Version         : 4.2.1-4
+Description     : GNU make utility to maintain groups of programs
+Architecture    : x86_64
+URL             : https://www.gnu.org/software/make
+Licenses        : GPL3
+Groups          : base-devel
+Provides        : None
+Depends On      : glibc  guile
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 1286.46 KiB
+Packager        : Evangelos Foutras <evangelos@foutrelis.com>
+Build Date      : Wed 13 Nov 2019 09:55:36 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:27 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : mako
+Version         : 1.4.1-1
+Description     : Lightweight notification daemon for Wayland
+Architecture    : x86_64
+URL             : https://mako-project.org
+Licenses        : MIT
+Groups          : None
+Provides        : None
+Depends On      : gdk-pixbuf2  pango  systemd-libs  wayland
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 92.82 KiB
+Packager        : Brett Cornwall <brett@i--b.com>
+Build Date      : Sat 11 Jan 2020 10:34:21 PM PST
+Install Date    : Mon 20 Jan 2020 09:05:40 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : man-db
+Version         : 2.9.0-1
+Description     : A utility for reading man pages
+Architecture    : x86_64
+URL             : https://www.nongnu.org/man-db/
+Licenses        : GPL  LGPL
+Groups          : None
+Provides        : man
+Depends On      : bash  gdbm  zlib  groff  libpipeline  less  libseccomp
+Optional Deps   : gzip [installed]
+Required By     : None
+Optional For    : None
+Conflicts With  : man
+Replaces        : man
+Installed Size  : 2.19 MiB
+Packager        : Andreas Radke <andyrtr@archlinux.org>
+Build Date      : Wed 23 Oct 2019 12:52:35 PM PDT
+Install Date    : Sun 17 Nov 2019 09:00:55 PM PST
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : Signature
+
+Name            : man-pages
+Version         : 5.04-2
+Description     : Linux man pages
+Architecture    : any
+URL             : http://man7.org/linux/man-pages/index.html
+Licenses        : GPL  custom
+Groups          : None
+Provides        : None
+Depends On      : None
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 5.56 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Mon 02 Dec 2019 01:34:48 PM PST
+Install Date    : Mon 30 Dec 2019 11:00:01 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : mdadm
+Version         : 4.1-2
+Description     : A tool for managing/monitoring Linux md device arrays, also known as Software RAID
+Architecture    : x86_64
+URL             : https://git.kernel.org/cgit/utils/mdadm
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : glibc
+Optional Deps   : None
+Required By     : libblockdev
+Optional For    : None
+Conflicts With  : mkinitcpio<0.7
+Replaces        : raidtools
+Installed Size  : 971.85 KiB
+Packager        : Felix Yan <felixonmars@archlinux.org>
+Build Date      : Wed 13 Nov 2019 10:16:37 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:07 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : mosh
+Version         : 1.3.2-11
+Description     : Mobile shell, surviving disconnects with local echo and line editing
+Architecture    : x86_64
+URL             : https://mosh.org/
+Licenses        : GPL3
+Groups          : None
+Provides        : None
+Depends On      : libutempter  openssh  openssl  perl-io-tty  protobuf
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 741.19 KiB
+Packager        : Alexander Rødseth <rodseth@gmail.com>
+Build Date      : Sun 08 Dec 2019 06:38:10 AM PST
+Install Date    : Mon 30 Dec 2019 11:00:01 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : mousetweaks
+Version         : 3.32.0-1
+Description     : Mouse accessibility enhancements
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Projects/Mousetweaks
+Licenses        : GPL3  FDL
+Groups          : gnome
+Provides        : None
+Depends On      : libxtst  gtk3  gsettings-desktop-schemas
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 427.00 KiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Thu 14 Mar 2019 01:03:53 PM PDT
+Install Date    : Tue 09 Apr 2019 02:16:20 PM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : mutter
+Version         : 3.34.3+14+g59e9b073a-1
+Description     : A window manager for GNOME
+Architecture    : x86_64
+URL             : https://gitlab.gnome.org/GNOME/mutter
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : dconf  gobject-introspection-runtime  gsettings-desktop-schemas  libcanberra  startup-notification  zenity  libsm  gnome-desktop  upower  libxkbcommon-x11  gnome-settings-daemon  libgudev  libinput  pipewire  xorg-server-xwayland
+Optional Deps   : None
+Required By     : gnome-shell
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 15.34 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Sat 25 Jan 2020 04:24:44 AM PST
+Install Date    : Mon 27 Jan 2020 08:19:57 PM PST
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : Signature
+
+Name            : nano
+Version         : 4.7-1
+Description     : Pico editor clone with enhancements
+Architecture    : x86_64
+URL             : https://www.nano-editor.org
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : ncurses  file  sh
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 2.16 MiB
+Packager        : Andreas Radke <andyrtr@archlinux.org>
+Build Date      : Mon 23 Dec 2019 03:53:50 AM PST
+Install Date    : Mon 30 Dec 2019 11:00:02 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : nautilus
+Version         : 3.34.2-1
+Description     : Default file manager for GNOME
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Apps/Nautilus
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : libgexiv2  gnome-desktop  gvfs  dconf  tracker  nautilus-sendto  gnome-autoar  gst-plugins-base-libs  tracker-miners  libnautilus-extension
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 13.22 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Fri 22 Nov 2019 06:18:00 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:29 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : netctl
+Version         : 1.20-2
+Description     : Profile based systemd network management
+Architecture    : any
+URL             : https://projects.archlinux.org/netctl.git/
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : coreutils  iproute2  resolvconf  systemd>=233
+Optional Deps   : dialog: for the menu based wifi assistant
+                  dhclient: for DHCP support (or dhcpcd)
+                  dhcpcd: for DHCP support (or dhclient) [installed]
+                  wpa_supplicant: for wireless networking support [installed]
+                  ifplugd: for automatic wired connections through netctl-ifplugd
+                  ppp: for PPP connections [installed]
+                  openvswitch: for Open vSwitch connections
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 92.75 KiB
+Packager        : Evangelos Foutras <evangelos@foutrelis.com>
+Build Date      : Wed 13 Nov 2019 08:13:03 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:29 PM PST
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : Signature
+
+Name            : network-manager-applet
+Version         : 1.8.24-1
+Description     : Applet for managing network connections
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Projects/NetworkManager/
+Licenses        : GPL  LGPL
+Groups          : None
+Provides        : None
+Depends On      : nm-connection-editor  libmm-glib  libnotify  libsecret  networkmanager
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 660.00 KiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Wed 09 Oct 2019 08:24:49 AM PDT
+Install Date    : Mon 14 Oct 2019 03:43:58 PM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : networkmanager
+Version         : 1.22.6-1
+Description     : Network connection manager and user applications
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Projects/NetworkManager
+Licenses        : GPL2  LGPL2.1
+Groups          : gnome
+Provides        : None
+Depends On      : libnm  iproute2  polkit  wpa_supplicant  libmm-glib  libnewt  libndp  libteam  curl  bluez-libs  libpsl  audit  mobile-broadband-provider-info
+Optional Deps   : dnsmasq: connection sharing
+                  bluez: Bluetooth support [installed]
+                  ppp: dialup connection support [installed]
+                  modemmanager: cellular network support
+                  iwd: wpa_supplicant alternative
+Required By     : network-manager-applet
+Optional For    : blueman  firefox  libproxy
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 15.34 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Fri 31 Jan 2020 03:48:23 AM PST
+Install Date    : Fri 31 Jan 2020 10:38:22 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : networkmanager-l2tp
+Version         : 1.8.0-1
+Description     : L2TP support for NetworkManager
+Architecture    : x86_64
+URL             : https://github.com/nm-l2tp/NetworkManager-l2tp
+Licenses        : GPL2
+Groups          : None
+Provides        : None
+Depends On      : libnm>=1.8  ppp  xl2tpd  libsecret  openssl>=1.1.0  nss
+Optional Deps   : libreswan: IPSec support (recommended)
+                  strongswan: IPSec support [installed]
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 719.16 KiB
+Packager        : Unknown Packager
+Build Date      : Mon 27 Jan 2020 08:35:03 PM PST
+Install Date    : Mon 27 Jan 2020 08:35:38 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : None
+
+Name            : networkmanager-openvpn
+Version         : 1.8.10-1
+Description     : NetworkManager VPN plugin for OpenVPN
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Projects/NetworkManager
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : libnm  libsecret  openvpn
+Optional Deps   : libnma: GUI support [installed]
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 1196.00 KiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Fri 08 Feb 2019 08:23:43 AM PST
+Install Date    : Tue 19 Feb 2019 09:33:40 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : networkmanager-strongswan
+Version         : 1.4.5-1
+Description     : Strongswan NetworkManager plugin
+Architecture    : x86_64
+URL             : https://wiki.strongswan.org/projects/strongswan/wiki/NetworkManager
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : libnm  libsecret  strongswan>=5.5.1
+Optional Deps   : libnma: GUI support [installed]
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 81.00 KiB
+Packager        : Christian Rebischke <Chris.Rebischke@archlinux.org>
+Build Date      : Sat 08 Jun 2019 10:24:22 AM PDT
+Install Date    : Tue 18 Jun 2019 03:33:54 PM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : notify-osd
+Version         : 0.9.35+16.04.20160415-2
+Description     : Canonical's on-screen-display notification agent, implementing the freedesktop.org Desktop Notifications Specification with semi-transparent click-through bubbles
+Architecture    : x86_64
+URL             : https://launchpad.net/notify-osd
+Licenses        : GPL
+Groups          : None
+Provides        : notification-daemon
+Depends On      : libwnck3  dbus-glib  gsettings-desktop-schemas
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 696.00 KiB
+Packager        : Felix Yan <felixonmars@archlinux.org>
+Build Date      : Fri 09 Nov 2018 01:56:26 PM PST
+Install Date    : Thu 20 Dec 2018 11:50:14 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : orca
+Version         : 3.34.2-1
+Description     : Screen reader for individuals who are blind or visually impaired
+Architecture    : any
+URL             : https://wiki.gnome.org/Projects/Orca
+Licenses        : LGPL
+Groups          : gnome
+Provides        : None
+Depends On      : gtk3  at-spi2-atk  python-atspi  python-dbus  python-xdg  speech-dispatcher  liblouis  brltty  xorg-xmodmap  gsettings-desktop-schemas  gst-plugins-base  gst-plugins-good
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 15.00 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Tue 28 Jan 2020 12:06:14 PM PST
+Install Date    : Fri 31 Jan 2020 10:38:23 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : pacman
+Version         : 5.2.1-4
+Description     : A library-based package manager with dependency support
+Architecture    : x86_64
+URL             : https://www.archlinux.org/pacman/
+Licenses        : GPL
+Groups          : base-devel
+Provides        : libalpm.so=12-64
+Depends On      : bash  glibc  libarchive  curl  gpgme  pacman-mirrorlist  archlinux-keyring
+Optional Deps   : perl-locale-gettext: translation support in makepkg-template
+Required By     : appstream-glib  arch-install-scripts  expac  pacutils  pyalpm  repoctl  yay
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 4.41 MiB
+Packager        : Levente Polyak <anthraxx@archlinux.org>
+Build Date      : Thu 09 Jan 2020 06:24:37 PM PST
+Install Date    : Mon 20 Jan 2020 09:05:40 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : parallel
+Version         : 20191122-1
+Description     : A shell tool for executing jobs in parallel
+Architecture    : any
+URL             : https://www.gnu.org/software/parallel/
+Licenses        : GPL3
+Groups          : None
+Provides        : None
+Depends On      : perl  procps
+Optional Deps   : None
+Required By     : aurutils
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 3.14 MiB
+Packager        : Johannes Löthberg <johannes@kyriasis.com>
+Build Date      : Mon 02 Dec 2019 12:33:06 PM PST
+Install Date    : Mon 30 Dec 2019 11:00:02 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : patch
+Version         : 2.7.6-8
+Description     : A utility to apply patch files to original sources
+Architecture    : x86_64
+URL             : https://www.gnu.org/software/patch/
+Licenses        : GPL
+Groups          : base-devel
+Provides        : None
+Depends On      : glibc  attr
+Optional Deps   : ed: for patch -e functionality
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 197.75 KiB
+Packager        : Allan McRae <allan@archlinux.org>
+Build Date      : Tue 12 Nov 2019 04:05:02 PM PST
+Install Date    : Sun 17 Nov 2019 09:00:57 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : pciutils
+Version         : 3.6.2-2
+Description     : PCI bus configuration space access library and tools
+Architecture    : x86_64
+URL             : https://mj.ucw.cz/sw/pciutils/
+Licenses        : GPL2
+Groups          : None
+Provides        : None
+Depends On      : glibc  hwids  kmod
+Optional Deps   : None
+Required By     : net-snmp
+Optional For    : hwloc
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 262.19 KiB
+Packager        : Evangelos Foutras <evangelos@foutrelis.com>
+Build Date      : Wed 13 Nov 2019 08:25:29 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:30 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : perl
+Version         : 5.30.1-1
+Description     : A highly capable, feature-rich programming language
+Architecture    : x86_64
+URL             : https://www.perl.org
+Licenses        : GPL  PerlArtistic
+Groups          : None
+Provides        : perl-archive-tar=2.32  perl-attribute-handlers=1.01  perl-autodie=2.29  perl-autoloader=5.74  perl-autouse=1.11  perl-base=2.27  perl-bignum=0.51  perl-carp=1.50  perl-compress-raw-bzip2=2.084  perl-compress-raw-zlib=2.084  perl-config-perl-v=0.32  perl-constant=1.33  perl-cpan-meta-requirements=2.140  perl-cpan-meta-yaml=0.018  perl-cpan-meta=2.150010  perl-cpan=2.22  perl-data-dumper=2.174  perl-db_file=1.843  perl-devel-ppport=3.52  perl-devel-selfstubber=1.06  perl-digest-md5=2.55  perl-digest-sha=6.02  perl-digest=1.17_01  perl-dumpvalue=1.18  perl-encode=3.01  perl-encoding-warnings=0.13  perl-env=1.04  perl-experimental=0.020  perl-exporter=5.73  perl-extutils-cbuilder=0.280231  perl-extutils-constant=0.25  perl-extutils-install=2.14  perl-extutils-makemaker=7.34  perl-extutils-manifest=1.72  perl-extutils-parsexs=3.40  perl-file-fetch=0.56  perl-file-path=2.16  perl-file-temp=0.2309  perl-filter-simple=0.95  perl-filter-util-call=1.59  perl-getopt-long=2.5  perl-http-tiny=0.076  perl-i18n-collate=1.02  perl-i18n-langtags=0.43  perl-if=0.0608  perl-io-compress=2.084  perl-io-socket-ip=0.39  perl-io-zlib=1.10  perl-io=1.40  perl-ipc-cmd=1.02  perl-ipc-sysv=2.07  perl-json-pp=4.02  perl-lib=0.65  perl-libnet=3.11  perl-locale-maketext-simple=0.21_01  perl-locale-maketext=1.29  perl-math-bigint-fastcalc=0.5008  perl-math-bigint=1.999816  perl-math-bigrat=0.2614  perl-math-complex=1.5901  perl-memoize=1.03_01  perl-mime-base64=3.15  perl-module-corelist=5.20191110  perl-module-load-conditional=0.68  perl-module-load=0.34  perl-module-loaded=0.08  perl-module-metadata=1.000036  perl-net-ping=2.71  perl-params-check=0.38  perl-parent=0.237  perl-pathtools=3.78  perl-perl-ostype=1.010  perl-perlfaq=5.20190126  perl-perlio-via-quotedprint=0.08  perl-pod-checker=1.73  perl-pod-escapes=1.07  perl-pod-parser=1.63  perl-pod-perldoc=3.2801  perl-pod-simple=3.35  perl-pod-usage=1.69  perl-podlators=5.006  perl-safe=2.40  perl-scalar-list-utils=1.50  perl-search-dict=1.07  perl-selfloader=1.25  perl-socket=2.027  perl-storable=3.15  perl-sys-syslog=0.35  perl-term-ansicolor=4.06  perl-term-cap=1.17  perl-term-complete=1.403  perl-term-readline=1.17  perl-test-harness=3.42  perl-test-simple=1.302162  perl-test=1.31  perl-text-abbrev=1.02  perl-text-balanced=2.03  perl-text-parsewords=3.30  perl-text-tabs=2013.0523  perl-thread-queue=3.13  perl-thread-semaphore=2.13  perl-threads-shared=1.60  perl-threads=2.22  perl-tie-file=1.02  perl-tie-refhash=1.39  perl-time-hires=1.9760  perl-time-local=1.28  perl-time-piece=1.33  perl-unicode-collate=1.27  perl-unicode-normalize=1.26  perl-version=0.9924  perl-xsloader=0.30
+Depends On      : gdbm>=1.17  db  glibc
+Optional Deps   : None
+Required By     : automake  git  gperftools  groff  hspell  hyphen  i3-gaps  lm_sensors  numactl  openssl  openssl-1.0  parallel  perl-anyevent  perl-anyevent-i3  perl-common-sense  perl-error  perl-json-xs  perl-timedate  perl-uri  rsync  stow  texinfo
+Optional For    : acpid  apparmor  aspell  gd  hunspell  jemalloc  libproxy  libytnef  vim  weechat
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 56.40 MiB
+Packager        : Florian Pritz <bluewind@xinu.at>
+Build Date      : Mon 11 Nov 2019 10:16:42 AM PST
+Install Date    : Sun 17 Nov 2019 08:59:15 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : perl-anyevent-i3
+Version         : 0.17-5
+Description     : Communicate with the i3 window manager
+Architecture    : any
+URL             : https://search.cpan.org/~mstplbg/AnyEvent-I3/
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : perl  perl-anyevent  perl-json-xs
+Optional Deps   : None
+Required By     : None
+Optional For    : i3-gaps
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 19.00 KiB
+Packager        : Felix Yan <felixonmars@archlinux.org>
+Build Date      : Sat 25 May 2019 04:38:07 AM PDT
+Install Date    : Tue 18 Jun 2019 03:33:54 PM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : pkgconf
+Version         : 1.6.3-3
+Description     : Package compiler and linker metadata toolkit
+Architecture    : x86_64
+URL             : https://github.com/pkgconf/pkgconf
+Licenses        : custom:ISC
+Groups          : base-devel
+Provides        : pkg-config  pkgconfig
+Depends On      : glibc  sh
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : pkg-config
+Replaces        : pkg-config
+Installed Size  : 156.03 KiB
+Packager        : Evangelos Foutras <evangelos@foutrelis.com>
+Build Date      : Wed 13 Nov 2019 10:10:00 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:30 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : polybar
+Version         : 3.4.2-1
+Description     : A fast and easy-to-use status bar
+Architecture    : x86_64
+URL             : https://github.com/polybar/polybar
+Licenses        : MIT
+Groups          : None
+Provides        : None
+Depends On      : cairo  xcb-util-image  xcb-util-wm  xcb-util-xrm  xcb-util-cursor  alsa-lib  libpulse  libmpdclient  libnl  jsoncpp  curl
+Optional Deps   : i3-wm: i3 module support [installed]
+                  ttf-unifont: Font used in example config [installed]
+                  siji-git: Font used in example config [installed]
+                  xorg-fonts-misc: Font used in example config [installed]
+Required By     : None
+Optional For    : None
+Conflicts With  : polybar-git
+Replaces        : None
+Installed Size  : 3.53 MiB
+Packager        : Unknown Packager
+Build Date      : Mon 27 Jan 2020 08:38:56 PM PST
+Install Date    : Mon 27 Jan 2020 08:43:34 PM PST
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : None
+
+Name            : powerline
+Version         : 2.7-4
+Description     : Statusline plugin for vim, and provides statuslines and prompts for several other applications, including zsh, bash, tmux, IPython, Awesome, i3 and Qtile
+Architecture    : x86_64
+URL             : https://github.com/powerline/powerline
+Licenses        : MIT
+Groups          : None
+Provides        : None
+Depends On      : python-powerline
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : powerline2  python-powerline<=2.3-1
+Replaces        : python-powerline<=2.3-1
+Installed Size  : 28.12 KiB
+Packager        : Felix Yan <felixonmars@archlinux.org>
+Build Date      : Sun 03 Nov 2019 05:52:40 PM PST
+Install Date    : Sun 17 Nov 2019 09:00:57 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : powerline-fonts
+Version         : 2.7-4
+Description     : patched fonts for powerline
+Architecture    : x86_64
+URL             : https://github.com/powerline/powerline
+Licenses        : MIT
+Groups          : None
+Provides        : otf-powerline-symbols
+Depends On      : powerline-common
+Optional Deps   : None
+Required By     : None
+Optional For    : python-powerline
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 4.86 KiB
+Packager        : Felix Yan <felixonmars@archlinux.org>
+Build Date      : Sun 03 Nov 2019 05:52:40 PM PST
+Install Date    : Sun 17 Nov 2019 09:00:57 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : procps-ng
+Version         : 3.3.15-2
+Description     : Utilities for monitoring your system and its processes
+Architecture    : x86_64
+URL             : https://gitlab.com/procps-ng/procps
+Licenses        : GPL  LGPL
+Groups          : None
+Provides        : procps  sysvinit-tools
+Depends On      : ncurses  systemd-libs
+Optional Deps   : None
+Required By     : gpm  parallel  testssl.sh  virtualbox
+Optional For    : None
+Conflicts With  : procps  sysvinit-tools
+Replaces        : procps  sysvinit-tools
+Installed Size  : 1360.15 KiB
+Packager        : Evangelos Foutras <evangelos@foutrelis.com>
+Build Date      : Wed 13 Nov 2019 08:15:17 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:06 PM PST
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : Signature
+
+Name            : prusa-slicer
+Version         : 2.1.1-2
+Description     : G-code generator for 3D printers (Prusa fork of Slic3r)
+Architecture    : x86_64
+URL             : https://github.com/prusa3d/PrusaSlicer
+Licenses        : AGPL3
+Groups          : None
+Provides        : None
+Depends On      : boost-libs  curl  glew  intel-tbb  nlopt  wxgtk2  qhull
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : slic3r-prusa3d
+Installed Size  : 40.31 MiB
+Packager        : Evangelos Foutras <evangelos@foutrelis.com>
+Build Date      : Mon 27 Jan 2020 06:46:42 PM PST
+Install Date    : Fri 31 Jan 2020 10:38:23 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : psmisc
+Version         : 23.3-2
+Description     : Miscellaneous procfs tools
+Architecture    : x86_64
+URL             : http://psmisc.sourceforge.net/
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : ncurses
+Optional Deps   : None
+Required By     : gvfs
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 548.61 KiB
+Packager        : Evangelos Foutras <evangelos@foutrelis.com>
+Build Date      : Wed 13 Nov 2019 09:21:59 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:08 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : pulsemixer
+Version         : 1.5.0-2
+Description     : CLI and curses mixer for pulseaudio
+Architecture    : any
+URL             : https://github.com/GeorgeFilipkin/pulsemixer
+Licenses        : MIT
+Groups          : None
+Provides        : None
+Depends On      : python  pulseaudio
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 100.73 KiB
+Packager        : Felix Yan <felixonmars@archlinux.org>
+Build Date      : Sun 03 Nov 2019 06:11:00 PM PST
+Install Date    : Mon 27 Jan 2020 09:03:16 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : python-cryptography
+Version         : 2.8-1
+Description     : A package designed to expose cryptographic recipes and primitives to Python developers
+Architecture    : x86_64
+URL             : https://pypi.python.org/pypi/cryptography
+Licenses        : Apache
+Groups          : None
+Provides        : None
+Depends On      : python-six  python-cffi  python-idna  python-setuptools  python-asn1crypto
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 2.35 MiB
+Packager        : Felix Yan <felixonmars@archlinux.org>
+Build Date      : Sun 03 Nov 2019 02:05:12 AM PST
+Install Date    : Sun 17 Nov 2019 09:00:58 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : python-fontawesome
+Version         : 5.10.1.post1-1
+Description     : The Font Awesome icon set for python
+Architecture    : any
+URL             : https://github.com/justbuchanan/fontawesome-python
+Licenses        : Apache
+Groups          : None
+Provides        : None
+Depends On      : python
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 155.67 KiB
+Packager        : Unknown Packager
+Build Date      : Mon 30 Dec 2019 11:49:13 AM PST
+Install Date    : Mon 30 Dec 2019 11:49:18 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : None
+
+Name            : python-i3ipc
+Version         : 2.1.1-2
+Description     : An improved Python library to control i3wm
+Architecture    : any
+URL             : https://github.com/altdesktop/i3ipc-python
+Licenses        : BSD
+Groups          : None
+Provides        : None
+Depends On      : python  python-xlib
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : i3ipc-python
+Replaces        : i3ipc-python
+Installed Size  : 267.27 KiB
+Packager        : Maxim Baz <archlinux@maximbaz.com>
+Build Date      : Fri 15 Nov 2019 01:27:00 AM PST
+Install Date    : Mon 30 Dec 2019 11:46:25 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : python-pip
+Version         : 19.3-1
+Description     : The PyPA recommended tool for installing Python packages
+Architecture    : any
+URL             : https://pip.pypa.io/
+Licenses        : MIT
+Groups          : None
+Provides        : None
+Depends On      : python-setuptools  python-appdirs  python-cachecontrol  python-colorama  python-contextlib2  python-distlib  python-distro  python-html5lib  python-msgpack  python-packaging  python-pep517  python-progress  python-pyparsing  python-pytoml  python-requests  python-retrying  python-setuptools  python-six  python-webencodings
+Optional Deps   : None
+Required By     : None
+Optional For    : python
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 1297.85 KiB
+Packager        : Felix Yan <felixonmars@archlinux.org>
+Build Date      : Tue 24 Dec 2019 01:46:58 PM PST
+Install Date    : Thu 09 Jan 2020 04:39:40 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : python-virtualenvwrapper
+Version         : 4.8.4-3
+Description     : Extensions to Ian Bicking's virtualenv tool
+Architecture    : any
+URL             : https://virtualenvwrapper.readthedocs.io/
+Licenses        : MIT
+Groups          : None
+Provides        : None
+Depends On      : python-virtualenv  python2-virtualenv  python-virtualenv-clone  python-stevedore  which
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : python2-virtualenvwrapper
+Replaces        : python2-virtualenvwrapper
+Installed Size  : 102.56 KiB
+Packager        : Felix Yan <felixonmars@archlinux.org>
+Build Date      : Sun 03 Nov 2019 06:28:32 PM PST
+Install Date    : Sun 17 Nov 2019 09:00:59 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : python2-virtualenv
+Version         : 16.1.0-3
+Description     : Virtual Python Environment builder
+Architecture    : any
+URL             : https://virtualenv.pypa.io/
+Licenses        : MIT
+Groups          : None
+Provides        : None
+Depends On      : python2-setuptools
+Optional Deps   : None
+Required By     : python-virtualenvwrapper
+Optional For    : None
+Conflicts With  : virtualenv
+Replaces        : virtualenv
+Installed Size  : 2.08 MiB
+Packager        : Felix Yan <felixonmars@archlinux.org>
+Build Date      : Sat 02 Nov 2019 03:37:02 PM PDT
+Install Date    : Sun 17 Nov 2019 09:00:59 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : read-edid
+Version         : 3.0.2-2
+Description     : Program that can get information from a PNP monitor
+Architecture    : x86_64
+URL             : http://www.polypux.org/projects/read-edid/
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : libx86>=0.99
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 49.00 KiB
+Packager        : Kyle Keen <keenerd@gmail.com>
+Build Date      : Wed 30 May 2018 09:10:06 PM PDT
+Install Date    : Thu 10 Jan 2019 09:21:53 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : redshift
+Version         : 1.12-3
+Description     : Adjusts the color temperature of your screen according to your surroundings.
+Architecture    : x86_64
+URL             : http://jonls.dk/redshift/
+Licenses        : GPL3
+Groups          : None
+Provides        : None
+Depends On      : geoclue2  libdrm  libxcb  libxxf86vm
+Optional Deps   : python-gobject: for redshift-gtk [installed]
+                  python-xdg: for redshift-gtk [installed]
+                  gtk3: for redshift-gtk [installed]
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 849.96 KiB
+Packager        : Felix Yan <felixonmars@archlinux.org>
+Build Date      : Sun 03 Nov 2019 07:54:22 PM PST
+Install Date    : Mon 30 Dec 2019 12:19:14 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : reiserfsprogs
+Version         : 3.6.27-3
+Description     : Reiserfs utilities
+Architecture    : x86_64
+URL             : https://www.kernel.org/
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : util-linux
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 595.44 KiB
+Packager        : Felix Yan <felixonmars@archlinux.org>
+Build Date      : Wed 13 Nov 2019 08:22:38 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:32 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : repoctl
+Version         : 0.19-1
+Description     : A supplement to repo-add and repo-remove which simplifies managing local repositories
+Architecture    : x86_64
+URL             : https://github.com/cassava/repoctl
+Licenses        : MIT
+Groups          : None
+Provides        : None
+Depends On      : pacman
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 12.54 MiB
+Packager        : Unknown Packager
+Build Date      : Mon 27 Jan 2020 08:29:04 PM PST
+Install Date    : Mon 27 Jan 2020 08:29:21 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : None
+
+Name            : rofi
+Version         : 1.5.4-1
+Description     : A window switcher, application launcher and dmenu replacement
+Architecture    : x86_64
+URL             : https://github.com/DaveDavenport/rofi
+Licenses        : MIT
+Groups          : None
+Provides        : None
+Depends On      : libxdg-basedir  startup-notification  libxkbcommon-x11  xcb-util-wm  xcb-util-xrm  librsvg
+Optional Deps   : i3-wm: use as a window switcher [installed]
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 526.00 KiB
+Packager        : Morten Linderud <foxboron@archlinux.org>
+Build Date      : Mon 01 Jul 2019 12:26:30 PM PDT
+Install Date    : Mon 30 Dec 2019 11:39:58 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : rygel
+Version         : 0.38.3-1
+Description     : UPnP AV MediaServer and MediaRenderer that allows you to easily share audio, video and pictures, and control of media player on your home network
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Projects/Rygel
+Licenses        : LGPL
+Groups          : gnome
+Provides        : None
+Depends On      : gupnp  gupnp-av  gupnp-dlna  libgee  gtk3  libunistring  tracker  libmediaart
+Optional Deps   : gst-plugins-base: Extra media codecs [installed]
+                  gst-plugins-good: Extra media codecs [installed]
+                  gst-plugins-bad: Extra media codecs [installed]
+                  gst-plugins-ugly: Extra media codecs
+                  gst-libav: Extra media codecs
+                  tracker-miners: Share indexed media files [installed]
+Required By     : None
+Optional For    : gnome-control-center
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 5.02 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Sat 23 Nov 2019 02:55:38 PM PST
+Install Date    : Wed 27 Nov 2019 03:50:33 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : s-nail
+Version         : 14.9.16-2
+Description     : Environment for sending and receiving mail
+Architecture    : x86_64
+URL             : https://www.sdaoden.eu/code.html#s-nail
+Licenses        : custom:BSD
+Groups          : None
+Provides        : mailx  mailx-heirloom  heirloom-mailx
+Depends On      : openssl  krb5  libidn2
+Optional Deps   : smtp-forwarder: for sending mail
+Required By     : None
+Optional For    : vi
+Conflicts With  : mailx  mailx-heirloom  heirloom-mailx
+Replaces        : mailx  mailx-heirloom  heirloom-mailx
+Installed Size  : 986.60 KiB
+Packager        : Gaetan Bisson <bisson@archlinux.org>
+Build Date      : Wed 01 Jan 2020 12:48:11 PM PST
+Install Date    : Tue 07 Jan 2020 10:04:29 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : scrot
+Version         : 1.2-1
+Description     : Simple command-line screenshot utility for X
+Architecture    : x86_64
+URL             : https://github.com/resurrecting-open-source-projects/scrot
+Licenses        : MIT
+Groups          : None
+Provides        : None
+Depends On      : giblib  libxfixes  libxcursor
+Optional Deps   : None
+Required By     : i3lock-fancy-multimonitor-git
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 95.00 KiB
+Packager        : Levente Polyak <anthraxx@archlinux.org>
+Build Date      : Tue 03 Sep 2019 03:28:42 PM PDT
+Install Date    : Thu 05 Sep 2019 03:03:23 PM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : sed
+Version         : 4.8-1
+Description     : GNU stream editor
+Architecture    : x86_64
+URL             : https://www.gnu.org/software/sed/
+Licenses        : GPL3
+Groups          : base-devel
+Provides        : None
+Depends On      : glibc  acl  attr
+Optional Deps   : None
+Required By     : fakeroot  swaylock-fancy-git
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 735.80 KiB
+Packager        : Sébastien Luttringer <seblu@seblu.net>
+Build Date      : Wed 15 Jan 2020 05:07:59 AM PST
+Install Date    : Mon 20 Jan 2020 09:05:40 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : shadow
+Version         : 4.8-1
+Description     : Password and account management tool suite with support for shadow files and PAM
+Architecture    : x86_64
+URL             : https://github.com/shadow-maint/shadow
+Licenses        : BSD
+Groups          : None
+Provides        : None
+Depends On      : pam  acl  audit  libaudit.so=1-64
+Optional Deps   : None
+Required By     : git  util-linux
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 3.73 MiB
+Packager        : Dave Reisner <dreisner@archlinux.org>
+Build Date      : Sun 15 Dec 2019 12:06:47 PM PST
+Install Date    : Mon 30 Dec 2019 10:58:50 AM PST
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : Signature
+
+Name            : siji-git
+Version         : r23.c691f20-1
+Description     : Iconic bitmap font based on stlarch with additional glyphs
+Architecture    : any
+URL             : https://github.com/stark/siji
+Licenses        : GPLv2
+Groups          : None
+Provides        : siji
+Depends On      : fontconfig  xorg-font-utils  xorg-xset
+Optional Deps   : xorg-xfd: use view.sh script to view glyphs
+Required By     : None
+Optional For    : polybar
+Conflicts With  : siji
+Replaces        : None
+Installed Size  : 143.00 KiB
+Packager        : Unknown Packager
+Build Date      : Thu 25 Apr 2019 02:16:38 PM PDT
+Install Date    : Thu 25 Apr 2019 02:16:43 PM PDT
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : SHA-256 Sum
+
+Name            : simple-scan
+Version         : 3.34.2-1
+Description     : Simple scanning utility
+Architecture    : x86_64
+URL             : https://gitlab.gnome.org/GNOME/simple-scan
+Licenses        : GPL3
+Groups          : gnome
+Provides        : None
+Depends On      : sane  dconf  gtk3  colord-sane  libgusb
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 4.19 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Fri 22 Nov 2019 02:44:02 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:33 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : slack-desktop
+Version         : 4.2.0-2
+Description     : Slack Desktop (Beta) for Linux
+Architecture    : x86_64
+URL             : https://slack.com/downloads
+Licenses        : custom
+Groups          : None
+Provides        : None
+Depends On      : alsa-lib  gtk3  libcurl-compat  libsecret  libxss  libxtst  nss  glibc>=2.28-4  xdg-utils
+Optional Deps   : org.freedesktop.secrets [installed]
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 164.49 MiB
+Packager        : Unknown Packager
+Build Date      : Mon 27 Jan 2020 08:29:24 PM PST
+Install Date    : Mon 27 Jan 2020 08:31:02 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : None
+
+Name            : slurp
+Version         : 1.2.0-1
+Description     : Select a region in a Wayland compositor
+Architecture    : x86_64
+URL             : https://github.com/emersion/slurp
+Licenses        : MIT
+Groups          : None
+Provides        : None
+Depends On      : cairo  wayland
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 74.00 KiB
+Packager        : Brett Cornwall <brett@i--b.com>
+Build Date      : Tue 04 Jun 2019 06:34:47 AM PDT
+Install Date    : Tue 27 Aug 2019 02:57:21 PM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : snapd
+Version         : 2.43.1-1
+Description     : Service and tools for management of snap packages.
+Architecture    : x86_64
+URL             : https://github.com/snapcore/snapd
+Licenses        : GPL3
+Groups          : None
+Provides        : None
+Depends On      : squashfs-tools  libseccomp  libsystemd  apparmor
+Optional Deps   : bash-completion: bash completion support
+                  xdg-desktop-portal: desktop integration
+Required By     : None
+Optional For    : None
+Conflicts With  : snap-confine
+Replaces        : None
+Installed Size  : 69.38 MiB
+Packager        : Unknown Packager
+Build Date      : Mon 27 Jan 2020 08:46:06 PM PST
+Install Date    : Mon 27 Jan 2020 08:47:51 PM PST
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : None
+
+Name            : stow
+Version         : 2.3.1-2
+Description     : Manage installation of multiple softwares in the same directory tree
+Architecture    : any
+URL             : https://www.gnu.org/software/stow/
+Licenses        : GPL3
+Groups          : None
+Provides        : None
+Depends On      : perl
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 929.00 KiB
+Packager        : Brett Cornwall <brett@i--b.com>
+Build Date      : Sun 28 Jul 2019 09:46:05 AM PDT
+Install Date    : Mon 30 Dec 2019 11:11:33 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : strongswan
+Version         : 5.8.2-1
+Description     : Open source IPsec implementation
+Architecture    : x86_64
+URL             : https://www.strongswan.org
+Licenses        : GPL2
+Groups          : None
+Provides        : None
+Depends On      : curl  gmp  iproute2  openssl  sqlite  libcap  systemd-libs  pam
+Optional Deps   : libnm: for networkmanager support [installed]
+                  mariadb: MySQL support
+                  ruby: Ruby support
+                  python: Python support [installed]
+                  resolvconf: Resolveplugin [installed]
+                  openldap: LDAP support
+Required By     : networkmanager-strongswan
+Optional For    : networkmanager-l2tp
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 3.99 MiB
+Packager        : Christian Rebischke <Chris.Rebischke@archlinux.org>
+Build Date      : Sun 22 Dec 2019 03:22:52 PM PST
+Install Date    : Mon 30 Dec 2019 11:00:06 AM PST
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : Signature
+
+Name            : sublime-text-nightly
+Version         : 3.3211-1
+Description     : Sophisticated text editor for code, html and prose - nightly build (available to registered users only)
+Architecture    : x86_64
+URL             : http://www.sublimetext.com/3dev
+Licenses        : custom
+Groups          : None
+Provides        : sublime-text-dev
+Depends On      : libpng  gtk3
+Optional Deps   : gksu: sudo-save support
+Required By     : None
+Optional For    : None
+Conflicts With  : sublime-text-dev
+Replaces        : None
+Installed Size  : 33.18 MiB
+Packager        : Unknown Packager
+Build Date      : Mon 27 Jan 2020 08:35:45 PM PST
+Install Date    : Mon 27 Jan 2020 08:36:06 PM PST
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : None
+
+Name            : sudo
+Version         : 1.8.30-1
+Description     : Give certain users the ability to run some commands as root
+Architecture    : x86_64
+URL             : https://www.sudo.ws/sudo/
+Licenses        : custom
+Groups          : base-devel
+Provides        : None
+Depends On      : glibc  libgcrypt  pam  libldap
+Optional Deps   : None
+Required By     : yay
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 3.37 MiB
+Packager        : Evangelos Foutras <evangelos@foutrelis.com>
+Build Date      : Wed 01 Jan 2020 04:17:45 AM PST
+Install Date    : Tue 07 Jan 2020 10:04:29 AM PST
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : Signature
+
+Name            : sushi
+Version         : 3.34.0-1
+Description     : A quick previewer for Nautilus
+Architecture    : x86_64
+URL             : https://gitlab.gnome.org/GNOME/sushi
+Licenses        : GPL2
+Groups          : gnome
+Provides        : None
+Depends On      : gtk3  gjs  libmusicbrainz5  webkit2gtk  gtksourceview4  evince  gst-plugins-base-libs
+Optional Deps   : libreoffice: OpenDocument formats
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 327.00 KiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Fri 13 Sep 2019 01:43:21 AM PDT
+Install Date    : Fri 20 Sep 2019 11:53:10 AM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : sway-git
+Version         : r5995.90d8a4df-1
+Description     : i3-compatible Wayland compositor
+Architecture    : x86_64
+URL             : https://swaywm.org
+Licenses        : MIT
+Groups          : None
+Provides        : sway
+Depends On      : json-c  pcre  wlroots-git  cairo  pango  gdk-pixbuf2  pam  xorg-server-xwayland  swaybg-git
+Optional Deps   : rxvt-unicode: Default terminal emulator.
+                  dmenu: Default for launching applications. [installed]
+                  i3status: To display system information with a bar. [installed]
+                  swayidle-git: Idle management daemon for Sway.
+                  swaylock-git: Screen locker for Sway. [installed]
+Required By     : None
+Optional For    : waybar-git
+Conflicts With  : sway
+Replaces        : None
+Installed Size  : 11.11 MiB
+Packager        : Unknown Packager
+Build Date      : Sat 03 Aug 2019 12:31:44 PM PDT
+Install Date    : Mon 30 Dec 2019 11:05:54 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : SHA-256 Sum
+
+Name            : swaybg-git
+Version         : r94.25c6eaf-1
+Description     : Wallpaper tool for Wayland compositors
+Architecture    : x86_64
+URL             : https://swaywm.org
+Licenses        : MIT
+Groups          : None
+Provides        : swaybg
+Depends On      : wayland  cairo
+Optional Deps   : gdk-pixbuf2: For background images other than PNG [installed]
+Required By     : sway-git
+Optional For    : None
+Conflicts With  : swaybg
+Replaces        : None
+Installed Size  : 68.00 KiB
+Packager        : Unknown Packager
+Build Date      : Sat 03 Aug 2019 12:31:25 PM PDT
+Install Date    : Sat 03 Aug 2019 03:18:42 PM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : SHA-256 Sum
+
+Name            : swaylock-fancy-git
+Version         : r179.35618ce-1
+Description     : Blurs and pixelates background, adds lock icon and text, for sway.
+Architecture    : any
+URL             : https://github.com/Big-B/swaylock-fancy
+Licenses        : MIT
+Groups          : None
+Provides        : swaylock-fancy
+Depends On      : coreutils  awk  grep  sed  bash  util-linux  imagemagick  swaylock  grim
+Optional Deps   : wmctrl: minimize windows before locking
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 64.00 KiB
+Packager        : Unknown Packager
+Build Date      : Sat 03 Aug 2019 03:37:17 PM PDT
+Install Date    : Sat 03 Aug 2019 04:19:16 PM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : SHA-256 Sum
+
+Name            : swaylock-git
+Version         : 1.5.r1.g5da2b1d-1
+Description     : Screen locker for Wayland
+Architecture    : x86_64
+URL             : https://github.com/swaywm/swaylock
+Licenses        : MIT
+Groups          : None
+Provides        : swaylock
+Depends On      : wayland  libxkbcommon  pam  cairo  gdk-pixbuf2
+Optional Deps   : None
+Required By     : swaylock-fancy-git
+Optional For    : sway-git
+Conflicts With  : swaylock
+Replaces        : None
+Installed Size  : 84.17 KiB
+Packager        : Unknown Packager
+Build Date      : Mon 27 Jan 2020 08:43:39 PM PST
+Install Date    : Mon 27 Jan 2020 08:43:49 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : None
+
+Name            : sysfsutils
+Version         : 2.1.0-11
+Description     : System Utilities Based on Sysfs
+Architecture    : x86_64
+URL             : http://linux-diag.sourceforge.net/Sysfsutils.html
+Licenses        : GPL  LGPL
+Groups          : None
+Provides        : None
+Depends On      : glibc
+Optional Deps   : None
+Required By     : v4l-utils
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 147.06 KiB
+Packager        : Felix Yan <felixonmars@archlinux.org>
+Build Date      : Wed 13 Nov 2019 08:21:06 AM PST
+Install Date    : Wed 27 Nov 2019 03:49:55 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : systemd-sysvcompat
+Version         : 244.1-1
+Description     : sysvinit compat for systemd
+Architecture    : x86_64
+URL             : https://www.github.com/systemd/systemd
+Licenses        : GPL2
+Groups          : None
+Provides        : None
+Depends On      : systemd
+Optional Deps   : None
+Required By     : None
+Optional For    : systemd
+Conflicts With  : sysvinit
+Replaces        : None
+Installed Size  : 4.50 KiB
+Packager        : Christian Hesse <arch@eworm.de>
+Build Date      : Sun 15 Dec 2019 11:33:11 AM PST
+Install Date    : Mon 30 Dec 2019 11:00:06 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : tar
+Version         : 1.32-3
+Description     : Utility used to store, backup, and transport files
+Architecture    : x86_64
+URL             : https://www.gnu.org/software/tar/
+Licenses        : GPL3
+Groups          : None
+Provides        : None
+Depends On      : glibc  acl  attr
+Optional Deps   : None
+Required By     : libtool
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 2.83 MiB
+Packager        : Evangelos Foutras <evangelos@foutrelis.com>
+Build Date      : Wed 13 Nov 2019 09:16:34 AM PST
+Install Date    : Wed 27 Nov 2019 03:49:49 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : tcpdump
+Version         : 4.9.3-1
+Description     : Powerful command-line packet analyzer
+Architecture    : x86_64
+URL             : https://www.tcpdump.org/
+Licenses        : BSD
+Groups          : None
+Provides        : None
+Depends On      : libpcap  libcap-ng  openssl
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 1070.00 KiB
+Packager        : Gaetan Bisson <bisson@archlinux.org>
+Build Date      : Wed 02 Oct 2019 02:50:54 PM PDT
+Install Date    : Mon 07 Oct 2019 10:22:47 AM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : testssl.sh
+Version         : 3.0-1
+Description     : Testing TLS/SSL encryption
+Architecture    : any
+URL             : https://github.com/drwetter/testssl.sh
+Licenses        : GPL2
+Groups          : None
+Provides        : None
+Depends On      : bash  coreutils  util-linux  openssl  inetutils  bind-tools  procps-ng
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 2.95 MiB
+Packager        : Levente Polyak <anthraxx@archlinux.org>
+Build Date      : Sun 26 Jan 2020 01:39:28 PM PST
+Install Date    : Mon 27 Jan 2020 08:19:57 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : texinfo
+Version         : 6.7-2
+Description     : GNU documentation system for on-line information and printed output
+Architecture    : x86_64
+URL             : https://www.gnu.org/software/texinfo/
+Licenses        : GPL3
+Groups          : base-devel
+Provides        : None
+Depends On      : ncurses  gzip  perl  sh
+Optional Deps   : None
+Required By     : guile
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 8.52 MiB
+Packager        : Felix Yan <felixonmars@archlinux.org>
+Build Date      : Wed 13 Nov 2019 08:09:19 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:27 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : thunar
+Version         : 1.8.12-1
+Description     : Modern file manager for Xfce
+Architecture    : x86_64
+URL             : https://docs.xfce.org/xfce/thunar/start
+Licenses        : GPL2  LGPL2.1
+Groups          : xfce4
+Provides        : None
+Depends On      : desktop-file-utils  libexif  hicolor-icon-theme  libnotify  libgudev  exo  libxfce4util  libxfce4ui  libpng
+Optional Deps   : gvfs: for trash support, mounting with udisk and remote filesystems [installed]
+                  xfce4-panel: for trash applet
+                  tumbler: for thumbnail previews
+                  thunar-volman: manages removable devices
+                  thunar-archive-plugin: create and deflate archives
+                  thunar-media-tags-plugin: view/edit id3/ogg tags
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 6.31 MiB
+Packager        : Evangelos Foutras <evangelos@foutrelis.com>
+Build Date      : Thu 30 Jan 2020 09:10:03 PM PST
+Install Date    : Fri 31 Jan 2020 10:38:23 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : tig
+Version         : 2.5.0-1
+Description     : Text-mode interface for Git.
+Architecture    : x86_64
+URL             : https://jonas.github.io/tig/
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : git  ncurses
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 682.94 KiB
+Packager        : Lukas Fleischer <lfleischer@archlinux.org>
+Build Date      : Tue 19 Nov 2019 06:24:27 PM PST
+Install Date    : Wed 27 Nov 2019 03:50:35 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : tmux
+Version         : 3.0_a-1
+Description     : A terminal multiplexer
+Architecture    : x86_64
+URL             : https://github.com/tmux/tmux/wiki
+Licenses        : BSD
+Groups          : None
+Provides        : None
+Depends On      : ncurses  libevent  libutempter
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 705.30 KiB
+Packager        : Christian Hesse <arch@eworm.de>
+Build Date      : Sun 01 Dec 2019 11:52:12 AM PST
+Install Date    : Mon 02 Dec 2019 09:52:12 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : totem
+Version         : 3.34.1-1
+Description     : Movie player for the GNOME desktop based on GStreamer
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Apps/Videos
+Licenses        : GPL2  custom
+Groups          : gnome
+Provides        : None
+Depends On      : totem-plparser  iso-codes  libpeas  clutter-gtk  clutter-gst  grilo  gsettings-desktop-schemas  dconf  python-gobject  python-xdg  gnome-desktop  gst-plugins-base  gst-plugins-good  gst-plugins-bad
+Optional Deps   : gst-plugins-ugly: Extra media codecs
+                  gst-libav: Extra media codecs
+                  grilo-plugins: Media discovery [installed]
+                  python-dbus: MPRIS plugin [installed]
+Required By     : None
+Optional For    : None
+Conflicts With  : totem-plugin
+Replaces        : totem-plugin
+Installed Size  : 6.93 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Fri 04 Oct 2019 01:59:05 PM PDT
+Install Date    : Mon 07 Oct 2019 10:22:48 AM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : tracker
+Version         : 2.3.1+6+g4d3073954-1
+Description     : Desktop-neutral user information store, search tool and indexer
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Projects/Tracker
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : sqlite  icu  glib2  libffi  util-linux  libstemmer  libseccomp  libsoup  json-glib  upower  libnm
+Optional Deps   : None
+Required By     : gnome-boxes  gnome-online-miners  grilo-plugins  nautilus  rygel  tracker-miners
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 6.90 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Fri 17 Jan 2020 05:47:19 AM PST
+Install Date    : Mon 20 Jan 2020 09:05:40 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : tracker-miners
+Version         : 2.3.1+23+g139553959-1
+Description     : Collection of data extractors for Tracker/Nepomuk
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Projects/Tracker
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : tracker  gst-plugins-base-libs  exempi  flac  libexif  libcue  libgrss  libgsf  libgxps  libiptcdata  libosinfo  libvorbis  poppler-glib  totem-plparser  giflib  libgexiv2  gupnp-dlna  upower  libseccomp
+Optional Deps   : None
+Required By     : gnome-documents  gnome-music  gnome-photos  nautilus
+Optional For    : grilo-plugins  rygel
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 2.53 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Fri 17 Jan 2020 05:52:26 AM PST
+Install Date    : Mon 20 Jan 2020 09:05:40 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : ttf-fira-code
+Version         : 2-1
+Description     : Monospaced font with programming ligatures
+Architecture    : any
+URL             : https://github.com/tonsky/FiraCode
+Licenses        : custom:OFL
+Groups          : None
+Provides        : None
+Depends On      : None
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 1426.00 KiB
+Packager        : Jiachen Yang <farseerfc@gmail.com>
+Build Date      : Fri 13 Sep 2019 08:02:13 AM PDT
+Install Date    : Mon 30 Dec 2019 11:02:38 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : ttf-font-awesome
+Version         : 5.12.0-1
+Description     : Iconic font designed for Bootstrap
+Architecture    : any
+URL             : http://fontawesome.com
+Licenses        : custom:OFL
+Groups          : None
+Provides        : None
+Depends On      : fontconfig
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 352.58 KiB
+Packager        : Morten Linderud <foxboron@archlinux.org>
+Build Date      : Sat 14 Dec 2019 05:26:10 AM PST
+Install Date    : Mon 30 Dec 2019 11:00:06 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : ttf-material-design-icons
+Version         : 3.0.1-1
+Description     : Material Design icons by Google
+Architecture    : any
+URL             : http://google.github.io/material-design-icons/
+Licenses        : Apache
+Groups          : None
+Provides        : None
+Depends On      : fontconfig  xorg-font-utils
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 146.00 KiB
+Packager        : Unknown Packager
+Build Date      : Wed 19 Dec 2018 12:26:36 PM PST
+Install Date    : Wed 19 Dec 2018 12:27:55 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : SHA-256 Sum
+
+Name            : ttf-roboto
+Version         : 2.138-1
+Description     : Google's signature family of fonts
+Architecture    : any
+URL             : https://material.google.com/style/typography.html
+Licenses        : Apache
+Groups          : None
+Provides        : None
+Depends On      : fontconfig
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 5.18 MiB
+Packager        : Johannes Löthberg <johannes@kyriasis.com>
+Build Date      : Wed 02 Aug 2017 12:23:28 PM PDT
+Install Date    : Tue 04 Dec 2018 09:54:30 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : ttf-unifont
+Version         : 12.1.04-1
+Description     : TrueType version of the GNU Unifont
+Architecture    : any
+URL             : http://unifoundry.com/unifont.html
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : None
+Optional Deps   : None
+Required By     : None
+Optional For    : polybar
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 26.32 MiB
+Packager        : Unknown Packager
+Build Date      : Mon 27 Jan 2020 08:36:09 PM PST
+Install Date    : Mon 27 Jan 2020 08:36:35 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : None
+
+Name            : udiskie
+Version         : 2.0.4-1
+Description     : Removable disk automounter using udisks
+Architecture    : any
+URL             : https://pypi.python.org/pypi/udiskie
+Licenses        : MIT
+Groups          : None
+Provides        : None
+Depends On      : udisks2  python  python-gobject  python-yaml  python-docopt  gtk3  libnotify  python-keyutils
+Optional Deps   : libappindicator-gtk3: --appindicator support [installed]
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 606.71 KiB
+Packager        : Morten Linderud <foxboron@archlinux.org>
+Build Date      : Wed 22 Jan 2020 11:36:53 AM PST
+Install Date    : Mon 27 Jan 2020 08:19:57 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : ufw
+Version         : 0.36-3
+Description     : Uncomplicated and easy to use CLI tool for managing a netfilter firewall
+Architecture    : any
+URL             : https://launchpad.net/ufw
+Licenses        : GPL3
+Groups          : None
+Provides        : None
+Depends On      : iptables  python
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 792.38 KiB
+Packager        : Felix Yan <felixonmars@archlinux.org>
+Build Date      : Thu 31 Oct 2019 10:37:16 AM PDT
+Install Date    : Sun 17 Nov 2019 09:01:02 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : usbutils
+Version         : 012-2
+Description     : USB Device Utilities
+Architecture    : x86_64
+URL             : http://linux-usb.sourceforge.net/
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : libusb  hwids
+Optional Deps   : python: for lsusb.py usage [installed]
+                  coreutils: for lsusb.py usage [installed]
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 289.40 KiB
+Packager        : Evangelos Foutras <evangelos@foutrelis.com>
+Build Date      : Wed 13 Nov 2019 08:18:06 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:35 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : util-linux
+Version         : 2.35-1
+Description     : Miscellaneous system utilities for Linux
+Architecture    : x86_64
+URL             : https://github.com/karelzak/util-linux
+Licenses        : GPL2
+Groups          : None
+Provides        : rfkill
+Depends On      : pam  shadow  coreutils  systemd-libs  libcap-ng  libutil-linux
+Optional Deps   : python: python bindings to libmount [installed]
+                  words: default dictionary for look
+Required By     : apr  arch-install-scripts  devtools  fakeroot  gupnp  jfsutils  libnm-glib  mkinitcpio  reiserfsprogs  swaylock-fancy-git  systemd  testssl.sh  tracker  zeromq
+Optional For    : None
+Conflicts With  : rfkill
+Replaces        : rfkill
+Installed Size  : 12.97 MiB
+Packager        : Christian Hesse <arch@eworm.de>
+Build Date      : Tue 21 Jan 2020 05:11:38 AM PST
+Install Date    : Mon 27 Jan 2020 08:19:53 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : vi
+Version         : 1:070224-4
+Description     : The original ex/vi text editor
+Architecture    : x86_64
+URL             : http://ex-vi.sourceforge.net/
+Licenses        : custom:ex
+Groups          : None
+Provides        : None
+Depends On      : ncurses
+Optional Deps   : s-nail: used by the preserve command for notification [installed]
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 307.26 KiB
+Packager        : Evangelos Foutras <evangelos@foutrelis.com>
+Build Date      : Wed 13 Nov 2019 10:09:26 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:35 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : vifm
+Version         : 0.10.1-1
+Description     : A file manager with curses interface, which provides Vi[m]-like environment
+Architecture    : x86_64
+URL             : https://vifm.info/
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : ncurses  desktop-file-utils
+Optional Deps   : None
+Required By     : None
+Optional For    : aurutils
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 2.13 MiB
+Packager        : Jaroslav Lichtblau <svetlemodry@archlinux.org>
+Build Date      : Tue 06 Aug 2019 10:47:56 AM PDT
+Install Date    : Tue 20 Aug 2019 11:30:25 AM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : vim
+Version         : 8.2.0148-1
+Description     : Vi Improved, a highly configurable, improved version of the vi text editor
+Architecture    : x86_64
+URL             : https://www.vim.org
+Licenses        : custom:vim
+Groups          : None
+Provides        : xxd  vim-minimal  vim-python3
+Depends On      : vim-runtime=8.2.0148-1  gpm  acl  glibc  libgcrypt  pcre  zlib  libffi
+Optional Deps   : python2: Python 2 language support [installed]
+                  python: Python 3 language support [installed]
+                  ruby: Ruby language support
+                  lua: Lua language support [installed]
+                  perl: Perl language support [installed]
+                  tcl: Tcl language support [installed]
+Required By     : None
+Optional For    : None
+Conflicts With  : gvim  vim-minimal  vim-python3
+Replaces        : vim-python3  vim-minimal
+Installed Size  : 3.38 MiB
+Packager        : Levente Polyak <anthraxx@archlinux.org>
+Build Date      : Sun 26 Jan 2020 03:45:38 AM PST
+Install Date    : Mon 27 Jan 2020 08:19:57 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : vino
+Version         : 3.22.0+60+gd29a4f2-1
+Description     : A VNC server for the GNOME desktop
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Projects/Vino
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : libnotify  libxtst  libsm  telepathy-glib  gtk3  libsecret  avahi  gnutls
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 1880.00 KiB
+Packager        : Bartlomiej Piotrowski <bpiotrowski@archlinux.org>
+Build Date      : Fri 15 Mar 2019 07:11:29 AM PDT
+Install Date    : Tue 09 Apr 2019 02:16:26 PM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : virtualbox
+Version         : 6.1.2-1
+Description     : Powerful x86 virtualization for enterprise as well as home use
+Architecture    : x86_64
+URL             : https://virtualbox.org/
+Licenses        : GPL  custom
+Groups          : None
+Provides        : None
+Depends On      : glibc  openssl  curl  gcc-libs  libpng  python  sdl  libvpx  libxml2  procps-ng  shared-mime-info  zlib  libxcursor  libxinerama  libx11  libxext  libxmu  libxt  opus  qt5-base  qt5-x11extras  VIRTUALBOX-HOST-MODULES
+Optional Deps   : vde2: Virtual Distributed Ethernet support [installed]
+                  virtualbox-guest-iso: Guest Additions CD image
+                  virtualbox-ext-vnc: VNC server support
+                  virtualbox-sdk: Developer kit
+Required By     : None
+Optional For    : None
+Conflicts With  : virtualbox-ose
+Replaces        : virtualbox-ose
+Installed Size  : 165.23 MiB
+Packager        : Christian Hesse <arch@eworm.de>
+Build Date      : Tue 14 Jan 2020 02:33:16 PM PST
+Install Date    : Mon 20 Jan 2020 09:05:41 PM PST
+Install Reason  : Explicitly installed
+Install Script  : Yes
+Validated By    : Signature
+
+Name            : vulkan-intel
+Version         : 19.3.3-1
+Description     : Intel's Vulkan mesa driver
+Architecture    : x86_64
+URL             : https://www.mesa3d.org/
+Licenses        : custom
+Groups          : None
+Provides        : vulkan-driver
+Depends On      : wayland  libx11  libxshmfence  libdrm
+Optional Deps   : vulkan-mesa-layer: a vulkan layer to display information using an overlay
+Required By     : None
+Optional For    : vulkan-icd-loader
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 7.22 MiB
+Packager        : Laurent Carlier <lordheavym@gmail.com>
+Build Date      : Thu 30 Jan 2020 10:47:30 PM PST
+Install Date    : Fri 31 Jan 2020 10:38:23 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : waybar-git
+Version         : r761.43beefb-1
+Description     : Highly customizable Wayland bar for Sway and Wlroots based compositors (GIT)
+Architecture    : x86_64
+URL             : https://github.com/Alexays/Waybar/
+Licenses        : MIT
+Groups          : None
+Provides        : waybar
+Depends On      : gtkmm3  fmt  jsoncpp  libinput  libnl>=3.0  libsigc++>=2.0  wayland  libdbusmenu-gtk3  libappindicator-gtk3  libpulse
+Optional Deps   : sway: Sway modules support [installed]
+                  libmpdclient: Mpd module support [installed]
+                  otf-font-awesome: Icons in the default configuration
+Required By     : None
+Optional For    : None
+Conflicts With  : waybar
+Replaces        : None
+Installed Size  : 836.00 KiB
+Packager        : Unknown Packager
+Build Date      : Sat 03 Aug 2019 12:26:46 PM PDT
+Install Date    : Mon 30 Dec 2019 11:05:54 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : SHA-256 Sum
+
+Name            : weechat
+Version         : 2.7-2
+Description     : Fast, light and extensible IRC client (curses UI)
+Architecture    : x86_64
+URL             : https://www.weechat.org/
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : gnutls  curl  libgcrypt
+Optional Deps   : aspell: spellchecker support [installed]
+                  guile2.0: support for guile scripts
+                  lua: support for lua scripts [installed]
+                  perl: support for perl scripts [installed]
+                  python: support for python scripts [installed]
+                  ruby: support for ruby scripts
+                  tcl: support for tcl scripts [installed]
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 20.54 MiB
+Packager        : Felix Yan <felixonmars@archlinux.org>
+Build Date      : Wed 25 Dec 2019 05:32:21 PM PST
+Install Date    : Tue 07 Jan 2020 10:04:30 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : which
+Version         : 2.21-5
+Description     : A utility to show the full path of commands
+Architecture    : x86_64
+URL             : https://savannah.gnu.org/projects/which/
+Licenses        : GPL3
+Groups          : base-devel
+Provides        : None
+Depends On      : glibc  bash
+Optional Deps   : None
+Required By     : python-virtualenvwrapper  xdg-utils
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 34.38 KiB
+Packager        : Felix Yan <felixonmars@archlinux.org>
+Build Date      : Wed 13 Nov 2019 09:08:36 AM PST
+Install Date    : Wed 27 Nov 2019 03:50:31 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : xbindkeys
+Version         : 1.8.6-3
+Description     : Launch shell commands with your keyboard or your mouse under X
+Architecture    : x86_64
+URL             : http://www.nongnu.org/xbindkeys/xbindkeys.html
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : libx11  guile
+Optional Deps   : tk: xbindkeys_show
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 56.00 KiB
+Packager        : Felix Yan <felixonmars@archlinux.org>
+Build Date      : Fri 09 Nov 2018 01:40:27 PM PST
+Install Date    : Thu 13 Dec 2018 09:46:48 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : xdg-user-dirs-gtk
+Version         : 0.10+9+g5b7efc6-2
+Description     : Creates user dirs and asks to relocalize them
+Architecture    : x86_64
+URL             : https://www.gnome.org
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : gtk3  xdg-user-dirs
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 188.00 KiB
+Packager        : Felix Yan <felixonmars@archlinux.org>
+Build Date      : Fri 09 Nov 2018 12:52:38 PM PST
+Install Date    : Wed 28 Nov 2018 10:48:27 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : xdg-utils
+Version         : 1.1.3+18+g0547886-4
+Description     : Command line tools that assist applications with a variety of desktop integration tasks
+Architecture    : any
+URL             : https://www.freedesktop.org/wiki/Software/xdg-utils/
+Licenses        : MIT
+Groups          : None
+Provides        : None
+Depends On      : sh  which  file  xorg-xset  xorg-xprop
+Optional Deps   : kde-cli-tools: for KDE Plasma5 support in xdg-open
+                  exo: for Xfce support in xdg-open [installed]
+                  pcmanfm: for LXDE support in xdg-open
+                  perl-file-mimeinfo: for generic support in xdg-open
+                  perl-net-dbus: Perl extension to dbus used in xdg-screensaver
+                  perl-x11-protocol: Perl X11 protocol used in xdg-screensaver
+Required By     : qt5-base  slack-desktop
+Optional For    : electron6  google-chrome
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 283.10 KiB
+Packager        : Andreas Radke <andyrtr@archlinux.org>
+Build Date      : Wed 20 Nov 2019 12:20:44 PM PST
+Install Date    : Wed 27 Nov 2019 03:50:31 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : xfsprogs
+Version         : 5.4.0-1
+Description     : XFS filesystem utilities
+Architecture    : x86_64
+URL             : https://xfs.org
+Licenses        : LGPL
+Groups          : None
+Provides        : None
+Depends On      : sh  libutil-linux  readline  icu  device-mapper
+Optional Deps   : None
+Required By     : libblockdev  qemu
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 5.21 MiB
+Packager        : Antonio Rojas <arojas@archlinux.org>
+Build Date      : Sat 04 Jan 2020 01:52:14 AM PST
+Install Date    : Mon 27 Jan 2020 08:19:57 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : xl2tpd
+Version         : 1.3.15-1
+Description     : an open source implementation of the L2TP maintained by Xelerance Corporation
+Architecture    : x86_64
+URL             : https://www.xelerance.com/services/software/xl2tpd/
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : ppp
+Optional Deps   : None
+Required By     : networkmanager-l2tp
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 205.00 KiB
+Packager        : Sergej Pupykin <pupykin.s+arch@gmail.com>
+Build Date      : Fri 18 Oct 2019 06:18:23 AM PDT
+Install Date    : Sun 17 Nov 2019 09:01:07 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : xlayoutdisplay
+Version         : 1.1.0-0
+Description     : Detects and arranges linux display outputs, using XRandR for detection and xrandr for arrangement.
+Architecture    : x86_64
+URL             : https://github.com/alex-courtis/xlayoutdisplay
+Licenses        : Apache
+Groups          : None
+Provides        : None
+Depends On      : xorg-xrandr  xorg-xrdb  libxcursor
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 518.00 KiB
+Packager        : Unknown Packager
+Build Date      : Wed 15 May 2019 10:29:48 AM PDT
+Install Date    : Wed 15 May 2019 10:53:45 AM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : SHA-256 Sum
+
+Name            : xorg-xdpyinfo
+Version         : 1.3.2-3
+Description     : Display information utility for X
+Architecture    : x86_64
+URL             : https://xorg.freedesktop.org/
+Licenses        : custom
+Groups          : xorg-apps  xorg
+Provides        : None
+Depends On      : libx11  libxext  libxtst  libxxf86vm  libxrender  libxcomposite  libxinerama
+Optional Deps   : None
+Required By     : None
+Optional For    : autorandr
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 33.04 KiB
+Packager        : Andreas Radke <andyrtr@archlinux.org>
+Build Date      : Thu 19 Dec 2019 11:46:53 AM PST
+Install Date    : Mon 30 Dec 2019 11:00:11 AM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : xorg-xev
+Version         : 1.2.3-1
+Description     : Print contents of X events
+Architecture    : x86_64
+URL             : https://xorg.freedesktop.org/
+Licenses        : custom
+Groups          : xorg-apps  xorg
+Provides        : None
+Depends On      : libx11  libxrandr
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 65.00 KiB
+Packager        : Gaetan Bisson <bisson@archlinux.org>
+Build Date      : Wed 20 Feb 2019 03:40:55 PM PST
+Install Date    : Wed 12 Jun 2019 11:57:19 AM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : xorg-xinit
+Version         : 1.4.1-1
+Description     : X.Org initialisation program
+Architecture    : x86_64
+URL             : https://xorg.freedesktop.org/
+Licenses        : custom
+Groups          : None
+Provides        : None
+Depends On      : libx11  xorg-xauth  xorg-xrdb  xorg-xmodmap  inetutils
+Optional Deps   : xorg-twm
+                  xterm
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 80.00 KiB
+Packager        : Andreas Radke <andyrtr@archlinux.org>
+Build Date      : Mon 04 Mar 2019 10:31:25 AM PST
+Install Date    : Wed 06 Mar 2019 02:50:13 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : xorg-xinput
+Version         : 1.6.3-1
+Description     : Small commandline tool to configure devices
+Architecture    : x86_64
+URL             : https://xorg.freedesktop.org/
+Licenses        : custom
+Groups          : xorg-apps  xorg
+Provides        : None
+Depends On      : libx11  libxi>=1.5.99.2  xorg-xrandr  libxinerama
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 96.00 KiB
+Packager        : Andreas Radke <andyrtr@archlinux.org>
+Build Date      : Tue 16 Jul 2019 11:31:51 PM PDT
+Install Date    : Wed 24 Jul 2019 10:15:04 AM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : xorg-xlsfonts
+Version         : 1.0.6-1
+Description     : List available X fonts
+Architecture    : x86_64
+URL             : https://xorg.freedesktop.org/
+Licenses        : custom
+Groups          : None
+Provides        : None
+Depends On      : libx11
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 54.00 KiB
+Packager        : Andreas Radke <andyrtr@archlinux.org>
+Build Date      : Sun 11 Mar 2018 10:23:06 AM PDT
+Install Date    : Wed 09 Jan 2019 10:48:26 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : xorg-xrandr
+Version         : 1.5.1-1
+Description     : Primitive command line interface to RandR extension
+Architecture    : x86_64
+URL             : https://xorg.freedesktop.org/
+Licenses        : custom
+Groups          : xorg-apps  xorg
+Provides        : None
+Depends On      : libxrandr  libx11
+Optional Deps   : None
+Required By     : arandr  autorandr  i3lock-fancy-multimonitor-git  xlayoutdisplay  xorg-xinput
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 102.00 KiB
+Packager        : Laurent Carlier <lordheavym@gmail.com>
+Build Date      : Mon 12 Aug 2019 11:33:14 AM PDT
+Install Date    : Tue 20 Aug 2019 11:30:25 AM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : xorg-xset
+Version         : 1.2.4-1
+Description     : User preference utility for X
+Architecture    : x86_64
+URL             : https://xorg.freedesktop.org/
+Licenses        : custom
+Groups          : xorg-apps  xorg
+Provides        : None
+Depends On      : libxmu
+Optional Deps   : None
+Required By     : siji-git  xdg-utils
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 70.00 KiB
+Packager        : Andreas Radke <andyrtr@archlinux.org>
+Build Date      : Sun 11 Mar 2018 11:08:11 AM PDT
+Install Date    : Thu 29 Nov 2018 01:53:22 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : yay
+Version         : 9.4.4-1
+Description     : Yet another yogurt. Pacman wrapper and AUR helper written in go.
+Architecture    : x86_64
+URL             : https://github.com/Jguer/yay
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : pacman>=5.2  sudo  git
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 6.32 MiB
+Packager        : Unknown Packager
+Build Date      : Mon 27 Jan 2020 08:37:19 PM PST
+Install Date    : Mon 27 Jan 2020 08:37:51 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : None
+
+Name            : yelp
+Version         : 3.34.0-1
+Description     : Get help with GNOME
+Architecture    : x86_64
+URL             : https://wiki.gnome.org/Apps/Yelp
+Licenses        : GPL
+Groups          : gnome
+Provides        : None
+Depends On      : webkit2gtk  yelp-xsl  libxslt  xz  bzip2
+Optional Deps   : None
+Required By     : gnome-getting-started-docs  gnome-user-docs
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 2.61 MiB
+Packager        : Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Build Date      : Thu 12 Sep 2019 03:37:40 PM PDT
+Install Date    : Thu 12 Sep 2019 08:23:59 PM PDT
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
+
+Name            : zoom
+Version         : 3.5.352596.0119-1
+Description     : Video Conferencing and Web Conferencing Service
+Architecture    : x86_64
+URL             : https://zoom.us/
+Licenses        : custom
+Groups          : None
+Provides        : None
+Depends On      : fontconfig  glib2  libpulse  libsm  libx11  libxcb  libxcomposite  libxfixes  libxi  libxrandr  libxrender  libxshmfence  libxslt  mesa  nss  pulseaudio-alsa  xcb-util-image  xcb-util-keysyms
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 255.20 MiB
+Packager        : Unknown Packager
+Build Date      : Mon 27 Jan 2020 08:31:12 PM PST
+Install Date    : Mon 27 Jan 2020 08:33:43 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : None
+
