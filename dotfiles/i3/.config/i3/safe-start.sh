@@ -18,13 +18,13 @@ Default - start the specified program. It will not start if a process with the
 }
 
 function is_running() {
-    PROCESS_ID=$(pgrep -u $UID -x "$1")
+    PROCESS_ID=$(pgrep "$1")
     echo "PID: '$PROCESS_ID'"
     if [ ! -z "$PROCESS_ID" ]; then
-        return 1
-    else
         return 0
     fi
+    
+    return 1
 }
 
 MODE=safe
@@ -45,7 +45,7 @@ done
 echo "running '$@' in $MODE mode."
 
 echo "searching for $1"
-if [ get_pid ]; then
+if is_running $1; then
     case "$MODE" in
     safe)
         echo "$1 is already running."
