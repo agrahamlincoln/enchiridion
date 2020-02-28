@@ -1,0 +1,71 @@
+# skhdrc - keyboard hotkeys
+
+# quick shortcuts
+cmd - return : open -na kitty
+
+# space navigation
+cmd - 1 : yabai -m space --focus 1
+cmd - 2 : yabai -m space --focus 2
+cmd - 3 : yabai -m space --focus 3
+cmd - 4 : yabai -m space --focus 4
+cmd - 5 : yabai -m space --focus 5
+cmd - 6 : yabai -m space --focus 6
+cmd - 7 : yabai -m space --focus 7
+cmd - 8 : yabai -m space --focus 8
+cmd - 9 : yabai -m space --focus 9
+cmd + alt - left : yabai -m space --focus prev
+cmd + alt - right : yabai -m space --focus next
+# space movement
+cmd + ctrl - left : yabai -m space --display prev 
+cmd + ctrl - right : yabai -m space --display next 
+cmd + ctrl - 1 : yabai -m space --display 1
+cmd + ctrl - 2 : yabai -m space --display 2
+cmd + ctrl - 3 : yabai -m space --display 3
+# create spaces
+cmd + ctrl - n : yabai -m space --create
+cmd + ctrl - d : yabai -m space --destroy prev
+
+# window navigation
+cmd - left : yabai -m window --focus west
+cmd - right : yabai -m window --focus east
+cmd - up : yabai -m window --focus north
+cmd - down : yabai -m window --focus south
+# window fullscreening
+cmd + shift - f : yabai -m window --toggle native-fullscreen
+# window movement
+# move window around in current space
+cmd + shift - right : yabai -m window --warp east
+cmd + shift - left : yabai -m window --warp west
+cmd + shift - up : yabai -m window --warp north
+cmd + shift - down : yabai -m window --warp south
+# move window to other spaces
+cmd + shift - 1 : yabai -m window --space 1
+cmd + shift - 2 : yabai -m window --space 2
+cmd + shift - 3 : yabai -m window --space 3
+cmd + shift - 4 : yabai -m window --space 4
+cmd + shift - 5 : yabai -m window --space 5
+cmd + shift - 6 : yabai -m window --space 6
+cmd + shift - 7 : yabai -m window --space 7
+cmd + shift - 8 : yabai -m window --space 8
+cmd + shift - 9 : yabai -m window --space 9
+
+# resetting/refreshing yabai and friends
+# restart yabai
+ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+# tidy up current space
+cmd + shift - p : yabai -m space --balance
+
+# window resizing
+# when in the 'default' mode - make the active window border blue
+:: default : yabai -m config active_window_border_color 0xff007aff
+# when in the 'resize' mode - make the active window border red
+:: resize @ : yabai -m config active_window_border_color 0xffff3a30
+# from 'default' mode, activate mode 'resize'
+cmd - p ; resize
+# from 'resize' mode, activate mode 'default'
+resize < cmd - p ; default
+resize < cmd - left : yabai -m window --ratio rel:0.05
+resize < cmd - right : yabai -m window --ratio rel:-0.05
+resize < cmd - up : yabai -m window --ratio rel:0.05
+resize < cmd - down : yabai -m window --ratio rel:-0.05
+
