@@ -48,6 +48,8 @@ cmd + shift - 6 : yabai -m window --space 6
 cmd + shift - 7 : yabai -m window --space 7
 cmd + shift - 8 : yabai -m window --space 8
 cmd + shift - 9 : yabai -m window --space 9
+# switch between splitting horizontally or vertically
+cmd + shift - s : yabai -m window --toggle split
 
 # resetting/refreshing yabai and friends
 # restart yabai
