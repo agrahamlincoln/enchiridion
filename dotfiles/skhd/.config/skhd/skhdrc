@@ -1,7 +1,7 @@
 # skhdrc - keyboard hotkeys
 
 # quick shortcuts
-cmd - return : open -na kitty
+cmd - return : /Applications/Kitty.app/Contents/MacOS/kitty --single-instance -d ~
 
 # space navigation
 cmd - 1 : yabai -m space --focus 1
