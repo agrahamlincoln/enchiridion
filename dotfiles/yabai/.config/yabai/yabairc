@@ -4,9 +4,7 @@
 # for hotkeys - see skhdrc
 
 # status bar configuration
-yabai -m config status_bar                      on
-yabai -m config status_bar_space_icon_strip     I II III IV V VI VII VIII IX X
-yabai -m config status_bar_power_icon_strip      
+yabai -m config external_bar main:20:0
 
 # default options
 yabai -m config layout bsp
@@ -26,3 +24,5 @@ yabai -m config left_padding	5
 yabai -m config right_padding	5
 yabai -m config window_gap	5
 
+yabai -m signal --add event=space_changed \
+    action="osascript -e 'tell application \"Übersicht\" to refresh widget id \"nibar-spaces-primary-jsx\"'"

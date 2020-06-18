@@ -15,6 +15,7 @@ alias la="ls -A"
 alias l="ls -CF"
 # ls -l and show numeric unix permissions (i.e. 600)
 alias lsn="ls -l | awk '{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/) *2^(8-i));if(k)printf(\"%0o \",k);print}'"
+
 # Git.
 alias gca="git commit -a"
 alias gb="git branch"
@@ -24,13 +25,19 @@ alias gch="git checkout"
 alias gpom="git pull origin master"
 alias gp="git pull"
 alias gs="git status"
+
+# SSH
 alias kclr="ssh-keygen -R"
 
 # Systemd Helpers
 alias scs="systemctl status"
 alias scf="systemctl --failed"
 
-# Arch Linux Package Management
+# Kubernetes
+alias kcc="kubectl config"
+alias kc="kubectl"
+
+# OS Specific bashinit scripts
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     source $DIR/bash-linux.sh
 elif [[ "$OSTYPE" == "darwin"* ]]; then
