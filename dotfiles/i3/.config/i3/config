@@ -28,7 +28,10 @@ exec_always --no-startup-id $start --unsafe udiskie --tray
 # Automatically Label i3 workspaces
 exec_always --no-startup-id $HOME/.config/i3/scripts/autoname_workspaces.py >> $HOME/.config/i3/anw.log 2>&1
 # Bluetooth Tray menu
-exec_always --no-startup-id $start blueman-applet
+exec_always --no-startup-id $start --unsafe blueman-applet
+# Set Wallpaper
+exec_always --no-startup-id $start --unsafe $HOME/.config/i3/scripts/feh.sh >> /dev/null 2>&1
+#exec --no-startup-id feh --randomize --bg-scale ~/Images/Wallpapers
 
 # Restore workspaces
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
@@ -40,7 +43,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+#bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+apostrophe kill
@@ -194,3 +198,18 @@ client.urgent           #ff000f #ff000f #000000 #ff000f   #ff000f
 client.placeholder      #000000 #0c0c0c #eaeaea #000000   #0c0c0c
 
 client.background       #ffffff
+
+
+# steam specific settings
+# https://github.com/ValveSoftware/steam-for-linux/issues/1040
+for_window [class="^Steam$" title="^Friends$"] floating enable
+for_window [class="^Steam$" title="Steam - News"] floating enable
+for_window [class="^Steam$" title=".* - Chat"] floating enable
+for_window [class="^Steam$" title="^Settings$"] floating enable
+for_window [class="^Steam$" title=".* - event started"] floating enable
+for_window [class="^Steam$" title=".* CD key"] floating enable
+for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
+for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
+for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
+for_window [title="^Steam Keyboard$"] floating enable
+

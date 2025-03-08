@@ -36,8 +36,7 @@ alias scf="systemctl --failed"
 # Kubernetes
 alias kcc="kubectl config"
 alias kc="kubectl"
-
-# OS Specific bashinit scripts
+# Arch Linux Package Management
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     source $DIR/bash-linux.sh
 elif [[ "$OSTYPE" == "darwin"* ]]; then
