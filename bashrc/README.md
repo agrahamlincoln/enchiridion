@@ -10,7 +10,7 @@ Just my own .bashrc.
 
 ```bash
 cd /path/to/bashrc/
-stow -t ~ -S bashinit
+stow --dotfiles -t ~ -S bashinit
 cat <<EOF >> ~/.bashrc
 source ~/.config/bashinit/bashinit.sh
 EOF
