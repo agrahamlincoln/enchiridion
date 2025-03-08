@@ -8,6 +8,9 @@ Recommended pairings and installation commands:
 
 ```bash
 cd /path/to/dotfiles/
+# kitty / waybar / hyprland setup
+stow -t ~ --dotfiles -S hypr kitty waybar
+
 # i3-polybar-kitty combo
 stow -t ~ -S i3 polybar kitty
 # tmux and vim
