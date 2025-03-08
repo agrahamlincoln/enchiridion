@@ -61,12 +61,12 @@ button:hover {
   color: #ffffff; /* Changed to pure white for maximum legibility */
   font-weight: bold; /* Added: Make workspace number bold */
   margin: 0 2px; /* Added spacing between buttons */
+  border-radius: 5px; /* Optional: Rounded corners */
 }
 
 #workspaces button.active {
   background-color: #1793d1; /* Changed to Arch Linux Curious Blue */
   color: #000000; /* make the text black for readability */
-  border-radius: 5px; /* Optional: Rounded corners */
 }
 
 #workspaces button.active:hover {
@@ -81,7 +81,7 @@ button:hover {
 
 #workspaces button:hover {
   background: rgba(255, 250, 243, 0.2); /* foreground with some transparency for hover */
-  box-shadow: none;
+  text-shadow: inherit;
 }
 
 #workspaces button.focused {

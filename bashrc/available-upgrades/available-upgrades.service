@@ -1,6 +1,6 @@
 [Unit]
-Description=Check for AUR Upgrades with Paru
+Description=Check for Available Upgrades with Paru and Pacman 
 
 [Service]
 Type=oneshot
-ExecStart=/usr/local/bin/package-available-upgrades.sh
+ExecStart=/usr/local/bin/package-available-upgrades.sh --update
