@@ -1,0 +1,6 @@
+[Unit]
+Description=Check for AUR Upgrades with Paru
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/package-available-upgrades.sh

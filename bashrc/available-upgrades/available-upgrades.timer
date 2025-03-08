@@ -1,0 +1,9 @@
+[Unit]
+Description=Updates /tmp/package-available-updates
+
+[Timer]
+OnBootSec=15min
+OnUnitActiveSec=5min
+
+[Install]
+WantedBy=timers.target
