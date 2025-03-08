@@ -5,9 +5,9 @@
 }
 
 window#waybar {
-    background-color: rgba(43, 48, 59, 0.5);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-    color: #ffffff;
+    background-color: rgba(18, 18, 18, 0.8); /* Background from kitty config, with some transparency */
+    border-bottom: 3px solid #383838; /* color8 from kitty config for a subtle border */
+    color: #fffaf3; /* foreground from kitty config */
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -16,21 +16,12 @@ window#waybar.hidden {
     opacity: 0.2;
 }
 
-/*
-window#waybar.empty {
-    background-color: transparent;
-}
-window#waybar.solo {
-    background-color: #FFFFFF;
-}
-*/
-
 window#waybar.termite {
-    background-color: #3F3F3F;
+    background-color: #383838; /* Using color8 as a darker theme */
 }
 
 window#waybar.chromium {
-    background-color: #000000;
+    background-color: #121212; /* Consistent with the background */
     border: none;
 }
 
@@ -45,27 +36,27 @@ button {
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 button:hover {
     background: inherit;
-    box-shadow: inset 0 -3px #ffffff;
+    box-shadow: inset 0 -3px #fffaf3; /* foreground from kitty config for hover effect */
 }
 
 /* you can set a style on hover for any module like this */
 #pulseaudio:hover {
-    background-color: #a37800;
+    background-color: #ffd141; /* color11 from kitty config */
 }
 
 #workspaces button.urgent {
-  color: #bf616a; /* Example urgent workspace color */
+  color: #ff273f; /* color9 from kitty config - bright red */
 }
 
 #workspaces button {
     padding: 0 5px;
     background-color: transparent;
-    color: #ffffff;
+    color: #fffaf3; /* foreground from kitty config */
 }
 
 #workspaces button.active {
-  background-color: #4c566a; /* Example background color for active workspace */
-  color: #eceff4; /* example active workspace text color */
+  background-color: #383838; /* color8 for active workspace background */
+  color: #ffffff; /* white for active workspace text */
   border-radius: 5px; /* Optional: Rounded corners */
 }
 
@@ -74,21 +65,21 @@ button:hover {
 }
 
 #workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(255, 250, 243, 0.2); /* foreground with some transparency for hover */
 }
 
 #workspaces button.focused {
-    background-color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
+    background-color: #383838; /* color8 for focused workspace background */
+    box-shadow: inset 0 -3px #fffaf3; /* foreground from kitty config */
 }
 
 #workspaces button.urgent {
-    background-color: #eb4d4b;
+    background-color: #ff000f; /* color1 from kitty config */
 }
 
 #mode {
-    background-color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
+    background-color: #383838; /* color8 from kitty config */
+    box-shadow: inset 0 -3px #fffaf3; /* foreground from kitty config */
 }
 
 #clock,
@@ -109,7 +100,7 @@ button:hover {
 #power-profiles-daemon,
 #mpd {
     padding: 0 10px;
-    color: #ffffff;
+    color: #fffaf3; /* foreground from kitty config */
 }
 
 #window,
@@ -128,30 +119,30 @@ button:hover {
 }
 
 #clock {
-    background-color: #64727D;
+    background-color: #383838; /* color8 from kitty config */
 }
 
 #battery {
-    background-color: #ffffff;
-    color: #000000;
+    background-color: #ffffff; /* white from kitty config */
+    color: #121212; /* Background from kitty config */
 }
 
 #battery.charging, #battery.plugged {
-    color: #ffffff;
-    background-color: #26A65B;
+    color: #121212; /* Background from kitty config */
+    background-color: #8ce00a; /* color2 from kitty config */
 }
 
 @keyframes blink {
     to {
-        background-color: #ffffff;
-        color: #000000;
+        background-color: #ffffff; /* white from kitty config */
+        color: #121212; /* Background from kitty config */
     }
 }
 
 /* Using steps() instead of linear as a timing function to limit cpu usage */
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
+    background-color: #ff000f; /* color1 from kitty config */
+    color: #fffaf3; /* foreground from kitty config */
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: steps(12);
@@ -164,18 +155,18 @@ button:hover {
 }
 
 #power-profiles-daemon.performance {
-    background-color: #f53c3c;
-    color: #ffffff;
+    background-color: #ff000f; /* color1 from kitty config */
+    color: #fffaf3; /* foreground from kitty config */
 }
 
 #power-profiles-daemon.balanced {
-    background-color: #2980b9;
-    color: #ffffff;
+    background-color: #008df8; /* color4 from kitty config */
+    color: #fffaf3; /* foreground from kitty config */
 }
 
 #power-profiles-daemon.power-saver {
-    background-color: #2ecc71;
-    color: #000000;
+    background-color: #8ce00a; /* color2 from kitty config */
+    color: #121212; /* background from kitty config */
 }
 
 label:focus {
@@ -183,73 +174,73 @@ label:focus {
 }
 
 #cpu {
-    background-color: #2ecc71;
-    color: #000000;
+    background-color: #abe05a; /* color10 from kitty config */
+    color: #121212; /* background from kitty config */
 }
 
 #memory {
-    background-color: #9b59b6;
+    background-color: #9a5feb; /* color13 from kitty config */
 }
 
 #disk {
-    background-color: #964B00;
+    background-color: #ffb900; /* color3 from kitty config */
 }
 
 #backlight {
-    background-color: #90b1b1;
+    background-color: #00d7eb; /* color6 from kitty config */
 }
 
 #network {
-    background-color: #2980b9;
+    background-color: #008df8; /* color4 from kitty config */
 }
 
 #network.disconnected {
-    background-color: #f53c3c;
+    background-color: #ff000f; /* color1 from kitty config */
 }
 
 #pulseaudio {
-    background-color: #f1c40f;
-    color: #000000;
+    background-color: #ffd141; /* color11 from kitty config */
+    color: #121212; /* background from kitty config */
 }
 
 #pulseaudio.muted {
-    background-color: #90b1b1;
-    color: #2a5c45;
+    background-color: #383838; /* color8 from kitty config */
+    color: #121212;/* Background from kitty config*/
 }
 
 #wireplumber {
-    background-color: #fff0f5;
-    color: #000000;
+    background-color: #67ffef; /* color14 from kitty config */
+    color: #121212; /* background from kitty config */
 }
 
 #wireplumber.muted {
-    background-color: #f53c3c;
+    background-color: #ff000f; /* color1 from kitty config */
 }
 
 #custom-media {
-    background-color: #66cc99;
-    color: #2a5c45;
+    background-color: #6c43a5; /* color5 from kitty config */
+    color: #fffaf3;
     min-width: 100px;
 }
 
 #custom-media.custom-spotify {
-    background-color: #66cc99;
+    background-color: #6c43a5; /* color5 from kitty config */
 }
 
 #custom-media.custom-vlc {
-    background-color: #ffa000;
+    background-color: #ffb900; /* color3 from kitty config */
 }
 
 #temperature {
-    background-color: #f0932b;
+    background-color: #ffb900; /*color3 from kitty config*/
 }
 
 #temperature.critical {
-    background-color: #eb4d4b;
+    background-color: #ff000f; /* color1 from kitty config */
 }
 
 #tray {
-    background-color: #2980b9;
+    background-color: #008df8; /* color4 from kitty config */
 }
 
 #tray > .passive {
@@ -258,46 +249,46 @@ label:focus {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
+    background-color: #ff000f; /* color1 from kitty config */
 }
 
 #idle_inhibitor {
-    background-color: #2d3436;
+    background-color: #383838; /* color8 from kitty config */
 }
 
 #idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
+    background-color: #ffffff; /* white from kitty config */
+    color: #121212; /* background from kitty config */
 }
 
 #mpd {
-    background-color: #66cc99;
-    color: #2a5c45;
+    background-color: #6c43a5;/* color5 from kitty config */
+    color: #fffaf3; /* foreground from kitty config*/
 }
 
 #mpd.disconnected {
-    background-color: #f53c3c;
+    background-color: #ff000f; /* color1 from kitty config */
 }
 
 #mpd.stopped {
-    background-color: #90b1b1;
+    background-color: #383838; /* color8 from kitty config */
 }
 
 #mpd.paused {
-    background-color: #51a37a;
+    background-color: #abe05a;/* color10 from kitty config*/
 }
 
 #language {
-    background: #00b093;
-    color: #740864;
+    background: #0092ff; /* color12 from kitty config */
+    color: #9a5feb; /* color13 from kitty config */
     padding: 0 5px;
     margin: 0 5px;
     min-width: 16px;
 }
 
 #keyboard-state {
-    background: #97e1ad;
-    color: #000000;
+    background: #abe05a; /* color10 from kitty config */
+    color: #121212; /* background from kitty config */
     padding: 0 0px;
     margin: 0 5px;
     min-width: 16px;
@@ -308,11 +299,11 @@ label:focus {
 }
 
 #keyboard-state > label.locked {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(18, 18, 18, 0.2); /* background with some transparency */
 }
 
 #scratchpad {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(18, 18, 18, 0.2); /* Background with some transparency */
 }
 
 #scratchpad.empty {
@@ -325,17 +316,17 @@ label:focus {
 
 #privacy-item {
     padding: 0 5px;
-    color: white;
+    color: #fffaf3; /* foreground from kitty config*/
 }
 
 #privacy-item.screenshare {
-    background-color: #cf5700;
+    background-color: #ffb900; /* color3 from kitty config */
 }
 
 #privacy-item.audio-in {
-    background-color: #1ca000;
+    background-color: #8ce00a; /* color2 from kitty config */
 }
 
 #privacy-item.audio-out {
-    background-color: #0069d4;
+    background-color: #008df8; /* color4 from kitty config */
 }
