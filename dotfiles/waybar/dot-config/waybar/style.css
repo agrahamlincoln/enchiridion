@@ -1,47 +1,52 @@
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
-    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 13px;
+  /* `otf-font-awesome` is required to be installed for icons */
+  font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;
 }
 
 window#waybar {
-    background-color: rgba(18, 18, 18, 0.8); /* Background from kitty config, with some transparency */
-    border-bottom: 3px solid #383838; /* color8 from kitty config for a subtle border */
-    color: #fffaf3; /* foreground from kitty config */
-    transition-property: background-color;
-    transition-duration: .5s;
+  background-color: rgba(18, 18, 18, 0.8); /* Background from kitty config, with some transparency */
+  border-bottom: 3px solid #333333; /* Changed to Arch Linux Mine Shaft */
+  color: #fffaf3; /* foreground from kitty config */
+  transition-property: background-color;
+  transition-duration: .5s;
 }
 
 window#waybar.hidden {
-    opacity: 0.2;
+  opacity: 0.2;
 }
 
 window#waybar.termite {
-    background-color: #383838; /* Using color8 as a darker theme */
+  background-color: #333333; /* Changed to Arch Linux Mine Shaft */
 }
 
 window#waybar.chromium {
-    background-color: #121212; /* Consistent with the background */
-    border: none;
+  background-color: #121212; /* Consistent with the background */
+  border: none;
 }
 
 button {
-    /* Use box-shadow instead of border so the text isn't offset */
-    box-shadow: inset 0 -3px transparent;
-    /* Avoid rounded borders under each button name */
-    border: none;
-    border-radius: 0;
+  /* Use box-shadow instead of border so the text isn't offset */
+  box-shadow: inset 0 -3px transparent;
+  /* Avoid rounded borders under each button name */
+  border: none;
+  border-radius: 0;
+  transition: box-shadow 0.2s ease; /* Add a transition for a smooth hover effect */
 }
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 button:hover {
-    background: inherit;
-    box-shadow: inset 0 -3px #fffaf3; /* foreground from kitty config for hover effect */
+  background: inherit;
+  box-shadow: inset 0 -2px #fffaf3; /* foreground from kitty config for hover effect */
 }
 
 /* you can set a style on hover for any module like this */
 #pulseaudio:hover {
-    background-color: #ffd141; /* color11 from kitty config */
+  background-color: #ffd141; /* color11 from kitty config */
+}
+
+#workspaces {
+  margin: 0 0px; /* Changed margin so that workspaces can change font size*/
 }
 
 #workspaces button.urgent {
@@ -49,40 +54,55 @@ button:hover {
 }
 
 #workspaces button {
-    padding: 0 5px;
-    background-color: transparent;
-    color: #fffaf3; /* foreground from kitty config */
+  font-family: FiraCode, monospace; /* Changed: Use FiraCode for workspaces */
+  font-size: 16px; /* Increased font size */
+  padding: 0 12px; /* Increased padding from 5px to 7px */
+  background-color: transparent;
+  color: #ffffff; /* Changed to pure white for maximum legibility */
+  font-weight: bold; /* Added: Make workspace number bold */
+  margin: 0 2px; /* Added spacing between buttons */
 }
 
 #workspaces button.active {
-  background-color: #383838; /* color8 for active workspace background */
-  color: #ffffff; /* white for active workspace text */
+  background-color: #1793d1; /* Changed to Arch Linux Curious Blue */
+  color: #000000; /* make the text black for readability */
   border-radius: 5px; /* Optional: Rounded corners */
+}
+
+#workspaces button.active:hover {
+  background-color: #19a2e6; /* Lightened Arch Linux Curious Blue for Hover */
+  box-shadow: none;
 }
 
 #workspaces button:not(.active) {
   background-color: transparent; /* Makes inactive workspaces transparent */
+  color: #b0b0b0;/* slightly less intense color */
 }
 
 #workspaces button:hover {
-    background: rgba(255, 250, 243, 0.2); /* foreground with some transparency for hover */
+  background: rgba(255, 250, 243, 0.2); /* foreground with some transparency for hover */
+  box-shadow: none;
 }
 
 #workspaces button.focused {
-    background-color: #383838; /* color8 for focused workspace background */
-    box-shadow: inset 0 -3px #fffaf3; /* foreground from kitty config */
+  background-color: #333333; /* Changed to Arch Linux Mine Shaft */
+  box-shadow: inset 0 -3px #fffaf3; /* foreground from kitty config */
 }
 
 #workspaces button.urgent {
-    background-color: #ff000f; /* color1 from kitty config */
+  background-color: #ff000f; /* color1 from kitty config */
 }
 
 #mode {
-    background-color: #383838; /* color8 from kitty config */
-    box-shadow: inset 0 -3px #fffaf3; /* foreground from kitty config */
+  background-color: #333333; /* Changed to Arch Linux Mine Shaft */
+  box-shadow: inset 0 -3px #fffaf3; /* foreground from kitty config */
 }
 
-#clock,
+#clock {
+  background-color: transparent; /* Removed background color */
+  color: #fffaf3;
+}
+
 #battery,
 #cpu,
 #memory,
@@ -99,234 +119,253 @@ button:hover {
 #scratchpad,
 #power-profiles-daemon,
 #mpd {
-    padding: 0 10px;
-    color: #fffaf3; /* foreground from kitty config */
+  padding: 0 10px;
+  color: #121212; /* Changed to black as this was too hard to read on the yellow background*/
+  box-shadow: inset 0 -3px transparent;
+}
+
+#clock:hover,
+#battery:hover,
+#cpu:hover,
+#memory:hover,
+#disk:hover,
+#temperature:hover,
+#backlight:hover,
+#network:hover,
+#pulseaudio:hover,
+#wireplumber:hover,
+#custom-media:hover,
+#tray:hover,
+#mode:hover,
+#idle_inhibitor:hover,
+#scratchpad:hover,
+#power-profiles-daemon:hover,
+#mpd:hover {
+  box-shadow: inset 0 -2px #fffaf3; /* Apply box-shadow to these modules */
 }
 
 #window,
 #workspaces {
-    margin: 0 4px;
+  margin: 0 4px;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
+  margin-left: 5px;
 }
 
 /* If workspaces is the rightmost module, omit right margin */
 .modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
-}
-
-#clock {
-    background-color: #383838; /* color8 from kitty config */
+  margin-right: 5px;
 }
 
 #battery {
-    background-color: #ffffff; /* white from kitty config */
-    color: #121212; /* Background from kitty config */
+  background-color: #ffffff; /* white from kitty config */
+  color: #121212; /* Background from kitty config */
 }
 
 #battery.charging, #battery.plugged {
-    color: #121212; /* Background from kitty config */
-    background-color: #8ce00a; /* color2 from kitty config */
+  color: #121212; /* Background from kitty config */
+  background-color: #8ce00a; /* color2 from kitty config */
 }
 
 @keyframes blink {
-    to {
-        background-color: #ffffff; /* white from kitty config */
-        color: #121212; /* Background from kitty config */
-    }
+  to {
+    background-color: #ffffff; /* white from kitty config */
+    color: #121212; /* Background from kitty config */
+  }
 }
 
 /* Using steps() instead of linear as a timing function to limit cpu usage */
 #battery.critical:not(.charging) {
-    background-color: #ff000f; /* color1 from kitty config */
-    color: #fffaf3; /* foreground from kitty config */
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: steps(12);
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+  background-color: #ff000f; /* color1 from kitty config */
+  color: #fffaf3; /* foreground from kitty config */
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 #power-profiles-daemon {
-    padding-right: 15px;
+  padding-right: 15px;
 }
 
 #power-profiles-daemon.performance {
-    background-color: #ff000f; /* color1 from kitty config */
-    color: #fffaf3; /* foreground from kitty config */
+  background-color: #ff000f; /* color1 from kitty config */
+  color: #fffaf3; /* foreground from kitty config */
 }
 
 #power-profiles-daemon.balanced {
-    background-color: #008df8; /* color4 from kitty config */
-    color: #fffaf3; /* foreground from kitty config */
+  background-color: #1793d1; /* Changed to Arch Linux Curious Blue */
+  color: #fffaf3; /* foreground from kitty config */
 }
 
 #power-profiles-daemon.power-saver {
-    background-color: #8ce00a; /* color2 from kitty config */
-    color: #121212; /* background from kitty config */
+  background-color: #8ce00a; /* color2 from kitty config */
+  color: #121212; /* background from kitty config */
 }
 
 label:focus {
-    background-color: #000000;
+  background-color: #000000;
 }
 
 #cpu {
-    background-color: #abe05a; /* color10 from kitty config */
-    color: #121212; /* background from kitty config */
+  background-color: #abe05a; /* color10 from kitty config */
+  color: #121212; /* background from kitty config */
 }
 
 #memory {
-    background-color: #9a5feb; /* color13 from kitty config */
+  background-color: #9a5feb; /* color13 from kitty config */
 }
 
 #disk {
-    background-color: #ffb900; /* color3 from kitty config */
+  background-color: #ffb900; /* color3 from kitty config */
 }
 
 #backlight {
-    background-color: #00d7eb; /* color6 from kitty config */
+  background-color: #00d7eb; /* color6 from kitty config */
 }
 
 #network {
-    background-color: #008df8; /* color4 from kitty config */
+  background-color: #1793d1; /* Changed to Arch Linux Curious Blue */
 }
 
 #network.disconnected {
-    background-color: #ff000f; /* color1 from kitty config */
+  background-color: #ff000f; /* color1 from kitty config */
 }
 
 #pulseaudio {
-    background-color: #ffd141; /* color11 from kitty config */
-    color: #121212; /* background from kitty config */
+  background-color: #ffd141; /* color11 from kitty config */
+  color: #121212; /* background from kitty config */
 }
 
 #pulseaudio.muted {
-    background-color: #383838; /* color8 from kitty config */
-    color: #121212;/* Background from kitty config*/
+  background-color: #333333; /* Changed to Arch Linux Mine Shaft */
+  color: #121212;/* Background from kitty config*/
 }
 
 #wireplumber {
-    background-color: #67ffef; /* color14 from kitty config */
-    color: #121212; /* background from kitty config */
+  background-color: #67ffef; /* color14 from kitty config */
+  color: #121212; /* background from kitty config */
 }
 
 #wireplumber.muted {
-    background-color: #ff000f; /* color1 from kitty config */
+  background-color: #ff000f; /* color1 from kitty config */
 }
 
 #custom-media {
-    background-color: #6c43a5; /* color5 from kitty config */
-    color: #fffaf3;
-    min-width: 100px;
+  background-color: #6c43a5; /* color5 from kitty config */
+  color: #fffaf3;
+  min-width: 100px;
 }
 
 #custom-media.custom-spotify {
-    background-color: #6c43a5; /* color5 from kitty config */
+  background-color: #6c43a5; /* color5 from kitty config */
 }
 
 #custom-media.custom-vlc {
-    background-color: #ffb900; /* color3 from kitty config */
+  background-color: #ffb900; /* color3 from kitty config */
 }
 
 #temperature {
-    background-color: #ffb900; /*color3 from kitty config*/
+  background-color: #cc7a00; /* A darker, more orange-brown */
+  color: #fffaf3;/* an off white text colour should contrast well */
 }
 
 #temperature.critical {
-    background-color: #ff000f; /* color1 from kitty config */
+  background-color: #ff000f; /* color1 from kitty config */
+  color: #fffaf3; /* an off white text colour should contrast well */
 }
 
 #tray {
-    background-color: #008df8; /* color4 from kitty config */
+  background-color: #1793d1; /* Changed to Arch Linux Curious Blue */
 }
 
 #tray > .passive {
-    -gtk-icon-effect: dim;
+  -gtk-icon-effect: dim;
 }
 
 #tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: #ff000f; /* color1 from kitty config */
+  -gtk-icon-effect: highlight;
+  background-color: #ff000f; /* color1 from kitty config */
 }
 
 #idle_inhibitor {
-    background-color: #383838; /* color8 from kitty config */
+  background-color: #333333; /* Changed to Arch Linux Mine Shaft */
 }
 
 #idle_inhibitor.activated {
-    background-color: #ffffff; /* white from kitty config */
-    color: #121212; /* background from kitty config */
+  background-color: #ffffff; /* white from kitty config */
+  color: #121212; /* background from kitty config */
 }
 
 #mpd {
-    background-color: #6c43a5;/* color5 from kitty config */
-    color: #fffaf3; /* foreground from kitty config*/
+  background-color: #6c43a5;/* color5 from kitty config */
+  color: #fffaf3; /* foreground from kitty config*/
 }
 
 #mpd.disconnected {
-    background-color: #ff000f; /* color1 from kitty config */
+  background-color: #ff000f; /* color1 from kitty config */
 }
 
 #mpd.stopped {
-    background-color: #383838; /* color8 from kitty config */
+  background-color: #333333; /* Changed to Arch Linux Mine Shaft */
 }
 
 #mpd.paused {
-    background-color: #abe05a;/* color10 from kitty config*/
+  background-color: #abe05a;/* color10 from kitty config*/
 }
 
 #language {
-    background: #0092ff; /* color12 from kitty config */
-    color: #9a5feb; /* color13 from kitty config */
-    padding: 0 5px;
-    margin: 0 5px;
-    min-width: 16px;
+  background: #1793d1; /* Changed to Arch Linux Curious Blue */
+  color: #9a5feb; /* color13 from kitty config */
+  padding: 0 5px;
+  margin: 0 5px;
+  min-width: 16px;
 }
 
 #keyboard-state {
-    background: #abe05a; /* color10 from kitty config */
-    color: #121212; /* background from kitty config */
-    padding: 0 0px;
-    margin: 0 5px;
-    min-width: 16px;
+  background: #abe05a; /* color10 from kitty config */
+  color: #121212; /* background from kitty config */
+  padding: 0 0px;
+  margin: 0 5px;
+  min-width: 16px;
 }
 
 #keyboard-state > label {
-    padding: 0 5px;
+  padding: 0 5px;
 }
 
 #keyboard-state > label.locked {
-    background: rgba(18, 18, 18, 0.2); /* background with some transparency */
+  background: rgba(18, 18, 18, 0.2); /* background with some transparency */
 }
 
 #scratchpad {
-    background: rgba(18, 18, 18, 0.2); /* Background with some transparency */
+  background: rgba(18, 18, 18, 0.2); /* Background with some transparency */
 }
 
 #scratchpad.empty {
-	background-color: transparent;
+  background-color: transparent;
 }
 
 #privacy {
-    padding: 0;
+  padding: 0;
 }
 
 #privacy-item {
-    padding: 0 5px;
-    color: #fffaf3; /* foreground from kitty config*/
+  padding: 0 5px;
+  color: #fffaf3; /* foreground from kitty config*/
 }
 
 #privacy-item.screenshare {
-    background-color: #ffb900; /* color3 from kitty config */
+  background-color: #ffb900; /* color3 from kitty config */
 }
 
 #privacy-item.audio-in {
-    background-color: #8ce00a; /* color2 from kitty config */
+  background-color: #8ce00a; /* color2 from kitty config */
 }
 
 #privacy-item.audio-out {
-    background-color: #008df8; /* color4 from kitty config */
+  background-color: #1793d1; /* Changed to Arch Linux Curious Blue */
 }
