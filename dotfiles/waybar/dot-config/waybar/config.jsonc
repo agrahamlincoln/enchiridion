@@ -177,7 +177,7 @@
     "custom/updates": {
         "exec-if": "/usr/local/bin/available-upgrades.sh",
         "exec": "wc -l /tmp/.package-available-upgrades | awk '{print $1}'",
-        "interval": 60, // Check every 5 minutes
+        "interval": 6, // Check every 5 minutes
         "tooltip": true,
         "format": "Updates: {} |",
         "return-type": "raw"
