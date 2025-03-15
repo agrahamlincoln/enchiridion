@@ -2,6 +2,12 @@
 
 UPDATES_FILE="/tmp/.package-available-upgrades"
 
+# Setup UPDATES_FILE with correct permissions
+if [[ ! -f "$UPDATES_FILE" ]]; then
+  touch "$UPDATES_FILE"
+  chmod 644 "$UPDATES_FILE"
+fi
+
 # Check if --count option is provided
 if [[ "$1" == "--update" ]]; then
   # Default behavior: Check for updates and write to the file

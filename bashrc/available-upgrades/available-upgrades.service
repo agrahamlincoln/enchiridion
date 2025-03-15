@@ -3,4 +3,4 @@ Description=Check for Available Upgrades with Paru and Pacman
 
 [Service]
 Type=oneshot
-ExecStart=/usr/local/bin/package-available-upgrades.sh --update
+ExecStart=/usr/local/bin/available-upgrades.sh --update
