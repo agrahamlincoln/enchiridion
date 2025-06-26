@@ -1,7 +1,7 @@
 # skhdrc - keyboard hotkeys
 
 # quick shortcuts
-cmd - return : /Applications/Kitty.app/Contents/MacOS/kitty --single-instance -d ~
+cmd - return : /Applications/Kitty.app/Contents/MacOS/kitty --single-instance -c ~/.config/kitty/kitty.conf -c ~/.config/kitty/darwin19.conf -d ~
 
 # space navigation
 cmd - 1 : yabai -m space --focus 1
@@ -70,4 +70,10 @@ resize < cmd - left : yabai -m window --ratio rel:0.05
 resize < cmd - right : yabai -m window --ratio rel:-0.05
 resize < cmd - up : yabai -m window --ratio rel:0.05
 resize < cmd - down : yabai -m window --ratio rel:-0.05
+
+# hotkeys for sketchybar/yabai combo
+#lalt - space : yabai -m window --toggle float; sketchybar --trigger window_focus
+#shift + lalt - f : yabai -m window --toggle zoom-fullscreen; sketchybar --trigger window_focus
+#lalt - f : yabai -m window --toggle zoom-parent; sketchybar --trigger window_focus
+#shift + lalt - 1 : yabai -m window --space 1 && sketchybar --trigger windows_on_spaces
 
