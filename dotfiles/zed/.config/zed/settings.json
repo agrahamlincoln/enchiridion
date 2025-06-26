@@ -1,0 +1,216 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "agent": {
+    "profiles": {
+      "copilot-write": {
+        "name": "Copilot-Write",
+        "tools": {
+          "copy_path": true,
+          "create_directory": true,
+          "create_file": true,
+          "delete_path": true,
+          "diagnostics": true,
+          "edit_file": true,
+          "fetch": true,
+          "list_directory": true,
+          "move_path": true,
+          "now": true,
+          "find_path": true,
+          "read_file": true,
+          "grep": true,
+          "terminal": true,
+          "thinking": true,
+          "web_search": true
+        },
+        "enable_all_context_servers": true,
+        "context_servers": {}
+      }
+    },
+    "default_profile": "ask",
+    "dock": "left",
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4"
+    },
+    "version": "2"
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "file_types": {
+    "Helm": [
+      "**/templates/**/*.tpl",
+      "**/templates/**/*.yaml",
+      "**/templates/**/*.yml",
+      "**/helmfile.d/**/*.yaml",
+      "**/helmfile.d/**/*.yml",
+      "**/runners/**/*.yaml",
+      "**/runners/**/*.yml"
+    ],
+    "Dockerfile": ["Dockerfile*"]
+  },
+  // VIM SETTINGS
+  "vim_mode": true,
+  // disable cursor blink
+  "cursor_blink": false,
+  // prevent the buffer from scrolling beyond the last line
+  "scroll_beyond_last_line": "off",
+  // allow cursor to reach edges of screen
+  "vertical_scroll_margin": 0,
+  // disable auto indent on paste (matching your VS Code preference)
+  "auto_indent_on_paste": false,
+
+  "message_editor": {
+    "gutter": {
+      "line_numbers": false,
+      "folds": true
+    }
+  },
+  "gutter": {
+    "line_numbers": true,
+    "folds": false
+  },
+  "command_aliases": {
+    "W": "w",
+    "Wq": "wq",
+    "Q": "q"
+  },
+
+  // Font and UI settings based on your VS Code config
+  "preferred_line_length": 80,
+  "ui_font_size": 16,
+  "buffer_font_size": 16,
+  "buffer_font_family": "Fira Code",
+  "buffer_font_features": {
+    "liga": true  // Enable ligatures like in your VS Code
+  },
+
+  "terminal": {
+    "font_family": "Fira Code",
+    "font_size": 16,
+    "font_features": {
+      "liga": true
+    },
+    "blinking": "on",
+    "line_height": "standard"
+  },
+
+  "project_panel": {
+    "dock": "right"
+  },
+
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "One Dark"
+  },
+
+  // Tab and indentation settings from your VS Code
+  "tab_size": 2,
+  "hard_tabs": false,
+  "show_whitespaces": "all",  // Similar to your renderWhitespace setting
+  "show_wrap_guides": true,
+  "wrap_guides": [80, 100, 120],  // Your VS Code rulers
+
+  // File handling
+  "ensure_final_newline_on_save": true,  // Like your VS Code insertFinalNewline
+  "remove_trailing_whitespace_on_save": true,  // Like your VS Code trimTrailingWhitespace
+
+  "languages": {
+    "JavaScript": {
+      "format_on_save": "off",
+      "tab_size": 2
+    },
+    "TypeScript": {
+      "format_on_save": "off",
+      "tab_size": 2
+    },
+    "Python": {
+      "language_servers": ["ruff"],
+      "format_on_save": "on",
+      "formatter": [
+        {
+          "code_actions": {
+            "source.organizeImports.ruff": true,
+            "source.fixAll.ruff": true
+          }
+        },
+        {
+          "language_server": {
+            "name": "ruff"
+          }
+        }
+      ],
+      "tab_size": 4  // Python standard
+    },
+    "Terraform": {
+      "formatter": {
+        "external": {
+          "command": "terraform",
+          "arguments": ["fmt", "-"]
+        }
+      },
+      "format_on_save": "on",
+      "tab_size": 2
+    },
+    "HCL": {
+      "format_on_save": "on",
+      "tab_size": 2
+    },
+    "Shell Script": {
+      "tab_size": 2
+    },
+    "YAML": {
+      "auto_indent_on_paste": false,
+      "formatter": "language_server",
+      "tab_size": 2,
+      "format_on_save": "off"
+    },
+    "Helm": {
+      "auto_indent_on_paste": false,
+      "tab_size": 2
+    },
+    "JSON": {
+      "tab_size": 2
+    },
+    "JSONC": {
+      "tab_size": 2
+    },
+    "Scala": {
+      "format_on_save": "on",
+      "tab_size": 2
+    },
+    "Jsonnet": {
+      "format_on_save": "on",
+      "tab_size": 2
+    }
+  },
+
+  "lsp": {
+    "yaml-language-server": {
+      "settings": {
+        "yaml": {
+          "schemaStore": {
+            "enable": true
+          },
+          "format": {
+            "bracketSpacing": false
+          }
+        }
+      }
+    },
+    "terraform-ls": {
+      "binary": {
+        "path": "/opt/homebrew/bin/terraform"
+      }
+    }
+  }
+}

@@ -7,4 +7,6 @@ alias python=/usr/local/bin/python3
 alias pip=/usr/local/bin/pip3
 
 # add the user python path to our PATH
-export PATH=$PATH:~/Library/Python/3.7/bin/
+#export PATH=$PATH:~/Library/Python/3.7/bin/
+
+#alias ssh="kitty +kitten ssh"
