@@ -13,8 +13,6 @@ stow -t ~ --dotfiles -S hypr kitty waybar
 
 # i3-polybar-kitty combo
 stow -t ~ -S i3 polybar kitty
-# tmux and vim
-stow -t ~ -S tmux vim
 
 # Experimental: this uses wayland
 # sway waybar kitty combo

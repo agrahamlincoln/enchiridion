@@ -7,37 +7,20 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
+  "language_models": {
+    "ollama": {
+      "api_url": "http://192.168.1.92:11434"
+    }
+  },
   "agent": {
-    "profiles": {
-      "copilot-write": {
-        "name": "Copilot-Write",
-        "tools": {
-          "copy_path": true,
-          "create_directory": true,
-          "create_file": true,
-          "delete_path": true,
-          "diagnostics": true,
-          "edit_file": true,
-          "fetch": true,
-          "list_directory": true,
-          "move_path": true,
-          "now": true,
-          "find_path": true,
-          "read_file": true,
-          "grep": true,
-          "terminal": true,
-          "thinking": true,
-          "web_search": true
-        },
-        "enable_all_context_servers": true,
-        "context_servers": {}
-      }
-    },
-    "default_profile": "ask",
-    "dock": "left",
+    "default_profile": "write",
+    "dock": "right",
     "default_model": {
-      "provider": "copilot_chat",
-      "model": "claude-sonnet-4"
+      "provider": "google",
+      "model": "gemini-2.5-flash"
     },
     "version": "2"
   },
@@ -45,23 +28,8 @@
     "diagnostics": false,
     "metrics": false
   },
-  "file_types": {
-    "Helm": [
-      "**/templates/**/*.tpl",
-      "**/templates/**/*.yaml",
-      "**/templates/**/*.yml",
-      "**/helmfile.d/**/*.yaml",
-      "**/helmfile.d/**/*.yml",
-      "**/runners/**/*.yaml",
-      "**/runners/**/*.yml"
-    ],
-    "Dockerfile": ["Dockerfile*"]
-  },
-  // VIM SETTINGS
   "vim_mode": true,
-  // disable cursor blink
   "cursor_blink": false,
-  // prevent the buffer from scrolling beyond the last line
   "scroll_beyond_last_line": "off",
   // allow cursor to reach edges of screen
   "vertical_scroll_margin": 0,
@@ -75,8 +43,7 @@
     }
   },
   "gutter": {
-    "line_numbers": true,
-    "folds": false
+    "line_numbers": true
   },
   "command_aliases": {
     "W": "w",
@@ -87,42 +54,39 @@
   // Font and UI settings based on your VS Code config
   "preferred_line_length": 80,
   "ui_font_size": 16,
-  "buffer_font_size": 16,
+  "buffer_font_size": 13,
   "buffer_font_family": "Fira Code",
-  "buffer_font_features": {
-    "liga": true  // Enable ligatures like in your VS Code
-  },
+  // Ligatures check:
+  // -<< -< -<- <-- <--- <<- <- -> ->> --> ---> ->- >- >>-
+  // =<< =< =<= <== <=== <<= <= => =>> ==> ===> =>= >= >>=
+  // <-> <--> <---> <----> <=> <==> <===> <====> :: ::: __
+  // <~~ </ </> /> ~~> == != /= ~= <> === !== !=== =/= =!=
+  // <: := *= *+ <* <*> *> <| <|> |> <. <.> .> +* =* =: :>
+  // (* *) /* */ [| |] {| |} ++ +++ \/ /\ |- -| <!-- <!---
 
   "terminal": {
     "font_family": "Fira Code",
-    "font_size": 16,
-    "font_features": {
-      "liga": true
-    },
+    "font_size": 12,
     "blinking": "on",
     "line_height": "standard"
   },
 
-  "project_panel": {
-    "dock": "right"
-  },
-
   "theme": {
-    "mode": "system",
+    "mode": "dark",
     "light": "One Light",
-    "dark": "One Dark"
+    "dark": "Ayu Dark"
   },
 
   // Tab and indentation settings from your VS Code
   "tab_size": 2,
   "hard_tabs": false,
-  "show_whitespaces": "all",  // Similar to your renderWhitespace setting
+  "show_whitespaces": "all", // Similar to your renderWhitespace setting
   "show_wrap_guides": true,
-  "wrap_guides": [80, 100, 120],  // Your VS Code rulers
+  "wrap_guides": [80, 100, 120], // Your VS Code rulers
 
   // File handling
-  "ensure_final_newline_on_save": true,  // Like your VS Code insertFinalNewline
-  "remove_trailing_whitespace_on_save": true,  // Like your VS Code trimTrailingWhitespace
+  "ensure_final_newline_on_save": true, // Like your VS Code insertFinalNewline
+  "remove_trailing_whitespace_on_save": true, // Like your VS Code trimTrailingWhitespace
 
   "languages": {
     "JavaScript": {
@@ -149,7 +113,7 @@
           }
         }
       ],
-      "tab_size": 4  // Python standard
+      "tab_size": 4 // Python standard
     },
     "Terraform": {
       "formatter": {
@@ -191,26 +155,6 @@
     "Jsonnet": {
       "format_on_save": "on",
       "tab_size": 2
-    }
-  },
-
-  "lsp": {
-    "yaml-language-server": {
-      "settings": {
-        "yaml": {
-          "schemaStore": {
-            "enable": true
-          },
-          "format": {
-            "bracketSpacing": false
-          }
-        }
-      }
-    },
-    "terraform-ls": {
-      "binary": {
-        "path": "/opt/homebrew/bin/terraform"
-      }
     }
   }
 }
