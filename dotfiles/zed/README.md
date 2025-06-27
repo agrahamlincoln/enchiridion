@@ -18,7 +18,7 @@ To install this configuration, use stow from the dotfiles directory:
 
 ```bash
 cd /path/to/enchiridion/dotfiles
-stow zed
+stow -t ~ -S zed
 ```
 
 This will create symlinks in `~/.config/zed/` pointing to the files in this directory.
