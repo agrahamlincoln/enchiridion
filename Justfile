@@ -47,7 +47,7 @@ setup:
             echo "stow not found. Installing stow..."; \
             sudo pacman -Sy stow --noconfirm; \
         fi; \
-        just install-dotfiles kitty hypr waybar zed vim; \
+        just install-dotfiles kitty hypr waybar zed vim gammastep; \
     else \
         echo "❌ Unsupported OS: $(uname)" >&2; \
         exit 1; \
