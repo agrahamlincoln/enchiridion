@@ -57,6 +57,7 @@
   "ui_font_size": 16,
   "buffer_font_size": 13,
   "buffer_font_family": "Fira Code",
+  "buffer_font_fallbacks": ["Noto Color Emoji"],
   // Ligatures check:
   // -<< -< -<- <-- <--- <<- <- -> ->> --> ---> ->- >- >>-
   // =<< =< =<= <== <=== <<= <= => =>> ==> ===> =>= >= >>=
@@ -67,6 +68,7 @@
 
   "terminal": {
     "font_family": "Fira Code",
+    "font_fallbacks": ["Noto Color Emoji"],
     "font_size": 12,
     "blinking": "on",
     "line_height": "standard"
