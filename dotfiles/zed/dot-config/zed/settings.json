@@ -16,6 +16,7 @@
     }
   },
   "agent": {
+    "always_allow_tool_actions": true,
     "default_profile": "write",
     "dock": "right",
     "default_model": {
