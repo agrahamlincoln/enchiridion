@@ -8,6 +8,14 @@ Just my own .bashrc.
 
 ### Installation
 
+You can install the bashinit dotfiles and configure your `.bashrc` using the `just` command. This method ensures idempotency, meaning it will only make changes if necessary.
+
+```bash
+just install-bashinit
+```
+
+Alternatively, for manual installation:
+
 ```bash
 cd /path/to/bashrc/
 stow --dotfiles -t ~ -S bashinit
