@@ -5,11 +5,16 @@
 }
 
 window#waybar {
-  background-color: rgba(18, 18, 18, 0.8); /* Background from kitty config, with some transparency */
+  background-color: rgba(
+    18,
+    18,
+    18,
+    0.8
+  ); /* Background from kitty config, with some transparency */
   border-bottom: 3px solid #333333; /* Changed to Arch Linux Mine Shaft */
   color: #fffaf3; /* foreground from kitty config */
   transition-property: background-color;
-  transition-duration: .5s;
+  transition-duration: 0.5s;
 }
 
 window#waybar.hidden {
@@ -34,15 +39,10 @@ button {
   transition: box-shadow 0.2s ease; /* Add a transition for a smooth hover effect */
 }
 
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+/* This is a general button hover, specific module hovers will override this */
 button:hover {
   background: inherit;
   box-shadow: inset 0 -2px #fffaf3; /* foreground from kitty config for hover effect */
-}
-
-/* you can set a style on hover for any module like this */
-#pulseaudio:hover {
-  background-color: #ffd141; /* color11 from kitty config */
 }
 
 #workspaces {
@@ -76,11 +76,16 @@ button:hover {
 
 #workspaces button:not(.active) {
   background-color: transparent; /* Makes inactive workspaces transparent */
-  color: #b0b0b0;/* slightly less intense color */
+  color: #b0b0b0; /* slightly less intense color */
 }
 
 #workspaces button:hover {
-  background: rgba(255, 250, 243, 0.2); /* foreground with some transparency for hover */
+  background: rgba(
+    255,
+    250,
+    243,
+    0.2
+  ); /* foreground with some transparency for hover */
   text-shadow: inherit;
 }
 
@@ -96,52 +101,41 @@ button:hover {
 #mode {
   background-color: #333333; /* Changed to Arch Linux Mine Shaft */
   box-shadow: inset 0 -3px #fffaf3; /* foreground from kitty config */
+  color: #fffaf3; /* for readability */
+  padding: 0 10px;
 }
 
-#clock {
-  background-color: transparent; /* Removed background color */
-  color: #fffaf3;
+#mode:hover {
+  background-color: #525252; /* Lightened from #333333 */
 }
 
-#battery,
+/* General styling for modules on the right (and some others for consistency) */
+/* This ensures basic padding and allows individual colors to be applied below. */
+#custom-updates,
+#clock,
+#mpd,
+#idle_inhibitor,
+#pulseaudio,
+#network,
+#power-profiles-daemon,
 #cpu,
 #memory,
-#disk,
 #temperature,
 #backlight,
-#network,
-#pulseaudio,
+#keyboard-state,
+#language, /* Corrected ID for sway/language */
+#tray,
+#custom-power,
+#battery,
+#disk,
 #wireplumber,
 #custom-media,
-#tray,
-#mode,
-#idle_inhibitor,
-#scratchpad,
-#power-profiles-daemon,
-#mpd {
-  padding: 0 10px;
-  color: #121212; /* Changed to black as this was too hard to read on the yellow background*/
-  box-shadow: inset 0 -3px transparent;
-}
-
-#clock:hover,
-#battery:hover,
-#cpu:hover,
-#memory:hover,
-#disk:hover,
-#temperature:hover,
-#backlight:hover,
-#network:hover,
-#pulseaudio:hover,
-#wireplumber:hover,
-#custom-media:hover,
-#tray:hover,
-#mode:hover,
-#idle_inhibitor:hover,
-#scratchpad:hover,
-#power-profiles-daemon:hover,
-#mpd:hover {
-  box-shadow: inset 0 -2px #fffaf3; /* Apply box-shadow to these modules */
+#scratchpad {
+  padding: 7px 10px; /* Consistent padding on all sides */
+  font-weight: normal; /* Ensure non-bold for these modules */
+  border-radius: 5px; /* Added: Soft rounded corners */
+  box-shadow: inset 0 -3px transparent; /* Added: For underline effect on hover */
+  min-width: 60px; /* Added: Ensure minimum width for consistent visual spacing */
 }
 
 #window,
@@ -164,9 +158,19 @@ button:hover {
   color: #121212; /* Background from kitty config */
 }
 
-#battery.charging, #battery.plugged {
+#battery:hover {
+  background-color: #ffffff; /* Already white, no change */
+}
+
+#battery.charging,
+#battery.plugged {
   color: #121212; /* Background from kitty config */
   background-color: #8ce00a; /* color2 from kitty config */
+}
+
+#battery.charging:hover,
+#battery.plugged:hover {
+  background-color: #9de42e; /* Lightened from #8ce00a */
 }
 
 @keyframes blink {
@@ -187,8 +191,13 @@ button:hover {
   animation-direction: alternate;
 }
 
+#battery.critical:not(.charging):hover {
+  background-color: #ff2633; /* Lightened from #ff000f */
+}
+
 #power-profiles-daemon {
   padding-right: 15px;
+  color: #fffaf3; /* foreground from kitty config */
 }
 
 #power-profiles-daemon.performance {
@@ -196,14 +205,26 @@ button:hover {
   color: #fffaf3; /* foreground from kitty config */
 }
 
+#power-profiles-daemon.performance:hover {
+  background-color: #ff2633; /* Lightened from #ff000f */
+}
+
 #power-profiles-daemon.balanced {
   background-color: #1793d1; /* Changed to Arch Linux Curious Blue */
   color: #fffaf3; /* foreground from kitty config */
 }
 
+#power-profiles-daemon.balanced:hover {
+  background-color: #39a3d7; /* Lightened from #1793d1 */
+}
+
 #power-profiles-daemon.power-saver {
   background-color: #8ce00a; /* color2 from kitty config */
   color: #121212; /* background from kitty config */
+}
+
+#power-profiles-daemon.power-saver:hover {
+  background-color: #9de42e; /* Lightened from #8ce00a */
 }
 
 label:focus {
@@ -215,24 +236,52 @@ label:focus {
   color: #121212; /* background from kitty config */
 }
 
+#cpu:hover {
+  background-color: #b7e472; /* Lightened from #abe05a */
+}
+
 #memory {
   background-color: #9a5feb; /* color13 from kitty config */
+  color: #fffaf3; /* text color for contrast */
+}
+
+#memory:hover {
+  background-color: #a977ee; /* Lightened from #9a5feb */
 }
 
 #disk {
   background-color: #ffb900; /* color3 from kitty config */
+  color: #121212; /* text color for contrast */
+}
+
+#disk:hover {
+  background-color: #ffc326; /* Lightened from #ffb900 */
 }
 
 #backlight {
   background-color: #00d7eb; /* color6 from kitty config */
+  color: #121212; /* text color for contrast */
+}
+
+#backlight:hover {
+  background-color: #26ddee; /* Lightened from #00d7eb */
 }
 
 #network {
   background-color: #1793d1; /* Changed to Arch Linux Curious Blue */
+  color: #fffaf3; /* text color for contrast */
+}
+
+#network:hover {
+  background-color: #39a3d7; /* Lightened from #1793d1 */
 }
 
 #network.disconnected {
   background-color: #ff000f; /* color1 from kitty config */
+}
+
+#network.disconnected:hover {
+  background-color: #ff2633; /* Lightened from #ff000f */
 }
 
 #pulseaudio {
@@ -240,9 +289,17 @@ label:focus {
   color: #121212; /* background from kitty config */
 }
 
+#pulseaudio:hover {
+  background-color: #ffd75d; /* Lightened from #ffd141 */
+}
+
 #pulseaudio.muted {
   background-color: #333333; /* Changed to Arch Linux Mine Shaft */
-  color: #121212;/* Background from kitty config*/
+  color: #121212; /* Background from kitty config*/
+}
+
+#pulseaudio.muted:hover {
+  background-color: #525252; /* Lightened from #333333 */
 }
 
 #wireplumber {
@@ -250,8 +307,16 @@ label:focus {
   color: #121212; /* background from kitty config */
 }
 
+#wireplumber:hover {
+  background-color: #7dfff1; /* Lightened from #67ffef */
+}
+
 #wireplumber.muted {
   background-color: #ff000f; /* color1 from kitty config */
+}
+
+#wireplumber.muted:hover {
+  background-color: #ff2633; /* Lightened from #ff000f */
 }
 
 #custom-media {
@@ -260,17 +325,33 @@ label:focus {
   min-width: 100px;
 }
 
+#custom-media:hover {
+  background-color: #825fb2; /* Lightened from #6c43a5 */
+}
+
 #custom-media.custom-spotify {
   background-color: #6c43a5; /* color5 from kitty config */
+}
+
+#custom-media.custom-spotify:hover {
+  background-color: #825fb2; /* Lightened from #6c43a5 */
 }
 
 #custom-media.custom-vlc {
   background-color: #ffb900; /* color3 from kitty config */
 }
 
+#custom-media.custom-vlc:hover {
+  background-color: #ffc326; /* Lightened from #ffb900 */
+}
+
 #temperature {
   background-color: #cc7a00; /* A darker, more orange-brown */
-  color: #fffaf3;/* an off white text colour should contrast well */
+  color: #fffaf3; /* an off white text colour should contrast well */
+}
+
+#temperature:hover {
+  background-color: #d38e26; /* Lightened from #cc7a00 */
 }
 
 #temperature.critical {
@@ -278,8 +359,17 @@ label:focus {
   color: #fffaf3; /* an off white text colour should contrast well */
 }
 
+#temperature.critical:hover {
+  background-color: #ff2633; /* Lightened from #ff000f */
+}
+
 #tray {
   background-color: #1793d1; /* Changed to Arch Linux Curious Blue */
+  color: #fffaf3; /* text color for contrast */
+}
+
+#tray:hover {
+  background-color: #39a3d7; /* Lightened from #1793d1 */
 }
 
 #tray > .passive {
@@ -293,6 +383,11 @@ label:focus {
 
 #idle_inhibitor {
   background-color: #333333; /* Changed to Arch Linux Mine Shaft */
+  color: #fffaf3; /* text color for contrast */
+}
+
+#idle_inhibitor:hover {
+  background-color: #525252; /* Lightened from #333333 */
 }
 
 #idle_inhibitor.activated {
@@ -300,37 +395,66 @@ label:focus {
   color: #121212; /* background from kitty config */
 }
 
+#idle_inhibitor.activated:hover {
+  background-color: #ffffff; /* Already white */
+}
+
 #mpd {
-  background-color: #6c43a5;/* color5 from kitty config */
+  background-color: #6c43a5; /* color5 from kitty config */
   color: #fffaf3; /* foreground from kitty config*/
+}
+
+#mpd:hover {
+  background-color: #825fb2; /* Lightened from #6c43a5 */
 }
 
 #mpd.disconnected {
   background-color: #ff000f; /* color1 from kitty config */
 }
 
+#mpd.disconnected:hover {
+  background-color: #ff2633; /* Lightened from #ff000f */
+}
+
 #mpd.stopped {
   background-color: #333333; /* Changed to Arch Linux Mine Shaft */
 }
 
+#mpd.stopped:hover {
+  background-color: #525252; /* Lightened from #333333 */
+}
+
 #mpd.paused {
-  background-color: #abe05a;/* color10 from kitty config*/
+  background-color: #abe05a; /* color10 from kitty config*/
+}
+
+#mpd.paused:hover {
+  background-color: #b7e472; /* Lightened from #abe05a */
 }
 
 #language {
+  /* Corrected from #sway-language */
   background: #1793d1; /* Changed to Arch Linux Curious Blue */
   color: #9a5feb; /* color13 from kitty config */
-  padding: 0 5px;
+  padding: 7px 10px; /* Standardized padding */
   margin: 0 5px;
   min-width: 16px;
+}
+
+#language:hover {
+  background-color: #39a3d7; /* Lightened from #1793d1 */
 }
 
 #keyboard-state {
   background: #abe05a; /* color10 from kitty config */
   color: #121212; /* background from kitty config */
-  padding: 0 0px;
+  padding: 7px 10px; /* Standardized padding */
   margin: 0 5px;
   min-width: 16px;
+}
+
+#keyboard-state:hover {
+  background-color: #b7e472; /* Lightened from #abe05a */
 }
 
 #keyboard-state > label {
@@ -339,14 +463,28 @@ label:focus {
 
 #keyboard-state > label.locked {
   background: rgba(18, 18, 18, 0.2); /* background with some transparency */
+  color: #fffaf3; /* foreground from kitty config for better visibility */
+}
+
+#keyboard-state > label.locked:hover {
+  background-color: rgba(53, 53, 53, 0.2); /* Slightly lightened transparency */
 }
 
 #scratchpad {
   background: rgba(18, 18, 18, 0.2); /* Background with some transparency */
+  color: #fffaf3; /* Text color for contrast */
+}
+
+#scratchpad:hover {
+  background-color: rgba(53, 53, 53, 0.2); /* Slightly lightened transparency */
 }
 
 #scratchpad.empty {
   background-color: transparent;
+}
+
+#scratchpad.empty:hover {
+  background-color: transparent; /* Keep as transparent on hover */
 }
 
 #privacy {
@@ -362,10 +500,59 @@ label:focus {
   background-color: #ffb900; /* color3 from kitty config */
 }
 
+#privacy-item.screenshare:hover {
+  background-color: #ffc326; /* Lightened from #ffb900 */
+}
+
 #privacy-item.audio-in {
   background-color: #8ce00a; /* color2 from kitty config */
 }
 
+#privacy-item.audio-in:hover {
+  background-color: #9de42e; /* Lightened from #8ce00a */
+}
+
 #privacy-item.audio-out {
   background-color: #1793d1; /* Changed to Arch Linux Curious Blue */
+}
+
+#privacy-item.audio-out:hover {
+  background-color: #39a3d7; /* Lightened from #1793d1 */
+}
+
+#custom-updates {
+  /* No specific background or foreground initially, inherits from window#waybar */
+  color: #fffaf3; /* Ensures it's visible with dark bar background */
+}
+
+#custom-updates:hover {
+  background-color: rgba(
+    53,
+    53,
+    53,
+    0.8
+  ); /* Slightly lightened background color */
+}
+
+#clock:hover {
+  background-color: rgba(
+    53,
+    53,
+    53,
+    0.8
+  ); /* Slightly lightened background color */
+}
+
+#custom-power {
+  /* No specific background or foreground initially, inherits from window#waybar */
+  color: #fffaf3; /* Ensures it's visible with dark bar background */
+}
+
+#custom-power:hover {
+  background-color: rgba(
+    53,
+    53,
+    53,
+    0.8
+  ); /* Slightly lightened background color */
 }

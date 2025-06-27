@@ -1,6 +1,6 @@
 #!/bin/bash
 
-UPDATES_FILE="/tmp/.package-available-upgrades"
+UPDATES_FILE="/var/lib/available-upgrades/.package-available-upgrades"
 
 # Setup UPDATES_FILE with correct permissions
 if [[ ! -f "$UPDATES_FILE" ]]; then

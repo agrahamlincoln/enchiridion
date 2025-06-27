@@ -9,7 +9,7 @@ SCRIPT_FILE="available-upgrades.sh" # the name was changed in the .service file
 SCRIPT_DESTINATION="/usr/local/bin/"
 SYSTEMD_DESTINATION="/etc/systemd/system/"
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-TEMP_UPDATES_FILE="/tmp/available-upgrades"
+TEMP_UPDATES_FILE="/var/lib/available-upgrades/.package-available-upgrades"
 
 # --- Functions ---
 log_info() {
@@ -111,6 +111,7 @@ install_file "$TIMER_FILE" "$SYSTEMD_DESTINATION" "$TIMER_FILE" ""
 # Install the script
 install_file "$SCRIPT_FILE" "$SCRIPT_DESTINATION" "$SCRIPT_FILE" "0755"
 
+mkdir -p "$(dirname "$TEMP_UPDATES_FILE")"
 touch "$TEMP_UPDATES_FILE"
 chmod 600 "$TEMP_UPDATES_FILE"
 
