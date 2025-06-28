@@ -55,7 +55,7 @@
   },
   "custom/updates": {
     "exec-if": "/usr/local/bin/available-upgrades.sh",
-    "exec": "wc -l /tmp/.package-available-upgrades | awk '{print $1}'",
+    "exec": "wc -l /var/lib/available-upgrades/.package-available-upgrades | awk '{print $1}'",
     "interval": 300,
     "tooltip": false,
     "format": "{} 📦",
