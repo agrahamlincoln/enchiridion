@@ -5,6 +5,7 @@
   "modules-center": ["hyprland/window"],
   "modules-right": [
     // --- Pill 1: Connectivity (Light Gray) ---
+    "custom/updates",
     "network",
     "bluetooth",
     "pulseaudio",

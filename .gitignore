@@ -1,1 +1,5 @@
 .vscode/
+.env
+
+# Ignore downloaded Zed themes for analysis
+dotfiles/zed/zed-themes-analysis/
