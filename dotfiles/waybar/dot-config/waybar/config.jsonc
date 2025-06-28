@@ -1,36 +1,29 @@
 {
   "height": 30,
   "spacing": 0,
-  "modules-left": ["hyprland/workspaces"],
-  "modules-left": ["hyprland/workspaces"],
+  "modules-left": ["hyprland/workspaces", "mpris"],
   "modules-center": ["hyprland/window"],
   "modules-right": [
-    "custom/sep4",
-    "custom/updates",
-    "clock",
-    "mpd",
-    "idle_inhibitor",
-    "pulseaudio",
-    "custom/sep5",
+    // --- Pill 1: Connectivity (Light Gray) ---
     "network",
+    "bluetooth",
+    "pulseaudio",
+
+    // --- Pill 2: System (Dark Gray) ---
     "cpu",
     "memory",
-    "custom/sep6",
+    "disk",
+    "temperature",
+
+    // --- Pill 3: Input (Light Gray) ---
+    "keyboard-state",
+    "language",
+    "backlight",
+
+    // --- Pill 4: Session (Dark Gray) ---
     "tray",
     "custom/power",
   ],
-  "custom/sep4": {
-    "format": "",
-    "tooltip": false,
-  },
-  "custom/sep5": {
-    "format": "",
-    "tooltip": false,
-  },
-  "custom/sep6": {
-    "format": "",
-    "tooltip": false,
-  },
   "hyprland/workspaces": {
     "format": "{name} {windows}",
     "on-click": "activate",
@@ -39,15 +32,15 @@
       "active": "",
       "default": "",
     },
-    "window-rewrite-default": "<span size='large'></span>",
+    "window-rewrite-default": "<span size='large'></span>", // nf-cod-application
     "window-rewrite": {
-      "class<discord>": "<span size='large'></span>",
-      "class<kitty>": "<span size='large'></span>",
-      "class<code-oss>": "<span size='large'>󰨞</span>",
-      "class<Zed>": "<span size='large'>⚡</span>",
-      "class<zen>": "<span size='large'>󰰷</span>",
-      "class<steam>": "<span size='large'></span>",
-      "class<dota2>": "<span size='large'>󱢾</span>",
+      // classes found with `hyprctl clients` command
+      "class<kitty>": "<span size='large'>󰆍</span>", // nf-md-terminal
+      "class<dev.zed.Zed>": "<span size='large'>󰠮</span>", // nf-md-brain (AI)
+      "class<code-oss>": "<span size='large'>󰨞</span>", // nf-vsc-code_oss
+      "class<discord>": "<span size='large'>󰙯</span>", // nf-md-discord
+      "class<steam>": "<span size='large'>󰓓</span>", // nf-md-steam
+      "class<zen>": "<span size='large'>󰈹</span>", // nf-md-firefox
       "title<Monster Hunter Wilds>": "<span size='large'></span>",
     },
     "persistent-workspaces": {
@@ -66,25 +59,31 @@
     "tooltip": false,
     "format": "{} 📦",
   },
+  "mpris": {
+    "format": "󰋋 {title}",
+    "format-stopped": "󰋋 No Music",
+    "player-icons": {
+      "default": "▶",
+      "spotify": "",
+    },
+  },
+  "disk": {
+    "format": "󰋊 {percentage_used}%",
+  },
+  "temperature": {
+    "hwmon-path": "/sys/class/hwmon/hwmon2/temp3_input",
+    "format": " {temperatureC}°C",
+    "critical-threshold": 80,
+    "format-critical": " {temperatureC}°C!!",
+  },
+
+  "bluetooth": {
+    "format": "󰂯 {status}",
+  },
   "clock": {
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     "format-alt": "{:%Y-%m-%d}",
     "format": "{:%H:%M}",
-  },
-  "mpd": {
-    "format": "{stateIcon} {title}",
-    "format-icons": {
-      "playing": "▶",
-      "paused": "⏸",
-      "stopped": "⏹",
-    },
-  },
-  "idle_inhibitor": {
-    "format": "{icon}",
-    "format-icons": {
-      "activated": "",
-      "deactivated": "",
-    },
   },
   "pulseaudio": {
     "format": "{volume}% {icon}   {format_source}",

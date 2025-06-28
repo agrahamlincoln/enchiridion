@@ -1,5 +1,5 @@
 /*
- * Powerline-inspired theme for Waybar, themed to match the user's Kitty config.
+ * Powerline-inspired theme for Waybar, themed with Arch Linux colors.
  *
  * This theme groups modules and uses powerline arrows to separate them.
  * Workspaces are styled as clean, distinct "pills".
@@ -26,50 +26,47 @@
 
 window#waybar {
   background: transparent;
-  color: #cdd6f4;
+  color: @arch-text;
 }
 
 tooltip {
-  background: #1e1e2e;
-  color: #cdd6f4;
+  background: @arch-mine-shaft;
+  color: @arch-text;
   border-radius: 7px;
-  border: 2px solid #313244;
+  border: 2px solid @arch-alt-bg;
 }
 
-/* --- Color Palette (from kitty.conf) --- */
-@define-color kitty-bg #121212;
-@define-color kitty-fg #fffaf3;
-@define-color kitty-cursor #1793d0;
-@define-color kitty-surface0 #222222;
-@define-color kitty-surface1 #383838;
-@define-color kitty-red #ff000f;
-@define-color kitty-green #8ce00a;
-@define-color kitty-yellow #ffb900;
-@define-color kitty-blue #008df8;
-@define-color kitty-purple #6c43a5;
-@define-color kitty-cyan #00d7eb;
+/* --- Arch Linux Color Palette --- */
+@define-color arch-blue #1793d1;
+@define-color arch-mine-shaft #333333;
+@define-color arch-text #ffffff;
+@define-color arch-alt-bg #444444;
+@define-color arch-urgent #ff5555;
 
 /* --- Waybar Group Definitions --- */
-/* We'll use the Kitty palette to define our module groups */
-@define-color workspaces-active-bg @kitty-cursor;
-@define-color workspaces-active-fg @kitty-bg;
-@define-color workspaces-inactive-bg @kitty-surface1;
-@define-color workspaces-inactive-fg @kitty-fg;
-@define-color workspaces-urgent-bg @kitty-red;
-@define-color workspaces-urgent-fg @kitty-fg;
+/* We'll use the Arch palette to define our module groups */
+@define-color workspaces-active-bg @arch-blue;
+@define-color workspaces-active-fg @arch-mine-shaft;
+@define-color workspaces-inactive-bg @arch-alt-bg;
+@define-color workspaces-inactive-fg @arch-text;
+@define-color workspaces-urgent-bg @arch-urgent;
+@define-color workspaces-urgent-fg @arch-text;
 
-@define-color sway-bg @kitty-surface0;
-@define-color media-bg @kitty-purple;
+@define-color sway-bg @arch-mine-shaft;
+@define-color media-bg @arch-blue;
 @define-color window-bg transparent;
-@define-color main-bg @kitty-surface0;
-@define-color system-bg @kitty-surface1;
-@define-color tray-bg @kitty-surface0;
+@define-color main-bg @arch-mine-shaft;
+@define-color system-bg @arch-alt-bg;
+@define-color tray-bg @arch-mine-shaft;
 
 /* --- General Module Styling --- */
 #workspaces,
 #mode,
 #scratchpad,
 #custom-media,
+#mpris,
+#disk,
+#bluetooth,
 #window,
 #custom-updates,
 #clock,
@@ -87,7 +84,7 @@ tooltip {
 #tray,
 #custom-power {
   padding: 2px 10px;
-  color: @kitty-fg;
+  color: @arch-text;
 }
 
 /* --- Group Backgrounds --- */
@@ -106,29 +103,32 @@ tooltip {
 /* Center */
 #window,
 #sway-window {
-  background: @window-bg;
+  background: @arch-alt-bg;
+  border-radius: 10px;
+  margin: 3px 6px; /* Vertical and horizontal margin for spacing */
 }
 /* Right */
+/* Right-side Pills: Light Gray and Dark Gray alternating */
+#network,
+#bluetooth,
+#pulseaudio,
+#keyboard-state,
+#language,
+#backlight {
+  background: @system-bg; /* Light Gray */
+}
 #custom-updates,
 #clock,
 #mpd,
 #idle_inhibitor,
 #power-profiles-daemon,
-#pulseaudio {
-  background: @main-bg;
-}
-#network,
 #cpu,
 #memory,
+#disk,
 #temperature,
-#backlight {
-  background: @system-bg;
-}
-#keyboard-state,
-#language,
 #tray,
 #custom-power {
-  background: @tray-bg;
+  background: @main-bg; /* Dark Gray */
 }
 
 /* --- Module Specifics --- */
@@ -139,7 +139,13 @@ tooltip {
 }
 
 #workspaces button {
-  padding: 0 10px;
+  /*
+   * Fine-tuned padding for larger, consistent icons.
+   * A smaller min-width provides a better visual balance for empty workspaces,
+   * as text-align is not supported in Waybar's CSS.
+   */
+  min-width: 45px;
+  padding: 4px 12px;
   margin: 3px 3px;
   border-radius: 10px;
   color: @workspaces-inactive-fg;
@@ -148,8 +154,8 @@ tooltip {
 }
 
 #workspaces button:hover {
-  background-color: @kitty-cyan;
-  color: @kitty-bg;
+  background-color: @arch-blue;
+  color: @arch-mine-shaft;
 }
 
 #workspaces button.active {
@@ -168,13 +174,59 @@ tooltip {
 
 #pulseaudio.muted,
 #network.disconnected {
-  color: @kitty-red;
+  color: @arch-urgent;
 }
 #temperature.critical {
-  color: @kitty-red;
+  color: @arch-urgent;
 }
 #idle_inhibitor.activated {
-  color: @kitty-green;
+  color: @arch-blue;
+}
+
+/* --- Right-Side Pill Group Styling --- */
+/* This creates four distinct pills with rounded corners. */
+
+/* First module in each pill */
+#network,
+#cpu,
+#keyboard-state,
+#tray {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  margin-left: 6px; /* Add margin to create space between pills */
+  padding-left: 12px;
+}
+
+/* Last module in each pill */
+#pulseaudio,
+#temperature,
+#backlight,
+#custom-power {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding-right: 12px;
+}
+
+/* Add consistent vertical margin to all right-side modules to complete the pill effect */
+#custom-updates,
+#clock,
+#mpd,
+#idle_inhibitor,
+#power-profiles-daemon,
+#pulseaudio,
+#network,
+#cpu,
+#memory,
+#temperature,
+#disk,
+#backlight,
+#keyboard-state,
+#language,
+#bluetooth,
+#tray,
+#custom-power {
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
 
 /* --- Powerline Separators --- */
@@ -203,16 +255,13 @@ tooltip {
   color: @window-bg;
 }
 
-/* Right Separators:  (U+E0B2) */
-#custom-sep4 {
-  background: @window-bg;
-  color: @main-bg;
-}
-#custom-sep5 {
-  background: @main-bg;
-  color: @system-bg;
-}
+/* Right Powerline separators are removed in favor of pill-style groups. */
+/* You should remove custom/sep4, custom/sep5, and custom/sep6 from your config.jsonc */
+#custom-sep4,
+#custom-sep5,
 #custom-sep6 {
-  background: @system-bg;
-  color: @tray-bg;
+  padding: 0;
+  margin: 0;
+  color: transparent;
+  background: transparent;
 }
