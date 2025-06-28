@@ -88,11 +88,10 @@ python3 dotfiles/zed/analyze_themes.py
 ```
 
 This script performs the advanced three-pass statistical analysis:
-1.  **Clustering**: It first categorizes every dark theme into one of four, more precise groups based on the `editor.background` color's luminance and saturation:
-    *   **Pure Black**: For themes with a true black or near-black background that has very low color saturation.
-    *   **Chromatic Black**: For themes with a very dark background that has a discernible, intentional color tint (e.g., a dark olive green or midnight blue).
-    *   **Cool Chromatic**: For themes with a non-black, mid-to-high luminance background with a clear blue or green tint.
-    *   **Warm Chromatic**: For themes with a non-black, mid-to-high luminance background with a clear red, orange, or yellow tint.
+1.  **Clustering**: It first categorizes every dark theme into one of five, highly-specific groups based on the properties of the background color itself:
+    *   **Pure Black**: For themes with a true black or near-black background that has very low saturation.
+    *   **Chromatic Black**: For themes with a very dark background that has a discernible, intentional color tint.
+    *   **Cool Chromatic**: For non-black themes with a distinct blue or green-tinted background.
 2.  **Pass 1: Archetype Calculation**: For each cluster, it calculates the **median** color for every UI element. This robustly defines a theoretical "archetype" for that style, as the median is resistant to statistical outliers.
 3.  **Pass 2: Granular Outlier Rejection**: For *each individual UI element* (e.g., the set of all `warning` colors within a cluster), it performs the following:
     *   It measures the perceptual color difference (using the CIEDE2000 formula) of every color in that set from the archetype's corresponding color.

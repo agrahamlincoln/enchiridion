@@ -21,7 +21,7 @@
     "dock": "right",
     "default_model": {
       "provider": "google",
-      "model": "gemini-2.5-pro"
+      "model": "gemini-2.5-flash"
     },
     "version": "2"
   },

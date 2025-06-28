@@ -32,7 +32,7 @@ UI_KEYS_TO_AVERAGE = [
 ]
 BLACK_LUMINANCE_THRESHOLD = 35
 BG_SATURATION_THRESHOLD = 0.01
-OUTLIER_PERCENTILE = 80
+OUTLIER_PERCENTILE = 90
 
 # --- ACCESSIBLE COLOR PALETTE (Tailwind CSS v4.0) ---
 TAILWIND_PALETTE = {
@@ -150,6 +150,28 @@ def get_background_saturation(rgb_tuple):
     _, _, s = colorsys.rgb_to_hls(r, g, b)
     return s
 
+def get_average_saturation(style):
+    saturations = []
+    for key in ["text.accent", "keyword", "function", "type", "string", "number", "boolean"]:
+        rgb = hex_to_rgb(style.get(key))
+        if rgb:
+            _, _, s = colorsys.rgb_to_hls(rgb[0]/255.0, rgb[1]/255.0, rgb[2]/255.0)
+            saturations.append(s)
+    return np.mean(saturations) if saturations else 0
+
+def get_background_saturation(rgb_tuple):
+    """Calculates the saturation of a single RGB color tuple."""
+    if not rgb_tuple: return 0
+    r, g, b = [x / 255.0 for x in rgb_tuple]
+    _, _, s = colorsys.rgb_to_hls(r, g, b)
+    return s
+
+def get_background_saturation(rgb_tuple):
+    if not rgb_tuple: return 0
+    r, g, b = [x / 255.0 for x in rgb_tuple]
+    _, _, s = colorsys.rgb_to_hls(r, g, b)
+    return s
+
 def classify_theme_by_background(style_data):
     bg_hex = style_data.get("editor.background")
     bg_rgb = hex_to_rgb(bg_hex)
@@ -160,7 +182,9 @@ def classify_theme_by_background(style_data):
         return "Pure Black" if saturation < BG_SATURATION_THRESHOLD else "Chromatic Black"
     else:
         h, _, _ = colorsys.rgb_to_hls(bg_rgb[0]/255.0, bg_rgb[1]/255.0, bg_rgb[2]/255.0)
-        return "Cool Chromatic" if 0.25 <= h <= 0.75 else "Warm Chromatic"
+        return "Cool Chromatic"
+        h, _, _ = colorsys.rgb_to_hls(bg_rgb[0]/255.0, bg_rgb[1]/255.0, bg_rgb[2]/255.0)
+        return "Cool Chromatic"
 
 def normalize_style_data(data):
     normalized = data.copy()
@@ -221,19 +245,24 @@ def analyze_themes():
             if not color_deviations: continue
             deviation_scores = [d[0] for d in color_deviations]
             outlier_threshold = np.percentile(deviation_scores, OUTLIER_PERCENTILE)
-            core_hex_colors = [hex_val for diff, hex_val in color_deviations if diff < outlier_threshold]
+            core_colors = [rgb for diff, rgb in color_deviations if diff < outlier_threshold]
 
             # Check if all colors were discarded as outliers
-            if not core_hex_colors:
+            if not core_colors:
                 # If so, fall back to the robust median color for this key
                 harmonized_colors[key] = archetype_hex
                 continue
 
-            raw_average_rgb = tuple(np.mean([hex_to_rgb(c) for c in core_hex_colors], axis=0))
-            raw_average_lab = srgb_to_lab(raw_average_rgb)
+            # Calculate the mean RGB values. np.mean might return a scalar or an array.
+            # We must ensure it is iterable for tuple().
+            mean_rgb_result = np.mean([hex_to_rgb(c) for c in core_colors], axis=0)
 
+            # np.atleast_1d ensures that the result is always an array, which tuple() can handle.
+            avg_rgb = tuple(np.atleast_1d(mean_rgb_result))
+
+            raw_average_lab = srgb_to_lab(avg_rgb)
             snapped_hex = find_closest_palette_color(raw_average_lab)
-            harmonized_colors[key] = snapped_hex if snapped_hex else rgb_to_hex(raw_average_rgb)
+            harmonized_colors[key] = snapped_hex if snapped_hex else rgb_to_hex(avg_rgb)
 
         final_results[name] = harmonized_colors
         print(f"  -> Generated final harmonized theme.")

@@ -7,54 +7,54 @@
       "appearance": "dark",
       "style": {
         "background": "#1f2937",
-        "border": "#374151",
-        "border.focused": "#475569",
-        "text": "#d1d5db",
+        "border": "#3f3f46",
+        "border.focused": "#6b7280",
+        "text": "#d4d4d8",
         "text.muted": "#9ca3af",
-        "text.accent": "#38bdf8",
-        "element.background": "#1f2937",
+        "text.accent": "#06b6d4",
+        "element.background": "#374151",
         "element.hover": "#374151",
-        "element.selected": "#374151",
+        "element.selected": "#4b5563",
         "editor.background": "#1f2937",
         "editor.gutter.background": "#1f2937",
         "editor.line_number": "#6b7280",
-        "editor.active_line.background": "#374151",
-        "warning": "#fbbf24",
-        "warning.background": "#3f3f46",
-        "error": "#f87171",
-        "error.background": "#27272a",
-        "info": "#38bdf8",
-        "info.background": "#1f2937",
-        "success": "#4ade80",
-        "success.background": "#404040",
-        "panel.background": "#1f2937",
-        "panel.focused_border": "#475569",
+        "editor.active_line.background": "#52525b",
+        "warning": "#eab308",
+        "warning.background": "#44403c",
+        "error": "#f43f5e",
+        "error.background": "#3f3f46",
+        "info": "#06b6d4",
+        "info.background": "#334155",
+        "success": "#22c55e",
+        "success.background": "#525252",
+        "panel.background": "#27272a",
+        "panel.focused_border": "#6b7280",
         "created": "#4ade80",
-        "modified": "#fde68a",
-        "deleted": "#f87171",
+        "modified": "#a8a29e",
+        "deleted": "#f43f5e",
         "status_bar.background": "#1f2937",
-        "title_bar.background": "#1f2937",
-        "tab_bar.background": "#1f2937",
+        "title_bar.background": "#27272a",
+        "tab_bar.background": "#27272a",
         "tab.active_background": "#1f2937",
         "tab.inactive_background": "#1f2937",
         "terminal.background": "#1f2937",
-        "terminal.foreground": "#e2e8f0",
-        "terminal.ansi.black": "#1f2937",
+        "terminal.foreground": "#d1d5db",
+        "terminal.ansi.black": "#3f3f46",
         "terminal.ansi.red": "#f87171",
         "terminal.ansi.green": "#4ade80",
         "terminal.ansi.yellow": "#fcd34d",
         "terminal.ansi.blue": "#60a5fa",
-        "terminal.ansi.magenta": "#c084fc",
+        "terminal.ansi.magenta": "#e879f9",
         "terminal.ansi.cyan": "#22d3ee",
-        "terminal.ansi.white": "#e5e7eb",
-        "terminal.ansi.bright_black": "#4b5563",
-        "terminal.ansi.bright_red": "#f87171",
+        "terminal.ansi.white": "#d4d4d8",
+        "terminal.ansi.bright_black": "#6b7280",
+        "terminal.ansi.bright_red": "#f43f5e",
         "terminal.ansi.bright_green": "#4ade80",
         "terminal.ansi.bright_yellow": "#fcd34d",
         "terminal.ansi.bright_blue": "#60a5fa",
         "terminal.ansi.bright_magenta": "#e879f9",
         "terminal.ansi.bright_cyan": "#22d3ee",
-        "terminal.ansi.bright_white": "#e5e7eb",
+        "terminal.ansi.bright_white": "#e5e5e5",
         "syntax": {
           "comment": {
             "color": "#9ca3af",
@@ -64,7 +64,7 @@
             "color": "#4ade80"
           },
           "keyword": {
-            "color": "#c084fc"
+            "color": "#e879f9"
           },
           "function": {
             "color": "#60a5fa"
@@ -73,13 +73,13 @@
             "color": "#fcd34d"
           },
           "variable": {
-            "color": "#d1d5db"
+            "color": "#d4d4d8"
           },
           "number": {
-            "color": "#c084fc"
+            "color": "#e879f9"
           },
           "boolean": {
-            "color": "#c084fc"
+            "color": "#e879f9"
           },
           "constant": {
             "color": "#22d3ee"
@@ -106,7 +106,7 @@
             "font_weight": 700
           },
           "link_uri": {
-            "color": "#38bdf8",
+            "color": "#06b6d4",
             "underline": true
           }
         }
