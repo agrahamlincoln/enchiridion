@@ -7,14 +7,14 @@ DOTFILES_DIR := "dotfiles"
 install-dotfiles *targets:
     @pushd {{DOTFILES_DIR}} > /dev/null && \
     for target in {{targets}}; do \
-        if stow -n -t ~ --dotfiles -S "$target" 2>&1 | grep -q -E '^(LINK|COPY|DELETE):'; then \
-            if ! stow -t ~ --dotfiles -S "$target"; then \
-                echo "❌ Error: Failed to stow $target. Please check for conflicts or errors." >&2; \
-            else \
-                echo "✅ Stowed $target."; \
-            fi; \
+        if [[ ! -L ~/.config/$target ]]; then \
+          if ! stow -t ~ --dotfiles -S "$target"; then \
+              echo "❌ Error: Failed to stow $target. Please check for conflicts or errors." >&2; \
+          else \
+              echo "✅ Stowed $target."; \
+          fi; \
         else \
-            echo "- No changes needed for $target."; \
+          echo "- No changes needed for $target."; \
         fi; \
     done && \
     popd > /dev/null
@@ -65,6 +65,13 @@ setup:
         else
             echo "- paru is already installed."
         fi
+        # Check if wofi is installed
+        if ! paru -Q wofi &>/dev/null; then
+            echo "-> wofi not installed. Installing..."
+            paru -S --noconfirm --needed wofi
+        else
+            echo "- wofi is already installed."
+        fi
     else
         echo "❌ Unsupported OS: $(uname)" >&2
         exit 1
@@ -97,7 +104,7 @@ setup:
     if [[ "$(uname)" == "Darwin" ]]; then
         just -f {{justfile()}} install-dotfiles kitty yabai skhd zed vim
     else
-        just -f {{justfile()}} install-dotfiles kitty hypr waybar zed vim gammastep
+        just -f {{justfile()}} install-dotfiles kitty hypr waybar zed vim gammastep wofi
     fi
 
     # --- Final Configuration ---
