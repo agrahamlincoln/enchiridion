@@ -20,8 +20,8 @@
     "default_profile": "write",
     "dock": "right",
     "default_model": {
-      "provider": "google",
-      "model": "gemini-2.5-flash"
+      "provider": "ollama",
+      "model": "qwen3:4b"
     },
     "version": "2"
   },

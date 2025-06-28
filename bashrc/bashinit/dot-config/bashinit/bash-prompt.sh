@@ -31,10 +31,10 @@ fancy_pwd() {
 current_git_branch () { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'; }
 available_package_upgrades () {
     # Check if the file exists and is readable
-    if [[ -r "/tmp/.package-available-upgrades" ]]; then
+    if [[ -r "/var/lib/available-upgrades/.package-available-upgrades" ]]; then
         # Count the number of lines in the file. Each line indicates an available upgrade.
-        NUM_UPGRADES=$(wc -l < "/tmp/.package-available-upgrades")
-    
+        NUM_UPGRADES=$(wc -l </var/lib/available-upgrades/.package-available-upgrades)
+
         # If the count is zero, report an empty string; otherwise, report the count.
         if [[ $NUM_UPGRADES -eq 0 ]]; then
             echo ""

@@ -109,6 +109,7 @@ tooltip {
 }
 /* Right */
 /* Right-side Pills: Light Gray and Dark Gray alternating */
+#custom-updates,
 #network,
 #bluetooth,
 #pulseaudio,
@@ -117,7 +118,7 @@ tooltip {
 #backlight {
   background: @system-bg; /* Light Gray */
 }
-#custom-updates,
+
 #clock,
 #mpd,
 #idle_inhibitor,
@@ -187,7 +188,6 @@ tooltip {
 /* This creates four distinct pills with rounded corners. */
 
 /* First module in each pill */
-#network,
 #cpu,
 #keyboard-state,
 #tray {
@@ -229,39 +229,9 @@ tooltip {
   margin-bottom: 3px;
 }
 
-/* --- Powerline Separators --- */
-#custom-sep1,
-#custom-sep2,
-#custom-sep3,
-#custom-sep4,
-#custom-sep5,
-#custom-sep6 {
-  font-size: 28px;
-  padding: 0;
-  margin: 0;
-}
-
-/* Left Separators:  (U+E0B0) */
-#custom-sep1 {
-  background: transparent;
-  color: @sway-bg;
-}
-#custom-sep2 {
-  background: @sway-bg;
-  color: @media-bg;
-}
-#custom-sep3 {
-  background: @media-bg;
-  color: @window-bg;
-}
-
-/* Right Powerline separators are removed in favor of pill-style groups. */
-/* You should remove custom/sep4, custom/sep5, and custom/sep6 from your config.jsonc */
-#custom-sep4,
-#custom-sep5,
-#custom-sep6 {
-  padding: 0;
-  margin: 0;
-  color: transparent;
-  background: transparent;
+#custom-updates {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  margin-left: 6px; /* Add margin to create space between pills */
+  padding-left: 12px;
 }
