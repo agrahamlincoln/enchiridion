@@ -43,6 +43,7 @@
       "class<steam>": "<span size='large'>󰓓</span>", // nf-md-steam
       "class<zen>": "<span size='large'>󰈹</span>", // nf-md-firefox
       "title<Monster Hunter Wilds>": "<span size='large'></span>",
+      "class<dota2>": "<span size='large'>󱢾</span>", // nf-md-shield_sword
     },
     "persistent-workspaces": {
       "*": [1, 2, 3, 4, 5],
