@@ -1,0 +1,72 @@
+[
+  {
+    "label": "Restart SketchyBar",
+    "command": "brew",
+    "args": ["services", "restart", "sketchybar"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always"
+  },
+  {
+    "label": "Check SketchyBar Status",
+    "command": "sketchybar",
+    "args": ["--query", "bar"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always"
+  },
+  {
+    "label": "Reload SketchyBar Config",
+    "command": "sketchybar",
+    "args": ["--reload"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always"
+  },
+  {
+    "label": "Test SketchyBar Item",
+    "command": "sketchybar",
+    "args": ["--set", "clock", "label=TEST"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always"
+  },
+  {
+    "label": "Enable SketchyBar Drawing",
+    "command": "sketchybar",
+    "args": ["--bar", "drawing=on"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always"
+  },
+  {
+    "label": "List All SketchyBar Items",
+    "command": "sh",
+    "args": ["-c", "sketchybar --query bar | jq -r '.items[]'"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always"
+  },
+  {
+    "label": "Validate Lua Syntax",
+    "command": "find",
+    "args": [".", "-name", "*.lua", "-exec", "lua", "-c", "loadfile('{}')", ";"],
+    "cwd": "dotfiles/sketchybar/dot-config/sketchybar",
+    "reveal": "always"
+  },
+  {
+    "label": "Check SketchyBar Logs",
+    "command": "log",
+    "args": ["show", "--last", "1m", "--predicate", "process == \"sketchybar\"", "--style", "compact"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always"
+  },
+  {
+    "label": "Backup Working Config",
+    "command": "sh",
+    "args": ["-c", "cp -r ~/.config/sketchybar ~/.config/sketchybar.backup.$(date +%Y%m%d_%H%M%S)"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always"
+  },
+  {
+    "label": "Build SketchyBar Helpers",
+    "command": "make",
+    "args": [],
+    "cwd": "dotfiles/sketchybar/dot-config/sketchybar/helpers",
+    "reveal": "always"
+  }
+]

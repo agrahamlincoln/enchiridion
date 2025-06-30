@@ -1,0 +1,96 @@
+{
+  "languages": {
+    "Lua": {
+      "format_on_save": "on",
+      "formatter": {
+        "external": {
+          "command": "stylua",
+          "arguments": ["--stdin-filepath", "{buffer_path}", "-"]
+        }
+      },
+      "tab_size": 2,
+      "hard_tabs": false,
+      "preferred_line_length": 100,
+      "soft_wrap": "preferred_line_length"
+    }
+  },
+  "lsp": {
+    "lua-language-server": {
+      "settings": {
+        "Lua": {
+          "workspace": {
+            "library": [
+              "/opt/homebrew/share/lua/5.4",
+              "/Users/$USER/.local/share/sketchybar_lua"
+            ],
+            "checkThirdParty": false
+          },
+          "diagnostics": {
+            "globals": ["sbar"],
+            "disable": ["lowercase-global"]
+          },
+          "completion": {
+            "callSnippet": "Replace"
+          },
+          "hint": {
+            "enable": true
+          }
+        }
+      }
+    }
+  },
+  "file_types": {
+    "Lua": ["lua", "sketchybarrc"]
+  },
+  "auto_save": "on_focus_change",
+  "terminal": {
+    "shell": {
+      "program": "/bin/zsh"
+    },
+    "working_directory": "current_project_directory"
+  },
+  "project_panel": {
+    "default_width": 300,
+    "file_icons": true,
+    "folder_icons": true,
+    "git_status": true
+  },
+  "outline_panel": {
+    "default_width": 300
+  },
+  "buffer_font_family": "FiraCode Nerd Font",
+  "buffer_font_size": 14,
+  "ui_font_family": "FiraCode Nerd Font",
+  "ui_font_size": 14,
+  "theme": {
+    "mode": "system",
+    "light": "Andromeda",
+    "dark": "Andromeda"
+  },
+  "git": {
+    "git_gutter": "tracked_files",
+    "inline_blame": {
+      "enabled": true
+    }
+  },
+  "vim_mode": false,
+  "relative_line_numbers": false,
+  "scrollbar": {
+    "show": "always"
+  },
+  "indent_guides": {
+    "enabled": true,
+    "line_width": 1,
+    "active_line_width": 2,
+    "coloring": "indent_aware"
+  },
+  "wrap_guides": [80, 100],
+  "show_whitespaces": "selection",
+  "tabs": {
+    "file_icons": true,
+    "git_status": true
+  },
+  "inlay_hints": {
+    "enabled": true
+  }
+}
