@@ -4,7 +4,7 @@ return {
   arch_mine_shaft = 0xff333333,
   arch_text = 0xffffffff,
   arch_alt_bg = 0xff444444,
-  arch_urgent = 0xffff5555,
+  arch_urgent = 0xffff6b6b,
 
   -- Original colors (kept for compatibility)
   black = 0xff121212,
