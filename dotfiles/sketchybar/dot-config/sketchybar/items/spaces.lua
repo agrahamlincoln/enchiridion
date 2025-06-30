@@ -88,6 +88,39 @@ for i = 1, 10, 1 do
   space:subscribe("mouse.exited", function(_)
     space:set({ popup = { drawing = false } })
   end)
+
+  -- Add smooth hover animations matching right widgets
+  space:subscribe("mouse.entered", function(env)
+    local selected = env.SELECTED == "true"
+    if not selected then
+      sbar.animate("tanh", 10, function()
+        space:set({
+          background = {
+            color = colors.arch_blue,
+            border_width = 0,
+            corner_radius = 10,
+            height = 24,
+          }
+        })
+      end)
+    end
+  end)
+
+  space:subscribe("mouse.exited", function(env)
+    local selected = env.SELECTED == "true"
+    if not selected then
+      sbar.animate("tanh", 10, function()
+        space:set({
+          background = {
+            color = colors.arch_alt_bg,
+            border_width = 0,
+            corner_radius = 10,
+            height = 24,
+          }
+        })
+      end)
+    end
+  end)
 end
 
 local space_window_observer = sbar.add("item", {
