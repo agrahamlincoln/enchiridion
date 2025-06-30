@@ -4,16 +4,19 @@ local settings = require("settings")
 
 local battery = sbar.add("item", "widgets.battery", {
   position = "right",
-  padding_left = 8,
-  padding_right = 8,
+  padding_left = 12,
+  padding_right = 12,
   icon = {
     font = { size = 14 },
     color = colors.arch_text,
-    padding_right = 6,
+    padding_left = 8,
+    padding_right = 8,
   },
   label = {
     font = { family = settings.font.numbers, size = 12 },
     color = colors.arch_text,
+    padding_left = 8,
+    padding_right = 8,
   },
   background = {
     color = colors.arch_alt_bg,
@@ -117,19 +120,29 @@ sbar.add("item", "widgets.battery.padding", {
   width = 6,
 })
 
--- Hover effects
+-- Hover effects with smooth animations
 battery:subscribe("mouse.entered", function()
-  battery:set({
-    background = {
-      color = colors.with_alpha(colors.arch_blue, 0.3)
-    }
-  })
+  sbar.animate("tanh", 10, function()
+    battery:set({
+      background = {
+        color = colors.arch_blue,
+        border_width = 0,
+        corner_radius = 10,
+        height = 24,
+      }
+    })
+  end)
 end)
 
 battery:subscribe("mouse.exited", function()
-  battery:set({
-    background = {
-      color = colors.arch_alt_bg
-    }
-  })
+  sbar.animate("tanh", 10, function()
+    battery:set({
+      background = {
+        color = colors.arch_alt_bg,
+        border_width = 0,
+        corner_radius = 10,
+        height = 24,
+      }
+    })
+  end)
 end)
