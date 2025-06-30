@@ -22,7 +22,7 @@ local clock = sbar.add("item", "widgets.clock", {
   },
   update_freq = 30,
   background = {
-    color = colors.pill_dark,
+    color = colors.arch_mine_shaft,
     corner_radius = 10,
     height = 24,
   },
@@ -120,7 +120,7 @@ end)
 clock:subscribe("mouse.exited", function()
   clock:set({
     background = {
-      color = colors.pill_dark
+      color = colors.arch_mine_shaft
     }
   })
 end)

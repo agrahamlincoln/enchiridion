@@ -2,149 +2,136 @@ local colors = require("colors")
 local icons = require("icons")
 local settings = require("settings")
 
-local popup_width = 250
-
-local volume_percent = sbar.add("item", "widgets.volume1", {
+-- Single volume widget styled as waybar pill
+local volume = sbar.add("item", "widgets.volume", {
   position = "right",
-  icon = { drawing = false },
-  label = {
-    string = "??%",
-    padding_left = -1,
-    font = { family = settings.font.numbers }
-  },
-})
-
-local volume_icon = sbar.add("item", "widgets.volume2", {
-  position = "right",
-  padding_right = -1,
+  padding_left = 8,
+  padding_right = 8,
   icon = {
     string = icons.volume._100,
-    width = 0,
-    align = "left",
-    color = colors.grey,
-    font = {
-      style = settings.font.style_map["Regular"],
-      size = 14.0,
-    },
+    color = colors.arch_text,
+    font = { size = 14 },
+    padding_right = 6,
   },
   label = {
-    width = 25,
-    align = "left",
-    font = {
-      style = settings.font.style_map["Regular"],
-      size = 14.0,
-    },
+    string = "50%",
+    color = colors.arch_text,
+    font = { family = settings.font.numbers, size = 12 },
+  },
+  background = {
+    color = colors.arch_alt_bg,
+    corner_radius = 10,
+    height = 24,
   },
 })
 
-local volume_bracket = sbar.add("bracket", "widgets.volume.bracket", {
-  volume_icon.name,
-  volume_percent.name
-}, {
-  background = { color = colors.bg1 },
-  popup = { align = "center" }
-})
-
+-- Add spacing after volume pill
 sbar.add("item", "widgets.volume.padding", {
   position = "right",
-  width = settings.group_paddings
+  width = 6,
 })
 
+-- Volume slider popup
+local popup_width = 200
 local volume_slider = sbar.add("slider", popup_width, {
-  position = "popup." .. volume_bracket.name,
+  position = "popup." .. volume.name,
   slider = {
-    highlight_color = colors.blue,
+    highlight_color = colors.arch_blue,
     background = {
       height = 6,
       corner_radius = 3,
-      color = colors.bg2,
+      color = colors.arch_alt_bg,
     },
-    knob= {
+    knob = {
       string = "􀀁",
       drawing = true,
+      color = colors.arch_blue,
     },
   },
-  background = { color = colors.bg1, height = 2, y_offset = -20 },
+  background = {
+    color = colors.arch_mine_shaft,
+    corner_radius = 8,
+    height = 30,
+    border_width = 1,
+    border_color = colors.arch_alt_bg,
+  },
   click_script = 'osascript -e "set volume output volume $PERCENTAGE"'
 })
 
-volume_percent:subscribe("volume_change", function(env)
-  local volume = tonumber(env.INFO)
-  local icon = icons.volume._0
-  if volume > 60 then
-    icon = icons.volume._100
-  elseif volume > 30 then
-    icon = icons.volume._66
-  elseif volume > 10 then
-    icon = icons.volume._33
-  elseif volume > 0 then
+-- Volume change event handler
+volume:subscribe("volume_change", function(env)
+  local vol = tonumber(env.INFO) or 0
+  local icon = icons.volume._100
+  local color = colors.arch_text
+
+  -- Determine icon and color based on volume level
+  if vol == 0 then
+    icon = icons.volume._0
+    color = colors.arch_urgent
+  elseif vol < 30 then
     icon = icons.volume._10
+  elseif vol < 70 then
+    icon = icons.volume._66
+  else
+    icon = icons.volume._100
   end
 
-  local lead = ""
-  if volume < 10 then
-    lead = "0"
-  end
+  volume:set({
+    icon = {
+      string = icon,
+      color = color
+    },
+    label = {
+      string = vol .. "%",
+      color = color
+    }
+  })
 
-  volume_icon:set({ label = icon })
-  volume_percent:set({ label = lead .. volume .. "%" })
-  volume_slider:set({ slider = { percentage = volume } })
+  volume_slider:set({
+    slider = { percentage = vol }
+  })
 end)
 
-local function volume_collapse_details()
-  local drawing = volume_bracket:query().popup.drawing == "on"
-  if not drawing then return end
-  volume_bracket:set({ popup = { drawing = false } })
-  sbar.remove('/volume.device\\.*/')
-end
-
-local current_audio_device = "None"
-local function volume_toggle_details(env)
+-- Mouse interactions
+volume:subscribe("mouse.clicked", function(env)
   if env.BUTTON == "right" then
+    -- Right click opens sound preferences
     sbar.exec("open /System/Library/PreferencePanes/Sound.prefpane")
-    return
-  end
-
-  local should_draw = volume_bracket:query().popup.drawing == "off"
-  if should_draw then
-    volume_bracket:set({ popup = { drawing = true } })
-    sbar.exec("SwitchAudioSource -t output -c", function(result)
-      current_audio_device = result:sub(1, -2)
-      sbar.exec("SwitchAudioSource -a -t output", function(available)
-        current = current_audio_device
-        local color = colors.grey
-        local counter = 0
-
-        for device in string.gmatch(available, '[^\r\n]+') do
-          local color = colors.grey
-          if current == device then
-            color = colors.white
-          end
-          sbar.add("item", "volume.device." .. counter, {
-            position = "popup." .. volume_bracket.name,
-            width = popup_width,
-            align = "center",
-            label = { string = device, color = color },
-            click_script = 'SwitchAudioSource -s "' .. device .. '" && sketchybar --set /volume.device\\.*/ label.color=' .. colors.grey .. ' --set $NAME label.color=' .. colors.white
-
-          })
-          counter = counter + 1
-        end
-      end)
-    end)
   else
-    volume_collapse_details()
+    -- Left click toggles popup
+    local should_draw = volume:query().popup.drawing == "off"
+    volume:set({ popup = { drawing = should_draw } })
   end
-end
+end)
 
-local function volume_scroll(env)
-  local delta = env.SCROLL_DELTA
+volume:subscribe("mouse.scrolled", function(env)
+  local delta = env.SCROLL_DELTA * 2
   sbar.exec('osascript -e "set volume output volume (output volume of (get volume settings) + ' .. delta .. ')"')
-end
+end)
 
-volume_icon:subscribe("mouse.clicked", volume_toggle_details)
-volume_icon:subscribe("mouse.scrolled", volume_scroll)
-volume_percent:subscribe("mouse.clicked", volume_toggle_details)
-volume_percent:subscribe("mouse.exited.global", volume_collapse_details)
-volume_percent:subscribe("mouse.scrolled", volume_scroll)
+volume:subscribe("mouse.exited.global", function()
+  volume:set({ popup = { drawing = false } })
+end)
 
+-- Hover effects
+volume:subscribe("mouse.entered", function()
+  volume:set({
+    background = {
+      color = colors.with_alpha(colors.arch_blue, 0.3)
+    }
+  })
+end)
+
+volume:subscribe("mouse.exited", function()
+  volume:set({
+    background = {
+      color = colors.arch_alt_bg
+    }
+  })
+end)
+
+-- Initialize volume
+sbar.exec("osascript -e 'output volume of (get volume settings)'", function(result)
+  local vol = tonumber(result) or 50
+  volume:set({ label = vol .. "%" })
+end)
