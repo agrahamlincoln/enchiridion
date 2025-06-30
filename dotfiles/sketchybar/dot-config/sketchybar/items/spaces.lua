@@ -9,49 +9,36 @@ for i = 1, 10, 1 do
   local space = sbar.add("space", "space." .. i, {
     space = i,
     icon = {
-      font = { family = settings.font.numbers },
+      font = { family = settings.font.numbers, size = 14 },
       string = i,
-      padding_left = 15,
-      padding_right = 8,
-      color = colors.white,
-      highlight_color = colors.blue,
+      padding_left = 12,
+      padding_right = 12,
+      color = colors.arch_text,
+      highlight_color = colors.arch_mine_shaft,
     },
     label = {
-      padding_right = 20,
-      color = colors.grey,
-      highlight_color = colors.white,
-      font = "sketchybar-app-font:Regular:16.0",
+      width = 0,
+      padding_left = 0,
+      padding_right = 0,
+      color = colors.arch_text,
+      highlight_color = colors.arch_mine_shaft,
+      font = "sketchybar-app-font:Regular:12.0",
       y_offset = -1,
     },
-    padding_right = 1,
-    padding_left = 1,
+    padding_right = 3,
+    padding_left = 3,
     background = {
-      color = colors.bg1,
-      border_width = 1,
-      height = 26,
-      border_color = colors.black,
+      color = colors.arch_alt_bg,
+      border_width = 0,
+      height = 24,
+      corner_radius = 10,
     },
-    popup = { background = { border_width = 5, border_color = colors.black } }
+    popup = { background = { border_width = 2, border_color = colors.arch_alt_bg, corner_radius = 7 } }
   })
 
   spaces[i] = space
 
-  -- Single item bracket for space items to achieve double border on highlight
-  local space_bracket = sbar.add("bracket", { space.name }, {
-    background = {
-      color = colors.transparent,
-      border_color = colors.bg2,
-      height = 28,
-      border_width = 2
-    }
-  })
 
-  -- Padding space
-  sbar.add("space", "space.padding." .. i, {
-    space = i,
-    script = "",
-    width = settings.group_paddings,
-  })
 
   local space_popup = sbar.add("item", {
     position = "popup." .. space.name,
@@ -68,15 +55,42 @@ for i = 1, 10, 1 do
 
   space:subscribe("space_change", function(env)
     local selected = env.SELECTED == "true"
-    local color = selected and colors.grey or colors.bg2
     space:set({
-      icon = { highlight = selected, },
-      label = { highlight = selected },
-      background = { border_color = selected and colors.black or colors.bg2 }
+      icon = {
+        highlight = selected,
+        color = selected and colors.arch_mine_shaft or colors.arch_text
+      },
+      label = {
+        highlight = selected,
+        color = selected and colors.arch_mine_shaft or colors.arch_text
+      },
+      background = {
+        color = selected and colors.arch_blue or colors.arch_alt_bg
+      }
     })
-    space_bracket:set({
-      background = { border_color = selected and colors.grey or colors.bg2 }
-    })
+  end)
+
+  -- Hover effects
+  space:subscribe("mouse.entered", function(env)
+    local selected = env.SELECTED == "true"
+    if not selected then
+      space:set({
+        background = { color = colors.arch_blue },
+        icon = { color = colors.arch_mine_shaft },
+        label = { color = colors.arch_mine_shaft }
+      })
+    end
+  end)
+
+  space:subscribe("mouse.exited", function(env)
+    local selected = env.SELECTED == "true"
+    if not selected then
+      space:set({
+        background = { color = colors.arch_alt_bg },
+        icon = { color = colors.arch_text },
+        label = { color = colors.arch_text }
+      })
+    end
   end)
 
   space:subscribe("mouse.clicked", function(env)
@@ -100,12 +114,12 @@ local space_window_observer = sbar.add("item", {
 })
 
 local spaces_indicator = sbar.add("item", {
-  padding_left = -3,
-  padding_right = 0,
+  padding_left = 6,
+  padding_right = 6,
   icon = {
     padding_left = 8,
     padding_right = 9,
-    color = colors.grey,
+    color = colors.arch_text,
     string = icons.switch.on,
   },
   label = {
@@ -113,11 +127,12 @@ local spaces_indicator = sbar.add("item", {
     padding_left = 0,
     padding_right = 8,
     string = "Spaces",
-    color = colors.bg1,
+    color = colors.arch_mine_shaft,
   },
   background = {
-    color = colors.with_alpha(colors.grey, 0.0),
-    border_color = colors.with_alpha(colors.bg1, 0.0),
+    color = colors.with_alpha(colors.arch_text, 0.0),
+    border_color = colors.with_alpha(colors.arch_alt_bg, 0.0),
+    corner_radius = 10,
   }
 })
 
@@ -153,7 +168,7 @@ spaces_indicator:subscribe("mouse.entered", function(env)
         color = { alpha = 1.0 },
         border_color = { alpha = 1.0 },
       },
-      icon = { color = colors.bg1 },
+      icon = { color = colors.arch_mine_shaft },
       label = { width = "dynamic" }
     })
   end)
@@ -166,7 +181,7 @@ spaces_indicator:subscribe("mouse.exited", function(env)
         color = { alpha = 0.0 },
         border_color = { alpha = 0.0 },
       },
-      icon = { color = colors.grey },
+      icon = { color = colors.arch_text },
       label = { width = 0, }
     })
   end)
