@@ -8,18 +8,21 @@ sbar.exec("killall cpu_load >/dev/null; $CONFIG_DIR/helpers/event_providers/cpu_
 
 local cpu = sbar.add("item", "widgets.cpu", {
   position = "right",
-  padding_left = 8,
-  padding_right = 8,
+  padding_left = 12,
+  padding_right = 12,
   icon = {
     string = icons.cpu,
     color = colors.arch_text,
     font = { size = 14 },
-    padding_right = 6,
+    padding_left = 8,
+    padding_right = 8,
   },
   label = {
     string = "CPU 0%",
     color = colors.arch_text,
     font = { family = settings.font.numbers, size = 12 },
+    padding_left = 8,
+    padding_right = 8,
   },
   background = {
     color = colors.arch_alt_bg,
@@ -62,19 +65,29 @@ cpu:subscribe("mouse.clicked", function(env)
   sbar.exec("open -a 'Activity Monitor'")
 end)
 
--- Hover effects
+-- Hover effects with smooth animations
 cpu:subscribe("mouse.entered", function()
-  cpu:set({
-    background = {
-      color = colors.with_alpha(colors.arch_blue, 0.3)
-    }
-  })
+  sbar.animate("tanh", 10, function()
+    cpu:set({
+      background = {
+        color = colors.arch_blue,  -- full opacity arch blue
+        border_width = 0,
+        corner_radius = 10,
+        height = 24,
+      }
+    })
+  end)
 end)
 
 cpu:subscribe("mouse.exited", function()
-  cpu:set({
-    background = {
-      color = colors.arch_alt_bg
-    }
-  })
+  sbar.animate("tanh", 10, function()
+    cpu:set({
+      background = {
+        color = colors.arch_alt_bg,
+        border_width = 0,
+        corner_radius = 10,
+        height = 24,
+      }
+    })
+  end)
 end)
