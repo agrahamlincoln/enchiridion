@@ -47,13 +47,7 @@ local volume_slider = sbar.add("slider", popup_width, {
       color = colors.arch_blue,
     },
   },
-  background = {
-    color = colors.arch_mine_shaft,
-    corner_radius = 8,
-    height = 30,
-    border_width = 1,
-    border_color = colors.arch_alt_bg,
-  },
+  background = { drawing = false },
   click_script = 'osascript -e "set volume output volume $PERCENTAGE"'
 })
 

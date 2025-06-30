@@ -55,13 +55,7 @@ local ssid = sbar.add("item", {
     string = "????????????",
     color = colors.arch_text,
   },
-  background = {
-    color = colors.arch_mine_shaft,
-    corner_radius = 8,
-    height = 30,
-    border_width = 1,
-    border_color = colors.arch_alt_bg,
-  }
+  background = { drawing = false }
 })
 
 local hostname = sbar.add("item", {
@@ -79,11 +73,7 @@ local hostname = sbar.add("item", {
     align = "right",
     color = colors.arch_text,
   },
-  background = {
-    color = colors.arch_mine_shaft,
-    corner_radius = 8,
-    height = 25,
-  }
+  background = { drawing = false }
 })
 
 local ip = sbar.add("item", {
@@ -100,11 +90,7 @@ local ip = sbar.add("item", {
     align = "right",
     color = colors.arch_text,
   },
-  background = {
-    color = colors.arch_mine_shaft,
-    corner_radius = 8,
-    height = 25,
-  }
+  background = { drawing = false }
 })
 
 

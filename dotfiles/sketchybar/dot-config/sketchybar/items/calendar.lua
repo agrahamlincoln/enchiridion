@@ -23,7 +23,7 @@ local clock = sbar.add("item", "widgets.clock", {
   },
   update_freq = 30,
   background = {
-    color = colors.arch_mine_shaft,
+    color = colors.arch_alt_bg,
     corner_radius = 10,
     height = 24,
   },
@@ -35,7 +35,7 @@ sbar.add("item", "widgets.clock.padding", {
   width = 1,
 })
 
--- Date popup
+-- Date popup - unified dropdown style
 local popup_width = 200
 local date_popup = sbar.add("item", {
   position = "popup." .. clock.name,
@@ -51,13 +51,7 @@ local date_popup = sbar.add("item", {
     font = { size = 14, style = settings.font.style_map["Bold"] },
     color = colors.arch_text,
   },
-  background = {
-    color = colors.arch_mine_shaft,
-    corner_radius = 8,
-    height = 30,
-    border_width = 1,
-    border_color = colors.arch_alt_bg,
-  }
+  background = { drawing = false }
 })
 
 -- Full date display in popup
@@ -73,10 +67,7 @@ local full_date = sbar.add("item", {
     font = { size = 12 },
     color = colors.arch_text,
   },
-  background = {
-    color = colors.arch_mine_shaft,
-    height = 25,
-  }
+  background = { drawing = false }
 })
 
 -- Update clock and date
@@ -127,7 +118,7 @@ clock:subscribe("mouse.exited", function()
   sbar.animate("tanh", 10, function()
     clock:set({
       background = {
-        color = colors.arch_mine_shaft,
+        color = colors.arch_alt_bg,
         border_width = 0,
         corner_radius = 10,
         height = 24,
