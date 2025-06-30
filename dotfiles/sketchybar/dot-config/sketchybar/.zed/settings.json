@@ -58,15 +58,6 @@
   "outline_panel": {
     "default_width": 300
   },
-  "buffer_font_family": "FiraCode Nerd Font",
-  "buffer_font_size": 14,
-  "ui_font_family": "FiraCode Nerd Font",
-  "ui_font_size": 14,
-  "theme": {
-    "mode": "system",
-    "light": "Andromeda",
-    "dark": "Andromeda"
-  },
   "git": {
     "git_gutter": "tracked_files",
     "inline_blame": {

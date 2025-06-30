@@ -8,8 +8,8 @@ sbar.exec("killall cpu_load >/dev/null; $CONFIG_DIR/helpers/event_providers/cpu_
 
 local cpu = sbar.add("item", "widgets.cpu", {
   position = "right",
-  padding_left = 12,
-  padding_right = 12,
+  padding_left = 2,
+  padding_right = 2,
   icon = {
     string = icons.cpu,
     color = colors.arch_text,
@@ -54,11 +54,7 @@ cpu:subscribe("cpu_update", function(env)
   })
 end)
 
--- Add spacing after cpu pill
-sbar.add("item", "widgets.cpu.padding", {
-  position = "right",
-  width = 6,
-})
+-- No spacing after cpu pill
 
 -- Mouse interactions
 cpu:subscribe("mouse.clicked", function(env)

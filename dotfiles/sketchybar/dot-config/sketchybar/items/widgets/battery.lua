@@ -4,8 +4,8 @@ local settings = require("settings")
 
 local battery = sbar.add("item", "widgets.battery", {
   position = "right",
-  padding_left = 12,
-  padding_right = 12,
+  padding_left = 2,
+  padding_right = 2,
   icon = {
     font = { size = 14 },
     color = colors.arch_text,
@@ -114,11 +114,7 @@ battery:subscribe("mouse.clicked", function(env)
   end
 end)
 
--- Add spacing after battery pill
-sbar.add("item", "widgets.battery.padding", {
-  position = "right",
-  width = 6,
-})
+-- No spacing after battery pill
 
 -- Hover effects with smooth animations
 battery:subscribe("mouse.entered", function()

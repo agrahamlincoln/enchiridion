@@ -10,8 +10,8 @@ local popup_width = 250
 
 local wifi = sbar.add("item", "widgets.wifi", {
   position = "right",
-  padding_left = 12,
-  padding_right = 12,
+  padding_left = 2,
+  padding_right = 2,
   icon = {
     string = icons.wifi.connected,
     color = colors.arch_text,
@@ -33,11 +33,7 @@ local wifi = sbar.add("item", "widgets.wifi", {
   },
 })
 
--- Add spacing after wifi pill
-sbar.add("item", "widgets.wifi.padding", {
-  position = "right",
-  width = 6,
-})
+-- No spacing after wifi pill
 
 local ssid = sbar.add("item", {
   position = "popup." .. wifi.name,

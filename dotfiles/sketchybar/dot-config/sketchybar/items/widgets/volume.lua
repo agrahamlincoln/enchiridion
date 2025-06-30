@@ -5,8 +5,8 @@ local settings = require("settings")
 -- Single volume widget styled as waybar pill
 local volume = sbar.add("item", "widgets.volume", {
   position = "right",
-  padding_left = 12,
-  padding_right = 12,
+  padding_left = 2,
+  padding_right = 2,
   icon = {
     string = icons.volume._100,
     color = colors.arch_text,
@@ -28,11 +28,7 @@ local volume = sbar.add("item", "widgets.volume", {
   },
 })
 
--- Add spacing after volume pill
-sbar.add("item", "widgets.volume.padding", {
-  position = "right",
-  width = 6,
-})
+-- No spacing after volume pill
 
 -- Volume slider popup
 local popup_width = 200

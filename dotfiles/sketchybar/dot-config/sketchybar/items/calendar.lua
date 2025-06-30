@@ -32,7 +32,7 @@ local clock = sbar.add("item", "widgets.clock", {
 -- Add spacing after the clock pill
 sbar.add("item", "widgets.clock.padding", {
   position = "right",
-  width = 6,
+  width = 1,
 })
 
 -- Date popup
