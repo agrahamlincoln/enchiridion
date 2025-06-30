@@ -9,24 +9,22 @@ for i = 1, 10, 1 do
   local space = sbar.add("space", "space." .. i, {
     space = i,
     icon = {
-      font = { family = settings.font.numbers, size = 14 },
+      font = { family = settings.font.numbers },
       string = i,
-      padding_left = 12,
-      padding_right = 12,
+      padding_left = 15,
+      padding_right = 8,
       color = colors.arch_text,
       highlight_color = colors.arch_mine_shaft,
     },
     label = {
-      width = 0,
-      padding_left = 0,
-      padding_right = 0,
+      padding_right = 20,
       color = colors.arch_text,
       highlight_color = colors.arch_mine_shaft,
-      font = "sketchybar-app-font:Regular:12.0",
+      font = "sketchybar-app-font:Regular:16.0",
       y_offset = -1,
     },
-    padding_right = 3,
-    padding_left = 3,
+    padding_right = 1,
+    padding_left = 1,
     background = {
       color = colors.arch_alt_bg,
       border_width = 0,
@@ -37,6 +35,13 @@ for i = 1, 10, 1 do
   })
 
   spaces[i] = space
+
+  -- Padding space
+  sbar.add("space", "space.padding." .. i, {
+    space = i,
+    script = "",
+    width = settings.group_paddings,
+  })
 
 
 
@@ -68,29 +73,6 @@ for i = 1, 10, 1 do
         color = selected and colors.arch_blue or colors.arch_alt_bg
       }
     })
-  end)
-
-  -- Hover effects
-  space:subscribe("mouse.entered", function(env)
-    local selected = env.SELECTED == "true"
-    if not selected then
-      space:set({
-        background = { color = colors.arch_blue },
-        icon = { color = colors.arch_mine_shaft },
-        label = { color = colors.arch_mine_shaft }
-      })
-    end
-  end)
-
-  space:subscribe("mouse.exited", function(env)
-    local selected = env.SELECTED == "true"
-    if not selected then
-      space:set({
-        background = { color = colors.arch_alt_bg },
-        icon = { color = colors.arch_text },
-        label = { color = colors.arch_text }
-      })
-    end
   end)
 
   space:subscribe("mouse.clicked", function(env)
@@ -150,7 +132,7 @@ space_window_observer:subscribe("space_windows_change", function(env)
     icon_line = " —"
   end
   sbar.animate("tanh", 10, function()
-    spaces[env.INFO.space]:set({ label = icon_line })
+    spaces[env.INFO.space]:set({ label = { string = icon_line } })
   end)
 end)
 
