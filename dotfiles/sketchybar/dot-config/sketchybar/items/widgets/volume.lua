@@ -5,18 +5,21 @@ local settings = require("settings")
 -- Single volume widget styled as waybar pill
 local volume = sbar.add("item", "widgets.volume", {
   position = "right",
-  padding_left = 8,
-  padding_right = 8,
+  padding_left = 12,
+  padding_right = 12,
   icon = {
     string = icons.volume._100,
     color = colors.arch_text,
     font = { size = 14 },
-    padding_right = 6,
+    padding_left = 8,
+    padding_right = 8,
   },
   label = {
     string = "50%",
     color = colors.arch_text,
     font = { family = settings.font.numbers, size = 12 },
+    padding_left = 8,
+    padding_right = 8,
   },
   background = {
     color = colors.arch_alt_bg,
@@ -113,21 +116,31 @@ volume:subscribe("mouse.exited.global", function()
   volume:set({ popup = { drawing = false } })
 end)
 
--- Hover effects
+-- Hover effects with smooth animations
 volume:subscribe("mouse.entered", function()
-  volume:set({
-    background = {
-      color = colors.with_alpha(colors.arch_blue, 0.3)
-    }
-  })
+  sbar.animate("tanh", 10, function()
+    volume:set({
+      background = {
+        color = colors.arch_blue,
+        border_width = 0,
+        corner_radius = 10,
+        height = 24,
+      }
+    })
+  end)
 end)
 
 volume:subscribe("mouse.exited", function()
-  volume:set({
-    background = {
-      color = colors.arch_alt_bg
-    }
-  })
+  sbar.animate("tanh", 10, function()
+    volume:set({
+      background = {
+        color = colors.arch_alt_bg,
+        border_width = 0,
+        corner_radius = 10,
+        height = 24,
+      }
+    })
+  end)
 end)
 
 -- Initialize volume

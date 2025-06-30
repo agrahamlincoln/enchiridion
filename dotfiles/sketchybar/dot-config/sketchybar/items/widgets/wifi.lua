@@ -10,18 +10,21 @@ local popup_width = 250
 
 local wifi = sbar.add("item", "widgets.wifi", {
   position = "right",
-  padding_left = 8,
-  padding_right = 8,
+  padding_left = 12,
+  padding_right = 12,
   icon = {
     string = icons.wifi.connected,
     color = colors.arch_text,
     font = { size = 14 },
-    padding_right = 6,
+    padding_left = 8,
+    padding_right = 8,
   },
   label = {
     string = "WiFi",
     color = colors.arch_text,
     font = { family = settings.font.text, size = 12 },
+    padding_left = 8,
+    padding_right = 8,
   },
   background = {
     color = colors.arch_alt_bg,
@@ -152,21 +155,31 @@ end
 wifi:subscribe("mouse.clicked", toggle_details)
 wifi:subscribe("mouse.exited.global", hide_details)
 
--- Hover effects
+-- Hover effects with smooth animations
 wifi:subscribe("mouse.entered", function()
-  wifi:set({
-    background = {
-      color = colors.with_alpha(colors.arch_blue, 0.3)
-    }
-  })
+  sbar.animate("tanh", 10, function()
+    wifi:set({
+      background = {
+        color = colors.arch_blue,
+        border_width = 0,
+        corner_radius = 10,
+        height = 24,
+      }
+    })
+  end)
 end)
 
 wifi:subscribe("mouse.exited", function()
-  wifi:set({
-    background = {
-      color = colors.arch_alt_bg
-    }
-  })
+  sbar.animate("tanh", 10, function()
+    wifi:set({
+      background = {
+        color = colors.arch_alt_bg,
+        border_width = 0,
+        corner_radius = 10,
+        height = 24,
+      }
+    })
+  end)
 end)
 
 local function copy_label_to_clipboard(env)

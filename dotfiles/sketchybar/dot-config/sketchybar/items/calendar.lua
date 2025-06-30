@@ -8,11 +8,12 @@ local clock = sbar.add("item", "widgets.clock", {
     string = "󰥔", -- Clock icon
     color = colors.arch_text,
     font = { size = 14 },
-    padding_right = 6,
     padding_left = 8,
+    padding_right = 8,
   },
   label = {
     color = colors.arch_text,
+    padding_left = 8,
     padding_right = 8,
     font = {
       family = settings.font.numbers,
@@ -108,21 +109,31 @@ clock:subscribe("mouse.exited.global", function()
   clock:set({ popup = { drawing = false } })
 end)
 
--- Hover effects
+-- Hover effects with smooth animations
 clock:subscribe("mouse.entered", function()
-  clock:set({
-    background = {
-      color = colors.with_alpha(colors.arch_blue, 0.3)
-    }
-  })
+  sbar.animate("tanh", 10, function()
+    clock:set({
+      background = {
+        color = colors.arch_blue,
+        border_width = 0,
+        corner_radius = 10,
+        height = 24,
+      }
+    })
+  end)
 end)
 
 clock:subscribe("mouse.exited", function()
-  clock:set({
-    background = {
-      color = colors.arch_mine_shaft
-    }
-  })
+  sbar.animate("tanh", 10, function()
+    clock:set({
+      background = {
+        color = colors.arch_mine_shaft,
+        border_width = 0,
+        corner_radius = 10,
+        height = 24,
+      }
+    })
+  end)
 end)
 
 -- Initialize
