@@ -6,64 +6,75 @@ local settings = require("settings")
 -- the cpu load data, which is fired every 2.0 seconds.
 sbar.exec("killall cpu_load >/dev/null; $CONFIG_DIR/helpers/event_providers/cpu_load/bin/cpu_load cpu_update 2.0")
 
-local cpu = sbar.add("graph", "widgets.cpu" , 42, {
+local cpu = sbar.add("item", "widgets.cpu", {
   position = "right",
-  graph = { color = colors.blue },
-  background = {
-    height = 22,
-    color = { alpha = 0 },
-    border_color = { alpha = 0 },
-    drawing = true,
+  padding_left = 8,
+  padding_right = 8,
+  icon = {
+    string = icons.cpu,
+    color = colors.arch_text,
+    font = { size = 14 },
+    padding_right = 6,
   },
-  icon = { string = icons.cpu },
   label = {
-    string = "cpu ??%",
-    font = {
-      family = settings.font.numbers,
-      style = settings.font.style_map["Bold"],
-      size = 9.0,
-    },
-    align = "right",
-    padding_right = 0,
-    width = 0,
-    y_offset = 4
+    string = "CPU 0%",
+    color = colors.arch_text,
+    font = { family = settings.font.numbers, size = 12 },
   },
-  padding_right = settings.paddings + 6
+  background = {
+    color = colors.arch_alt_bg,
+    corner_radius = 10,
+    height = 24,
+  },
 })
 
 cpu:subscribe("cpu_update", function(env)
-  -- Also available: env.user_load, env.sys_load
   local load = tonumber(env.total_load)
-  cpu:push({ load / 100. })
 
-  local color = colors.blue
+  local color = colors.arch_text
   if load > 30 then
     if load < 60 then
       color = colors.yellow
     elseif load < 80 then
       color = colors.orange
     else
-      color = colors.red
+      color = colors.arch_urgent
     end
   end
 
   cpu:set({
-    graph = { color = color },
-    label = "cpu " .. env.total_load .. "%",
+    icon = { color = color },
+    label = {
+      string = "CPU " .. env.total_load .. "%",
+      color = color
+    }
   })
 end)
 
+-- Add spacing after cpu pill
+sbar.add("item", "widgets.cpu.padding", {
+  position = "right",
+  width = 6,
+})
+
+-- Mouse interactions
 cpu:subscribe("mouse.clicked", function(env)
   sbar.exec("open -a 'Activity Monitor'")
 end)
 
--- Background around the cpu item
-sbar.add("bracket", "widgets.cpu.bracket", { cpu.name }, {
-  background = { color = colors.bg1 }
-})
+-- Hover effects
+cpu:subscribe("mouse.entered", function()
+  cpu:set({
+    background = {
+      color = colors.with_alpha(colors.arch_blue, 0.3)
+    }
+  })
+end)
 
--- Background around the cpu item
-sbar.add("item", "widgets.cpu.padding", {
-  position = "right",
-  width = settings.group_paddings
-})
+cpu:subscribe("mouse.exited", function()
+  cpu:set({
+    background = {
+      color = colors.arch_alt_bg
+    }
+  })
+end)

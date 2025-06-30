@@ -4,13 +4,22 @@ local settings = require("settings")
 
 local battery = sbar.add("item", "widgets.battery", {
   position = "right",
+  padding_left = 8,
+  padding_right = 8,
   icon = {
-    font = {
-      style = settings.font.style_map["Regular"],
-      size = 19.0,
-    }
+    font = { size = 14 },
+    color = colors.arch_text,
+    padding_right = 6,
   },
-  label = { font = { family = settings.font.numbers } },
+  label = {
+    font = { family = settings.font.numbers, size = 12 },
+    color = colors.arch_text,
+  },
+  background = {
+    color = colors.arch_alt_bg,
+    corner_radius = 10,
+    height = 24,
+  },
   update_freq = 180,
   popup = { align = "center" }
 })
@@ -20,13 +29,22 @@ local remaining_time = sbar.add("item", {
   icon = {
     string = "Time remaining:",
     width = 100,
-    align = "left"
+    align = "left",
+    color = colors.arch_text,
   },
   label = {
     string = "??:??h",
     width = 100,
-    align = "right"
+    align = "right",
+    color = colors.arch_text,
   },
+  background = {
+    color = colors.arch_mine_shaft,
+    corner_radius = 8,
+    height = 30,
+    border_width = 1,
+    border_color = colors.arch_alt_bg,
+  }
 })
 
 
@@ -41,7 +59,7 @@ battery:subscribe({"routine", "power_source_change", "system_woke"}, function()
       label = charge .. "%"
     end
 
-    local color = colors.green
+    local color = colors.arch_text
     local charging, _, _ = batt_info:find("AC Power")
 
     if charging then
@@ -58,7 +76,7 @@ battery:subscribe({"routine", "power_source_change", "system_woke"}, function()
         color = colors.orange
       else
         icon = icons.battery._0
-        color = colors.red
+        color = colors.arch_urgent
       end
     end
 
@@ -72,7 +90,10 @@ battery:subscribe({"routine", "power_source_change", "system_woke"}, function()
         string = icon,
         color = color
       },
-      label = { string = lead .. label },
+      label = {
+        string = lead .. label,
+        color = color
+      },
     })
   end)
 end)
@@ -90,11 +111,25 @@ battery:subscribe("mouse.clicked", function(env)
   end
 end)
 
-sbar.add("bracket", "widgets.battery.bracket", { battery.name }, {
-  background = { color = colors.bg1 }
-})
-
+-- Add spacing after battery pill
 sbar.add("item", "widgets.battery.padding", {
   position = "right",
-  width = settings.group_paddings
+  width = 6,
 })
+
+-- Hover effects
+battery:subscribe("mouse.entered", function()
+  battery:set({
+    background = {
+      color = colors.with_alpha(colors.arch_blue, 0.3)
+    }
+  })
+end)
+
+battery:subscribe("mouse.exited", function()
+  battery:set({
+    background = {
+      color = colors.arch_alt_bg
+    }
+  })
+end)
