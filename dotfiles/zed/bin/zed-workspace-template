@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# Zed Workspace Template
+# Copy this file to create new workspaces - just modify WORKSPACE_SPECS array
+
+# Source common functions
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "$SCRIPT_DIR/zed-workspace-common.sh"
+
+# Define workspace specifications - MODIFY THIS ARRAY
+# All patterns are regex - anchored automatically (^...$ added)
+WORKSPACE_SPECS=(
+    "example-project1"
+    "example-project2"
+    # Examples of regex patterns:
+    # "action-.*"              # All action-* directories
+    # ".*-frontend"            # All *-frontend directories
+    # "action-(argo|helm)-.*"  # action-argo-* or action-helm-*
+    # "microservice-[0-9]+"    # microservice-1, microservice-2, etc.
+)
+
+# Build workspace directories and open
+WORKSPACE_DIRS=($(build_workspace_dirs "${WORKSPACE_SPECS[@]}"))
+open_zed_workspace "Template" "${WORKSPACE_DIRS[@]}"
