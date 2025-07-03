@@ -1,24 +1,24 @@
 {
-  "name": "Average Pure Black",
-  "author": "Harmonized Analysis",
+  "name": "Average Pure Black - Adjusted",
+  "author": "Agrahamlincoln",
   "themes": [
     {
-      "name": "Average Pure Black",
+      "name": "Average Pure Black - Adjusted",
       "appearance": "dark",
       "style": {
         "background": "#0a0a0a",
-        "border": "#44403c",
-        "border.focused": "#737373",
+        "border": "#6b7280",
+        "border.focused": "#9ca3af",
         "text": "#e4e4e7",
-        "text.muted": "#a3a3a3",
+        "text.muted": "#d1d5db",
         "text.accent": "#06b6d4",
         "element.background": "#27272a",
-        "element.hover": "#44403c",
-        "element.selected": "#525252",
+        "element.hover": "#6b7280",
+        "element.selected": "#6b7280",
         "editor.background": "#0a0a0a",
         "editor.gutter.background": "#0a0a0a",
-        "editor.line_number": "#78716c",
-        "editor.line_number.active": "#c7c7c7",
+        "editor.line_number": "#9ca3af",
+        "editor.line_number.active": "#e5e7eb",
         "editor.active_line.background": "#292524",
         "selection": "#ffffff",
         "warning": "#fcd34d",
@@ -30,7 +30,7 @@
         "success": "#22c55e",
         "success.background": "#1a2e05",
         "panel.background": "#0a0a0a",
-        "panel.focused_border": "#57534e",
+        "panel.focused_border": "#9ca3af",
         "created": "#22c55e",
         "modified": "#fde68a",
         "deleted": "#f43f5e",
@@ -49,7 +49,7 @@
         "terminal.ansi.magenta": "#e879f9",
         "terminal.ansi.cyan": "#06b6d4",
         "terminal.ansi.white": "#d4d4d8",
-        "terminal.ansi.bright_black": "#525252",
+        "terminal.ansi.bright_black": "#6b7280",
         "terminal.ansi.bright_red": "#f43f5e",
         "terminal.ansi.bright_green": "#22c55e",
         "terminal.ansi.bright_yellow": "#fcd34d",
@@ -59,7 +59,7 @@
         "terminal.ansi.bright_white": "#e7e5e4",
         "syntax": {
           "comment": {
-            "color": "#a3a3a3",
+            "color": "#d1d5db",
             "font_style": "italic"
           },
           "string": {
@@ -93,7 +93,7 @@
             "color": "#f43f5e"
           },
           "punctuation": {
-            "color": "#a3a3a3"
+            "color": "#d1d5db"
           },
           "title": {
             "color": "#22c55e",
