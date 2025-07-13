@@ -3,3 +3,6 @@
 
 # Ignore downloaded Zed themes for analysis
 dotfiles/zed/zed-themes-analysis/
+
+# claude-memory are useful, but don't need to be committed
+claude-memory/

@@ -16,12 +16,16 @@
     }
   },
   "agent": {
+    "inline_assistant_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4.1"
+    },
     "always_allow_tool_actions": true,
     "default_profile": "write",
     "dock": "right",
     "default_model": {
-      "provider": "copilot_chat",
-      "model": "claude-sonnet-4"
+      "provider": "google",
+      "model": "gemini-2.5-flash"
     },
     "version": "2"
   },
@@ -154,6 +158,10 @@
     "Jsonnet": {
       "format_on_save": "on",
       "tab_size": 2
+    },
+    "Markdown": {
+      "preferred_line_length": 100,
+      "soft_wrap": "preferred_line_length"
     }
   },
   "inlay_hints": {
