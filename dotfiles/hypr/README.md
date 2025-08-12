@@ -11,3 +11,4 @@ gammastep
 phinger-cursors
 woff2-font-awesome
 ttf-firacode-nerd
+inotify-tools

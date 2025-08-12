@@ -78,6 +78,7 @@ tooltip {
 #cpu,
 #memory,
 #temperature,
+#battery,
 #backlight,
 #keyboard-state,
 #language,
@@ -108,25 +109,17 @@ tooltip {
   margin: 3px 6px; /* Vertical and horizontal margin for spacing */
 }
 /* Right */
-/* Right-side Pills: Light Gray and Dark Gray alternating */
+/* All right-side modules: Consistent Dark Gray */
 #custom-updates,
 #network,
 #bluetooth,
 #pulseaudio,
-#keyboard-state,
-#language,
-#backlight {
-  background: @system-bg; /* Light Gray */
-}
-
-#clock,
-#mpd,
-#idle_inhibitor,
-#power-profiles-daemon,
 #cpu,
 #memory,
 #disk,
 #temperature,
+#battery,
+#backlight,
 #tray,
 #custom-power {
   background: @main-bg; /* Dark Gray */
@@ -180,6 +173,17 @@ tooltip {
 #temperature.critical {
   color: @arch-urgent;
 }
+#battery.good {
+  color: #50fa7b;
+}
+
+#battery.warning {
+  color: #ffb86c;
+}
+
+#battery.critical {
+  color: @arch-urgent;
+}
 #idle_inhibitor.activated {
   color: @arch-blue;
 }
@@ -188,8 +192,10 @@ tooltip {
 /* This creates four distinct pills with rounded corners. */
 
 /* First module in each pill */
+#custom-updates,
+#network,
 #cpu,
-#keyboard-state,
+#temperature,
 #tray {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -198,10 +204,11 @@ tooltip {
 }
 
 /* Last module in each pill */
+#custom-updates,
 #pulseaudio,
-#temperature,
-#backlight,
-#custom-power {
+#disk,
+#custom-power,
+#tray {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   padding-right: 12px;
@@ -218,6 +225,7 @@ tooltip {
 #cpu,
 #memory,
 #temperature,
+#battery,
 #disk,
 #backlight,
 #keyboard-state,

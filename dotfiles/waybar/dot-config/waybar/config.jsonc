@@ -4,26 +4,27 @@
   "modules-left": ["hyprland/workspaces", "mpris"],
   "modules-center": ["hyprland/window"],
   "modules-right": [
-    // --- Pill 1: Connectivity (Light Gray) ---
+    // --- Pill 1: Updates (Dark Gray) ---
     "custom/updates",
+
+    // --- Pill 2: Connectivity (Dark Gray) ---
     "network",
     "bluetooth",
     "pulseaudio",
 
-    // --- Pill 2: System (Dark Gray) ---
+    // --- Pill 3: System (Dark Gray) ---
     "cpu",
     "memory",
+    "battery",
     "disk",
+
+    // --- Pill 4: Environment (Dark Gray) ---
     "temperature",
-
-    // --- Pill 3: Input (Light Gray) ---
-    "keyboard-state",
-    "language",
     "backlight",
-
-    // --- Pill 4: Session (Dark Gray) ---
-    "tray",
     "custom/power",
+
+    // --- Pill 5: Tray (Dark Gray) ---
+    "tray",
   ],
   "hyprland/workspaces": {
     "format": "{name} {windows}",
@@ -62,25 +63,25 @@
     "format": "{} 📦",
   },
   "mpris": {
-    "format": "󰋋 {title}",
-    "format-stopped": "󰋋 No Music",
+    "format": "{title} 󰋋",
+    "format-stopped": "No Music 󰋋",
     "player-icons": {
       "default": "▶",
       "spotify": "",
     },
   },
   "disk": {
-    "format": "󰋊 {percentage_used}%",
+    "format": "{percentage_used}% 󰋊",
   },
   "temperature": {
     "hwmon-path": "/sys/class/hwmon/hwmon2/temp3_input",
-    "format": " {temperatureC}°C",
+    "format": "{temperatureC}°C ",
     "critical-threshold": 80,
-    "format-critical": " {temperatureC}°C!!",
+    "format-critical": "{temperatureC}°C!! ",
   },
 
   "bluetooth": {
-    "format": "󰂯 {status}",
+    "format": "{status} 󰂯",
   },
   "clock": {
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
@@ -124,6 +125,29 @@
 
   "tray": {
     "spacing": 10,
+  },
+  "battery": {
+    "interval": 30,
+    "states": {
+      "good": 80,
+      "warning": 30,
+      "critical": 15,
+    },
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% {icon} {power:.1f}W",
+    "format-plugged": "{capacity}% {icon}",
+    "format-icons": {
+      "charging": "󱐋",
+      "plugged": "󰚥",
+      "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    },
+    "tooltip-format": "Battery: {capacity}% ({time})\nPower: {power:.2f}W",
+    "tooltip-format-charging": "Charging: {capacity}% ({time} to full)\nPower: +{power:.2f}W",
+    "on-click": "gnome-power-statistics",
+  },
+  "backlight": {
+    "format": "{percent}% 󰃞",
+    "tooltip": false
   },
   "custom/power": {
     "format": "⏻",
