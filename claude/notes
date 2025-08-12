@@ -1,16 +1,7 @@
 # todos
 
-reduce hyprland gaps for laptop
-add hyprlock setup to laptop (probably unstaged on plibter)
-
-zed editor
-- get it working!
-
-- able to split configs in hyprland/etc for qwerty layout and laptop specifc settings
-
 waybar
-- improve theming for laptop (battery percentage somewhere
-)
+- improve theming for laptop (battery percentage somewhere)
 - incorrect curve on left of wifi module
 - move packages needed to own bubble
 
