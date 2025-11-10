@@ -103,19 +103,19 @@
     "Python": {
       "language_servers": ["ruff"],
       "format_on_save": "on",
-      "formatter": [
-        {
-          "code_actions": {
-            "source.organizeImports.ruff": true,
-            "source.fixAll.ruff": true
+      "formatter": {
+        "code_actions": [
+          {
+            "code_action": "source.organizeImports.ruff"
+          },
+          {
+            "code_action": "source.fixAll.ruff"
           }
-        },
-        {
-          "language_server": {
-            "name": "ruff"
-          }
+        ],
+        "language_server": {
+          "name": "ruff"
         }
-      ],
+      },
       "tab_size": 4 // Python standard
     },
     "Terraform": {
