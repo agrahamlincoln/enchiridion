@@ -147,7 +147,7 @@
   },
   "backlight": {
     "format": "{percent}% 󰃞",
-    "tooltip": false
+    "tooltip": false,
   },
   "custom/power": {
     "format": "⏻",
