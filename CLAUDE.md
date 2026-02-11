@@ -54,7 +54,14 @@ Edit the source files in `hosts/<type>/`, not the generated `host-*.conf` files.
 
 ### OS-Specific Installations
 - **Linux (Arch)**: hypr, waybar, gammastep, wofi, kitty, zed, vim
-- **macOS**: yabai, skhd, kitty, zed, vim
+- **macOS**: aerospace (or yabai+skhd), sketchybar, kitty, zed, vim
+
+### macOS Window Management
+Two options are available:
+- **AeroSpace** (recommended): i3-like tiling WM, no SIP disable required, more stable
+- **yabai + skhd**: Traditional BSP layout, requires SIP disable
+
+AeroSpace configuration is in `dotfiles/aerospace/` with keybindings matching the previous yabai setup.
 
 ## Development Patterns
 

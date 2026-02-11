@@ -12,3 +12,6 @@ claude-memory/
 dotfiles/hypr/dot-config/hypr/layout-keybinds.conf
 dotfiles/hypr/dot-config/hypr/host-settings.conf
 dotfiles/hypr/dot-config/hypr/host-keybinds.conf
+
+# Zed workspace scripts (user-specific, generated from template)
+dotfiles/zed/bin/zed-*-workspace

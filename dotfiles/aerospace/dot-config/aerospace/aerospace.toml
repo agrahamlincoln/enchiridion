@@ -1,0 +1,232 @@
+# AeroSpace configuration
+# Migrated from yabai + skhd setup
+
+# Place a copy of this config to ~/.aerospace.toml
+# After edit, run: aerospace reload-config
+
+config-version = 2
+
+# Start AeroSpace at login
+start-at-login = true
+
+# Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+# See: https://nikitabobko.github.io/AeroSpace/guide#layouts
+# The 'tiles' layout is similar to yabai's bsp layout
+accordion-padding = 30
+
+# Possible values: tiles|accordion
+default-root-container-layout = 'tiles'
+
+# Possible values: horizontal|vertical|auto
+# 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
+# tall monitor (anything higher than wide) gets vertical orientation
+default-root-container-orientation = 'auto'
+
+# Mouse follows focus when focus changes
+automatically-focus-mouse-hover-window = true
+
+# Gaps (similar to yabai's padding/gap settings)
+# yabai had: top=35, bottom=5, left=5, right=5, window_gap=5
+[gaps]
+inner.horizontal = 5
+inner.vertical = 5
+outer.left = 5
+outer.bottom = 5
+outer.top = 35
+outer.right = 5
+
+# 'main' binding mode declaration
+# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+# 'main' binding mode must be always presented
+[mode.main.binding]
+
+# All possible keys:
+# - Letters: a-z
+# - Numbers: 0-9
+# - Keypad numbers: keypad0-keypad9
+# - F-keys: f1-f20
+# - Special: minus, equal, period, comma, slash, backslash, quote, semicolon, backtick
+# - Arrows: left, down, up, right
+
+# All possible modifiers: cmd, alt, ctrl, shift
+
+# All possible commands: https://nikitabobko.github.io/AeroSpace/commands
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
+# cmd-return opens Kitty terminal (matching your skhd config)
+cmd-return = '''exec-and-forget /Applications/Kitty.app/Contents/MacOS/kitty --single-instance -d ~'''
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#layout
+cmd-slash = 'layout tiles horizontal vertical'
+cmd-comma = 'layout accordion horizontal vertical'
+
+# ========================================
+# Workspace Navigation (matching cmd-1 through cmd-9)
+# ========================================
+cmd-1 = 'workspace 1'
+cmd-2 = 'workspace 2'
+cmd-3 = 'workspace 3'
+cmd-4 = 'workspace 4'
+cmd-5 = 'workspace 5'
+cmd-6 = 'workspace 6'
+cmd-7 = 'workspace 7'
+cmd-8 = 'workspace 8'
+cmd-9 = 'workspace 9'
+
+# Workspace navigation: prev/next (matching cmd+alt-left/right)
+cmd-alt-left = 'workspace prev --wrap-around'
+cmd-alt-right = 'workspace next --wrap-around'
+
+# ========================================
+# Window Navigation (matching cmd-arrow keys)
+# ========================================
+cmd-left = 'focus left'
+cmd-down = 'focus down'
+cmd-up = 'focus up'
+cmd-right = 'focus right'
+
+# ========================================
+# Window Movement within Space (matching cmd+shift-arrow keys)
+# ========================================
+cmd-shift-left = 'move left'
+cmd-shift-down = 'move down'
+cmd-shift-up = 'move up'
+cmd-shift-right = 'move right'
+
+# ========================================
+# Move Window to Workspace (matching cmd+shift-number)
+# ========================================
+cmd-shift-1 = 'move-node-to-workspace 1'
+cmd-shift-2 = 'move-node-to-workspace 2'
+cmd-shift-3 = 'move-node-to-workspace 3'
+cmd-shift-4 = 'move-node-to-workspace 4'
+cmd-shift-5 = 'move-node-to-workspace 5'
+cmd-shift-6 = 'move-node-to-workspace 6'
+cmd-shift-7 = 'move-node-to-workspace 7'
+cmd-shift-8 = 'move-node-to-workspace 8'
+cmd-shift-9 = 'move-node-to-workspace 9'
+
+# ========================================
+# Move Workspace to Monitor (matching cmd+ctrl-number and arrow keys)
+# ========================================
+cmd-ctrl-left = 'move-workspace-to-monitor prev --wrap-around'
+cmd-ctrl-right = 'move-workspace-to-monitor next --wrap-around'
+cmd-ctrl-1 = 'move-workspace-to-monitor 1'
+cmd-ctrl-2 = 'move-workspace-to-monitor 2'
+cmd-ctrl-3 = 'move-workspace-to-monitor 3'
+
+# ========================================
+# Window Layout Controls
+# ========================================
+
+# Toggle fullscreen (matching cmd+shift-f)
+cmd-shift-f = 'fullscreen'
+
+# Toggle split orientation (matching cmd+shift-s)
+cmd-shift-s = 'layout tiles horizontal vertical'
+
+# Balance windows in current workspace (matching cmd+shift-p for "tidy up")
+cmd-shift-p = 'balance-sizes'
+
+# ========================================
+# Resize Mode (matching yabai's resize mode with cmd-p)
+# ========================================
+# Enter resize mode
+cmd-p = 'mode resize'
+
+# 'resize' binding mode declaration
+[mode.resize.binding]
+cmd-left = 'resize width -50'
+cmd-right = 'resize width +50'
+cmd-up = 'resize height +50'
+cmd-down = 'resize height -50'
+
+# Back to main mode
+cmd-p = 'mode main'
+esc = 'mode main'
+
+# ========================================
+# Service mode - for advanced operations
+# ========================================
+cmd-shift-semicolon = 'mode service'
+
+[mode.service.binding]
+esc = ['reload-config', 'mode main']
+r = ['flatten-workspace-tree', 'mode main']
+f = ['layout floating tiling', 'mode main']
+backspace = ['close-all-windows-but-current', 'mode main']
+cmd-shift-semicolon = 'mode main'
+
+# ========================================
+# Workspace to Monitor Assignment
+# ========================================
+# Assign workspaces to specific monitors (if you have multiple monitors)
+# You can adjust these based on your monitor setup
+[[workspace-to-monitor-force-assignment]]
+workspace = '1'
+monitor = ['main', 'secondary', 'tertiary']
+
+[[workspace-to-monitor-force-assignment]]
+workspace = '2'
+monitor = ['main', 'secondary', 'tertiary']
+
+[[workspace-to-monitor-force-assignment]]
+workspace = '3'
+monitor = ['main', 'secondary', 'tertiary']
+
+[[workspace-to-monitor-force-assignment]]
+workspace = '4'
+monitor = ['main', 'secondary', 'tertiary']
+
+[[workspace-to-monitor-force-assignment]]
+workspace = '5'
+monitor = ['main', 'secondary', 'tertiary']
+
+[[workspace-to-monitor-force-assignment]]
+workspace = '6'
+monitor = ['main', 'secondary', 'tertiary']
+
+[[workspace-to-monitor-force-assignment]]
+workspace = '7'
+monitor = ['main', 'secondary', 'tertiary']
+
+[[workspace-to-monitor-force-assignment]]
+workspace = '8'
+monitor = ['main', 'secondary', 'tertiary']
+
+[[workspace-to-monitor-force-assignment]]
+workspace = '9'
+monitor = ['main', 'secondary', 'tertiary']
+
+# ========================================
+# Application-specific rules (matching yabai rules)
+# ========================================
+# Float certain apps that shouldn't be tiled
+
+[[on-window-detected]]
+if.app-id = 'com.apple.systempreferences'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'us.zoom.xos'
+run = 'layout floating'
+
+# ========================================
+# Integration with sketchybar
+# ========================================
+# You can use exec-on-workspace-change to trigger sketchybar updates
+# Similar to yabai signals
+
+[exec]
+# Trigger sketchybar on workspace change
+exec-on-workspace-change = [
+    '/usr/bin/env',
+    'bash', '-c',
+    'sketchybar --trigger aerospace_workspace_change'
+]
+
+# Note: You'll need to update your sketchybar config to listen for
+# 'aerospace_workspace_change' event instead of yabai events
