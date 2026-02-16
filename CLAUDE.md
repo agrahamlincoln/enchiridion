@@ -29,13 +29,47 @@ just setup-env
 - `bashrc/bashinit/` - Bash initialization scripts
 - `Justfile` - Main automation targets
 
+Tool-specific details live in subdirectory `CLAUDE.md` files (e.g., `dotfiles/hypr/CLAUDE.md`, `dotfiles/waybar/CLAUDE.md`) and are loaded automatically when working in those directories.
+
 ### Stow Convention
 Files in `dotfiles/<app>/dot-config/<app>/` become `~/.config/<app>/` when stowed. The `--dotfiles` flag converts `dot-` prefixes to `.` prefixes.
 
-### Host-Specific Configuration (Hyprland)
-The system detects hostname to apply laptop vs desktop settings:
-- **zaxtec** → laptop (QWERTY keybinds, touchpad, smaller gaps)
-- **other** → desktop (Dvorak keybinds, larger gaps)
+### Color Palette
+
+All configs share a unified color palette derived from Tailwind CSS colors. The canonical source is `kitty.conf`, and other tools (waybar, wlogout, wofi, hyprlock, bash-prompt, Zed theme) are aligned to it.
+
+| Role     | Normal  | Bright  |
+|----------|---------|---------|
+| Black    | #292524 | #525252 |
+| Red      | #f43f5e | #fb7185 |
+| Green    | #22c55e | #4ade80 |
+| Yellow   | #fcd34d | #fde68a |
+| Blue     | #3b82f6 | #60a5fa |
+| Magenta  | #e879f9 | #f0abfc |
+| Cyan     | #06b6d4 | #22d3ee |
+| White    | #d4d4d8 | #e7e5e4 |
+
+Additional shared values:
+- **Background**: `#0a0a0a`
+- **Foreground**: `#d6d3d1`
+- **Accent (Arch Blue)**: `#1793d1`
+- **Surface**: `#333333`
+
+When adding or modifying colors in any config, use values from this palette. Do not introduce one-off hex values.
+
+### Display-Adaptive Configuration
+
+Some configs adapt to screen size rather than hostname. The pattern is to query the effective display width (`resolution / scale`) and select a profile:
+- **Compact** (< 2000px effective) - icon-only with tooltips, smaller fonts
+- **Full** (>= 2000px effective) - icons with text labels
+
+This approach works across different machines without hostname checks. See `dotfiles/waybar/CLAUDE.md` for the specific implementation.
+
+### Host-Specific Configuration (Linux / Hyprland)
+
+The Hyprland setup detects hostname for laptop vs desktop settings:
+- **zaxtec** - laptop (QWERTY keybinds, touchpad, smaller gaps)
+- **other** - desktop (Dvorak keybinds, larger gaps)
 
 Configuration flow:
 1. `hyprland.conf` sources `host-settings.conf` and `host-keybinds.conf`
@@ -46,14 +80,14 @@ Edit the source files in `hosts/<type>/`, not the generated `host-*.conf` files.
 
 ### Bash Initialization Chain
 `bashinit.sh` sources these in order:
-- `bash-prompt.sh` - Custom prompt with git integration
+- `bash-prompt.sh` - Custom prompt with git integration (uses ANSI colors mapped to kitty palette)
 - `bash-history.sh` - History configuration
 - `ssh-agent.sh` - SSH agent setup
 - `zed-workspaces.sh` - Zed workspace management (`z` command)
 - `bash-linux.sh` or `bash-osx.sh` - Platform-specific settings
 
 ### OS-Specific Installations
-- **Linux (Arch)**: hypr, waybar, gammastep, wofi, kitty, zed, vim
+- **Linux (Arch)**: hypr, waybar, gammastep, wofi, wlogout, kitty, zed, vim
 - **macOS**: aerospace (or yabai+skhd), sketchybar, kitty, zed, vim
 
 ### macOS Window Management
@@ -69,3 +103,10 @@ AeroSpace configuration is in `dotfiles/aerospace/` with keybindings matching th
 - Check for existing symlinks/configs before creating new ones
 - Use `grep -q` for idempotent file modifications
 - Platform detection uses `uname` to branch Linux/Darwin behavior
+
+## Validation
+
+- Shell scripts: `bash -n <script>` for syntax checking
+- CSS: verify balanced braces after edits
+- JSONC: strip comments and parse as JSON to validate
+- Hyprland: `hyprctl reload` to test config changes live
