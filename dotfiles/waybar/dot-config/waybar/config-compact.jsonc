@@ -1,5 +1,5 @@
 {
-  // Compact config: icon-only formats with values in tooltips.
+  // Compact config: concise formats for smaller displays.
   // Selected automatically for displays under 2000 effective pixels wide.
   // Relies on color states and icon variants to convey status at a glance.
   "height": 30,
@@ -92,12 +92,9 @@
     },
   },
   "temperature": {
-    // Uses device path instead of hwmon index, which can change across reboots
-    "hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:18.3/hwmon",
-    "input-filename": "temp3_input",
-    "format": "",
+    "format": "",
     "critical-threshold": 80,
-    "format-critical": " !!",
+    "format-critical": " !!",
     "tooltip-format": "Temperature: {temperatureC}°C",
   },
 
@@ -113,28 +110,28 @@
     "format": "{:%H:%M}",
   },
   "pulseaudio": {
-    // No tooltip-format available; default tooltip shows device name.
     // Icon changes between low/medium/high volume levels.
-    "format": "{icon}",
-    "format-bluetooth": "{icon} ",
-    "format-bluetooth-muted": "󰝟 ",
-    "format-muted": "󰝟",
-    "format-source": "",
-    "format-source-muted": "",
+    "tooltip-format": "Volume: {volume}%\n{desc}",
+    "format": "{icon}  {format_source}",
+    "format-bluetooth": "{icon}   {format_source}",
+    "format-bluetooth-muted": "󰝟   {format_source}",
+    "format-muted": "󰝟  {format_source}",
+    "format-source": "",
+    "format-source-muted": "",
     "format-icons": {
-      "headphone": "",
+      "headphone": "",
       "hands-free": "󰋎",
       "headset": "󰋎",
-      "phone": "",
-      "portable": "",
-      "car": "",
-      "default": ["", "", ""],
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""],
     },
     "on-click": "pavucontrol",
   },
   "network": {
     "format-wifi": "󰤨",
-    "format-ethernet": "",
+    "format-ethernet": "",
     "format-linked": "󰲊",
     "format-disconnected": "󰲛",
     "tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ipaddr}/{cidr}",
@@ -144,15 +141,14 @@
   },
 
   "cpu": {
-    "format": "",
-    // Default tooltip shows per-core usage bars
+    "format": "{usage}% ",
     "states": {
       "high": 70,
       "critical": 90,
     },
   },
   "memory": {
-    "format": "",
+    "format": "{}% ",
     "tooltip-format": "Memory: {percentage}% ({used:0.1f}GiB / {total:0.1f}GiB)",
     "states": {
       "high": 70,
@@ -170,9 +166,9 @@
       "warning": 30,
       "critical": 15,
     },
-    "format": "{icon}",
-    "format-charging": "{icon} 󱐋",
-    "format-plugged": "{icon} 󰚥",
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% {icon}",
+    "format-plugged": "{capacity}% {icon}",
     "format-icons": {
       "charging": "󱐋",
       "plugged": "󰚥",

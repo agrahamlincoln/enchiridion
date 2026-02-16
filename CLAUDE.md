@@ -12,8 +12,8 @@ The Enchiridion is a personal dotfiles repository for managing system configurat
 # Full environment setup (installs packages, dotfiles, and configures bash)
 just setup
 
-# Install specific dotfiles
-just install-dotfiles kitty hypr waybar zed vim
+# Install specific dotfiles (stows them to ~/.config/<app>)
+just install-dotfiles kitty hypr waybar wlogout zed vim
 
 # Configure bash initialization
 just install-bashinit
@@ -21,6 +21,14 @@ just install-bashinit
 # Fetch GitHub token from Bitwarden
 just setup-env
 ```
+
+### Adding a New Dotfiles Package
+
+1. Create `dotfiles/<app>/dot-config/<app>/` with the config files
+2. Run `just install-dotfiles <app>` to stow it
+3. Add `<app>` to the appropriate OS list in the `setup` recipe in the Justfile so it's included in future full setups
+
+The `install-dotfiles` target uses `stow --dotfiles` with `--ignore='CLAUDE\.md' --ignore='README\.md'` so that documentation files in package directories are not symlinked into `~`.
 
 ## Architecture
 

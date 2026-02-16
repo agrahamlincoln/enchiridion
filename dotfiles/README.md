@@ -1,13 +1,11 @@
 # Dotfiles
 
-These are my dotfiles!
-
-I use `stow` to install these. See [stow(8)](https://linux.die.net/man/8/stow) for more details.
-
-Recommended pairings and installation commands:
+These are my dotfiles! Managed with [stow](https://linux.die.net/man/8/stow) and automated via `just`.
 
 ```bash
-cd /path/to/dotfiles/
-# kitty / waybar / hyprland setup
-stow -t ~ --dotfiles -S hypr kitty waybar
+# Install specific dotfiles
+just install-dotfiles kitty hypr waybar wlogout
+
+# Full setup (OS-specific packages, dotfiles, bash config)
+just setup
 ```

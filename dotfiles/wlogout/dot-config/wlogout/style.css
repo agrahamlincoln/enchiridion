@@ -34,23 +34,23 @@ button:focus, button:active, button:hover {
 }
 
 #lock {
-    background-image: image(url("icons/lock.svg"), url("/usr/share/wlogout/icons/lock.png"));
+    background-image: url("icons/lock.svg");
 }
 
 #logout {
-    background-image: image(url("icons/logout.svg"), url("/usr/share/wlogout/icons/logout.png"));
+    background-image: url("icons/logout.svg");
 }
 
 #suspend {
-    background-image: image(url("icons/suspend.svg"), url("/usr/share/wlogout/icons/suspend.png"));
+    background-image: url("icons/suspend.svg");
 }
 
 #reboot {
-    background-image: image(url("icons/reboot.svg"), url("/usr/share/wlogout/icons/reboot.png"));
+    background-image: url("icons/reboot.svg");
 }
 
 #shutdown {
-    background-image: image(url("icons/shutdown.svg"), url("/usr/share/wlogout/icons/shutdown.png"));
+    background-image: url("icons/shutdown.svg");
 }
 
 /* Button text styling */

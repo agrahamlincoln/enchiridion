@@ -8,7 +8,7 @@ install-dotfiles *targets:
     @pushd {{DOTFILES_DIR}} > /dev/null && \
     for target in {{targets}}; do \
         if [[ ! -L ~/.config/$target ]]; then \
-          if ! stow -t ~ --dotfiles -S "$target"; then \
+          if ! stow -t ~ --dotfiles --ignore='CLAUDE\.md' --ignore='README\.md' -S "$target"; then \
               echo "❌ Error: Failed to stow $target. Please check for conflicts or errors." >&2; \
           else \
               echo "✅ Stowed $target."; \
@@ -104,7 +104,7 @@ setup:
     if [[ "$(uname)" == "Darwin" ]]; then
         just -f {{justfile()}} install-dotfiles kitty yabai skhd zed vim
     else
-        just -f {{justfile()}} install-dotfiles kitty hypr waybar zed vim gammastep wofi
+        just -f {{justfile()}} install-dotfiles kitty hypr waybar wlogout zed vim gammastep wofi
     fi
 
     # --- Final Configuration ---
