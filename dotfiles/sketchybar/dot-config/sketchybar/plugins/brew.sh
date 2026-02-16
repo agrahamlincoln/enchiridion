@@ -4,10 +4,10 @@ source "$HOME/.config/sketchybar/colors.lua" 2>/dev/null || {
   # Define colors directly if colors.lua doesn't work
   arch_blue=0xff1793d1
   arch_text=0xffffffff
-  yellow=0xffffd141
-  orange=0xffffb900
-  arch_urgent=0xffff6b6b
-  green=0xff8ce00a
+  yellow=0xfffcd34d
+  orange=0xfffb923c
+  arch_urgent=0xfff43f5e
+  green=0xff22c55e
 }
 
 COUNT=$(brew outdated 2>/dev/null | wc -l | tr -d ' ')

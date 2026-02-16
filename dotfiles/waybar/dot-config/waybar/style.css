@@ -1,14 +1,13 @@
 /*
  * Powerline-inspired theme for Waybar, themed with Arch Linux colors.
  *
- * This theme groups modules and uses powerline arrows to separate them.
- * Workspaces are styled as clean, distinct "pills".
+ * This theme groups right-side modules into rounded "pill" clusters.
+ * Workspaces are styled as clean, distinct pills on the left.
  *
  * REQUIREMENTS:
  * 1. A Nerd Font installed and enabled below (e.g., 'FiraCode Nerd Font').
  *    On Arch: `sudo pacman -S ttf-firacode-nerd`
- * 2. The `config.jsonc` must be structured with separator modules.
- * 3. `ttf-font-awesome` for certain icons.
+ * 2. `ttf-font-awesome` for certain icons.
  */
 
 /* --- Base --- */
@@ -41,7 +40,7 @@ tooltip {
 @define-color arch-mine-shaft #333333;
 @define-color arch-text #ffffff;
 @define-color arch-alt-bg #444444;
-@define-color arch-urgent #ff5555;
+@define-color arch-urgent #f43f5e;
 
 /* --- Waybar Group Definitions --- */
 /* We'll use the Arch palette to define our module groups */
@@ -52,8 +51,6 @@ tooltip {
 @define-color workspaces-urgent-bg @arch-urgent;
 @define-color workspaces-urgent-fg @arch-text;
 
-@define-color sway-bg @arch-mine-shaft;
-@define-color media-bg @arch-blue;
 @define-color window-bg transparent;
 @define-color main-bg @arch-mine-shaft;
 @define-color system-bg @arch-alt-bg;
@@ -61,27 +58,21 @@ tooltip {
 
 /* --- General Module Styling --- */
 #workspaces,
-#mode,
-#scratchpad,
-#custom-media,
 #mpris,
 #disk,
 #bluetooth,
 #window,
 #custom-updates,
 #clock,
-#mpd,
 #idle_inhibitor,
 #pulseaudio,
 #network,
-#power-profiles-daemon,
 #cpu,
 #memory,
 #temperature,
 #battery,
 #backlight,
-#keyboard-state,
-#language,
+#privacy,
 #tray,
 #custom-power {
   padding: 2px 10px;
@@ -94,16 +85,8 @@ tooltip {
 #workspaces {
   background: transparent;
 }
-#mode,
-#scratchpad {
-  background: @sway-bg;
-}
-#custom-media {
-  background: @media-bg;
-}
 /* Center */
-#window,
-#sway-window {
+#window {
   background: @arch-alt-bg;
   border-radius: 10px;
   margin: 3px 6px; /* Vertical and horizontal margin for spacing */
@@ -120,6 +103,9 @@ tooltip {
 #temperature,
 #battery,
 #backlight,
+#idle_inhibitor,
+#clock,
+#privacy,
 #tray,
 #custom-power {
   background: @main-bg; /* Dark Gray */
@@ -174,11 +160,11 @@ tooltip {
   color: @arch-urgent;
 }
 #battery.good {
-  color: #50fa7b;
+  color: #22c55e;
 }
 
 #battery.warning {
-  color: #ffb86c;
+  color: #fcd34d;
 }
 
 #battery.critical {
@@ -188,14 +174,28 @@ tooltip {
   color: @arch-blue;
 }
 
+/* Color states for system resource modules */
+#cpu.high,
+#memory.high,
+#disk.warning {
+  color: #fcd34d;
+}
+#cpu.critical,
+#memory.critical,
+#disk.critical {
+  color: @arch-urgent;
+}
+
 /* --- Right-Side Pill Group Styling --- */
-/* This creates four distinct pills with rounded corners. */
+/* Rounded corners on the first and last module of each pill group. */
 
 /* First module in each pill */
 #custom-updates,
 #network,
 #cpu,
 #temperature,
+#privacy,
+#clock,
 #tray {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -208,6 +208,8 @@ tooltip {
 #pulseaudio,
 #disk,
 #custom-power,
+#privacy,
+#clock,
 #tray {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -217,9 +219,7 @@ tooltip {
 /* Add consistent vertical margin to all right-side modules to complete the pill effect */
 #custom-updates,
 #clock,
-#mpd,
 #idle_inhibitor,
-#power-profiles-daemon,
 #pulseaudio,
 #network,
 #cpu,
@@ -228,18 +228,21 @@ tooltip {
 #battery,
 #disk,
 #backlight,
-#keyboard-state,
-#language,
 #bluetooth,
+#privacy,
 #tray,
 #custom-power {
   margin-top: 3px;
   margin-bottom: 3px;
 }
 
-#custom-updates {
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  margin-left: 6px; /* Add margin to create space between pills */
-  padding-left: 12px;
+/* --- Privacy Module --- */
+/* Highlighted when screen sharing, mic, or audio recording is active */
+#privacy {
+  color: @arch-urgent;
+}
+
+/* --- Clock Module --- */
+#clock {
+  font-weight: bold;
 }

@@ -4,30 +4,30 @@ return {
   arch_mine_shaft = 0xff333333,
   arch_text = 0xffffffff,
   arch_alt_bg = 0xff444444,
-  arch_urgent = 0xffff6b6b,
+  arch_urgent = 0xfff43f5e,
 
-  -- Original colors (kept for compatibility)
-  black = 0xff121212,
-  white = 0xfffffaf3,
-  red = 0xffff273f,
-  green = 0xff8ce00a,
-  blue = 0xff008df8,
-  yellow = 0xffffd141,
-  orange = 0xffffb900,
-  magenta = 0xff9a5feb,
-  grey = 0xffaaaaaa,
+  -- Semantic colors (Tailwind-derived)
+  black = 0xff292524,
+  white = 0xffd4d4d8,
+  red = 0xfff43f5e,
+  green = 0xff22c55e,
+  blue = 0xff3b82f6,
+  yellow = 0xfffcd34d,
+  orange = 0xfffb923c,
+  magenta = 0xffe879f9,
+  grey = 0xffd4d4d8,
   transparent = 0x00000000,
 
   bar = {
-    bg = 0xf0121212,
-    border = 0xff383838,
+    bg = 0xf00a0a0a,
+    border = 0xff333333,
   },
   popup = {
-    bg = 0xc0121212,
-    border = 0xff383838
+    bg = 0xc00a0a0a,
+    border = 0xff333333
   },
-  bg1 = 0xff363944,
-  bg2 = 0xff414550,
+  bg1 = 0xff333333,
+  bg2 = 0xff444444,
 
   with_alpha = function(color, alpha)
     if alpha > 1.0 or alpha < 0.0 then return color end

@@ -5,7 +5,7 @@ source "$HOME/.config/sketchybar/colors.lua" 2>/dev/null || {
   arch_blue=0xff1793d1
   arch_text=0xffffffff
   arch_alt_bg=0xff444444
-  arch_urgent=0xffff5555
+  arch_urgent=0xfff43f5e
 }
 
 PLUGIN_DIR="$HOME/.config/sketchybar/plugins"

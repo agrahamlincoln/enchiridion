@@ -1,4 +1,7 @@
 {
+  // Compact config: icon-only formats with values in tooltips.
+  // Selected automatically for displays under 2000 effective pixels wide.
+  // Relies on color states and icon variants to convey status at a glance.
   "height": 30,
   "spacing": 0,
   "modules-left": ["hyprland/workspaces", "mpris"],
@@ -37,11 +40,11 @@
     "format": "{name} {windows}",
     "on-click": "activate",
     "format-icons": {
-      "urgent": "",
-      "active": "",
-      "default": "",
+      "urgent": "",
+      "active": "",
+      "default": "",
     },
-    "window-rewrite-default": "<span size='large'></span>", // nf-cod-application
+    "window-rewrite-default": "<span size='large'></span>", // nf-cod-application
     "window-rewrite": {
       // classes found with `hyprctl clients` command
       "class<kitty>": "<span size='large'>󰆍</span>", // nf-md-terminal
@@ -50,7 +53,7 @@
       "class<discord>": "<span size='large'>󰙯</span>", // nf-md-discord
       "class<steam>": "<span size='large'>󰓓</span>", // nf-md-steam
       "class<zen>": "<span size='large'>󰈹</span>", // nf-md-firefox
-      "title<Monster Hunter Wilds>": "<span size='large'></span>",
+      "title<Monster Hunter Wilds>": "<span size='large'></span>",
       "class<dota2>": "<span size='large'>󱢾</span>", // nf-md-shield_sword
     },
     "persistent-workspaces": {
@@ -60,28 +63,28 @@
 
   "hyprland/window": {
     "format": "{}",
-    "max-length": 50,
+    "max-length": 30,
   },
   "custom/updates": {
     "exec-if": "/usr/local/bin/available-upgrades.sh",
     "exec": "wc -l /var/lib/available-upgrades/.package-available-upgrades | awk '{print $1}'",
     "interval": 300,
+    "format": "󰏗",
     "tooltip-format": "{} updates available",
-    "format": "{} 󰏗",
   },
   "mpris": {
-    "format": "{title} 󰋋",
-    "format-stopped": "No Music 󰋋",
-    "tooltip-format-playing": "{title} - {artist} ({album})",
+    "format": "{player_icon}",
+    "format-stopped": "",
+    "tooltip-format-playing": "{title} - {artist}",
     "tooltip-format-paused": "{title} - {artist} (paused)",
     "tooltip-format-stopped": "No music playing",
     "player-icons": {
       "default": "▶",
-      "spotify": "",
+      "spotify": "",
     },
   },
   "disk": {
-    "format": "{percentage_used}% 󰋊",
+    "format": "󰋊",
     "tooltip-format": "Disk: {percentage_used}% used ({used} / {total})",
     "states": {
       "warning": 80,
@@ -92,15 +95,15 @@
     // Uses device path instead of hwmon index, which can change across reboots
     "hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:18.3/hwmon",
     "input-filename": "temp3_input",
-    "format": "{temperatureC}°C ",
+    "format": "",
     "critical-threshold": 80,
-    "format-critical": "{temperatureC}°C!! ",
+    "format-critical": " !!",
     "tooltip-format": "Temperature: {temperatureC}°C",
   },
 
   "bluetooth": {
-    "format": "{status} 󰂯",
-    "format-connected": "{status} 󰂱",
+    "format": "󰂯",
+    "format-connected": "󰂱",
     "tooltip-format": "Bluetooth: {status}",
     "tooltip-format-connected": "{device_alias}",
   },
@@ -110,44 +113,46 @@
     "format": "{:%H:%M}",
   },
   "pulseaudio": {
-    "format": "{volume}% {icon}   {format_source}",
-    "format-bluetooth": "{volume}%  {icon}  {format_source}",
-    "format-bluetooth-muted": "󰝟  {icon}  {format_source}",
-    "format-muted": "󰝟  {format_source}",
-    "format-source": "{volume}% ",
-    "format-source-muted": "",
+    // No tooltip-format available; default tooltip shows device name.
+    // Icon changes between low/medium/high volume levels.
+    "format": "{icon}",
+    "format-bluetooth": "{icon} ",
+    "format-bluetooth-muted": "󰝟 ",
+    "format-muted": "󰝟",
+    "format-source": "",
+    "format-source-muted": "",
     "format-icons": {
-      "headphone": "",
+      "headphone": "",
       "hands-free": "󰋎",
       "headset": "󰋎",
-      "phone": "",
-      "portable": "",
-      "car": "",
-      "default": ["", "", ""],
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""],
     },
     "on-click": "pavucontrol",
   },
   "network": {
-    "format-wifi": "{essid} ({signalStrength}%) 󰤨",
-    "format-ethernet": "{ipaddr}/{cidr} ",
-    "tooltip-format": "{ifname} via {gwaddr} ",
+    "format-wifi": "󰤨",
+    "format-ethernet": "",
+    "format-linked": "󰲊",
+    "format-disconnected": "󰲛",
     "tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ipaddr}/{cidr}",
     "tooltip-format-ethernet": "{ipaddr}/{cidr}",
     "tooltip-format-disconnected": "Disconnected",
-    "format-linked": "{ifname} (No IP) 󰲊",
-    "format-disconnected": "Disconnected 󰲛",
     "format-alt": "{ifname}: {ipaddr}/{cidr}",
   },
 
   "cpu": {
-    "format": "{usage}% ",
+    "format": "",
+    // Default tooltip shows per-core usage bars
     "states": {
       "high": 70,
       "critical": 90,
     },
   },
   "memory": {
-    "format": "{}% ",
+    "format": "",
     "tooltip-format": "Memory: {percentage}% ({used:0.1f}GiB / {total:0.1f}GiB)",
     "states": {
       "high": 70,
@@ -165,9 +170,9 @@
       "warning": 30,
       "critical": 15,
     },
-    "format": "{capacity}% {icon}",
-    "format-charging": "{capacity}% {icon} {power:.1f}W",
-    "format-plugged": "{capacity}% {icon}",
+    "format": "{icon}",
+    "format-charging": "{icon} 󱐋",
+    "format-plugged": "{icon} 󰚥",
     "format-icons": {
       "charging": "󱐋",
       "plugged": "󰚥",
@@ -177,7 +182,7 @@
     "tooltip-format-charging": "Charging: {capacity}% ({time} to full)\nPower: +{power:.2f}W",
   },
   "backlight": {
-    "format": "{percent}% 󰃞",
+    "format": "󰃞",
     "tooltip-format": "Brightness: {percent}%",
   },
   "idle_inhibitor": {

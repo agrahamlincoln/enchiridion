@@ -139,7 +139,7 @@ arch_blue = 0xff1793d1      -- Primary accent (waybar blue)
 arch_mine_shaft = 0xff333333 -- Dark background
 arch_text = 0xffffffff      -- Primary text
 arch_alt_bg = 0xff444444    -- Secondary background
-arch_urgent = 0xffff5555    -- Error/warning color
+arch_urgent = 0xfff43f5e    -- Error/warning color
 ```
 
 ### Using Colors
@@ -150,7 +150,7 @@ local colors = require("colors")
 background = { color = colors.arch_mine_shaft }
 label = { color = colors.arch_text }
 
--- Or original colors for compatibility
+-- Or semantic colors
 background = { color = colors.bg1 }
 label = { color = colors.white }
 ```

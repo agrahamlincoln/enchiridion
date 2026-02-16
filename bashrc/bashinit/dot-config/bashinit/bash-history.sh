@@ -13,7 +13,10 @@ export HISTFILE=~/.bash_eternal_history
 # Force prompt to write history after every command.
 # also reload the history after every command to sync if/when multiple shells
 # are in use. http://superuser.com/questions/20900/bash-history-loss
-PROMPT_COMMAND="history -a; history -n; $PROMPT_COMMAND"
+# Save $? before history commands clobber it, then restore so downstream
+# PROMPT_COMMAND functions (e.g. prompt_command) see the real exit code.
+__restore_exit() { return "$__last_exit_code"; }
+PROMPT_COMMAND='__last_exit_code=$?; history -a; history -n; __restore_exit; '"$PROMPT_COMMAND"
 shopt -s histappend
 stophistory () {
   PROMPT_COMMAND="bash_prompt_command"

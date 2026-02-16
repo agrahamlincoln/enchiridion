@@ -1,32 +1,32 @@
 /* wofi-style.css */
 window {
   border: 1px solid #1793d1; /* Subtle active border */
-  background-color: #111; /* Dark background */
+  background-color: #0a0a0a; /* Dark background */
 }
 
 #outer-box {
   box-shadow: 0 0 6px rgba(0a0a0abb); /* Shadow from Hyprland */
-  background-color: #111;
+  background-color: #0a0a0a;
 }
 
 #input {
   background-color: #333333; /* Inactive border color */
-  color: #ddd;
+  color: #d4d4d8;
 }
 
 #scroll {
   box-shadow: 0 0 4px rgba(0a0a0abb); /* Shadow color from Hyprland */
-  background-color: #111;
+  background-color: #0a0a0a;
 }
 
 #inner-box {
   box-shadow: 0 0.5px 4px rgba(0a0a0abb);
-  background-color: #111;
+  background-color: #0a0a0a;
 }
 
 #entry {
-  background-color: #111;
-  color: #ddd;
+  background-color: #0a0a0a;
+  color: #d4d4d8;
 }
 
 #entry:selected {
