@@ -7,7 +7,22 @@ local icons = {
     apple = "􀣺",
     gear = "􀍟",
     cpu = "􀫥",
+    memory = "􀫦",
+    disk = "􀥾",
     clipboard = "􀉄",
+
+    -- Bluetooth is a private SF Symbol with no font character in SF Pro.
+    -- Uses NerdFont glyphs; the bluetooth widget overrides icon.font.
+    bluetooth = {
+      on = "󰂯",
+      off = "󰂲",
+      connected = "󰂱",
+    },
+    brightness = {
+      full = "􀆮",
+      half = "􀆬",
+      low = "􀆫",
+    },
 
     switch = {
       on = "􁏮",
@@ -49,7 +64,20 @@ local icons = {
     apple = "",
     gear = "",
     cpu = "",
+    memory = "󰍛",
+    disk = "󰋊",
     clipboard = "Missing Icon",
+
+    bluetooth = {
+      on = "󰂯",
+      off = "󰂲",
+      connected = "󰂱",
+    },
+    brightness = {
+      full = "󰃠",
+      half = "󰃟",
+      low = "󰃞",
+    },
 
     switch = {
       on = "󱨥",
