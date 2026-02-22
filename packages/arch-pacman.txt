@@ -1,0 +1,43 @@
+# Core tools
+base-devel
+git
+stow
+openssh
+jq
+
+# Terminal and editors
+kitty
+vim
+
+# Hyprland compositor
+hyprland
+hyprpaper
+hyprlock
+hypridle
+xdg-desktop-portal-hyprland
+
+# Desktop utilities
+waybar
+gammastep
+thunar
+
+# Fonts
+ttf-firacode-nerd
+otf-font-awesome
+ttf-fira-code
+
+# Screenshot and clipboard
+grim
+slurp
+wl-clipboard
+
+# Media and hardware
+brightnessctl
+playerctl
+pipewire
+wireplumber
+pavucontrol
+
+# Waybar live reload
+inotify-tools
+

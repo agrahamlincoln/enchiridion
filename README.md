@@ -11,39 +11,44 @@ This repository contains configurations for a variety of tools, including:
 *   **Window Managers:** Hyprland
 *   **Editors:** Vim, Zed
 *   **Terminal:** Kitty
-*   **Status Bars:** Polybar, Waybar
+*   **Status Bars:** Waybar, Sketchybar
 *   **Shell:** Bash, with a custom prompt and virtualenvwrapper support
 *   **Other Tools:** Git, Gammastep, and more.
 
 ## Installation
 
-The recommended way to install these dotfiles is with `just`. `just` is a command
-runner that provides a simple way to automate tasks. You can learn more about
-`just` [here](https://github.com/casey/just).
+### New Machine
 
-To get started, run the following command:
+1. Clone this repo:
+   ```bash
+   git clone https://github.com/<user>/enchiridion.git ~/projects/enchiridion
+   ```
+
+2. Run setup:
+   ```bash
+   cd ~/projects/enchiridion
+   ./setup.sh
+   ```
+
+   This installs prerequisites (stow, paru), system packages,
+   dotfiles, and bash configuration.
+
+### Updating
 
 ```bash
-just setup
+cd ~/projects/enchiridion
+git pull
+./setup.sh
 ```
 
-This will install the relevant dotfiles and bash configuration for your operating
-system. It will also install any necessary dependencies.
+### Adding a Package
 
-For more advanced or manual installation instructions, please see the READMEs in
-the relevant subdirectories.
+Add the package name to the appropriate file in `packages/` and run `./setup.sh`.
 
-## Why `stow` and `just`?
+## Why `stow`?
 
-This repository uses `stow` to manage dotfiles and `just` to automate setup.
-Here's why:
-
-*   **`stow`:** `stow` is a symlink farm manager that makes it easy to manage
-    dotfiles across multiple machines. It allows you to keep your dotfiles in a
-    single repository and then symlink them into place on each machine. This
-    makes it easy to keep your dotfiles in sync and to share them with others.
-*   **`just`:** `just` is a command runner that provides a simple way to
-    automate tasks. It's similar to `make`, but it's simpler and more modern.
-    `just` is used in this repository to automate the installation of dotfiles
-    and other dependencies. This makes it easy to get up and running quickly on a
-    new machine.
+This repository uses `stow` to manage dotfiles. `stow` is a symlink farm
+manager that makes it easy to manage dotfiles across multiple machines. It
+allows you to keep your dotfiles in a single repository and then symlink them
+into place on each machine. This makes it easy to keep your dotfiles in sync
+and to share them with others.

@@ -1,0 +1,7 @@
+# Terminal
+kitty
+
+# Sketchybar fonts and icons
+sf-symbols
+font-sf-mono
+font-sf-pro

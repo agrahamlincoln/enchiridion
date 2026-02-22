@@ -4,38 +4,45 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-The Enchiridion is a personal dotfiles repository for managing system configurations across multiple machines (laptops and desktops). It uses `stow` for symlink management and `just` for automation.
+The Enchiridion is a personal dotfiles repository for managing system configurations across multiple machines (laptops and desktops). It uses `stow` for symlink management and a single `setup.sh` script for automation.
 
 ## Common Commands
 
 ```bash
 # Full environment setup (installs packages, dotfiles, and configures bash)
-just setup
+./setup.sh
 
-# Install specific dotfiles (stows them to ~/.config/<app>)
-just install-dotfiles kitty hypr waybar wlogout zed vim
-
-# Configure bash initialization
-just install-bashinit
-
-# Fetch GitHub token from Bitwarden
-just setup-env
+# Manually stow a single dotfiles package
+cd dotfiles && stow -t ~ --dotfiles --ignore='CLAUDE\.md' --ignore='README\.md' -S <app>
 ```
 
 ### Adding a New Dotfiles Package
 
 1. Create `dotfiles/<app>/dot-config/<app>/` with the config files
-2. Run `just install-dotfiles <app>` to stow it
-3. Add `<app>` to the appropriate OS list in the `setup` recipe in the Justfile so it's included in future full setups
+2. Stow it: `cd dotfiles && stow -t ~ --dotfiles --ignore='CLAUDE\.md' --ignore='README\.md' -S <app>`
+3. Add the system package to the appropriate file in `packages/` (e.g., `arch-pacman.txt`, `brew-formulae.txt`)
+4. Add `<app>` to the appropriate OS dotfiles list in `setup.sh`
 
-The `install-dotfiles` target uses `stow --dotfiles` with `--ignore='CLAUDE\.md' --ignore='README\.md'` so that documentation files in package directories are not symlinked into `~`.
+The stow invocations use `--dotfiles` (converts `dot-` prefixes to `.`) and ignore `CLAUDE.md`/`README.md` so documentation files are not symlinked into `~`.
+
+### Package Management
+
+System packages are defined in `packages/`, one package per line with `#` comments and blank lines for grouping:
+- `arch-pacman.txt` — Official Arch repo packages (installed via `pacman`)
+- `arch-aur.txt` — AUR packages (installed via `paru`)
+- `brew-taps.txt` — Homebrew taps
+- `brew-formulae.txt` — Homebrew formulae
+- `brew-casks.txt` — Homebrew casks
+
+To add a new system dependency, append it to the relevant file and run `./setup.sh`.
 
 ## Architecture
 
 ### Directory Structure
+- `setup.sh` - Idempotent setup script (prerequisites, packages, dotfiles, bash config)
+- `packages/` - Package list files (one package per line, `#` comments)
 - `dotfiles/` - Stow-managed configs (kitty, hypr, waybar, zed, vim, etc.)
 - `bashrc/bashinit/` - Bash initialization scripts
-- `Justfile` - Main automation targets
 
 Tool-specific details live in subdirectory `CLAUDE.md` files (e.g., `dotfiles/hypr/CLAUDE.md`, `dotfiles/waybar/CLAUDE.md`) and are loaded automatically when working in those directories.
 
@@ -96,18 +103,15 @@ Edit the source files in `hosts/<type>/`, not the generated `host-*.conf` files.
 
 ### OS-Specific Installations
 - **Linux (Arch)**: hypr, waybar, gammastep, wofi, wlogout, kitty, zed, vim
-- **macOS**: aerospace (or yabai+skhd), sketchybar, kitty, zed, vim
+- **macOS**: yabai, skhd, sketchybar, kitty, zed, vim
 
 ### macOS Window Management
-Two options are available:
-- **AeroSpace** (recommended): i3-like tiling WM, no SIP disable required, more stable
-- **yabai + skhd**: Traditional BSP layout, requires SIP disable
-
-AeroSpace configuration is in `dotfiles/aerospace/` with keybindings matching the previous yabai setup.
+- **yabai + skhd**: BSP tiling WM with hotkey daemon, requires SIP disable
+- **Sketchybar**: Custom status bar with SbarLua plugin and app font (installed by `setup.sh`)
 
 ## Development Patterns
 
-- All justfile targets are idempotent - safe to run multiple times
+- `setup.sh` is idempotent - safe to run multiple times
 - Check for existing symlinks/configs before creating new ones
 - Use `grep -q` for idempotent file modifications
 - Platform detection uses `uname` to branch Linux/Darwin behavior

@@ -1,0 +1,10 @@
+# Core tools
+stow
+jq
+vim
+
+# Sketchybar
+lua
+switchaudio-osx
+nowplaying-cli
+sketchybar

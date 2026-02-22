@@ -1,0 +1,11 @@
+# App launcher
+wofi
+
+# Logout menu
+wlogout
+
+# Cursor theme (used in hyprland.conf)
+phinger-cursors
+
+# Hyprland expo plugin
+hyprland-plugin-hyprexpo
