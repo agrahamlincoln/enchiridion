@@ -1,9 +1,6 @@
 .vscode/
 .env
 
-# Ignore downloaded Zed themes for analysis
-dotfiles/zed/zed-themes-analysis/
-
 # claude-memory are useful, but don't need to be committed
 .claude/
 claude-memory/
@@ -12,6 +9,3 @@ claude-memory/
 dotfiles/hypr/dot-config/hypr/layout-keybinds.conf
 dotfiles/hypr/dot-config/hypr/host-settings.conf
 dotfiles/hypr/dot-config/hypr/host-keybinds.conf
-
-# Zed workspace scripts (user-specific, generated from template)
-dotfiles/zed/bin/zed-*-workspace

@@ -98,7 +98,6 @@ Edit the source files in `hosts/<type>/`, not the generated `host-*.conf` files.
 - `bash-prompt.sh` - Custom prompt with git integration (uses ANSI colors mapped to kitty palette)
 - `bash-history.sh` - History configuration
 - `ssh-agent.sh` - SSH agent setup
-- `zed-workspaces.sh` - Zed workspace management (`z` command)
 - `bash-linux.sh` or `bash-osx.sh` - Platform-specific settings
 
 ### OS-Specific Installations

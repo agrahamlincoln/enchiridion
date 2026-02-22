@@ -6,7 +6,6 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $DIR/bash-prompt.sh
 source $DIR/bash-history.sh
 source $DIR/ssh-agent.sh
-source $DIR/zed-workspaces.sh
 # Aliases.
 alias ..="cd .."
 alias cpp="rsync --info=progress2 $1 $2"
