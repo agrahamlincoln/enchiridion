@@ -65,13 +65,17 @@ setup:
         else
             echo "- paru is already installed."
         fi
-        # Check if wofi is installed
-        if ! paru -Q wofi &>/dev/null; then
-            echo "-> wofi not installed. Installing..."
-            paru -S --noconfirm --needed wofi
-        else
-            echo "- wofi is already installed."
-        fi
+        # Install all Linux desktop packages
+        echo "-> Installing Linux desktop packages..."
+        paru -S --noconfirm --needed \
+            hyprland hyprpaper hyprlock hypridle \
+            hyprland-plugin-hyprexpo \
+            waybar wofi wlogout \
+            brightnessctl grim slurp wl-clipboard \
+            pipewire wireplumber pavucontrol playerctl \
+            inotify-tools jq thunar gammastep \
+            ttf-firacode-nerd otf-font-awesome ttf-fira-code \
+            phinger-cursors
     else
         echo "❌ Unsupported OS: $(uname)" >&2
         exit 1
