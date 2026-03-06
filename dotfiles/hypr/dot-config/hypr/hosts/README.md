@@ -8,18 +8,18 @@ This directory contains host-specific configurations for different device types 
 hosts/
 ├── laptop/
 │   ├── settings.conf   # Laptop-specific settings (touchpad, scaling, smaller gaps)
-│   └── keybinds.conf   # QWERTY keybindings for laptop
+│   └── keybinds.conf   # QWERTY window-management keybinds
 ├── desktop/
 │   ├── settings.conf   # Desktop-specific settings (full visual effects, larger gaps)
-│   └── keybinds.conf   # Dvorak keybindings for desktop
+│   └── keybinds.conf   # Dvorak window-management keybinds
 └── README.md          # This file
 ```
 
 ## How It Works
 
-1. **Host Detection**: `update-host-config.sh` detects the hostname and determines device type:
-   - `zaxtec` → laptop (QWERTY)
-   - All others → desktop (Dvorak)
+1. **Profile Selection**: `update-host-config.sh` reads `~/.config/hypr/host-type` to determine the device profile:
+   - `laptop` → touchpad, smaller gaps, QWERTY window-management keybinds
+   - `desktop` (default) → no touchpad, larger gaps, Dvorak window-management keybinds
 
 2. **Configuration Generation**: The script generates two files in the main hypr directory:
    - `host-settings.conf` → Device-specific settings, input, monitor config
@@ -29,24 +29,23 @@ hosts/
 
 ## Device Type Differences
 
-### Laptop (zaxtec)
-- **DPI Scaling**: 1.25x for smaller laptop screen
+### Laptop
 - **Touchpad**: Full touchpad configuration with tap-to-click, natural scroll
 - **Gaps**: Smaller gaps (3/15) for limited screen space
 - **Visual Effects**: Slightly reduced for battery life (smaller blur, shadows)
-- **Keybindings**: QWERTY layout (Q, V keys in physical positions)
+- **WM Keybinds**: Mapped for QWERTY physical positions (Q, V keys)
 
 ### Desktop (default)
-- **DPI Scaling**: Auto-detect for desktop monitors
 - **Input**: Keyboard-only, no touchpad config
 - **Gaps**: Larger gaps (5/20) for bigger screens
 - **Visual Effects**: Full effects for desktop experience
-- **Keybindings**: Dvorak layout (', . keys in same physical positions)
+- **WM Keybinds**: Mapped for Dvorak physical positions (', . keys)
 
 ## Manual Updates
 
-To force a configuration update:
+To change profile or force a configuration update:
 ```bash
+echo "laptop" > ~/.config/hypr/host-type   # or "desktop"
 ~/.config/hypr/update-host-config.sh
 hyprctl reload
 ```
@@ -55,7 +54,7 @@ hyprctl reload
 
 1. Create a new directory under `hosts/` (e.g., `hosts/workstation/`)
 2. Add `settings.conf` and `keybinds.conf` files
-3. Update `update-host-config.sh` to detect your hostname/type
+3. Write the type name to `~/.config/hypr/host-type`
 4. Test with the update script
 
 ## Generated Files

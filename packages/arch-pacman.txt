@@ -38,6 +38,9 @@ pipewire
 wireplumber
 pavucontrol
 
+# Display manager
+ly
+
 # Waybar live reload
 inotify-tools
 

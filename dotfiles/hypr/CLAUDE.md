@@ -12,7 +12,7 @@ Linux-only desktop environment config for Hyprland (compositor), Hyprpaper (wall
 
 ## Host Configuration
 
-Edit `hosts/laptop/` or `hosts/desktop/` source files, never the generated `host-*.conf` files. The startup script copies the correct host profile based on hostname (`zaxtec` = laptop, otherwise desktop).
+Edit `hosts/laptop/` or `hosts/desktop/` source files, never the generated `host-*.conf` files. The startup script reads `~/.config/hypr/host-type` (`laptop` or `desktop`) and copies the matching profile. Defaults to `desktop` if the file is absent.
 
 ## Window Rules
 

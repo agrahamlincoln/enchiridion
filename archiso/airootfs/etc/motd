@@ -1,0 +1,12 @@
+
+  ╔══════════════════════════════════════════════════╗
+  ║          Enchiridion Arch Linux ISO              ║
+  ╚══════════════════════════════════════════════════╝
+
+  To install Arch Linux with the full enchiridion setup, run:
+
+      install-enchiridion
+
+  For Wi-Fi, connect first with:  iwctl station wlan0 connect <SSID>
+  Ethernet with DHCP should work automatically.
+

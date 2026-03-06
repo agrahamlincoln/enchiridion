@@ -82,16 +82,17 @@ This approach works across different machines without hostname checks. See `dotf
 
 ### Host-Specific Configuration (Linux / Hyprland)
 
-The Hyprland setup detects hostname for laptop vs desktop settings:
-- **zaxtec** - laptop (QWERTY keybinds, touchpad, smaller gaps)
-- **other** - desktop (Dvorak keybinds, larger gaps)
+The Hyprland setup uses a profile file (`~/.config/hypr/host-type`) to select laptop vs desktop settings:
+- **laptop** - touchpad, smaller gaps, QWERTY window-management keybinds
+- **desktop** (default) - no touchpad, larger gaps, Dvorak window-management keybinds
 
 Configuration flow:
 1. `hyprland.conf` sources `host-settings.conf` and `host-keybinds.conf`
-2. `update-host-config.sh` runs at startup to generate these files
+2. `update-host-config.sh` runs at startup, reads `host-type`, and generates these files
 3. Source configs live in `hosts/laptop/` and `hosts/desktop/`
 
 Edit the source files in `hosts/<type>/`, not the generated `host-*.conf` files.
+To switch profiles: `echo "laptop" > ~/.config/hypr/host-type && hyprctl reload`
 
 ### Bash Initialization Chain
 `bashinit.sh` sources these in order:

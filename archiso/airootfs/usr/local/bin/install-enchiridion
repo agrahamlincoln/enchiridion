@@ -1,0 +1,566 @@
+#!/usr/bin/env bash
+# Enchiridion Arch Linux Installer
+# Turnkey installer for a fully configured Arch system with LUKS encryption,
+# Hyprland desktop, ly display manager, and all enchiridion dotfiles.
+# Designed to run from a custom archiso live environment.
+
+set -euo pipefail
+
+# ── Colors ───────────────────────────────────────────────────────────
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+BOLD='\033[1m'
+NC='\033[0m'
+
+info()    { echo -e "${BLUE}::${NC} $*"; }
+success() { echo -e "${GREEN}::${NC} $*"; }
+warn()    { echo -e "${YELLOW}:: WARNING:${NC} $*"; }
+error()   { echo -e "${RED}:: ERROR:${NC} $*" >&2; }
+step()    { echo -e "\n${CYAN}${BOLD}── Step $1: $2 ──${NC}"; }
+prompt()  { echo -en "${YELLOW}$*${NC}"; }
+
+# ── Cleanup on failure ───────────────────────────────────────────────
+
+cleanup() {
+    local exit_code=$?
+    if [[ $exit_code -ne 0 ]]; then
+        error "Installation failed (exit code $exit_code)."
+        echo "Attempting cleanup..."
+        umount -R /mnt 2>/dev/null || true
+        cryptsetup close cryptroot 2>/dev/null || true
+        echo "You can inspect the state and retry."
+    fi
+}
+trap cleanup EXIT
+
+# ── Helpers ──────────────────────────────────────────────────────────
+
+# Return the partition device path, handling NVMe/MMC naming conventions.
+# NVMe and MMC devices use a 'p' separator (e.g. nvme0n1p1), while
+# SATA/USB devices append directly (e.g. sda1).
+partition_path() {
+    local disk="$1"
+    local num="$2"
+    if [[ "$disk" == *nvme* || "$disk" == *mmcblk* ]]; then
+        echo "${disk}p${num}"
+    else
+        echo "${disk}${num}"
+    fi
+}
+
+# ── Preflight ────────────────────────────────────────────────────────
+
+echo -e "${BOLD}"
+echo "  ╔══════════════════════════════════════════════╗"
+echo "  ║       Enchiridion Arch Linux Installer       ║"
+echo "  ╚══════════════════════════════════════════════╝"
+echo -e "${NC}"
+
+info "Running preflight checks..."
+
+if [[ $EUID -ne 0 ]]; then
+    error "This script must be run as root."
+    exit 1
+fi
+
+if [[ ! -d /sys/firmware/efi ]]; then
+    error "UEFI boot not detected. This installer requires UEFI."
+    exit 1
+fi
+
+if ! ping -c 1 -W 3 archlinux.org &>/dev/null; then
+    error "No internet connectivity. Connect to a network first."
+    echo "  For Wi-Fi, use: iwctl station wlan0 connect <SSID>"
+    exit 1
+fi
+
+success "Preflight passed: root, UEFI, internet OK."
+
+# ── Step 1: Disk Selection ───────────────────────────────────────────
+
+step 1 "Disk Selection"
+
+# Identify the live USB so we can exclude it from the selection list.
+# The root filesystem on the live ISO is an overlay backed by a device
+# under /run/archiso/bootmnt — its underlying block device is the USB.
+LIVE_DEVICE=""
+if findmnt -n -o SOURCE /run/archiso/bootmnt &>/dev/null; then
+    LIVE_DEVICE="$(lsblk -npo PKNAME "$(findmnt -n -o SOURCE /run/archiso/bootmnt)" 2>/dev/null | head -1)"
+fi
+
+info "Available disks:"
+echo ""
+
+mapfile -t DISKS < <(lsblk -dpno NAME,SIZE,MODEL,TYPE | grep 'disk$' | while read -r line; do
+    dev="$(echo "$line" | awk '{print $1}')"
+    # Skip loop devices and the live USB
+    [[ "$dev" == /dev/loop* ]] && continue
+    [[ -n "$LIVE_DEVICE" && "$dev" == "$LIVE_DEVICE" ]] && continue
+    echo "$line"
+done)
+
+if [[ ${#DISKS[@]} -eq 0 ]]; then
+    error "No target disks found."
+    exit 1
+fi
+
+for i in "${!DISKS[@]}"; do
+    echo "  $((i+1)). ${DISKS[$i]}"
+done
+
+echo ""
+prompt "Select disk number [1-${#DISKS[@]}]: "
+read -r DISK_NUM
+
+if [[ ! "$DISK_NUM" =~ ^[0-9]+$ ]] || (( DISK_NUM < 1 || DISK_NUM > ${#DISKS[@]} )); then
+    error "Invalid selection."
+    exit 1
+fi
+
+TARGET_DISK="$(echo "${DISKS[$((DISK_NUM-1))]}" | awk '{print $1}')"
+
+echo ""
+warn "ALL DATA on ${BOLD}${TARGET_DISK}${NC}${YELLOW} will be destroyed.${NC}"
+prompt "Type YES to confirm: "
+read -r CONFIRM
+if [[ "$CONFIRM" != "YES" ]]; then
+    echo "Aborted."
+    exit 1
+fi
+
+EFI_PART="$(partition_path "$TARGET_DISK" 1)"
+LUKS_PART="$(partition_path "$TARGET_DISK" 2)"
+
+success "Target: $TARGET_DISK (EFI: $EFI_PART, LUKS: $LUKS_PART)"
+
+# ── Step 2: Partitioning ────────────────────────────────────────────
+
+step 2 "Partitioning"
+
+info "Wiping partition table..."
+sgdisk -Z "$TARGET_DISK"
+
+info "Creating EFI partition (512MB)..."
+sgdisk -n 1:0:+512M -t 1:ef00 -c 1:"EFI" "$TARGET_DISK"
+
+info "Creating LUKS partition (remaining space)..."
+sgdisk -n 2:0:0 -t 2:8309 -c 2:"cryptroot" "$TARGET_DISK"
+
+# Inform the kernel of the new partition layout
+partprobe "$TARGET_DISK"
+sleep 1
+
+success "Partitioning complete."
+
+# ── Step 3: LUKS Encryption + Filesystems ────────────────────────────
+
+step 3 "LUKS Encryption + Filesystems"
+
+info "Setting up LUKS2 encryption on $LUKS_PART..."
+echo "You will be prompted to set a disk encryption passphrase."
+cryptsetup luksFormat --type luks2 "$LUKS_PART"
+
+info "Opening encrypted volume..."
+cryptsetup open "$LUKS_PART" cryptroot
+
+info "Creating ext4 filesystem on encrypted volume..."
+mkfs.ext4 -F /dev/mapper/cryptroot
+
+info "Creating FAT32 filesystem on EFI partition..."
+mkfs.fat -F32 "$EFI_PART"
+
+info "Mounting filesystems..."
+mount /dev/mapper/cryptroot /mnt
+mkdir -p /mnt/boot
+mount "$EFI_PART" /mnt/boot
+
+success "Filesystems ready."
+
+# ── Step 4: Base System ─────────────────────────────────────────────
+
+step 4 "Base System Install"
+
+info "Installing base system via pacstrap..."
+pacstrap -K /mnt \
+    base linux linux-firmware \
+    intel-ucode amd-ucode \
+    networkmanager sudo vim git base-devel
+
+info "Generating fstab..."
+genfstab -U /mnt >> /mnt/etc/fstab
+
+success "Base system installed."
+
+# ── Step 5: System Configuration ────────────────────────────────────
+
+step 5 "System Configuration"
+
+# Timezone selection
+info "Select timezone:"
+echo "  1. America/New_York (Eastern)"
+echo "  2. America/Chicago (Central)"
+echo "  3. America/Denver (Mountain)"
+echo "  4. America/Los_Angeles (Pacific)"
+echo "  5. UTC"
+echo "  6. Custom (enter tzdata path)"
+echo ""
+prompt "Selection [1-6]: "
+read -r TZ_NUM
+
+case "$TZ_NUM" in
+    1) TIMEZONE="America/New_York" ;;
+    2) TIMEZONE="America/Chicago" ;;
+    3) TIMEZONE="America/Denver" ;;
+    4) TIMEZONE="America/Los_Angeles" ;;
+    5) TIMEZONE="UTC" ;;
+    6)
+        prompt "Enter timezone (e.g. Europe/London): "
+        read -r TIMEZONE
+        if [[ ! -f "/mnt/usr/share/zoneinfo/$TIMEZONE" ]]; then
+            error "Invalid timezone: $TIMEZONE"
+            exit 1
+        fi
+        ;;
+    *)
+        error "Invalid selection."
+        exit 1
+        ;;
+esac
+
+# Console keyboard layout (persisted to vconsole.conf)
+echo ""
+info "Select console keyboard layout:"
+echo "  1. Dvorak"
+echo "  2. QWERTY (us)"
+echo ""
+prompt "Selection [1-2]: "
+read -r KB_NUM
+
+case "$KB_NUM" in
+    1) CONSOLE_KEYMAP="dvorak" ;;
+    2) CONSOLE_KEYMAP="us" ;;
+    *)
+        error "Invalid selection."
+        exit 1
+        ;;
+esac
+
+# Hyprland profile
+echo ""
+info "Select Hyprland profile:"
+echo "  1. Desktop (larger gaps, no touchpad)"
+echo "  2. Laptop  (smaller gaps, touchpad)"
+echo ""
+prompt "Selection [1-2]: "
+read -r PROFILE_NUM
+
+case "$PROFILE_NUM" in
+    1) HOST_TYPE="desktop" ;;
+    2) HOST_TYPE="laptop" ;;
+    *)
+        error "Invalid selection."
+        exit 1
+        ;;
+esac
+
+# Hostname
+echo ""
+prompt "Hostname: "
+read -r HOSTNAME_INPUT
+
+if [[ -z "$HOSTNAME_INPUT" ]]; then
+    error "Hostname cannot be empty."
+    exit 1
+fi
+
+# User password
+echo ""
+info "Set password for user 'graham'."
+while true; do
+    prompt "Password: "
+    read -rs USER_PASSWORD
+    echo ""
+    prompt "Confirm password: "
+    read -rs USER_PASSWORD_CONFIRM
+    echo ""
+    if [[ "$USER_PASSWORD" == "$USER_PASSWORD_CONFIRM" ]]; then
+        break
+    fi
+    warn "Passwords do not match. Try again."
+done
+
+# Get LUKS partition UUID for bootloader config
+LUKS_UUID="$(blkid -s UUID -o value "$LUKS_PART")"
+
+info "Configuring system in chroot..."
+
+# Run all chroot configuration in a single heredoc to minimize complexity.
+# Variables from the live environment are passed via the heredoc expansion.
+arch-chroot /mnt /bin/bash <<CHROOT_EOF
+set -euo pipefail
+
+# Locale
+sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+locale-gen
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
+
+# Timezone
+ln -sf "/usr/share/zoneinfo/${TIMEZONE}" /etc/localtime
+hwclock --systohc
+
+# Hostname
+echo "${HOSTNAME_INPUT}" > /etc/hostname
+
+# Console keyboard layout (also used by sd-vconsole in initramfs for LUKS prompt)
+echo "KEYMAP=${CONSOLE_KEYMAP}" > /etc/vconsole.conf
+
+# mkinitcpio: configure hooks for systemd-based LUKS unlock
+sed -i 's/^HOOKS=.*/HOOKS=(base systemd autodetect microcode modconf kms keyboard sd-vconsole block sd-encrypt filesystems fsck)/' /etc/mkinitcpio.conf
+mkinitcpio -P
+
+# systemd-boot
+bootctl install
+
+mkdir -p /boot/loader/entries
+
+cat > /boot/loader/loader.conf <<'LOADER'
+default arch.conf
+timeout 3
+console-mode auto
+editor  no
+LOADER
+
+cat > /boot/loader/entries/arch.conf <<ENTRY
+title   Arch Linux
+linux   /vmlinuz-linux
+initrd  /initramfs-linux.img
+options rd.luks.name=${LUKS_UUID}=cryptroot root=/dev/mapper/cryptroot rw
+ENTRY
+
+# User account
+useradd -m -G wheel -s /bin/bash graham
+echo "graham:${USER_PASSWORD}" | chpasswd
+
+# Enable wheel group in sudoers
+sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
+
+CHROOT_EOF
+
+success "System configuration complete."
+
+# ── Step 6: Packages ────────────────────────────────────────────────
+
+step 6 "Packages (from enchiridion)"
+
+ENCH_DIR="/mnt/home/graham/projects/enchiridion"
+
+info "Cloning enchiridion repository..."
+mkdir -p /mnt/home/graham/projects
+git clone https://github.com/agrahamlincoln/enchiridion.git "$ENCH_DIR"
+
+# Fix ownership so graham can use the clone
+arch-chroot /mnt chown -R graham:graham /home/graham/projects
+
+# Helper to read package lists, stripping comments and blank lines
+read_packages() {
+    grep -v '^\s*#' "$ENCH_DIR/packages/$1" | grep -v '^\s*$' | tr '\n' ' '
+}
+
+info "Installing pacman packages from enchiridion..."
+# shellcheck disable=SC2046
+arch-chroot /mnt pacman -S --noconfirm --needed $(read_packages arch-pacman.txt)
+
+info "Installing paru (AUR helper)..."
+
+# makepkg, paru, and setup.sh all run as graham but need sudo access.
+# Enable passwordless sudo temporarily; removed at the end of step 7.
+arch-chroot /mnt bash -c 'echo "graham ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/enchiridion-install'
+
+# Install paru: use pre-built package from the live ISO if available,
+# otherwise fall back to building from source
+PARU_PKG="$(ls /root/pkg/paru-*.pkg.tar.zst 2>/dev/null | head -1)"
+if [[ -n "$PARU_PKG" ]]; then
+    info "Installing paru from pre-built package..."
+    PARU_BASENAME="$(basename "$PARU_PKG")"
+    # Copy to /mnt/root instead of /mnt/tmp — arch-chroot mounts a
+    # tmpfs over /tmp inside the chroot, hiding anything placed there.
+    cp "$PARU_PKG" "/mnt/root/$PARU_BASENAME"
+    arch-chroot /mnt pacman -U --noconfirm "/root/$PARU_BASENAME"
+    rm -f "/mnt/root/$PARU_BASENAME"
+else
+    info "Pre-built paru not found, building from source..."
+    arch-chroot /mnt /bin/bash <<'PARU_EOF'
+set -euo pipefail
+PARU_BUILD="$(runuser -u graham -- mktemp -d)"
+runuser -u graham -- git clone https://aur.archlinux.org/paru.git "$PARU_BUILD/paru"
+cd "$PARU_BUILD/paru"
+runuser -u graham -- makepkg -si --noconfirm
+rm -rf "$PARU_BUILD"
+PARU_EOF
+fi
+
+info "Installing AUR packages from enchiridion..."
+AUR_PACKAGES="$(read_packages arch-aur.txt)"
+arch-chroot /mnt runuser -u graham -- paru -S --noconfirm --needed $AUR_PACKAGES
+
+success "All packages installed."
+
+# ── Step 7: Dotfiles ────────────────────────────────────────────────
+
+step 7 "Dotfiles"
+
+info "Running enchiridion setup.sh..."
+arch-chroot /mnt runuser -u graham -- bash /home/graham/projects/enchiridion/setup.sh
+
+# Write the Hyprland host profile selection (read by update-host-config.sh)
+arch-chroot /mnt runuser -u graham -- bash -c "echo '$HOST_TYPE' > /home/graham/.config/hypr/host-type"
+
+# Remove temporary passwordless sudo (granted in step 6 for makepkg/paru/setup.sh)
+arch-chroot /mnt rm -f /etc/sudoers.d/enchiridion-install
+
+success "Dotfiles deployed ($HOST_TYPE profile)."
+
+# ── Step 8: SSH, Git, and Pacman Configuration ──────────────────────
+
+step 8 "User Configuration"
+
+# All personal config is read from /root/secrets/ on the live ISO.
+# These files are populated by setup-secrets.sh and gitignored.
+# Everything in this step is skipped gracefully if the files are absent.
+SECRETS="/root/secrets"
+
+# SSH keys and config
+if [[ -d "$SECRETS/ssh" ]]; then
+    info "Installing SSH keys and config..."
+    mkdir -p /mnt/home/graham/.ssh
+    # Copy all key files and config from the secrets directory
+    for f in "$SECRETS/ssh/"*; do
+        cp "$f" /mnt/home/graham/.ssh/
+    done
+    # Symlink id_rsa so the primary key is loaded by default
+    if [[ -f "$SECRETS/ssh/key-per" ]]; then
+        ln -sf key-per /mnt/home/graham/.ssh/id_rsa
+        ln -sf key-per.pub /mnt/home/graham/.ssh/id_rsa.pub
+    fi
+    chmod 700 /mnt/home/graham/.ssh
+    chmod 600 /mnt/home/graham/.ssh/*
+    chmod 644 /mnt/home/graham/.ssh/*.pub 2>/dev/null || true
+    arch-chroot /mnt chown -R graham:graham /home/graham/.ssh
+    success "SSH keys installed."
+else
+    warn "No SSH keys found on ISO. Skipping."
+fi
+
+# Git global config
+if [[ -f "$SECRETS/gitconfig" ]]; then
+    info "Installing git config..."
+    cp "$SECRETS/gitconfig" /mnt/home/graham/.gitconfig
+    arch-chroot /mnt chown graham:graham /home/graham/.gitconfig
+    success "Git configured."
+else
+    warn "No gitconfig found on ISO. Skipping."
+fi
+
+# Custom pacman repositories
+if [[ -f "$SECRETS/pacman-repos.conf" ]]; then
+    info "Adding custom pacman repositories..."
+    # Append repo config if not already present
+    while IFS= read -r line; do
+        # Use repo section headers as idempotency check
+        if [[ "$line" =~ ^\[.*\]$ ]] && grep -q "^${line}$" /mnt/etc/pacman.conf; then
+            info "  ${line} already configured, skipping."
+            break
+        fi
+    done < "$SECRETS/pacman-repos.conf"
+    # If we didn't break (no duplicate found), append the whole file
+    if ! grep -qF "$(head -1 "$SECRETS/pacman-repos.conf")" /mnt/etc/pacman.conf; then
+        echo "" >> /mnt/etc/pacman.conf
+        cat "$SECRETS/pacman-repos.conf" >> /mnt/etc/pacman.conf
+    fi
+    success "Custom repos configured."
+else
+    warn "No pacman-repos.conf found on ISO. Skipping."
+fi
+
+# ── Step 9: Claude Code ─────────────────────────────────────────────
+
+step 9 "Claude Code"
+
+info "Installing Claude Code..."
+arch-chroot /mnt runuser -u graham -- bash -c 'curl -fsSL https://claude.ai/install.sh | bash'
+
+success "Claude Code installed."
+
+# ── Step 10: Services ───────────────────────────────────────────────
+
+step 10 "Services"
+
+info "Enabling system services..."
+arch-chroot /mnt systemctl enable NetworkManager
+arch-chroot /mnt systemctl enable ly
+
+# Offer to pre-configure a Wi-Fi network so the installed system connects on first boot
+echo ""
+prompt "Pre-configure a Wi-Fi network? [y/N]: "
+read -r WIFI_CHOICE
+if [[ "$WIFI_CHOICE" =~ ^[Yy]$ ]]; then
+    prompt "SSID: "
+    read -r WIFI_SSID
+    prompt "Passphrase: "
+    read -rs WIFI_PASS
+    echo ""
+
+    # NetworkManager keyfile format
+    # https://networkmanager.dev/docs/api/latest/nm-settings-keyfile.html
+    mkdir -p /mnt/etc/NetworkManager/system-connections
+    cat > "/mnt/etc/NetworkManager/system-connections/$WIFI_SSID.nmconnection" <<WIFI_EOF
+[connection]
+id=${WIFI_SSID}
+type=wifi
+autoconnect=true
+
+[wifi]
+ssid=${WIFI_SSID}
+mode=infrastructure
+
+[wifi-security]
+key-mgmt=wpa-psk
+psk=${WIFI_PASS}
+
+[ipv4]
+method=auto
+
+[ipv6]
+method=auto
+WIFI_EOF
+    chmod 600 "/mnt/etc/NetworkManager/system-connections/$WIFI_SSID.nmconnection"
+    success "Wi-Fi profile for '$WIFI_SSID' configured."
+fi
+
+success "Services enabled."
+
+# ── Step 11: Cleanup ────────────────────────────────────────────────
+
+step 11 "Cleanup"
+
+info "Unmounting filesystems..."
+umount -R /mnt
+cryptsetup close cryptroot
+
+echo ""
+echo -e "${GREEN}${BOLD}"
+echo "  ╔══════════════════════════════════════════════╗"
+echo "  ║         Installation Complete!               ║"
+echo "  ╚══════════════════════════════════════════════╝"
+echo -e "${NC}"
+echo "  Remove the USB drive and reboot into your new system."
+echo "  The ly display manager will present Hyprland at login."
+echo ""
+
+prompt "Press Enter to reboot (or Ctrl+C to stay in the live environment)..."
+read -r
+reboot
