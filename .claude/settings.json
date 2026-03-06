@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(archiso/airootfs/root/secrets/**)",
+      "Read(archiso/airootfs/var/**)",
+      "Edit(archiso/airootfs/root/secrets/**)",
+      "Edit(archiso/airootfs/var/**)",
+      "Write(archiso/airootfs/root/secrets/**)",
+      "Write(archiso/airootfs/var/**)"
+    ]
+  }
+}

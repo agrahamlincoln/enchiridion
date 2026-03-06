@@ -1,9 +1,8 @@
 .vscode/
 .env
 
-# claude-memory are useful, but don't need to be committed
-.claude/
-claude-memory/
+# Claude Code per-user settings (not shared)
+.claude/settings.local.json
 
 # Auto-generated Hyprland host configs (varies per machine)
 dotfiles/hypr/dot-config/hypr/layout-keybinds.conf
