@@ -419,10 +419,18 @@ arch-chroot /mnt runuser -u graham -- bash /home/graham/projects/enchiridion/set
 # Write the Hyprland host profile selection (read by update-host-config.sh)
 arch-chroot /mnt runuser -u graham -- bash -c "echo '$HOST_TYPE' > /home/graham/.config/hypr/host-type"
 
+# Derive keyboard layout for Hyprland from the console keymap selection
+if [[ "$CONSOLE_KEYMAP" == "dvorak" ]]; then
+    HYPR_KB_LAYOUT="dvorak"
+else
+    HYPR_KB_LAYOUT="qwerty"
+fi
+arch-chroot /mnt runuser -u graham -- bash -c "echo '$HYPR_KB_LAYOUT' > /home/graham/.config/hypr/kb-layout"
+
 # Remove temporary passwordless sudo (granted in step 6 for makepkg/paru/setup.sh)
 arch-chroot /mnt rm -f /etc/sudoers.d/enchiridion-install
 
-success "Dotfiles deployed ($HOST_TYPE profile)."
+success "Dotfiles deployed ($HOST_TYPE profile, $HYPR_KB_LAYOUT keyboard)."
 
 # ── Step 8: SSH, Git, and Pacman Configuration ──────────────────────
 
@@ -501,7 +509,7 @@ step 10 "Services"
 
 info "Enabling system services..."
 arch-chroot /mnt systemctl enable NetworkManager
-arch-chroot /mnt systemctl enable ly
+arch-chroot /mnt systemctl enable ly@tty1
 
 # Offer to pre-configure a Wi-Fi network so the installed system connects on first boot
 echo ""

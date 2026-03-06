@@ -82,17 +82,18 @@ This approach works across different machines without hostname checks. See `dotf
 
 ### Host-Specific Configuration (Linux / Hyprland)
 
-The Hyprland setup uses a profile file (`~/.config/hypr/host-type`) to select laptop vs desktop settings:
-- **laptop** - touchpad, smaller gaps, QWERTY window-management keybinds
-- **desktop** (default) - no touchpad, larger gaps, Dvorak window-management keybinds
+The Hyprland setup uses two independent config axes:
+- **Host type** (`~/.config/hypr/host-type`): `desktop` or `laptop` — gaps, touchpad, visual effects
+- **Keyboard layout** (`~/.config/hypr/kb-layout`): `dvorak` or `qwerty` — keybinds and `kb_variant`
 
 Configuration flow:
 1. `hyprland.conf` sources `host-settings.conf` and `host-keybinds.conf`
-2. `update-host-config.sh` runs at startup, reads `host-type`, and generates these files
-3. Source configs live in `hosts/laptop/` and `hosts/desktop/`
+2. `update-host-config.sh` runs at startup, reads both files, and generates the config
+3. Host-type settings live in `hosts/desktop/` and `hosts/laptop/`
+4. Keyboard keybinds live in `hosts/dvorak/` and `hosts/qwerty/`
 
-Edit the source files in `hosts/<type>/`, not the generated `host-*.conf` files.
-To switch profiles: `echo "laptop" > ~/.config/hypr/host-type && hyprctl reload`
+Edit the source files in `hosts/<type>/` and `hosts/<layout>/`, not the generated `host-*.conf` files.
+To switch: `echo "laptop" > ~/.config/hypr/host-type && echo "dvorak" > ~/.config/hypr/kb-layout && hyprctl reload`
 
 ### Bash Initialization Chain
 `bashinit.sh` sources these in order:

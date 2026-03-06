@@ -1,61 +1,53 @@
 # Hyprland Host-Specific Configuration
 
-This directory contains host-specific configurations for different device types (laptop vs desktop).
+This directory contains host-specific configurations split across two independent axes:
+- **Host type** (desktop/laptop) — controls gaps, touchpad, visual effects
+- **Keyboard layout** (dvorak/qwerty) — controls keybinds and `kb_variant`
 
 ## Structure
 
 ```
 hosts/
-├── laptop/
-│   ├── settings.conf   # Laptop-specific settings (touchpad, scaling, smaller gaps)
-│   └── keybinds.conf   # QWERTY window-management keybinds
 ├── desktop/
-│   ├── settings.conf   # Desktop-specific settings (full visual effects, larger gaps)
-│   └── keybinds.conf   # Dvorak window-management keybinds
-└── README.md          # This file
+│   └── settings.conf   # Desktop-specific settings (full visual effects, larger gaps)
+├── laptop/
+│   └── settings.conf   # Laptop-specific settings (touchpad, smaller gaps, battery-friendly)
+├── dvorak/
+│   └── keybinds.conf   # Dvorak window-management keybinds (', . keys)
+├── qwerty/
+│   └── keybinds.conf   # QWERTY window-management keybinds (Q, V keys)
+└── README.md
 ```
 
 ## How It Works
 
-1. **Profile Selection**: `update-host-config.sh` reads `~/.config/hypr/host-type` to determine the device profile:
-   - `laptop` → touchpad, smaller gaps, QWERTY window-management keybinds
-   - `desktop` (default) → no touchpad, larger gaps, Dvorak window-management keybinds
+1. **Profile Selection**: `update-host-config.sh` reads two files:
+   - `~/.config/hypr/host-type` → `desktop` (default) or `laptop`
+   - `~/.config/hypr/kb-layout` → `dvorak` (default) or `qwerty`
 
 2. **Configuration Generation**: The script generates two files in the main hypr directory:
-   - `host-settings.conf` → Device-specific settings, input, monitor config
+   - `host-settings.conf` → Device-specific settings with `kb_variant` patched from kb-layout
    - `host-keybinds.conf` → Layout-specific keybindings
 
 3. **Auto-sourcing**: Main `hyprland.conf` sources these generated files
 
-## Device Type Differences
+## Current Machines
 
-### Laptop
-- **Touchpad**: Full touchpad configuration with tap-to-click, natural scroll
-- **Gaps**: Smaller gaps (3/15) for limited screen space
-- **Visual Effects**: Slightly reduced for battery life (smaller blur, shadows)
-- **WM Keybinds**: Mapped for QWERTY physical positions (Q, V keys)
-
-### Desktop (default)
-- **Input**: Keyboard-only, no touchpad config
-- **Gaps**: Larger gaps (5/20) for bigger screens
-- **Visual Effects**: Full effects for desktop experience
-- **WM Keybinds**: Mapped for Dvorak physical positions (', . keys)
+| Machine | Host type | Keyboard |
+|---------|-----------|----------|
+| plibter | desktop   | dvorak   |
+| tomei   | laptop    | dvorak   |
+| zaxtec  | laptop    | qwerty   |
 
 ## Manual Updates
 
 To change profile or force a configuration update:
 ```bash
-echo "laptop" > ~/.config/hypr/host-type   # or "desktop"
+echo "laptop" > ~/.config/hypr/host-type    # or "desktop"
+echo "dvorak" > ~/.config/hypr/kb-layout    # or "qwerty"
 ~/.config/hypr/update-host-config.sh
 hyprctl reload
 ```
-
-## Adding New Host Types
-
-1. Create a new directory under `hosts/` (e.g., `hosts/workstation/`)
-2. Add `settings.conf` and `keybinds.conf` files
-3. Write the type name to `~/.config/hypr/host-type`
-4. Test with the update script
 
 ## Generated Files
 

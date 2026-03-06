@@ -7,12 +7,17 @@ Linux-only desktop environment config for Hyprland (compositor), Hyprpaper (wall
 - `dot-config/hypr/hyprland.conf` - Main config, sources host-specific files
 - `dot-config/hypr/hyprlock.conf` - Lock screen appearance
 - `dot-config/hypr/hyprpaper.conf` - Wallpaper rotation (block syntax, IPC disabled)
-- `dot-config/hypr/hosts/laptop/` and `hosts/desktop/` - Host-specific settings and keybinds
+- `dot-config/hypr/hosts/desktop/` and `hosts/laptop/` - Host-type settings (gaps, touchpad, effects)
+- `dot-config/hypr/hosts/dvorak/` and `hosts/qwerty/` - Keyboard-layout keybinds
 - `dot-config/hypr/update-host-config.sh` - Generates `host-settings.conf` and `host-keybinds.conf` at startup
 
 ## Host Configuration
 
-Edit `hosts/laptop/` or `hosts/desktop/` source files, never the generated `host-*.conf` files. The startup script reads `~/.config/hypr/host-type` (`laptop` or `desktop`) and copies the matching profile. Defaults to `desktop` if the file is absent.
+Configuration is split across two independent axes:
+- **Host type** (`~/.config/hypr/host-type`): `desktop` or `laptop` — controls gaps, touchpad, visual effects
+- **Keyboard layout** (`~/.config/hypr/kb-layout`): `dvorak` or `qwerty` — controls keybinds and `kb_variant`
+
+Edit source files in `hosts/<type>/` and `hosts/<layout>/`, never the generated `host-*.conf` files. The startup script reads both config files and composes the result. Defaults to `desktop` and `dvorak` if files are absent.
 
 ## Window Rules
 
