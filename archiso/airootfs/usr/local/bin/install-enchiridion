@@ -391,9 +391,39 @@ step 6 "Packages (from enchiridion)"
 
 ENCH_DIR="/mnt/home/graham/projects/enchiridion"
 
+# Set up SSH keys early (if available) so we can clone via SSH
+SECRETS="/root/secrets"
+USE_SSH=false
+if [[ -d "$SECRETS/ssh" ]]; then
+    info "Installing SSH keys for git clone..."
+    mkdir -p /mnt/home/graham/.ssh
+    for f in "$SECRETS/ssh/"*; do
+        cp "$f" /mnt/home/graham/.ssh/
+    done
+    if [[ -f "$SECRETS/ssh/key-per" ]]; then
+        ln -sf key-per /mnt/home/graham/.ssh/id_rsa
+        ln -sf key-per.pub /mnt/home/graham/.ssh/id_rsa.pub
+    fi
+    chmod 700 /mnt/home/graham/.ssh
+    chmod 600 /mnt/home/graham/.ssh/*
+    chmod 644 /mnt/home/graham/.ssh/*.pub 2>/dev/null || true
+    # Add GitHub host key so SSH doesn't prompt for verification
+    ssh-keyscan -t ed25519 github.com >> /mnt/home/graham/.ssh/known_hosts 2>/dev/null
+    chmod 600 /mnt/home/graham/.ssh/known_hosts
+    arch-chroot /mnt chown -R graham:graham /home/graham/.ssh
+    USE_SSH=true
+    success "SSH keys installed."
+else
+    warn "No SSH keys found on ISO. Cloning via HTTPS."
+fi
+
 info "Cloning enchiridion repository..."
 mkdir -p /mnt/home/graham/projects
-git clone https://github.com/agrahamlincoln/enchiridion.git "$ENCH_DIR"
+if [[ "$USE_SSH" == true ]]; then
+    arch-chroot /mnt runuser -u graham -- git clone git@github.com:agrahamlincoln/enchiridion.git /home/graham/projects/enchiridion
+else
+    git clone https://github.com/agrahamlincoln/enchiridion.git "$ENCH_DIR"
+fi
 
 # Fix ownership so graham can use the clone
 arch-chroot /mnt chown -R graham:graham /home/graham/projects
@@ -486,24 +516,9 @@ step 8 "User Configuration"
 # Everything in this step is skipped gracefully if the files are absent.
 SECRETS="/root/secrets"
 
-# SSH keys and config
-if [[ -d "$SECRETS/ssh" ]]; then
-    info "Installing SSH keys and config..."
-    mkdir -p /mnt/home/graham/.ssh
-    # Copy all key files and config from the secrets directory
-    for f in "$SECRETS/ssh/"*; do
-        cp "$f" /mnt/home/graham/.ssh/
-    done
-    # Symlink id_rsa so the primary key is loaded by default
-    if [[ -f "$SECRETS/ssh/key-per" ]]; then
-        ln -sf key-per /mnt/home/graham/.ssh/id_rsa
-        ln -sf key-per.pub /mnt/home/graham/.ssh/id_rsa.pub
-    fi
-    chmod 700 /mnt/home/graham/.ssh
-    chmod 600 /mnt/home/graham/.ssh/*
-    chmod 644 /mnt/home/graham/.ssh/*.pub 2>/dev/null || true
-    arch-chroot /mnt chown -R graham:graham /home/graham/.ssh
-    success "SSH keys installed."
+# SSH keys (already installed in Step 6 if available)
+if [[ "$USE_SSH" == true ]]; then
+    success "SSH keys already installed (Step 6)."
 else
     warn "No SSH keys found on ISO. Skipping."
 fi
