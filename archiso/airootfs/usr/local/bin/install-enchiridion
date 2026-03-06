@@ -371,11 +371,17 @@ cat > /boot/loader/entries/arch.conf <<ENTRY
 title   Arch Linux
 linux   /vmlinuz-linux
 initrd  /initramfs-linux.img
-options rd.luks.name=${LUKS_UUID}=cryptroot root=/dev/mapper/cryptroot rw
+options rd.luks.name=${LUKS_UUID}=cryptroot root=/dev/mapper/cryptroot rw loglevel=3
 ENTRY
 
+# AMD GPU workarounds: fix suspend/resume hangs and disable broken NPU driver
+if lspci | grep -iE 'vga|3d|display' | grep -qi 'amd\|ati\|radeon'; then
+    sed -i 's|rw$|rw amdgpu.dpm=0|' /boot/loader/entries/arch.conf
+    echo "blacklist amdxdna" > /etc/modprobe.d/blacklist-amdxdna.conf
+fi
+
 # User account
-useradd -m -G wheel -s /bin/bash graham
+useradd -m -G wheel,systemd-journal -s /bin/bash graham
 echo "graham:${USER_PASSWORD}" | chpasswd
 
 # Enable wheel group in sudoers
