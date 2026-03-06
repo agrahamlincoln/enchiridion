@@ -1,0 +1,94 @@
+#!/usr/bin/env bash
+# Quick chroot into an enchiridion-installed system from the live ISO.
+# Decrypts the LUKS volume, mounts filesystems, and drops into a shell.
+#
+# Usage:
+#   chroot-enchiridion              # Auto-detect disk
+#   chroot-enchiridion /dev/nvme0n1 # Specify disk explicitly
+
+set -euo pipefail
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BOLD='\033[1m'
+NC='\033[0m'
+
+info()    { echo -e "${BOLD}[*]${NC} $*"; }
+success() { echo -e "${GREEN}${BOLD}[+]${NC} $*"; }
+warn()    { echo -e "${YELLOW}${BOLD}[!]${NC} $*"; }
+die()     { echo -e "${RED}${BOLD}[-] $*${NC}" >&2; exit 1; }
+
+cleanup() {
+    if mountpoint -q /mnt/boot 2>/dev/null; then
+        umount /mnt/boot 2>/dev/null || true
+    fi
+    if mountpoint -q /mnt 2>/dev/null; then
+        umount -R /mnt 2>/dev/null || true
+    fi
+    if [[ -e /dev/mapper/cryptroot ]]; then
+        cryptsetup close cryptroot 2>/dev/null || true
+    fi
+}
+
+partition_path() {
+    local disk="$1" num="$2"
+    if [[ "$disk" == *nvme* || "$disk" == *mmcblk* ]]; then
+        echo "${disk}p${num}"
+    else
+        echo "${disk}${num}"
+    fi
+}
+
+[[ $EUID -eq 0 ]] || die "Must run as root."
+
+# Determine target disk
+if [[ -n "${1:-}" ]]; then
+    TARGET_DISK="$1"
+    [[ -b "$TARGET_DISK" ]] || die "Not a block device: $TARGET_DISK"
+else
+    # Auto-detect: find a disk with a LUKS partition (type 8309)
+    info "Scanning for disks with LUKS partitions..."
+    TARGET_DISK=""
+    while IFS= read -r disk; do
+        if sgdisk -p "$disk" 2>/dev/null | grep -q '8309'; then
+            TARGET_DISK="$disk"
+            break
+        fi
+    done < <(lsblk -dpno NAME,TYPE | awk '$2 == "disk" {print $1}')
+
+    [[ -n "$TARGET_DISK" ]] || die "No disk with a LUKS partition found. Specify one: chroot-enchiridion /dev/nvme0n1"
+    info "Found LUKS partition on ${BOLD}$TARGET_DISK${NC}"
+fi
+
+EFI_PART="$(partition_path "$TARGET_DISK" 1)"
+LUKS_PART="$(partition_path "$TARGET_DISK" 2)"
+
+# Skip decryption if already open
+if [[ -e /dev/mapper/cryptroot ]]; then
+    info "LUKS volume already open."
+else
+    info "Decrypting $LUKS_PART..."
+    while ! cryptsetup open "$LUKS_PART" cryptroot; do
+        warn "Wrong passphrase. Try again."
+    done
+fi
+
+# Mount if not already mounted
+if mountpoint -q /mnt 2>/dev/null; then
+    info "/mnt already mounted."
+else
+    info "Mounting filesystems..."
+    mount /dev/mapper/cryptroot /mnt
+    mkdir -p /mnt/boot
+    mount "$EFI_PART" /mnt/boot
+fi
+
+success "Chrooting into $TARGET_DISK — type 'exit' to return."
+echo ""
+arch-chroot /mnt
+echo ""
+
+info "Cleaning up..."
+cleanup
+success "Done."

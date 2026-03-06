@@ -68,12 +68,17 @@ scaffold_releng() {
         cp "$RELENG/profiledef.sh" "$SCRIPT_DIR/profiledef.sh"
         sed -i 's/^iso_name=.*/iso_name="enchiridion"/' "$SCRIPT_DIR/profiledef.sh"
         sed -i 's/^iso_label=.*/iso_label="ENCHIRIDION"/' "$SCRIPT_DIR/profiledef.sh"
-        if ! grep -q 'install-enchiridion' "$SCRIPT_DIR/profiledef.sh"; then
-            sed -i '/^file_permissions=(/a\  ["/usr/local/bin/install-enchiridion"]="0:0:755"' "$SCRIPT_DIR/profiledef.sh"
-        fi
         echo "  Created profiledef.sh"
         changed=true
     fi
+
+    # Ensure our scripts have executable permissions in the ISO (idempotent)
+    for script in install-enchiridion chroot-enchiridion; do
+        if ! grep -q "$script" "$SCRIPT_DIR/profiledef.sh"; then
+            sed -i "/^file_permissions=(/a\\  [\"/usr/local/bin/$script\"]=\"0:0:755\"" "$SCRIPT_DIR/profiledef.sh"
+            changed=true
+        fi
+    done
 
     if $changed; then
         echo "Scaffolding complete."

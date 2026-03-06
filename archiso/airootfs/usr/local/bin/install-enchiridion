@@ -375,13 +375,47 @@ options rd.luks.name=${LUKS_UUID}=cryptroot root=/dev/mapper/cryptroot rw
 ENTRY
 
 # User account
-useradd -m -G wheel -s /bin/bash graham
+useradd -m -G wheel,systemd-journal -s /bin/bash graham
 echo "graham:${USER_PASSWORD}" | chpasswd
 
 # Enable wheel group in sudoers
 sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
 
 CHROOT_EOF
+
+# ── Hardware-specific workarounds ───────────────────────────────────
+# Detect hardware that needs kernel parameters or driver fixups for
+# stable suspend/resume. These run outside the chroot so lspci and
+# sysfs are available from the live environment.
+
+# WD NVMe: disable deep APST sleep states that cause resume hangs.
+# Uses sysfs model string since nvme-cli isn't on the live ISO.
+# https://wiki.archlinux.org/title/Solid_state_drive/NVMe
+if cat /sys/class/nvme/*/model 2>/dev/null | grep -qi 'WD\|Western Digital'; then
+    info "WD NVMe detected — adding APST latency cap to boot entry..."
+    sed -i 's|loglevel=3$|loglevel=3 nvme_core.default_ps_max_latency_us=5500|' /mnt/boot/loader/entries/arch.conf
+fi
+
+# Intel WiFi (iwlwifi): module fails D3cold→D0 transition on resume,
+# causing a crashloop. Unload/reload around suspend as a workaround.
+# https://bbs.archlinux.org/viewtopic.php?id=293404
+if lspci | grep -qi 'Network.*Intel'; then
+    info "Intel WiFi detected — installing iwlwifi suspend workaround..."
+    cat > /mnt/usr/lib/systemd/system-sleep/iwlwifi-suspend.sh <<'HOOK'
+#!/bin/sh
+case "$1" in
+    pre)
+        rfkill block wifi
+        modprobe -r iwlmvm iwlwifi 2>/dev/null
+        ;;
+    post)
+        modprobe iwlwifi 2>/dev/null
+        rfkill unblock wifi
+        ;;
+esac
+HOOK
+    chmod +x /mnt/usr/lib/systemd/system-sleep/iwlwifi-suspend.sh
+fi
 
 success "System configuration complete."
 
@@ -479,6 +513,41 @@ elif [[ -n "$BROWSER_AUR" ]]; then
     arch-chroot /mnt runuser -u graham -- paru -S --noconfirm --needed "$BROWSER_AUR"
 fi
 
+# ── Hardware-specific packages ──────────────────────────────────────
+# Detect hardware features and install supporting packages dynamically.
+# All checks use generic detection (lspci, /sys) rather than hostname.
+
+info "Detecting hardware features..."
+
+# Firmware updates (fwupd) — useful on any machine with LVFS-supported hardware
+info "Installing firmware update support..."
+arch-chroot /mnt pacman -S --noconfirm --needed fwupd
+
+# AMD GPU: use power-profiles-daemon instead of TLP (per AMD/Framework guidance)
+if lspci | grep -iE 'vga|3d|display' | grep -qi 'amd\|ati\|radeon'; then
+    info "AMD GPU detected — installing power-profiles-daemon..."
+    arch-chroot /mnt pacman -S --noconfirm --needed power-profiles-daemon
+fi
+
+# AMD NPU (XDNA/XDNA2): in-kernel driver since Linux 6.14, install userspace tools.
+# PCI IDs: 1022:1502 (Phoenix/Hawk Point), 1022:17f0 (Strix Point)
+if lspci -nn | grep -qiE '1022:(1502|17f0)'; then
+    info "AMD NPU detected — installing XRT userspace tools..."
+    arch-chroot /mnt runuser -u graham -- paru -S --noconfirm --needed xrt-npu-git
+fi
+
+# Fingerprint reader
+if lsusb 2>/dev/null | grep -qi 'fingerprint\|27c6:609c'; then
+    info "Fingerprint reader detected — installing fprintd..."
+    arch-chroot /mnt pacman -S --noconfirm --needed fprintd
+fi
+
+# Ambient light sensor
+if [[ -d /sys/bus/iio/devices/iio:device0 ]]; then
+    info "Ambient light sensor detected — installing iio-sensor-proxy..."
+    arch-chroot /mnt pacman -S --noconfirm --needed iio-sensor-proxy
+fi
+
 success "All packages installed."
 
 # ── Step 7: Dotfiles ────────────────────────────────────────────────
@@ -570,6 +639,14 @@ step 10 "Services"
 info "Enabling system services..."
 arch-chroot /mnt systemctl enable NetworkManager
 arch-chroot /mnt systemctl enable ly@tty1
+
+# Enable hardware-detected services (only if their packages were installed)
+if arch-chroot /mnt pacman -Qi power-profiles-daemon &>/dev/null; then
+    arch-chroot /mnt systemctl enable power-profiles-daemon
+fi
+if arch-chroot /mnt pacman -Qi iio-sensor-proxy &>/dev/null; then
+    arch-chroot /mnt systemctl enable iio-sensor-proxy
+fi
 
 # Offer to pre-configure a Wi-Fi network so the installed system connects on first boot
 echo ""
