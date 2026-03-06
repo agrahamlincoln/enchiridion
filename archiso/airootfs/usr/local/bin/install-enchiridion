@@ -113,8 +113,9 @@ for i in "${!DISKS[@]}"; do
 done
 
 echo ""
-prompt "Select disk number [1-${#DISKS[@]}]: "
+prompt "Select disk number [1-${#DISKS[@]}] (default: 1): "
 read -r DISK_NUM
+DISK_NUM="${DISK_NUM:-1}"
 
 if [[ ! "$DISK_NUM" =~ ^[0-9]+$ ]] || (( DISK_NUM < 1 || DISK_NUM > ${#DISKS[@]} )); then
     error "Invalid selection."
@@ -162,10 +163,14 @@ step 3 "LUKS Encryption + Filesystems"
 
 info "Setting up LUKS2 encryption on $LUKS_PART..."
 echo "You will be prompted to set a disk encryption passphrase."
-cryptsetup luksFormat --type luks2 "$LUKS_PART"
+while ! cryptsetup luksFormat --type luks2 "$LUKS_PART"; do
+    warn "LUKS format failed (mismatched passwords?). Try again."
+done
 
 info "Opening encrypted volume..."
-cryptsetup open "$LUKS_PART" cryptroot
+while ! cryptsetup open "$LUKS_PART" cryptroot; do
+    warn "Wrong passphrase. Try again."
+done
 
 info "Creating ext4 filesystem on encrypted volume..."
 mkfs.ext4 -F /dev/mapper/cryptroot
@@ -208,8 +213,9 @@ echo "  4. America/Los_Angeles (Pacific)"
 echo "  5. UTC"
 echo "  6. Custom (enter tzdata path)"
 echo ""
-prompt "Selection [1-6]: "
+prompt "Selection [1-6] (default: 3): "
 read -r TZ_NUM
+TZ_NUM="${TZ_NUM:-3}"
 
 case "$TZ_NUM" in
     1) TIMEZONE="America/New_York" ;;
@@ -237,12 +243,38 @@ info "Select console keyboard layout:"
 echo "  1. Dvorak"
 echo "  2. QWERTY (us)"
 echo ""
-prompt "Selection [1-2]: "
+prompt "Selection [1-2] (default: 1): "
 read -r KB_NUM
+KB_NUM="${KB_NUM:-1}"
 
 case "$KB_NUM" in
     1) CONSOLE_KEYMAP="dvorak" ;;
     2) CONSOLE_KEYMAP="us" ;;
+    *)
+        error "Invalid selection."
+        exit 1
+        ;;
+esac
+
+# Browser
+echo ""
+info "Select web browser:"
+echo "  1. Firefox"
+echo "  2. Chromium"
+echo "  3. Brave"
+echo "  4. Zen"
+echo "  5. None (skip)"
+echo ""
+prompt "Selection [1-5] (default: 4): "
+read -r BROWSER_NUM
+BROWSER_NUM="${BROWSER_NUM:-4}"
+
+case "$BROWSER_NUM" in
+    1) BROWSER_PKG="firefox" ; BROWSER_AUR="" ;;
+    2) BROWSER_PKG="chromium" ; BROWSER_AUR="" ;;
+    3) BROWSER_PKG="" ; BROWSER_AUR="brave-bin" ;;
+    4) BROWSER_PKG="" ; BROWSER_AUR="zen-browser-bin" ;;
+    5) BROWSER_PKG="" ; BROWSER_AUR="" ;;
     *)
         error "Invalid selection."
         exit 1
@@ -255,8 +287,9 @@ info "Select Hyprland profile:"
 echo "  1. Desktop (larger gaps, no touchpad)"
 echo "  2. Laptop  (smaller gaps, touchpad)"
 echo ""
-prompt "Selection [1-2]: "
+prompt "Selection [1-2] (default: 2): "
 read -r PROFILE_NUM
+PROFILE_NUM="${PROFILE_NUM:-2}"
 
 case "$PROFILE_NUM" in
     1) HOST_TYPE="desktop" ;;
@@ -407,6 +440,15 @@ info "Installing AUR packages from enchiridion..."
 AUR_PACKAGES="$(read_packages arch-aur.txt)"
 arch-chroot /mnt runuser -u graham -- paru -S --noconfirm --needed $AUR_PACKAGES
 
+# Install selected browser
+if [[ -n "$BROWSER_PKG" ]]; then
+    info "Installing browser ($BROWSER_PKG)..."
+    arch-chroot /mnt pacman -S --noconfirm --needed "$BROWSER_PKG"
+elif [[ -n "$BROWSER_AUR" ]]; then
+    info "Installing browser ($BROWSER_AUR)..."
+    arch-chroot /mnt runuser -u graham -- paru -S --noconfirm --needed "$BROWSER_AUR"
+fi
+
 success "All packages installed."
 
 # ── Step 7: Dotfiles ────────────────────────────────────────────────
@@ -426,6 +468,9 @@ else
     HYPR_KB_LAYOUT="qwerty"
 fi
 arch-chroot /mnt runuser -u graham -- bash -c "echo '$HYPR_KB_LAYOUT' > /home/graham/.config/hypr/kb-layout"
+
+# Generate host-settings.conf and host-keybinds.conf so they exist on first boot
+arch-chroot /mnt runuser -u graham -- bash /home/graham/.config/hypr/update-host-config.sh
 
 # Remove temporary passwordless sudo (granted in step 6 for makepkg/paru/setup.sh)
 arch-chroot /mnt rm -f /etc/sudoers.d/enchiridion-install
@@ -519,8 +564,7 @@ if [[ "$WIFI_CHOICE" =~ ^[Yy]$ ]]; then
     prompt "SSID: "
     read -r WIFI_SSID
     prompt "Passphrase: "
-    read -rs WIFI_PASS
-    echo ""
+    read -r WIFI_PASS
 
     # NetworkManager keyfile format
     # https://networkmanager.dev/docs/api/latest/nm-settings-keyfile.html

@@ -25,6 +25,7 @@ thunar
 ttf-firacode-nerd
 otf-font-awesome
 ttf-fira-code
+noto-fonts-cjk
 
 # Screenshot and clipboard
 grim
