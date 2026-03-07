@@ -48,3 +48,9 @@ ly
 # Waybar live reload
 inotify-tools
 
+# Tap indicator (visual click feedback for touchpads)
+gtk4-layer-shell
+python-gobject
+python-cairo
+libinput-tools
+

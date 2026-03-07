@@ -307,6 +307,16 @@ case "$PROFILE_NUM" in
         ;;
 esac
 
+# Touchpad tap indicator (visual click feedback)
+echo ""
+info "Enable touchpad tap indicator?"
+echo "  Shows a brief visual ring at cursor position on each tap/click."
+echo "  Useful on clickpads where taps lack haptic feedback."
+echo ""
+prompt "Enable tap indicator? [y/N]: "
+read -r TAP_INDICATOR
+TAP_INDICATOR="${TAP_INDICATOR,,}"  # lowercase
+
 # Hostname
 echo ""
 prompt "Hostname: "
@@ -382,7 +392,7 @@ options rd.luks.name=${LUKS_UUID}=cryptroot root=/dev/mapper/cryptroot rw
 ENTRY
 
 # User account
-useradd -m -G wheel,systemd-journal -s /bin/bash graham
+useradd -m -G wheel,systemd-journal,input -s /bin/bash graham
 echo "graham:${USER_PASSWORD}" | chpasswd
 
 # Enable wheel group in sudoers
@@ -574,6 +584,12 @@ else
     HYPR_KB_LAYOUT="qwerty"
 fi
 arch-chroot /mnt runuser -u graham -- bash -c "echo '$HYPR_KB_LAYOUT' > /home/graham/.config/hypr/kb-layout"
+
+# Enable tap indicator if requested
+if [[ "$TAP_INDICATOR" == "y" ]]; then
+    arch-chroot /mnt runuser -u graham -- touch /home/graham/.config/hypr/tap-indicator-enabled
+    success "Tap indicator enabled."
+fi
 
 # Generate host-settings.conf and host-keybinds.conf so they exist on first boot
 arch-chroot /mnt runuser -u graham -- bash /home/graham/.config/hypr/update-host-config.sh
