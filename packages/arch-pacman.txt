@@ -4,6 +4,7 @@ git
 stow
 openssh
 jq
+just
 
 # Terminal and editors
 kitty
@@ -18,6 +19,7 @@ xdg-desktop-portal-hyprland
 
 # Desktop utilities
 waybar
+wofi
 gammastep
 thunar
 
@@ -25,6 +27,7 @@ thunar
 ttf-firacode-nerd
 otf-font-awesome
 ttf-fira-code
+ttf-roboto
 noto-fonts-cjk
 
 # Screenshot and clipboard

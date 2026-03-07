@@ -1,0 +1,46 @@
+/* Compact dropdown style for the waybar scale picker.
+ * Matches the waybar pill aesthetic — tight padding, soft UI font. */
+
+window {
+  background-color: #333333;
+  border: 2px solid #1793d1;
+  border-radius: 10px;
+  margin-top: 4px;
+  font-family: "Roboto", "Adwaita Sans", sans-serif;
+  font-size: 13px;
+}
+
+#outer-box {
+  background-color: #333333;
+  border-radius: 10px;
+  padding: 4px;
+}
+
+#scroll {
+  background-color: #333333;
+}
+
+#inner-box {
+  background-color: #333333;
+}
+
+#entry {
+  background-color: #333333;
+  color: #d4d4d8;
+  padding: 4px 12px;
+  border-radius: 6px;
+  margin: 1px 0;
+}
+
+#entry:selected {
+  background-color: #1793d1;
+  color: #ffffff;
+}
+
+#text {
+  color: #d4d4d8;
+}
+
+#text:selected {
+  color: #ffffff;
+}

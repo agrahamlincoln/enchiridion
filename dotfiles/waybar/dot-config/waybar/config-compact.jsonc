@@ -24,6 +24,7 @@
     // --- Pill 4: Environment ---
     "temperature",
     "backlight",
+    "custom/scale",
     "idle_inhibitor",
     "custom/power",
 
@@ -200,6 +201,13 @@
       { "type": "audio-in", "tooltip": true, "tooltip-icon-size": 20 },
       { "type": "audio-out", "tooltip": true, "tooltip-icon-size": 20 },
     ],
+  },
+  "custom/scale": {
+    "exec": "$HOME/.config/hypr/hypr-scale.sh get",
+    "return-type": "json",
+    "interval": 5,
+    "format": "󰍺",
+    "on-click": "$HOME/.config/hypr/hypr-scale.sh menu",
   },
   "custom/power": {
     "format": "⏻",

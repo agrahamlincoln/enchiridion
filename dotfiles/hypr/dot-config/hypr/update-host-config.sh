@@ -69,3 +69,12 @@ cat "$HYPR_DIR/hosts/$KB_LAYOUT/keybinds.conf" >> "$HYPR_DIR/host-keybinds.conf"
 echo "Generated host-keybinds.conf for $KB_LAYOUT"
 
 echo "Host configuration updated ($HOST_TYPE/$KB_LAYOUT)"
+
+# DPI-based monitor scaling — targets 140 effective DPI for consistent sizing.
+# Uses hypr-scale.sh which computes valid scales mathematically (no probing).
+SCALE_SCRIPT="$HYPR_DIR/hypr-scale.sh"
+if [[ -x "$SCALE_SCRIPT" ]] && command -v hyprctl >/dev/null 2>&1; then
+    "$SCALE_SCRIPT" auto 140
+else
+    echo "hypr-scale.sh or hyprctl not available, skipping DPI-based scaling"
+fi
