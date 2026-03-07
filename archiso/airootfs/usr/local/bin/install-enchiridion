@@ -523,10 +523,16 @@ info "Detecting hardware features..."
 info "Installing firmware update support..."
 arch-chroot /mnt pacman -S --noconfirm --needed fwupd
 
-# AMD GPU: use power-profiles-daemon instead of TLP (per AMD/Framework guidance)
+# GPU drivers: install Vulkan driver and power management for detected GPU
 if lspci | grep -iE 'vga|3d|display' | grep -qi 'amd\|ati\|radeon'; then
-    info "AMD GPU detected — installing power-profiles-daemon..."
-    arch-chroot /mnt pacman -S --noconfirm --needed power-profiles-daemon
+    info "AMD GPU detected — installing vulkan-radeon and power-profiles-daemon..."
+    arch-chroot /mnt pacman -S --noconfirm --needed vulkan-radeon power-profiles-daemon
+elif lspci | grep -iE 'vga|3d|display' | grep -qi 'nvidia'; then
+    info "NVIDIA GPU detected — installing nvidia-utils (includes Vulkan)..."
+    arch-chroot /mnt pacman -S --noconfirm --needed nvidia-utils
+elif lspci | grep -iE 'vga|3d|display' | grep -qi 'intel'; then
+    info "Intel GPU detected — installing vulkan-intel..."
+    arch-chroot /mnt pacman -S --noconfirm --needed vulkan-intel
 fi
 
 # AMD NPU (XDNA/XDNA2): in-kernel driver since Linux 6.14, install userspace tools.
