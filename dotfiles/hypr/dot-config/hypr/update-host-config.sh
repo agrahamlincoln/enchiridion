@@ -61,6 +61,14 @@ cat "$HYPR_DIR/hosts/$HOST_TYPE/settings.conf" >> "$HYPR_DIR/host-settings.conf"
 # Patch kb_variant based on keyboard layout selection
 sed -i "s/kb_variant =.*/kb_variant = $KB_VARIANT/" "$HYPR_DIR/host-settings.conf"
 
+# Patch monitor line with saved scale (so it survives hyprctl reload)
+if [[ -f "$HYPR_DIR/monitor-scale" ]]; then
+    SAVED_SCALE="$(tr -d '[:space:]' < "$HYPR_DIR/monitor-scale")"
+    if [[ -n "$SAVED_SCALE" ]]; then
+        sed -i "s/monitor=,preferred,auto,auto/monitor=,preferred,auto,$SAVED_SCALE/" "$HYPR_DIR/host-settings.conf"
+    fi
+fi
+
 echo "Generated host-settings.conf for $HOST_TYPE"
 
 # Generate keyboard-layout-specific keybindings
