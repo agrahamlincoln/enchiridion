@@ -189,11 +189,18 @@ success "Filesystems ready."
 
 step 4 "Base System Install"
 
+# Detect CPU vendor for microcode package
+UCODE=""
+if grep -qi 'GenuineIntel' /proc/cpuinfo; then
+    UCODE="intel-ucode"
+elif grep -qi 'AuthenticAMD' /proc/cpuinfo; then
+    UCODE="amd-ucode"
+fi
+
 info "Installing base system via pacstrap..."
 pacstrap -K /mnt \
-    base linux linux-firmware \
-    intel-ucode amd-ucode \
-    networkmanager sudo vim git base-devel
+    base linux linux-firmware $UCODE \
+    networkmanager sudo vim git openssh base-devel
 
 info "Generating fstab..."
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -453,6 +460,7 @@ fi
 
 info "Cloning enchiridion repository..."
 mkdir -p /mnt/home/graham/projects
+arch-chroot /mnt chown graham:graham /home/graham/projects
 if [[ "$USE_SSH" == true ]]; then
     arch-chroot /mnt runuser -u graham -- git clone git@github.com:agrahamlincoln/enchiridion.git /home/graham/projects/enchiridion
 else
@@ -533,13 +541,6 @@ elif lspci | grep -iE 'vga|3d|display' | grep -qi 'nvidia'; then
 elif lspci | grep -iE 'vga|3d|display' | grep -qi 'intel'; then
     info "Intel GPU detected — installing vulkan-intel..."
     arch-chroot /mnt pacman -S --noconfirm --needed vulkan-intel
-fi
-
-# AMD NPU (XDNA/XDNA2): in-kernel driver since Linux 6.14, install userspace tools.
-# PCI IDs: 1022:1502 (Phoenix/Hawk Point), 1022:17f0 (Strix Point)
-if lspci -nn | grep -qiE '1022:(1502|17f0)'; then
-    info "AMD NPU detected — installing XRT userspace tools..."
-    arch-chroot /mnt runuser -u graham -- paru -S --noconfirm --needed xrt-npu-git
 fi
 
 # Fingerprint reader
