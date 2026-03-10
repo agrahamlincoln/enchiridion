@@ -102,6 +102,33 @@ if [[ "$OS" == "Linux" ]]; then
     echo "-> Installing AUR packages..."
     paru -S --noconfirm --needed $(read_packages arch-aur.txt)
 
+    # SOF firmware: install only if SOF/ACP PDM audio hardware is detected
+    # (needed for internal speakers/mic on modern AMD/Intel laptops)
+    if grep -qiE 'sof|acppdm|acp-pdm' /proc/asound/cards 2>/dev/null; then
+        echo "-> SOF/ACP PDM audio hardware detected, installing sof-firmware..."
+        sudo pacman -S --noconfirm --needed sof-firmware
+        echo "- sof-firmware installed."
+    else
+        echo "- No SOF audio hardware detected, skipping sof-firmware."
+    fi
+
+    # Bluetooth: install only if hardware is detected
+    has_bluetooth=false
+    if (command -v lspci &>/dev/null && lspci | grep -qi bluetooth) || \
+       (command -v lsusb &>/dev/null && lsusb | grep -qi bluetooth) || \
+       { [[ -d /sys/class/bluetooth ]] && compgen -G "/sys/class/bluetooth/hci*" &>/dev/null; }; then
+        has_bluetooth=true
+    fi
+
+    if $has_bluetooth; then
+        echo "-> Bluetooth hardware detected, installing bluez..."
+        sudo pacman -S --noconfirm --needed bluez bluez-utils blueman
+        sudo systemctl enable bluetooth.service
+        echo "- bluez + blueman installed and bluetooth.service enabled."
+    else
+        echo "- No Bluetooth hardware detected, skipping bluez."
+    fi
+
 elif [[ "$OS" == "Darwin" ]]; then
     echo "-> Checking Homebrew taps..."
     for tap in $(read_packages brew-taps.txt); do
@@ -161,6 +188,39 @@ else
     done
 fi
 popd > /dev/null
+
+# ── Available Upgrades (Linux) ────────────────────────────────────────
+
+if [[ "$OS" == "Linux" ]]; then
+    echo -e "\n--- Available Upgrades ---"
+    AVAIL_UP_SRC="$REPO_DIR/bashrc/available-upgrades"
+
+    if [[ ! -f /usr/local/bin/available-upgrades.sh ]]; then
+        echo "-> Installing available-upgrades.sh..."
+        sudo install -m 755 "$AVAIL_UP_SRC/available-upgrades.sh" /usr/local/bin/available-upgrades.sh
+        echo "- available-upgrades.sh installed."
+    else
+        echo "- available-upgrades.sh already installed."
+    fi
+
+    sudo mkdir -p /var/lib/available-upgrades
+    sudo touch /var/lib/available-upgrades/.package-available-upgrades
+    sudo chmod 644 /var/lib/available-upgrades/.package-available-upgrades
+
+    for unit in available-upgrades.service available-upgrades.timer; do
+        if [[ ! -f /etc/systemd/system/$unit ]]; then
+            echo "-> Installing $unit..."
+            sudo install -m 644 "$AVAIL_UP_SRC/$unit" /etc/systemd/system/$unit
+        fi
+    done
+    sudo systemctl daemon-reload
+    if ! systemctl is-enabled --quiet available-upgrades.timer 2>/dev/null; then
+        sudo systemctl enable --now available-upgrades.timer
+        echo "- available-upgrades.timer enabled."
+    else
+        echo "- available-upgrades.timer already enabled."
+    fi
+fi
 
 # ── Bash Configuration ────────────────────────────────────────────────
 

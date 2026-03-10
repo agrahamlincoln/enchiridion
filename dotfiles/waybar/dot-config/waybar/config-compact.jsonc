@@ -2,7 +2,6 @@
   // Compact config: concise formats for smaller displays.
   // Selected automatically for displays under 2000 effective pixels wide.
   // Relies on color states and icon variants to convey status at a glance.
-  "height": 30,
   "spacing": 0,
   "modules-left": ["hyprland/workspaces", "mpris"],
   "modules-center": ["hyprland/window"],
@@ -56,6 +55,8 @@
       "class<zen>": "<span size='large'>󰈹</span>", // nf-md-firefox
       "title<Monster Hunter Wilds>": "<span size='large'></span>",
       "class<dota2>": "<span size='large'>󱢾</span>", // nf-md-shield_sword
+      "class<BoltLauncher>": "<span size='large'>󰛨</span>", // nf-md-lightning_bolt
+      "class<net-runelite-client-RuneLite>": "<span size='large'>󰊖</span>", // nf-md-sword
     },
     "persistent-workspaces": {
       "*": [1, 2, 3, 4, 5],
@@ -104,6 +105,7 @@
     "format-connected": "󰂱",
     "tooltip-format": "Bluetooth: {status}",
     "tooltip-format-connected": "{device_alias}",
+    "on-click": "blueman-manager",
   },
   "clock": {
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",

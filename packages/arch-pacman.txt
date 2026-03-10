@@ -39,7 +39,10 @@ wl-clipboard
 brightnessctl
 playerctl
 pipewire
+pipewire-pulse
+pipewire-alsa
 wireplumber
+alsa-utils
 pavucontrol
 
 # Display manager
