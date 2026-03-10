@@ -2,15 +2,12 @@
 
 UPDATES_FILE="/var/lib/available-upgrades/.package-available-upgrades"
 
-# Setup UPDATES_FILE with correct permissions
-if [[ ! -f "$UPDATES_FILE" ]]; then
-  touch "$UPDATES_FILE"
-  chmod 644 "$UPDATES_FILE"
-fi
-
-# Check if --count option is provided
 if [[ "$1" == "--update" ]]; then
-  # Default behavior: Check for updates and write to the file
+  # Running as root via systemd: create file if needed and refresh update list
+  if [[ ! -f "$UPDATES_FILE" ]]; then
+    touch "$UPDATES_FILE"
+    chmod 644 "$UPDATES_FILE"
+  fi
   pacman -Qu > "$UPDATES_FILE" 2>/dev/null
   paru -Qu >> "$UPDATES_FILE" 2>/dev/null
 else

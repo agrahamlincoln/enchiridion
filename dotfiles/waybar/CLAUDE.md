@@ -19,7 +19,15 @@ The threshold is defined as `COMPACT_THRESHOLD=2000` in `waybar.sh`. This replac
 
 ## Live Reload
 
-The launcher uses `inotifywait` to watch config and style files. When modified, it sends `SIGUSR2` to waybar for in-place config reload without restart. Requires `inotify-tools`.
+The launcher uses `inotifywait` to watch config and style files. When modified, it does a full waybar restart via the main loop. Requires `inotify-tools`.
+
+## Logging
+
+All output (waybar.sh script messages and waybar's own stderr) is routed to the systemd journal via `systemd-cat -t waybar`. View logs with:
+
+```bash
+journalctl -t waybar -f
+```
 
 ## Styling
 
