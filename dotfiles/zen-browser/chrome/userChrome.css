@@ -1,0 +1,96 @@
+/* Enchiridion — Zen Browser Theme
+ * Applies the shared Enchiridion color palette to Zen Browser.
+ * Canonical color source: kitty.conf
+ *
+ * Symlinked into the active Zen profile's chrome/ directory by setup.sh.
+ */
+
+:root {
+  /* ── Accent ─────────────────────────────────────────────────────────── */
+  --zen-primary-color: #1793d1 !important; /* Arch Blue */
+
+  /* ── Browser chrome backgrounds ─────────────────────────────────────── */
+  --zen-main-browser-background: #0a0a0a !important;
+  --zen-main-browser-background-toolbar: #0a0a0a !important;
+  --lwt-accent-color: #0a0a0a !important;
+  --toolbar-bgcolor: #0a0a0a !important;
+  --arrowpanel-background: #0a0a0a !important;
+
+  /* ── Text / foreground ──────────────────────────────────────────────── */
+  --toolbar-color: #d6d3d1 !important;
+  --lwt-text-color: #d6d3d1 !important;
+  --arrowpanel-color: #d6d3d1 !important;
+
+  /* ── Surfaces ───────────────────────────────────────────────────────── */
+  --zen-colors-primary: #333333 !important;           /* Surface */
+  --zen-colors-secondary: #292524 !important;          /* Black normal */
+  --zen-colors-tertiary: #0a0a0a !important;           /* Background */
+  --tab-selected-bgcolor: #333333 !important;          /* Surface */
+  --zen-colors-input-bg: #292524 !important;
+
+  /* ── Borders ────────────────────────────────────────────────────────── */
+  --zen-colors-border: #525252 !important;             /* Bright black */
+  --zen-colors-border-contrast: #444444 !important;    /* Alt surface */
+
+  /* ── Hover / interaction ────────────────────────────────────────────── */
+  --zen-colors-hover-bg: #444444 !important;           /* Alt surface */
+  --zen-toolbar-element-bg-hover: #444444 !important;
+
+  /* ── URL bar ────────────────────────────────────────────────────────── */
+  --zen-urlbar-background: #292524 !important;
+  --toolbar-field-background-color: #292524 !important;
+  --toolbar-field-color: #d6d3d1 !important;
+  --toolbar-field-focus-background-color: #333333 !important;
+  --toolbar-field-focus-color: #d6d3d1 !important;
+
+  /* ── Sidebar ────────────────────────────────────────────────────────── */
+  --lwt-sidebar-background-color: #0a0a0a !important;
+  --lwt-sidebar-text-color: #d6d3d1 !important;
+  --sidebar-text-color: #d6d3d1 !important;
+
+  /* ── New tab page ───────────────────────────────────────────────────── */
+  --newtab-background-color: #0a0a0a !important;
+  --newtab-background-color-secondary: #292524 !important;
+  --newtab-text-primary-color: #d6d3d1 !important;
+  --newtab-wordmark-color: #d6d3d1 !important;
+  --newtab-primary-action-background: #1793d1 !important;
+  --newtab-element-hover-color: #444444 !important;
+
+  /* ── Focus / accent ─────────────────────────────────────────────────── */
+  --focus-outline-color: #1793d1 !important;
+  --color-accent-primary: #1793d1 !important;
+  --color-accent-primary-hover: #60a5fa !important;    /* Bright blue */
+  --color-accent-primary-active: #3b82f6 !important;   /* Blue normal */
+
+  /* ── Tabs ───────────────────────────────────────────────────────────── */
+  --tab-selected-textcolor: #d6d3d1 !important;
+
+  /* ── Derived colors Zen computes from primary ───────────────────────── */
+  --zen-colors-primary-foreground: #d6d3d1 !important;
+  --in-content-accent-color: #1793d1 !important;
+  --in-content-primary-button-background: #1793d1 !important;
+  --in-content-primary-button-background-hover: #60a5fa !important;
+  --in-content-primary-button-background-active: #3b82f6 !important;
+}
+
+/* ── Override Zen gradient overlay with solid background ────────────── */
+
+#zen-browser-background {
+  --zen-main-browser-background: #0a0a0a !important;
+  --zen-primary-color: #1793d1 !important;
+}
+
+#zen-toolbar-background {
+  --zen-main-browser-background-toolbar: #0a0a0a !important;
+  --zen-primary-color: #1793d1 !important;
+}
+
+.zen-browser-generic-background::after,
+.zen-browser-generic-background::before {
+  background: #0a0a0a !important;
+  opacity: 1 !important;
+}
+
+.zen-browser-grain {
+  display: none !important;
+}

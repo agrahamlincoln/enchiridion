@@ -58,6 +58,9 @@ plymouth
 # Waybar live reload
 inotify-tools
 
+# Zen Browser theme patching
+python-lz4
+
 # Tap indicator (visual click feedback for touchpads)
 gtk4-layer-shell
 python-gobject

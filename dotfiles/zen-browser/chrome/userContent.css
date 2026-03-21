@@ -1,0 +1,17 @@
+/* Enchiridion — Zen Browser Content Theme
+ * Styles internal pages (settings, about:*, new tab) to match the palette.
+ */
+
+@-moz-document url-prefix("about:") {
+  :root {
+    --in-content-page-background: #0a0a0a !important;
+    --in-content-page-color: #d6d3d1 !important;
+    --in-content-text-color: #d6d3d1 !important;
+    --in-content-box-background: #292524 !important;
+    --in-content-primary-button-background: #1793d1 !important;
+    --in-content-primary-button-background-hover: #60a5fa !important;
+    --in-content-primary-button-background-active: #3b82f6 !important;
+    --in-content-primary-button-text-color: #0a0a0a !important;
+    --background-color-box: #292524 !important;
+  }
+}

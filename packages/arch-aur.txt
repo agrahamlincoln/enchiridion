@@ -9,3 +9,6 @@ phinger-cursors
 
 # Boot splash theme
 plymouth-theme-arch-logo
+
+# Browser
+zen-browser-bin
