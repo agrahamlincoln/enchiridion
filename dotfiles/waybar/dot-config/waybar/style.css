@@ -144,7 +144,6 @@ window#waybar.empty #window {
 #workspaces button:hover {
   background: #525252;
   box-shadow: inherit;
-  text-shadow: inherit;
 }
 
 #workspaces button.active,
@@ -152,14 +151,12 @@ window#waybar.empty #window {
   background: @workspaces-active-bg;
   color: @workspaces-active-fg;
   box-shadow: inherit;
-  text-shadow: inherit;
 }
 
 #workspaces button.urgent {
   background: @workspaces-urgent-bg;
   color: @workspaces-urgent-fg;
   box-shadow: inherit;
-  text-shadow: inherit;
 }
 
 #pulseaudio.muted,
