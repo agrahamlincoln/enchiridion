@@ -1,0 +1,35 @@
+# Mako notification daemon configuration
+# Themed to match the Enchiridion shared palette
+
+# Positioning
+anchor=top-right
+layer=overlay
+margin=10
+
+# Appearance
+font=Adwaita Sans 11
+background-color=#333333
+text-color=#d6d3d1
+border-color=#1793d1
+border-size=2
+border-radius=10
+padding=12
+width=350
+height=150
+icons=1
+icon-path=/usr/share/icons/Papirus-Dark
+max-icon-size=48
+default-timeout=5000
+markup=1
+
+# Grouping
+group-by=app-name
+
+# Urgency overrides
+[urgency=low]
+border-color=#525252
+default-timeout=3000
+
+[urgency=critical]
+border-color=#f43f5e
+default-timeout=0

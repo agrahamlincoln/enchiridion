@@ -4,12 +4,11 @@
     background-image: none;
     box-shadow: none;
     text-shadow: none;
-    transition: 20ms;
 }
 
 window {
-    font-family: FiraCode Nerd Font;
-    font-size: 12pt;
+    font-family: "FiraCode Nerd Font", "Adwaita Sans", sans-serif;
+    font-size: 14px;
     color: #ffffff;
     background-color: rgba(0, 0, 0, 0.8);
 }
@@ -20,15 +19,15 @@ button {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 25%;
-    background-color: rgba(51, 51, 51, 0.8);  /* #333333 with transparency */
+    background-color: rgba(51, 51, 51, 0.8);
     border: 2px solid #333333;
     margin: 5px;
-    border-radius: 15px;
-    transition: all 0.3s ease-in-out;
+    border-radius: 10px;
+    transition: all 0.3s ease;
 }
 
 button:focus, button:active, button:hover {
-    background-color: rgba(23, 147, 209, 0.8);  /* #1793d1 with transparency */
+    background-color: rgba(23, 147, 209, 0.8);
     border: 2px solid #1793d1;
     outline-style: none;
 }
@@ -53,13 +52,11 @@ button:focus, button:active, button:hover {
     background-image: url("icons/shutdown.svg");
 }
 
-/* Button text styling */
 button label {
     font-weight: bold;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
-/* Hover effects for text */
 button:hover label {
     text-shadow: 1px 1px 3px rgba(23, 147, 209, 0.8);
 }

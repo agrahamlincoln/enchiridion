@@ -1,49 +1,56 @@
 /* wofi-style.css */
+* {
+  font-family: "FiraCode Nerd Font", "Adwaita Sans", sans-serif;
+  font-size: 14px;
+}
+
 window {
-  border: 1px solid #1793d1; /* Subtle active border */
-  background-color: #0a0a0a; /* Dark background */
+  border: 2px solid #1793d1;
+  border-radius: 10px;
+  background-color: #0a0a0a;
 }
 
 #outer-box {
-  box-shadow: 0 0 6px rgba(0a0a0abb); /* Shadow from Hyprland */
   background-color: #0a0a0a;
 }
 
 #input {
-  background-color: #333333; /* Inactive border color */
-  color: #d4d4d8;
+  background-color: #333333;
+  color: #d6d3d1;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin: 8px;
 }
 
 #scroll {
-  box-shadow: 0 0 4px rgba(0a0a0abb); /* Shadow color from Hyprland */
   background-color: #0a0a0a;
 }
 
 #inner-box {
-  box-shadow: 0 0.5px 4px rgba(0a0a0abb);
   background-color: #0a0a0a;
 }
 
 #entry {
   background-color: #0a0a0a;
-  color: #d4d4d8;
+  color: #d6d3d1;
+  padding: 6px 12px;
+  border-radius: 6px;
+  margin: 2px 8px;
 }
 
 #entry:selected {
   background-color: #1793d1;
-  color: #000; /* Darker text for better contrast */
-  opacity: 0.95;
+  color: #ffffff;
 }
 
 #text {
-  color: #d4d4d8;
+  color: #d6d3d1;
 }
 
 #text:selected {
-  color: #fff;
-  text-shadow: 0 0 2px #fff;
+  color: #ffffff;
 }
 
 img {
-  opacity: 0.7;
+  opacity: 1;
 }

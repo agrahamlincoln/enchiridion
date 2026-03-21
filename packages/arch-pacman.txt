@@ -22,6 +22,10 @@ waybar
 wofi
 gammastep
 thunar
+mako
+
+# Icon theme
+papirus-icon-theme
 
 # Fonts
 ttf-firacode-nerd

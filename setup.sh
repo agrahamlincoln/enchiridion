@@ -21,12 +21,8 @@ read_packages() {
 # Helper: stow a dotfiles target idempotently
 stow_target() {
     local target="$1"
-    if [[ ! -L "$HOME/.config/$target" ]]; then
-        if stow -t ~ --dotfiles --ignore='CLAUDE\.md' --ignore='README\.md' -S "$target"; then
-            echo "  Stowed $target."
-        else
-            echo "  Error: Failed to stow $target." >&2
-        fi
+    if stow -t ~ --dotfiles --ignore='CLAUDE\.md' --ignore='README\.md' -S "$target" 2>/dev/null; then
+        echo "  Stowed $target."
     else
         echo "  - $target already stowed."
     fi
@@ -130,17 +126,27 @@ if [[ "$OS" == "Linux" ]]; then
     fi
 
     # Fingerprint: install and configure only if a sensor is detected
+    # Strategy: keep fprintd OUT of PAM entirely — ly and sudo don't handle
+    # concurrent fingerprint+password well. Only hyprlock uses fingerprint,
+    # via its native D-Bus auth block (parallel with password).
     if compgen -G "/sys/class/fingerprint/*" &>/dev/null; then
         echo "-> Fingerprint sensor detected, installing fprintd..."
         sudo pacman -S --noconfirm --needed fprintd
-        # Add fingerprint auth to PAM if not already configured
-        if ! grep -q pam_fprintd /etc/pam.d/system-auth; then
-            sudo sed -i '/#%PAM-1.0/a auth       sufficient                  pam_fprintd.so' /etc/pam.d/system-auth
-            echo "- PAM configured for fingerprint authentication."
+        # Clean up fprintd from system-wide and login PAM (blocks ly)
+        for pamfile in system-auth ly; do
+            if grep -q pam_fprintd /etc/pam.d/$pamfile; then
+                sudo sed -i '/pam_fprintd/d' /etc/pam.d/$pamfile
+                echo "- Removed pam_fprintd from $pamfile."
+            fi
+        done
+        # Add fprintd to sudo (scan finger or wait 10s for password fallback)
+        if ! grep -q pam_fprintd /etc/pam.d/sudo; then
+            sudo sed -i '/^auth/i auth       sufficient   pam_fprintd.so max_tries=1 timeout=10' /etc/pam.d/sudo
+            echo "- PAM configured for fingerprint sudo (10s timeout)."
         else
-            echo "- PAM already configured for fingerprint authentication."
+            echo "- sudo already configured for fingerprint."
         fi
-        # Enroll fingerprint interactively
+        # Enroll fingerprint interactively (used by hyprlock only)
         if ! fprintd-list "$USER" 2>/dev/null | grep -q "right-index-finger"; then
             echo "-> Enrolling right index finger (touch the sensor repeatedly)..."
             sudo fprintd-enroll -f right-index-finger "$USER"
@@ -150,6 +156,53 @@ if [[ "$OS" == "Linux" ]]; then
         fi
     else
         echo "- No fingerprint sensor detected, skipping fprintd."
+    fi
+
+    # Power button: open power menu instead of instant shutdown
+    # Uses a logind.conf.d drop-in so it survives systemd upgrades
+    if [[ ! -f /etc/systemd/logind.conf.d/power-button.conf ]]; then
+        echo "-> Configuring power button to open power menu..."
+        sudo mkdir -p /etc/systemd/logind.conf.d
+        printf '[Login]\nHandlePowerKey=ignore\n' | sudo tee /etc/systemd/logind.conf.d/power-button.conf > /dev/null
+        echo "- Power button set to ignore (Hyprland handles it via wlogout)."
+    else
+        echo "- Power button already configured."
+    fi
+
+    # TPM2 disk unlock: auto-unlock LUKS root via TPM2 so users only enter
+    # their password once (at ly login) instead of twice (cryptroot + login).
+    # Only runs if: TPM2 exists, LUKS root is detected, and not already enrolled.
+    luks_dev=""
+    if [[ -c /dev/tpmrm0 ]]; then
+        # Find the LUKS device backing cryptroot
+        luks_dev=$(lsblk -nrpo NAME,FSTYPE | awk '$2 == "crypto_LUKS" {print $1; exit}')
+    fi
+    if [[ -n "$luks_dev" ]]; then
+        if sudo systemd-cryptenroll "$luks_dev" --tpm2-device=list &>/dev/null; then
+            # Check if TPM2 is already enrolled
+            if ! sudo cryptsetup luksDump "$luks_dev" 2>/dev/null | grep -q "systemd-tpm2"; then
+                echo "-> Enrolling TPM2 for automatic disk unlock..."
+                echo "   (You will be prompted for your LUKS passphrase)"
+                sudo systemd-cryptenroll "$luks_dev" --tpm2-device=auto --tpm2-pcrs=7
+                echo "- TPM2 enrolled. Disk will auto-unlock on trusted boot."
+                echo "  NOTE: Your passphrase still works as a fallback."
+            else
+                echo "- TPM2 already enrolled for disk unlock."
+            fi
+        fi
+    else
+        echo "- No TPM2 + LUKS detected, skipping auto-unlock."
+    fi
+
+    # Quiet boot: suppress normal systemd/kernel output during boot.
+    # Errors and interactive prompts (e.g. LUKS passphrase) still show.
+    BOOT_ENTRY="/boot/loader/entries/arch.conf"
+    if [[ -f "$BOOT_ENTRY" ]] && ! grep -q 'quiet' "$BOOT_ENTRY"; then
+        echo "-> Enabling quiet boot..."
+        sudo sed -i '/^options / s/$/ quiet loglevel=3 systemd.show_status=auto/' "$BOOT_ENTRY"
+        echo "- Quiet boot enabled (errors and prompts still visible)."
+    else
+        echo "- Quiet boot already configured (or no systemd-boot entry found)."
     fi
 
 elif [[ "$OS" == "Darwin" ]]; then
@@ -206,11 +259,31 @@ if [[ "$OS" == "Darwin" ]]; then
         stow_target "$target"
     done
 else
-    for target in kitty hypr waybar wlogout zed vim gammastep wofi; do
+    for target in kitty hypr waybar wlogout zed vim gammastep wofi mako gtk; do
         stow_target "$target"
     done
 fi
 popd > /dev/null
+
+# ── Desktop Theme (Linux) ────────────────────────────────────────────
+
+if [[ "$OS" == "Linux" ]]; then
+    echo -e "\n--- Desktop Theme ---"
+    # Set dark mode preference for GTK apps via gsettings
+    if command -v gsettings &>/dev/null; then
+        gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+        gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita'
+        gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+        gsettings set org.gnome.desktop.interface cursor-theme 'Phinger Cursors (light)'
+        gsettings set org.gnome.desktop.interface cursor-size 32
+        gsettings set org.gnome.desktop.interface font-name 'Adwaita Sans 11'
+        gsettings set org.gnome.desktop.interface font-antialiasing 'rgba'
+        gsettings set org.gnome.desktop.interface font-hinting 'slight'
+        echo "- Dark theme and font settings applied via gsettings."
+    else
+        echo "- gsettings not available, skipping desktop theme."
+    fi
+fi
 
 # ── Available Upgrades (Linux) ────────────────────────────────────────
 
