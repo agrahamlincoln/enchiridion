@@ -22,6 +22,12 @@ cd dotfiles && stow -t ~ --dotfiles --ignore='CLAUDE\.md' --ignore='README\.md' 
 
 Files in `dotfiles/<app>/dot-config/<app>/` become `~/.config/<app>/` when stowed. The `--dotfiles` flag converts `dot-` prefixes to `.` prefixes. `CLAUDE.md` and `README.md` are excluded from stowing.
 
+**Stow creates symlinks, not copies.** Editing a source file in this repo directly modifies the live config — no re-stow needed. Only re-stow when:
+- A new file is added to or removed from a package (symlinks need to be created/deleted)
+- The directory structure of a package changes
+
+**Never** re-stow just because you edited an existing file's contents. The symlink already points to it.
+
 ### Adding a New Dotfiles Package
 
 1. Create `dotfiles/<app>/dot-config/<app>/` with the config files
@@ -81,6 +87,7 @@ Additional shared values:
 - **Background**: `#0a0a0a`
 - **Foreground**: `#d6d3d1`
 - **Accent (Arch Blue)**: `#1793d1`
+- **Amber (Warning)**: `#d97706`
 - **Surface**: `#333333`
 - **Alt Surface**: `#444444`
 
@@ -92,10 +99,19 @@ When adding or modifying colors in any config, use values from this palette. Do 
 |---|---|
 | Arch Blue `#1793d1` | Active/selected states, interactive borders, focus rings |
 | Red `#f43f5e` | Errors, critical alerts, muted/disconnected |
-| Green `#22c55e` | Success, auth passed, battery good |
-| Yellow `#fcd34d` | Warnings, lock indicators, battery mid, high resource use |
-| Surface `#333333` | Container backgrounds, inactive borders |
+| Green `#22c55e` | Transient success confirmations (auth passed, connected). Never for "normal/good" steady states — normal should be invisible (default text color) |
+| Amber `#d97706` | Warnings in persistent UI (battery mid, high resource use). Lower luminance than yellow to avoid outshining red alerts |
+| Yellow `#fcd34d` | High-visibility lock indicators (caps lock, num lock on lock screen) |
+| Surface `#333333` | Container backgrounds, inactive borders, default notification borders |
 | Alt Surface `#444444` | Hover states, secondary surfaces |
+
+#### Attention Hierarchy Principles
+
+Color usage follows perceptual science — saturated color on dark backgrounds triggers involuntary pre-attentive orienting (pop-out effect). Use this sparingly:
+
+- **Normal/good states should be invisible.** Don't color the battery green when it's fine. Use the default text color. Color only appears when attention is needed.
+- **Warning (amber) must not outshine critical (red).** Yellow #fcd34d has 3x the perceived luminance of red #f43f5e (Helmholtz-Kohlrausch effect). Use the lower-luminance amber #d97706 for warnings so red remains the most urgent signal.
+- **Notification borders reflect urgency.** Low → #525252 (invisible), Normal → #525252 (quiet), Critical → #f43f5e (demands attention). Don't use the accent color for routine notifications.
 
 ### Visual Design Tokens
 

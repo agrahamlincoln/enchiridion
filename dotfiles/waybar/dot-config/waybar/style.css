@@ -45,8 +45,8 @@ tooltip {
 /* --- Waybar Group Definitions --- */
 /* We'll use the Arch palette to define our module groups */
 @define-color workspaces-active-bg @arch-blue;
-@define-color workspaces-active-fg @arch-mine-shaft;
-@define-color workspaces-inactive-bg @arch-alt-bg;
+@define-color workspaces-active-fg #ffffff;
+@define-color workspaces-inactive-bg @arch-mine-shaft;
 @define-color workspaces-inactive-fg @arch-text;
 @define-color workspaces-urgent-bg @arch-urgent;
 @define-color workspaces-urgent-fg @arch-text;
@@ -90,7 +90,12 @@ tooltip {
 #window {
   background: @arch-alt-bg;
   border-radius: 10px;
-  margin: 3px 6px; /* Vertical and horizontal margin for spacing */
+  margin: 3px 6px;
+}
+#window.empty,
+window#waybar.empty #window {
+  background: transparent;
+  transition: none;
 }
 /* Right */
 /* All right-side modules: Consistent Dark Gray */
@@ -132,26 +137,29 @@ tooltip {
   border-radius: 10px;
   color: @workspaces-inactive-fg;
   background-color: @workspaces-inactive-bg;
-  transition: all 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  transition: none;
 }
 
 #workspaces button:hover {
-  background-color: @arch-blue;
-  color: @arch-mine-shaft;
+  background: #525252;
+  box-shadow: inherit;
+  text-shadow: inherit;
 }
 
-#workspaces button.active {
-  background: @workspaces-active-bg;
-  color: @workspaces-active-fg;
-}
-
+#workspaces button.active,
 #workspaces button.active:hover {
   background: @workspaces-active-bg;
+  color: @workspaces-active-fg;
+  box-shadow: inherit;
+  text-shadow: inherit;
 }
 
 #workspaces button.urgent {
-  background-color: @workspaces-urgent-bg;
+  background: @workspaces-urgent-bg;
   color: @workspaces-urgent-fg;
+  box-shadow: inherit;
+  text-shadow: inherit;
 }
 
 #pulseaudio.muted,
@@ -161,12 +169,8 @@ tooltip {
 #temperature.critical {
   color: @arch-urgent;
 }
-#battery.good {
-  color: #22c55e;
-}
-
 #battery.warning {
-  color: #fcd34d;
+  color: #d97706;
 }
 
 #battery.critical {
@@ -180,7 +184,7 @@ tooltip {
 #cpu.high,
 #memory.high,
 #disk.warning {
-  color: #fcd34d;
+  color: #d97706;
 }
 #cpu.critical,
 #memory.critical,

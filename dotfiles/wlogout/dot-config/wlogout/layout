@@ -1,24 +1,6 @@
 {
-    "label" : "shutdown",
-    "action" : "systemctl poweroff",
-    "text" : "Shutdown",
-    "keybind" : "s"
-}
-{
-    "label" : "reboot",
-    "action" : "systemctl reboot",
-    "text" : "Reboot",
-    "keybind" : "r"
-}
-{
-    "label" : "lock",
-    "action" : "bash -c 'killall wlogout; sleep 0.1; grim /tmp/hyprlock-bg.png; loginctl lock-session'",
-    "text" : "Lock",
-    "keybind" : "l"
-}
-{
     "label" : "suspend",
-    "action" : "systemctl suspend",
+    "action" : "bash -c 'killall wlogout; sleep 0.1; systemctl suspend'",
     "text" : "Suspend",
     "keybind" : "u"
 }
@@ -27,4 +9,22 @@
     "action" : "hyprctl dispatch exit",
     "text" : "Logout",
     "keybind" : "e"
+}
+{
+    "label" : "lock",
+    "action" : "bash -c 'killall wlogout; sleep 0.1; grim /tmp/hyprlock-bg.png; loginctl lock-session'",
+    "text" : "Lock",
+    "keybind" : "l"
+}
+{
+    "label" : "reboot",
+    "action" : "systemctl reboot",
+    "text" : "Reboot",
+    "keybind" : "r"
+}
+{
+    "label" : "shutdown",
+    "action" : "systemctl poweroff",
+    "text" : "Shutdown",
+    "keybind" : "s"
 }
