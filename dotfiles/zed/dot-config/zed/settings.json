@@ -7,71 +7,36 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "context_servers": {
-    "notionMCP": {
-      "source": "extension",
-      "enabled": false,
-      "settings": {}
-    },
-    "grafana-dev": {
-      "source": "extension",
-      "enabled": false,
-      "settings": {}
-    },
-    "grafana-production": {
-      "source": "extension",
-      "enabled": true,
-      "settings": {}
-    },
-    "grafana-staging": {
-      "source": "extension",
-      "enabled": true,
-      "settings": {}
-    },
-    "notion": {
-      "source": "extension",
-      "enabled": false,
-      "settings": {}
-    },
-    "atlassian": {
-      "enabled": false,
-      "source": "custom",
-      "command": "npx",
-      "args": ["-y", "mcp-remote", "https://mcp.atlassian.com/v1/sse"],
-      "env": {}
-    }
-  },
-  "features": {
-    "edit_prediction_provider": "copilot"
+  "edit_predictions": {
+    "provider": "copilot",
   },
   "language_models": {
-    "ollama": {
-      "api_url": "http://192.168.1.92:11434"
-    },
     "bedrock": {
       "authentication_method": "named_profile",
       "region": "us-east-1",
-      "profile": "machinify-dev"
-    }
+      "profile": "machinify-dev",
+    },
   },
   "agent": {
+    "tool_permissions": {
+      "default": "allow",
+    },
     "inline_assistant_model": {
       "provider": "copilot_chat",
-      "model": "gpt-4.1"
+      "model": "gpt-4.1",
     },
-    "always_allow_tool_actions": true,
     "default_profile": "write",
     "dock": "right",
     "default_model": {
       "provider": "copilot_chat",
-      "model": "claude-sonnet-4.5"
+      "model": "claude-sonnet-4.5",
     },
     "favorite_models": [],
-    "model_parameters": []
+    "model_parameters": [],
   },
   "telemetry": {
     "diagnostics": false,
-    "metrics": false
+    "metrics": false,
   },
   "vim_mode": true,
   "cursor_blink": false,
@@ -81,16 +46,16 @@
   // disable auto indent on paste (matching your VS Code preference)
   "auto_indent_on_paste": false,
   "project_panel": {
-    "auto_fold_dirs": true
+    "auto_fold_dirs": true,
   },
   "gutter": {
     "line_numbers": true,
-    "folds": true
+    "folds": true,
   },
   "command_aliases": {
     "W": "w",
     "Wq": "wq",
-    "Q": "q"
+    "Q": "q",
   },
 
   // LSP configuration for YAML language server
@@ -99,21 +64,21 @@
       "settings": {
         "yaml": {
           "validate": true,
-          "customTags": ["!Ref", "!Sub", "!GetAtt", "!Join"]
-        }
-      }
+          "customTags": ["!Ref", "!Sub", "!GetAtt", "!Join"],
+        },
+      },
     },
     "metals": {
       "settings": {
-        "javaHome": "/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
+        "javaHome": "/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home",
       },
       "binary": {
-        "arguments": ["-Dmetals.http=on"]
+        "arguments": ["-Dmetals.http=on"],
       },
       "initialization_options": {
-        "isHttpEnabled": true
-      }
-    }
+        "isHttpEnabled": true,
+      },
+    },
   },
 
   // File type associations - treat Helm chart files as Helm templates
@@ -125,8 +90,8 @@
       "**/values*.yaml",
       "**/values*.yml",
       "**/helm/**/*.yaml",
-      "**/helm/**/*.yml"
-    ]
+      "**/helm/**/*.yml",
+    ],
   },
 
   // Font and UI settings based on your VS Code config
@@ -148,13 +113,13 @@
     "font_fallbacks": ["Noto Color Emoji"],
     "font_size": 12,
     "blinking": "on",
-    "line_height": "standard"
+    "line_height": "standard",
   },
 
   "theme": {
     "mode": "dark",
     "light": "One Light",
-    "dark": "Pure Black AAA"
+    "dark": "Pure Black AAA",
   },
 
   // Tab and indentation settings from your VS Code
@@ -171,15 +136,15 @@
   "languages": {
     "JavaScript": {
       "format_on_save": "off",
-      "tab_size": 2
+      "tab_size": 2,
     },
     "Starlark": {
       "language_servers": ["starwhale-lsp"],
-      "format_on_save": "on"
+      "format_on_save": "on",
     },
     "TypeScript": {
       "format_on_save": "off",
-      "tab_size": 2
+      "tab_size": 2,
     },
     "Python": {
       "language_servers": ["ruff"],
@@ -187,20 +152,20 @@
       "formatter": {
         "code_actions": [
           {
-            "code_action": "source.organizeImports.ruff"
+            "code_action": "source.organizeImports.ruff",
           },
           {
-            "code_action": "source.fixAll.ruff"
-          }
+            "code_action": "source.fixAll.ruff",
+          },
         ],
         "language_server": {
-          "name": "ruff"
-        }
+          "name": "ruff",
+        },
       },
-      "tab_size": 4 // Python standard
+      "tab_size": 4, // Python standard
     },
     "Shell Script": {
-      "tab_size": 2
+      "tab_size": 2,
     },
     "YAML": {
       "auto_indent_on_paste": false,
@@ -210,37 +175,37 @@
       "language_servers": ["yaml-language-server", "!taplo"],
       "code_actions_on_format": {
         "source.organizeImports": true,
-        "source.fixAll": true
-      }
+        "source.fixAll": true,
+      },
     },
     "Helm": {
       "auto_indent_on_paste": false,
       "tab_size": 2,
       "enable_language_server": true,
-      "language_servers": ["helm-ls"]
+      "language_servers": ["helm-ls"],
     },
     "JSON": {
-      "tab_size": 2
+      "tab_size": 2,
     },
     "JSONC": {
-      "tab_size": 2
+      "tab_size": 2,
     },
     "Scala": {
       "format_on_save": "on",
-      "tab_size": 2
+      "tab_size": 2,
     },
     "Jsonnet": {
       "format_on_save": "on",
-      "tab_size": 2
+      "tab_size": 2,
     },
     "Markdown": {
       "preferred_line_length": 100,
-      "soft_wrap": "preferred_line_length"
-    }
+      "soft_wrap": "preferred_line_length",
+    },
   },
   "inlay_hints": {
     "enabled": true,
     "show_type_hints": true,
-    "show_parameter_hints": true
-  }
+    "show_parameter_hints": true,
+  },
 }
