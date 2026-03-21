@@ -129,6 +129,29 @@ if [[ "$OS" == "Linux" ]]; then
         echo "- No Bluetooth hardware detected, skipping bluez."
     fi
 
+    # Fingerprint: install and configure only if a sensor is detected
+    if compgen -G "/sys/class/fingerprint/*" &>/dev/null; then
+        echo "-> Fingerprint sensor detected, installing fprintd..."
+        sudo pacman -S --noconfirm --needed fprintd
+        # Add fingerprint auth to PAM if not already configured
+        if ! grep -q pam_fprintd /etc/pam.d/system-auth; then
+            sudo sed -i '/#%PAM-1.0/a auth       sufficient                  pam_fprintd.so' /etc/pam.d/system-auth
+            echo "- PAM configured for fingerprint authentication."
+        else
+            echo "- PAM already configured for fingerprint authentication."
+        fi
+        # Enroll fingerprint interactively
+        if ! fprintd-list "$USER" 2>/dev/null | grep -q "right-index-finger"; then
+            echo "-> Enrolling right index finger (touch the sensor repeatedly)..."
+            sudo fprintd-enroll -f right-index-finger "$USER"
+            echo "- Fingerprint enrolled."
+        else
+            echo "- Fingerprint already enrolled."
+        fi
+    else
+        echo "- No fingerprint sensor detected, skipping fprintd."
+    fi
+
 elif [[ "$OS" == "Darwin" ]]; then
     echo "-> Checking Homebrew taps..."
     for tap in $(read_packages brew-taps.txt); do
