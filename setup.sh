@@ -199,10 +199,38 @@ if [[ "$OS" == "Linux" ]]; then
     BOOT_ENTRY="/boot/loader/entries/arch.conf"
     if [[ -f "$BOOT_ENTRY" ]] && ! grep -q 'quiet' "$BOOT_ENTRY"; then
         echo "-> Enabling quiet boot..."
-        sudo sed -i '/^options / s/$/ quiet loglevel=3 systemd.show_status=auto/' "$BOOT_ENTRY"
+        sudo sed -i '/^options / s/$/ quiet loglevel=3 systemd.show_status=auto splash/' "$BOOT_ENTRY"
         echo "- Quiet boot enabled (errors and prompts still visible)."
+    elif [[ -f "$BOOT_ENTRY" ]] && ! grep -q 'splash' "$BOOT_ENTRY"; then
+        echo "-> Adding splash to boot entry..."
+        sudo sed -i '/^options / s/$/ splash/' "$BOOT_ENTRY"
+        echo "- splash parameter added."
     else
         echo "- Quiet boot already configured (or no systemd-boot entry found)."
+    fi
+
+    # Plymouth boot splash: show Arch logo animation during boot instead
+    # of a black screen. Requires plymouth hook in initramfs.
+    if command -v plymouth-set-default-theme &>/dev/null; then
+        CURRENT_THEME="$(plymouth-set-default-theme 2>/dev/null)"
+        if [[ "$CURRENT_THEME" != "arch-logo" ]]; then
+            echo "-> Setting Plymouth theme to arch-logo..."
+            sudo plymouth-set-default-theme -R arch-logo
+            echo "- Plymouth theme set and initramfs rebuilt."
+        else
+            echo "- Plymouth theme already set to arch-logo."
+        fi
+        # Ensure plymouth hook is in mkinitcpio
+        if ! grep -q 'plymouth' /etc/mkinitcpio.conf; then
+            echo "-> Adding plymouth hook to mkinitcpio..."
+            sudo sed -i 's/\(base systemd\)/\1 plymouth/' /etc/mkinitcpio.conf
+            sudo mkinitcpio -P
+            echo "- plymouth hook added and initramfs rebuilt."
+        else
+            echo "- plymouth hook already configured."
+        fi
+    else
+        echo "- Plymouth not installed, skipping boot splash."
     fi
 
 elif [[ "$OS" == "Darwin" ]]; then

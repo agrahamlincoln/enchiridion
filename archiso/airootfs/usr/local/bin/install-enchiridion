@@ -200,7 +200,7 @@ fi
 info "Installing base system via pacstrap..."
 pacstrap -K /mnt \
     base linux linux-firmware $UCODE \
-    networkmanager sudo vim git openssh base-devel
+    networkmanager sudo vim git openssh base-devel plymouth
 
 info "Generating fstab..."
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -369,7 +369,7 @@ echo "${HOSTNAME_INPUT}" > /etc/hostname
 echo "KEYMAP=${CONSOLE_KEYMAP}" > /etc/vconsole.conf
 
 # mkinitcpio: configure hooks for systemd-based LUKS unlock
-sed -i 's/^HOOKS=.*/HOOKS=(base systemd autodetect microcode modconf kms keyboard sd-vconsole block sd-encrypt filesystems fsck)/' /etc/mkinitcpio.conf
+sed -i 's/^HOOKS=.*/HOOKS=(base systemd plymouth autodetect microcode modconf kms keyboard sd-vconsole block sd-encrypt filesystems fsck)/' /etc/mkinitcpio.conf
 mkinitcpio -P
 
 # systemd-boot
@@ -388,7 +388,7 @@ cat > /boot/loader/entries/arch.conf <<ENTRY
 title   Arch Linux
 linux   /vmlinuz-linux
 initrd  /initramfs-linux.img
-options rd.luks.name=${LUKS_UUID}=cryptroot root=/dev/mapper/cryptroot rw
+options rd.luks.name=${LUKS_UUID}=cryptroot root=/dev/mapper/cryptroot rw quiet loglevel=3 systemd.show_status=auto splash
 ENTRY
 
 # User account
@@ -410,7 +410,7 @@ CHROOT_EOF
 # https://wiki.archlinux.org/title/Solid_state_drive/NVMe
 if cat /sys/class/nvme/*/model 2>/dev/null | grep -qi 'WD\|Western Digital'; then
     info "WD NVMe detected — adding APST latency cap to boot entry..."
-    sed -i 's|loglevel=3$|loglevel=3 nvme_core.default_ps_max_latency_us=5500|' /mnt/boot/loader/entries/arch.conf
+    sed -i '/^options /{ /nvme_core/! s|$| nvme_core.default_ps_max_latency_us=5500| }' /mnt/boot/loader/entries/arch.conf
 fi
 
 # Intel WiFi (iwlwifi): module fails D3cold→D0 transition on resume,

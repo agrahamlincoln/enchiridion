@@ -52,6 +52,9 @@ pavucontrol
 # Display manager
 ly
 
+# Boot splash
+plymouth
+
 # Waybar live reload
 inotify-tools
 

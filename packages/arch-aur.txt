@@ -6,3 +6,6 @@ wlogout
 
 # Cursor theme (used in hyprland.conf)
 phinger-cursors
+
+# Boot splash theme
+plymouth-theme-arch-logo
