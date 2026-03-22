@@ -296,10 +296,17 @@ popd > /dev/null
 # Zen Browser: symlink theme into active profile (can't use stow — random profile dir)
 # Zen manages its own chrome/ directory, so we symlink individual files into it.
 # The workspace accent color lives in zen-sessions.jsonlz4 (binary), patched separately.
+# Zen stores profiles in ~/.zen or ~/.config/zen depending on install method.
 if [[ "$OS" == "Linux" ]]; then
-    ZEN_DIR="$HOME/.config/zen"
+    ZEN_DIR=""
+    for candidate in "$HOME/.zen" "$HOME/.config/zen"; do
+        if [[ -f "$candidate/profiles.ini" ]]; then
+            ZEN_DIR="$candidate"
+            break
+        fi
+    done
     ZEN_SRC="$DOTFILES_DIR/zen-browser"
-    if [[ -f "$ZEN_DIR/profiles.ini" ]]; then
+    if [[ -n "$ZEN_DIR" ]]; then
         # Find the active profile — [Install*] Default= takes precedence
         ZEN_PROFILE_REL=$(awk -F= '/^\[Install/{inst=1} /^\[/{if(!/^\[Install/)inst=0} inst && /^Default=/{print $2; exit}' "$ZEN_DIR/profiles.ini")
         # Fallback: [Profile*] with Default=1

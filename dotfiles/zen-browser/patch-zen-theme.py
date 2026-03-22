@@ -21,13 +21,25 @@ except ImportError:
     sys.exit(1)
 
 ARCH_BLUE = [23, 147, 209]  # #1793d1
-ZEN_DIR = Path.home() / ".config" / "zen"
+# Zen stores profiles in ~/.zen or ~/.config/zen depending on install method
+ZEN_DIR_CANDIDATES = [Path.home() / ".zen", Path.home() / ".config" / "zen"]
 MAGIC = b"mozLz40\0"
+
+
+def find_zen_dir():
+    """Find the Zen profile root directory."""
+    for candidate in ZEN_DIR_CANDIDATES:
+        if (candidate / "profiles.ini").exists():
+            return candidate
+    return None
 
 
 def find_active_profile():
     """Find the active Zen profile path from profiles.ini."""
-    profiles_ini = ZEN_DIR / "profiles.ini"
+    zen_dir = find_zen_dir()
+    if not zen_dir:
+        return None
+    profiles_ini = zen_dir / "profiles.ini"
     if not profiles_ini.exists():
         return None
 
@@ -62,7 +74,7 @@ def find_active_profile():
             install_default = current_section_path
 
     if install_default:
-        return ZEN_DIR / install_default
+        return zen_dir / install_default
     return None
 
 
