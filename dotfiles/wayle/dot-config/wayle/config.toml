@@ -1,0 +1,326 @@
+# Wayle configuration — Enchiridion
+# Quiet, unified, monochrome — color only for state changes
+
+[general]
+font-sans = "FiraCode Nerd Font"
+font-mono = "FiraCode Nerd Font"
+
+# ---------------------------------------------------------------------------
+# Styling
+# ---------------------------------------------------------------------------
+[styling]
+theme-provider = "wayle"
+scale = 1.0
+rounding = "md"
+
+[styling.palette]
+bg = "#0a0a0a"
+surface = "#333333"
+elevated = "#2a2a2a"
+fg = "#d6d3d1"
+fg-muted = "#a8a29e"
+primary = "#1793d1"
+red = "#f43f5e"
+yellow = "#d97706"
+green = "#22c55e"
+blue = "#3b82f6"
+
+# ---------------------------------------------------------------------------
+# Bar — one continuous, quiet surface
+# ---------------------------------------------------------------------------
+[bar]
+scale = 0.8
+location = "top"
+
+# Edge-to-edge, unbroken
+inset-edge = 0.0
+inset-ends = 0.0
+
+# Spacing
+padding = 0.4
+padding-ends = 0.7
+module-gap = 0.8
+
+# Appearance
+bg = "bg-base"
+background-opacity = 85
+rounding = "none"
+shadow = "drop"
+border-location = "none"
+
+# Buttons — no backgrounds, no icon containers, just icons and text
+button-variant = "basic"
+button-rounding = "md"
+button-label-weight = "regular"
+button-bg-opacity = 0
+button-icon-size = 1.0
+
+# Groups — invisible, spacing only
+button-group-rounding = "none"
+button-group-background = "transparent"
+button-group-module-gap = 0.25
+button-group-padding = 0.0
+button-group-opacity = 0
+
+# Dropdowns
+dropdown-shadow = true
+dropdown-autohide = true
+
+# ---------------------------------------------------------------------------
+# Layout
+# ---------------------------------------------------------------------------
+[[bar.layout]]
+monitor = "*"
+left = [
+    "hyprland-workspaces",
+    "custom-media",
+]
+center = [
+    "window-title",
+]
+right = [
+    "custom-updates",
+    { name = "status", modules = ["cpu", "ram", "battery", "network", "bluetooth", "volume", "microphone"] },
+    { name = "controls", modules = ["custom-backlight", "custom-scale", "idle-inhibit"] },
+    { name = "alerts", modules = ["custom-disk-alert", "custom-temp-alert"] },
+    "notifications",
+    "systray",
+    "power",
+    "clock",
+]
+
+# ---------------------------------------------------------------------------
+# Modules — monochrome, transparent backgrounds, consistent interaction
+# ---------------------------------------------------------------------------
+
+[modules.hyprland-workspaces]
+min-workspace-count = 5
+monitor-specific = true
+show-special = true
+display-mode = "label"
+app-icons-show = true
+app-icons-dedupe = false
+app-icons-fallback = "ld-app-window-symbolic"
+app-icons-empty = "tb-minus-symbolic"
+active-indicator = "background"
+active-color = { token = "accent" }
+occupied-color = { token = "fg-default" }
+empty-color = { token = "fg-subtle" }
+workspace-padding = 0.5
+icon-gap = 0.2
+container-bg-color = "transparent"
+
+[modules.hyprland-workspaces.app-icon-map]
+"BoltLauncher" = "ld-zap-symbolic"
+"title:*Monster Hunter*" = "tb-sword-symbolic"
+"*RuneLite*" = "tb-sword-symbolic"
+"dota2" = "tb-sword-symbolic"
+
+# Clock
+[modules.clock]
+format = "%H:%M"
+icon-show = false
+label-show = true
+icon-bg-color = "transparent"
+button-bg-color = "transparent"
+
+# CPU — icon + percentage, monochrome
+[modules.cpu]
+icon-show = true
+label-show = true
+icon-bg-color = "transparent"
+icon-color = "fg-default"
+label-color = "fg-default"
+button-bg-color = "transparent"
+
+# RAM — icon + percentage, monochrome
+[modules.ram]
+icon-show = true
+label-show = true
+icon-bg-color = "transparent"
+icon-color = "fg-default"
+label-color = "fg-default"
+button-bg-color = "transparent"
+
+# Battery — icon + percentage
+[modules.battery]
+icon-show = true
+label-show = true
+left-click = "dropdown:battery"
+icon-bg-color = "transparent"
+icon-color = "fg-default"
+button-bg-color = "transparent"
+
+# Network
+[modules.network]
+icon-show = true
+label-show = false
+left-click = "dropdown:network"
+icon-bg-color = "transparent"
+icon-color = "fg-default"
+button-bg-color = "transparent"
+
+# Bluetooth
+[modules.bluetooth]
+icon-show = true
+label-show = false
+left-click = "dropdown:bluetooth"
+icon-bg-color = "transparent"
+icon-color = "fg-default"
+button-bg-color = "transparent"
+
+# Volume
+[modules.volume]
+icon-show = true
+label-show = false
+left-click = "dropdown:audio"
+right-click = "pavucontrol"
+icon-bg-color = "transparent"
+icon-color = "fg-default"
+button-bg-color = "transparent"
+
+# Microphone
+[modules.microphone]
+icon-show = true
+label-show = false
+icon-bg-color = "transparent"
+icon-color = "fg-default"
+button-bg-color = "transparent"
+
+# Idle inhibitor
+[modules.idle-inhibit]
+icon-show = true
+label-show = false
+icon-bg-color = "transparent"
+icon-color = "fg-default"
+button-bg-color = "transparent"
+
+# Power
+[modules.power]
+left-click = "dropdown:dashboard"
+icon-bg-color = "transparent"
+icon-color = "fg-default"
+
+# Notifications — force monochrome, override all green defaults
+[modules.notification]
+icon-show = true
+label-show = true
+popup-position = "top-right"
+popup-max-visible = 5
+popup-duration = 5000
+popup-hover-pause = true
+icon-bg-color = "transparent"
+icon-color = "fg-default"
+label-color = "fg-default"
+button-bg-color = "transparent"
+border-show = false
+border-color = "transparent"
+
+# System tray
+[modules.systray]
+
+# Window title — use same icons as workspace switcher
+[modules.window-title]
+icon-bg-color = "transparent"
+icon-color = "fg-default"
+label-color = "fg-default"
+button-bg-color = "transparent"
+
+[modules.window-title.icon-mappings]
+"*kitty*" = "tb-cat-symbolic"
+
+# ---------------------------------------------------------------------------
+# Custom modules — all monochrome, transparent backgrounds
+# ---------------------------------------------------------------------------
+
+# Brightness
+[[modules.custom]]
+id = "backlight"
+command = "brightnessctl -m | awk -F, '{print $4}' | tr -d '%'"
+mode = "poll"
+interval-ms = 2000
+tooltip-format = "Brightness: {{ output }}%"
+icon-name = "ld-sun-symbolic"
+icon-show = true
+label-show = false
+icon-color = "fg-default"
+icon-bg-color = "transparent"
+button-bg-color = "transparent"
+scroll-up = "brightnessctl set 5%+"
+scroll-down = "brightnessctl set 5%-"
+
+# Scale picker
+[[modules.custom]]
+id = "scale"
+command = "$HOME/.config/hypr/hypr-scale.sh get"
+mode = "poll"
+interval-ms = 5000
+icon-name = "ld-monitor-symbolic"
+icon-show = true
+label-show = false
+icon-color = "fg-default"
+icon-bg-color = "transparent"
+button-bg-color = "transparent"
+left-click = "$HOME/.config/hypr/hypr-scale.sh menu"
+
+# Disk alert — only visible above 80%
+[[modules.custom]]
+id = "disk-alert"
+command = "bash -c 'pct=$(df / --output=pcent | tail -1 | tr -dc 0-9); if (( pct >= 80 )); then printf \"{\\\"text\\\":\\\"%s%%\\\",\\\"tooltip\\\":\\\"Disk: %s%% used\\\"}\" \"$pct\" \"$pct\"; fi'"
+mode = "poll"
+interval-ms = 60000
+icon-name = "ld-hard-drive-symbolic"
+hide-if-empty = true
+icon-show = true
+label-show = true
+icon-color = "yellow"
+icon-bg-color = "transparent"
+button-bg-color = "transparent"
+label-color = "yellow"
+
+# Temperature alert — only visible above 70°C
+[[modules.custom]]
+id = "temp-alert"
+command = "bash -c 'temp=$(cat /sys/class/thermal/thermal_zone0/temp 2>/dev/null); temp=$((temp / 1000)); if (( temp >= 70 )); then printf \"{\\\"text\\\":\\\"%d°C\\\",\\\"tooltip\\\":\\\"CPU Temperature: %d°C\\\"}\" \"$temp\" \"$temp\"; fi'"
+mode = "poll"
+interval-ms = 5000
+icon-name = "ld-thermometer-symbolic"
+hide-if-empty = true
+icon-show = true
+label-show = true
+icon-color = "red"
+icon-bg-color = "transparent"
+button-bg-color = "transparent"
+label-color = "red"
+
+# Media — auto-hides when nothing is playing
+[[modules.custom]]
+id = "media"
+command = "playerctl metadata --follow --format '{\"text\":\"{{ artist }} — {{ title }}\",\"tooltip\":\"{{ artist }} — {{ title }} ({{ album }})\"}' 2>/dev/null || echo ''"
+mode = "watch"
+icon-name = "ld-music-symbolic"
+hide-if-empty = true
+icon-show = true
+label-show = true
+label-max-length = 0
+icon-color = "fg-default"
+icon-bg-color = "transparent"
+button-bg-color = "transparent"
+label-color = "fg-muted"
+left-click = "playerctl play-pause"
+
+# Updates — only visible when available
+[[modules.custom]]
+id = "updates"
+command = "bash -c 'if /usr/local/bin/available-upgrades.sh; then wc -l < /var/lib/available-upgrades/.package-available-upgrades; fi'"
+mode = "poll"
+interval-ms = 300000
+format = "{{ output }}"
+tooltip-format = "{{ output }} updates available"
+icon-name = "ld-package-symbolic"
+hide-if-empty = true
+icon-show = true
+label-show = true
+icon-color = "fg-default"
+icon-bg-color = "transparent"
+button-bg-color = "transparent"
