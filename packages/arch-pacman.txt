@@ -18,11 +18,9 @@ hypridle
 xdg-desktop-portal-hyprland
 
 # Desktop utilities
-waybar
 wofi
 gammastep
 thunar
-mako
 
 # Icon theme
 papirus-icon-theme
@@ -55,7 +53,7 @@ ly
 # Boot splash
 plymouth
 
-# Waybar live reload
+# Wayle live reload
 inotify-tools
 
 # Zen Browser theme patching
