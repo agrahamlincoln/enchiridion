@@ -64,6 +64,7 @@ Most changes touch multiple files. Before considering a change complete, check e
 | **Color or font** | kitty.conf, waybar style.css, wofi style.css + scale-menu.css, wlogout style.css, hyprlock.conf, mako config, GTK settings.ini, bash-prompt.sh |
 | **Border-radius or spacing** | waybar style.css, wofi style.css, wlogout style.css, hyprlock.conf, mako config, hyprland hosts/desktop + hosts/laptop settings |
 | **Wlogout invocation** | hyprland.conf (keybind + XF86PowerOff), waybar config.jsonc, waybar config-compact.jsonc |
+| **Suspend/hibernate** | hypridle.conf, wlogout layout, setup.sh (swap/hibernate section), logind drop-in, `~/.config/hypr/use-hibernate` flag |
 | **Screenshot workflow** | hyprland.conf keybinds (3 binds: Print, Super+Print, Super+Shift+Print) |
 | **New dotfiles package** | See "Adding a New Dotfiles Package" above |
 | **System config change** | `setup.sh` (for new installs), use drop-in files under `/etc/systemd/*.conf.d/` rather than editing main configs |

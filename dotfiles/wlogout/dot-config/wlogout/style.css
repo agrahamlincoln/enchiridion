@@ -40,8 +40,8 @@ button:focus, button:active, button:hover {
     background-image: url("icons/logout.svg");
 }
 
-#suspend {
-    background-image: url("icons/suspend.svg");
+#sleep {
+    background-image: url("icons/sleep.svg");
 }
 
 #reboot {

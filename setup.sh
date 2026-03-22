@@ -233,6 +233,81 @@ if [[ "$OS" == "Linux" ]]; then
         echo "- Plymouth not installed, skipping boot splash."
     fi
 
+    # Swap and hibernate support: create swap file sized to RAM.
+    # Swap file lives inside the LUKS volume, so it's encrypted at rest automatically.
+    # Hibernate is opt-in: only enabled when ~/.config/hypr/use-hibernate exists.
+    # hypridle and wlogout check this flag at runtime to choose hibernate vs suspend.
+    BOOT_ENTRY="/boot/loader/entries/arch.conf"
+    SWAPFILE="/swapfile"
+    # Swap must be >= RAM for hibernate to write the full memory image
+    SWAP_SIZE_GB=$(awk '/MemTotal/ {printf "%d", ($2 / 1048576) + 1}' /proc/meminfo)
+
+    if [[ -f "$BOOT_ENTRY" ]] && grep -q 'cryptroot' "$BOOT_ENTRY"; then
+        # Create swap file if it doesn't exist
+        if [[ ! -f "$SWAPFILE" ]]; then
+            echo "-> Creating ${SWAP_SIZE_GB}G swap file..."
+            sudo dd if=/dev/zero of="$SWAPFILE" bs=1M count=$((SWAP_SIZE_GB * 1024)) status=progress
+            sudo chmod 600 "$SWAPFILE"
+            sudo mkswap "$SWAPFILE"
+            sudo swapon "$SWAPFILE"
+            echo "- Swap file created and activated."
+        else
+            # Ensure swap is active
+            if ! swapon --show | grep -q "$SWAPFILE"; then
+                sudo swapon "$SWAPFILE"
+            fi
+            echo "- Swap file already exists."
+        fi
+
+        # Add swap to /etc/fstab if not already present
+        if ! grep -q "$SWAPFILE" /etc/fstab; then
+            echo "$SWAPFILE none swap defaults 0 0" | sudo tee -a /etc/fstab > /dev/null
+            echo "- Swap file added to /etc/fstab."
+        else
+            echo "- Swap file already in /etc/fstab."
+        fi
+
+        # Add resume kernel parameters (needed for hibernate)
+        if ! grep -q 'resume=' "$BOOT_ENTRY"; then
+            RESUME_OFFSET=$(sudo filefrag -v "$SWAPFILE" | awk '$1=="0:" {print $4}' | sed 's/\.\.//')
+            if [[ -n "$RESUME_OFFSET" ]]; then
+                echo "-> Adding resume parameters to boot entry..."
+                sudo sed -i "/^options / s|$| resume=/dev/mapper/cryptroot resume_offset=${RESUME_OFFSET}|" "$BOOT_ENTRY"
+                echo "- resume=/dev/mapper/cryptroot resume_offset=${RESUME_OFFSET} added."
+                echo "  NOTE: Run 'sudo mkinitcpio -P' and reboot before first hibernate."
+            else
+                echo "- WARNING: Could not determine swap file offset. Run 'sudo filefrag -v $SWAPFILE' manually."
+            fi
+        else
+            echo "- Resume parameters already in boot entry."
+        fi
+
+        # Hibernate opt-in: configure lid close and flag file
+        # Enable with: touch ~/.config/hypr/use-hibernate
+        # Disable with: rm ~/.config/hypr/use-hibernate
+        if [[ -f "$HOME/.config/hypr/use-hibernate" ]]; then
+            if [[ ! -f /etc/systemd/logind.conf.d/lid-hibernate.conf ]]; then
+                echo "-> Configuring lid close to hibernate (use-hibernate flag set)..."
+                sudo mkdir -p /etc/systemd/logind.conf.d
+                printf '[Login]\nHandleLidSwitch=hibernate\nHandleLidSwitchExternalPower=hibernate\nHandleLidSwitchDocked=ignore\n' \
+                    | sudo tee /etc/systemd/logind.conf.d/lid-hibernate.conf > /dev/null
+                echo "- Lid close set to hibernate."
+            else
+                echo "- Lid close hibernate already configured."
+            fi
+        else
+            # Clean up hibernate lid config if flag was removed
+            if [[ -f /etc/systemd/logind.conf.d/lid-hibernate.conf ]]; then
+                echo "-> Removing hibernate lid config (use-hibernate flag not set)..."
+                sudo rm /etc/systemd/logind.conf.d/lid-hibernate.conf
+                echo "- Lid close reverted to default (suspend)."
+            fi
+            echo "- Hibernate not enabled (touch ~/.config/hypr/use-hibernate to enable)."
+        fi
+    else
+        echo "- No LUKS + systemd-boot detected, skipping swap/hibernate setup."
+    fi
+
 elif [[ "$OS" == "Darwin" ]]; then
     echo "-> Checking Homebrew taps..."
     for tap in $(read_packages brew-taps.txt); do

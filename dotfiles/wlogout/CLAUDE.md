@@ -1,6 +1,10 @@
 # wlogout Configuration
 
-Linux-only power menu (lock, logout, suspend, reboot, shutdown).
+Linux-only power menu (lock, logout, suspend/hibernate, reboot, shutdown).
+
+## Hibernate Support
+
+The suspend button checks `~/.config/hypr/use-hibernate` at runtime. If the flag file exists, it runs `systemctl hibernate` instead of `systemctl suspend`. This is a workaround for an s2idle bug on Framework 13 AMD Ryzen AI 300 — see `docs/suspend-resume-issue.md`.
 
 ## Key Files
 
