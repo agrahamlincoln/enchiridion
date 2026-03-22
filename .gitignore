@@ -3,6 +3,7 @@
 
 # Claude Code per-user settings (not shared)
 .claude/settings.local.json
+.config/
 
 # Auto-generated Hyprland host configs (varies per machine)
 dotfiles/hypr/dot-config/hypr/layout-keybinds.conf
