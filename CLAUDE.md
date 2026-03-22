@@ -49,7 +49,7 @@ Configs adapt to screen size rather than hostname. The pattern is to query effec
 - **Compact** (< 2000px effective) — icon-only with tooltips
 - **Full** (>= 2000px effective) — icons with text labels
 
-Tool-specific details live in subdirectory `CLAUDE.md` files (e.g., `dotfiles/hypr/CLAUDE.md`, `dotfiles/waybar/CLAUDE.md`).
+Tool-specific details live in subdirectory `CLAUDE.md` files (e.g., `dotfiles/hypr/CLAUDE.md`, `dotfiles/wayle/CLAUDE.md`).
 
 ## UX Cohesion
 
@@ -61,9 +61,9 @@ Most changes touch multiple files. Before considering a change complete, check e
 
 | Change type | Files to check |
 |---|---|
-| **Color or font** | kitty.conf, waybar style.css, wofi style.css + scale-menu.css, wlogout style.css, hyprlock.conf, mako config, GTK settings.ini, bash-prompt.sh |
-| **Border-radius or spacing** | waybar style.css, wofi style.css, wlogout style.css, hyprlock.conf, mako config, hyprland hosts/desktop + hosts/laptop settings |
-| **Wlogout invocation** | hyprland.conf (keybind + XF86PowerOff), waybar config.jsonc, waybar config-compact.jsonc |
+| **Color or font** | kitty.conf, wayle config.base.toml (palette), wofi style.css + scale-menu.css, wlogout style.css, hyprlock.conf, GTK settings.ini, bash-prompt.sh |
+| **Border-radius or spacing** | wayle config.base.toml (rounding), wofi style.css, wlogout style.css, hyprlock.conf, hyprland hosts/desktop + hosts/laptop settings |
+| **Wlogout invocation** | hyprland.conf (keybind + XF86PowerOff), wayle config.base.toml (power module) |
 | **Suspend/hibernate** | hypridle.conf, wlogout layout, setup.sh (swap/hibernate section), logind drop-in, `~/.config/hypr/use-hibernate` flag |
 | **Screenshot workflow** | hyprland.conf keybinds (3 binds: Print, Super+Print, Super+Shift+Print) |
 | **New dotfiles package** | See "Adding a New Dotfiles Package" above |
@@ -134,7 +134,7 @@ These values are used consistently across all UI components. Do not deviate with
 These reflect how a polished desktop should behave, informed by macOS/Windows conventions:
 
 - **Power button** opens a power menu (wlogout), never instant shutdown. Configured via logind drop-in, handled by Hyprland keybind.
-- **Notifications** go through mako. Any action that benefits from user feedback (screenshots, errors) should use `notify-send`.
+- **Notifications** go through Wayle's built-in notification daemon. Any action that benefits from user feedback (screenshots, errors) should use `notify-send`.
 - **Dark mode** is signaled to all apps: `GTK_THEME=Adwaita:dark` env var, `prefer-dark` gsettings, GTK3/GTK4 `settings.ini`.
 - **Fingerprint auth** only works reliably through hyprlock's native D-Bus (parallel with password) and sudo PAM (with timeout fallback). Never add `pam_fprintd` to `system-auth` or display manager PAM — it blocks.
 - **Boot should be quiet** (`quiet loglevel=3 systemd.show_status=auto`) — errors and LUKS prompts still show, but normal startup is silent.
@@ -164,5 +164,5 @@ All configs must work across different machines without hostname checks:
 - JSONC: strip comments and parse as JSON to validate
 - Hyprland: `hyprctl reload` to test config changes live
 - GTK theme: open `thunar` or `pavucontrol` to verify dark mode and icon theme
-- Notifications: `notify-send "Test" "message"` to verify mako is running and themed
+- Notifications: `notify-send "Test" "message"` to verify Wayle's notification daemon is running
 - Screenshots: test all three Print key combos after any keybind changes

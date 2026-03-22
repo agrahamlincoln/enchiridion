@@ -124,7 +124,7 @@ label-show = true
 icon-bg-color = "transparent"
 button-bg-color = "transparent"
 
-# CPU — icon + percentage, monochrome
+# CPU — icon + percentage, monochrome until high usage
 [modules.cpu]
 icon-show = true
 label-show = true
@@ -133,7 +133,17 @@ icon-color = "fg-default"
 label-color = "fg-default"
 button-bg-color = "transparent"
 
-# RAM — icon + percentage, monochrome
+[[modules.cpu.thresholds]]
+above = 70
+icon-color = "#d97706"
+label-color = "#d97706"
+
+[[modules.cpu.thresholds]]
+above = 90
+icon-color = "#f43f5e"
+label-color = "#f43f5e"
+
+# RAM — icon + percentage, monochrome until high usage
 [modules.ram]
 icon-show = true
 label-show = true
@@ -142,7 +152,17 @@ icon-color = "fg-default"
 label-color = "fg-default"
 button-bg-color = "transparent"
 
-# Battery — icon + percentage
+[[modules.ram.thresholds]]
+above = 70
+icon-color = "#d97706"
+label-color = "#d97706"
+
+[[modules.ram.thresholds]]
+above = 90
+icon-color = "#f43f5e"
+label-color = "#f43f5e"
+
+# Battery — icon + percentage, warns on low charge
 [modules.battery]
 icon-show = true
 label-show = true
@@ -150,6 +170,16 @@ left-click = "dropdown:battery"
 icon-bg-color = "transparent"
 icon-color = "fg-default"
 button-bg-color = "transparent"
+
+[[modules.battery.thresholds]]
+below = 20
+icon-color = "#d97706"
+label-color = "#d97706"
+
+[[modules.battery.thresholds]]
+below = 10
+icon-color = "#f43f5e"
+label-color = "#f43f5e"
 
 # Network
 [modules.network]
@@ -201,7 +231,7 @@ left-click = "dropdown:dashboard"
 icon-bg-color = "transparent"
 icon-color = "fg-default"
 
-# Notifications — force monochrome, override all green defaults
+# Notifications — monochrome until unread pile up
 [modules.notification]
 icon-show = true
 label-show = true
@@ -215,6 +245,16 @@ label-color = "fg-default"
 button-bg-color = "transparent"
 border-show = false
 border-color = "transparent"
+
+[[modules.notification.thresholds]]
+above = 1
+icon-color = "#d97706"
+label-color = "#d97706"
+
+[[modules.notification.thresholds]]
+above = 5
+icon-color = "#f43f5e"
+label-color = "#f43f5e"
 
 # System tray
 [modules.systray]
