@@ -413,25 +413,18 @@ if cat /sys/class/nvme/*/model 2>/dev/null | grep -qi 'WD\|Western Digital'; the
     sed -i '/^options /{ /nvme_core/! s|$| nvme_core.default_ps_max_latency_us=5500| }' /mnt/boot/loader/entries/arch.conf
 fi
 
-# Intel WiFi (iwlwifi): module fails D3cold→D0 transition on resume,
-# causing a crashloop. Unload/reload around suspend as a workaround.
-# https://bbs.archlinux.org/viewtopic.php?id=293404
+# Intel WiFi (iwlwifi): prevent D3cold power state that causes firmware
+# probe failure (-5 EIO) on resume, particularly on Framework 13 + AX210.
+# D3cold makes the PCI device inaccessible after suspend; blocking it
+# lets the card resume cleanly without needing module unload/reload hacks.
+# https://community.frame.work/t/intel-ax210-wifi-system-hang-on-resume-from-standby/79977
 if lspci | grep -qi 'Network.*Intel'; then
-    info "Intel WiFi detected — installing iwlwifi suspend workaround..."
-    cat > /mnt/usr/lib/systemd/system-sleep/iwlwifi-suspend.sh <<'HOOK'
-#!/bin/sh
-case "$1" in
-    pre)
-        rfkill block wifi
-        modprobe -r iwlmvm iwlwifi 2>/dev/null
-        ;;
-    post)
-        modprobe iwlwifi 2>/dev/null
-        rfkill unblock wifi
-        ;;
-esac
-HOOK
-    chmod +x /mnt/usr/lib/systemd/system-sleep/iwlwifi-suspend.sh
+    info "Intel WiFi detected — installing D3cold suspend workaround..."
+    cat > /mnt/etc/udev/rules.d/81-wifi-no-d3cold.rules <<'UDEV'
+# Intel WiFi (AX210 etc.): prevent D3cold power state that causes
+# firmware probe failure on resume from suspend.
+ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{class}=="0x028000", ATTR{d3cold_allowed}="0"
+UDEV
 fi
 
 success "System configuration complete."
