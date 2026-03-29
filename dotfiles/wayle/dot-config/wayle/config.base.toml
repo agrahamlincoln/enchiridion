@@ -39,7 +39,7 @@ inset-ends = 0.0
 # Spacing
 padding = 0.4
 padding-ends = 0.7
-module-gap = 0.8
+module-gap = 0.33
 
 # Appearance
 bg = "bg-base"
@@ -58,7 +58,7 @@ button-icon-size = 1.0
 # Groups — invisible, spacing only
 button-group-rounding = "none"
 button-group-background = "transparent"
-button-group-module-gap = 0.25
+button-group-module-gap = 0.33
 button-group-padding = 0.0
 button-group-opacity = 0
 
@@ -363,5 +363,6 @@ hide-if-empty = true
 icon-show = true
 label-show = true
 icon-color = "fg-default"
+label-color = "fg-default"
 icon-bg-color = "transparent"
 button-bg-color = "transparent"
