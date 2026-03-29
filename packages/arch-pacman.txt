@@ -33,6 +33,7 @@ ttf-firacode-nerd
 otf-font-awesome
 ttf-fira-code
 ttf-roboto
+inter-font
 noto-fonts-cjk
 
 # Screenshot and clipboard

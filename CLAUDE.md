@@ -124,8 +124,8 @@ These values are used consistently across all UI components. Do not deviate with
 | Border radius (tight) | `6px` |
 | Border width | `2px` |
 | Transition duration | `0.3s ease` |
-| Font (UI) | `FiraCode Nerd Font` |
-| Font (GTK apps) | `Adwaita Sans 11` |
+| Font (UI) | `Inter` |
+| Font (GTK apps) | `Inter 11` |
 | Cursor size | `32` |
 | Icon theme | `Papirus-Dark` |
 

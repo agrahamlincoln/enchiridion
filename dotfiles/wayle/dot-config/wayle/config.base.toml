@@ -2,7 +2,7 @@
 # Quiet, unified, monochrome — color only for state changes
 
 [general]
-font-sans = "FiraCode Nerd Font"
+font-sans = "Inter"
 font-mono = "FiraCode Nerd Font"
 
 # ---------------------------------------------------------------------------
@@ -51,7 +51,7 @@ border-location = "none"
 # Buttons — no backgrounds, no icon containers, just icons and text
 button-variant = "basic"
 button-rounding = "md"
-button-label-weight = "regular"
+button-label-weight = "normal"
 button-bg-opacity = 0
 button-icon-size = 1.0
 
@@ -103,9 +103,9 @@ app-icons-dedupe = false
 app-icons-fallback = "ld-app-window-symbolic"
 app-icons-empty = "tb-minus-symbolic"
 active-indicator = "background"
-active-color = { token = "accent" }
-occupied-color = { token = "fg-default" }
-empty-color = { token = "fg-subtle" }
+active-color = "accent"
+occupied-color = "fg-default"
+empty-color = "fg-subtle"
 workspace-padding = 0.5
 icon-gap = 0.2
 container-bg-color = "transparent"
@@ -169,6 +169,7 @@ label-show = true
 left-click = "dropdown:battery"
 icon-bg-color = "transparent"
 icon-color = "fg-default"
+label-color = "fg-default"
 button-bg-color = "transparent"
 
 [[modules.battery.thresholds]]
