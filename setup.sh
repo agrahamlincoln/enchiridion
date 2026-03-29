@@ -447,28 +447,19 @@ if [[ "$OS" == "Linux" ]]; then
     echo -e "\n--- Available Upgrades ---"
     AVAIL_UP_SRC="$REPO_DIR/bashrc/available-upgrades"
 
-    if [[ ! -f /usr/local/bin/available-upgrades.sh ]]; then
-        echo "-> Installing available-upgrades.sh..."
-        sudo install -m 755 "$AVAIL_UP_SRC/available-upgrades.sh" /usr/local/bin/available-upgrades.sh
-        echo "- available-upgrades.sh installed."
-    else
-        echo "- available-upgrades.sh already installed."
-    fi
+    echo "-> Linking available-upgrades.sh..."
+    sudo ln -sf "$AVAIL_UP_SRC/available-upgrades.sh" /usr/local/bin/available-upgrades.sh
+    echo "- available-upgrades.sh linked."
 
-    sudo mkdir -p /var/lib/available-upgrades
-    sudo touch /var/lib/available-upgrades/.package-available-upgrades
-    sudo chmod 644 /var/lib/available-upgrades/.package-available-upgrades
-
+    mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}/systemd/user"
     for unit in available-upgrades.service available-upgrades.timer; do
-        if [[ ! -f /etc/systemd/system/$unit ]]; then
-            echo "-> Installing $unit..."
-            sudo install -m 644 "$AVAIL_UP_SRC/$unit" /etc/systemd/system/$unit
-        fi
+        echo "-> Installing user unit $unit..."
+        ln -sf "$AVAIL_UP_SRC/$unit" "${XDG_CONFIG_HOME:-$HOME/.config}/systemd/user/$unit"
     done
-    sudo systemctl daemon-reload
-    if ! systemctl is-enabled --quiet available-upgrades.timer 2>/dev/null; then
-        sudo systemctl enable --now available-upgrades.timer
-        echo "- available-upgrades.timer enabled."
+    systemctl --user daemon-reload
+    if ! systemctl --user is-enabled --quiet available-upgrades.timer 2>/dev/null; then
+        systemctl --user enable --now available-upgrades.timer
+        echo "- available-upgrades.timer enabled (user unit)."
     else
         echo "- available-upgrades.timer already enabled."
     fi

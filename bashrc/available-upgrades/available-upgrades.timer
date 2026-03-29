@@ -1,5 +1,6 @@
 [Unit]
-Description=Updates /var/lib/available-upgrades/.package-available-upgrades
+Description=Periodically check for available package upgrades
+
 [Timer]
 OnBootSec=15min
 OnUnitActiveSec=5min

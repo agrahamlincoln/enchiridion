@@ -1,3 +1,6 @@
+# Package management utilities
+pacman-contrib
+
 # Core tools
 base-devel
 git

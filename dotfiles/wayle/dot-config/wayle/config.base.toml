@@ -352,9 +352,9 @@ left-click = "playerctl play-pause"
 # Updates — only visible when available
 [[modules.custom]]
 id = "updates"
-command = "bash -c 'if /usr/local/bin/available-upgrades.sh; then wc -l < /var/lib/available-upgrades/.package-available-upgrades; fi'"
+command = "bash -c 'if /usr/local/bin/available-upgrades.sh; then wc -l < ${XDG_CACHE_HOME:-$HOME/.cache}/available-upgrades/packages; fi'"
 mode = "poll"
-interval-ms = 300000
+interval-ms = 60000
 format = "{{ output }}"
 tooltip-format = "{{ output }} updates available"
 icon-name = "ld-package-symbolic"
