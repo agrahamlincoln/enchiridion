@@ -81,7 +81,7 @@ center = [
 right = [
     "custom-updates",
     { name = "status", modules = ["cpu", "ram", "battery", "network", "bluetooth", "volume", "microphone"] },
-    { name = "controls", modules = ["custom-backlight", "custom-scale", "idle-inhibit"] },
+    { name = "controls", modules = ["custom-backlight", "custom-scale", "custom-ssh", "idle-inhibit"] },
     { name = "alerts", modules = ["custom-disk-alert", "custom-temp-alert"] },
     "notifications",
     "systray",
@@ -290,7 +290,7 @@ button-bg-color = "transparent"
 scroll-up = "brightnessctl set 5%+"
 scroll-down = "brightnessctl set 5%-"
 
-# Scale picker
+# Scale picker — dropdown via custom picker
 [[modules.custom]]
 id = "scale"
 command = "$HOME/.config/hypr/hypr-scale.sh get"
@@ -302,7 +302,21 @@ label-show = false
 icon-color = "fg-default"
 icon-bg-color = "transparent"
 button-bg-color = "transparent"
-left-click = "$HOME/.config/hypr/hypr-scale.sh menu"
+left-click = "dropdown:custom:scale"
+scroll-up = "$HOME/.config/hypr/hypr-scale.sh up"
+scroll-down = "$HOME/.config/hypr/hypr-scale.sh down"
+on-action = "$HOME/.config/hypr/hypr-scale.sh get"
+
+# SSH host picker
+[[modules.custom]]
+id = "ssh"
+icon-name = "ld-terminal-symbolic"
+icon-show = true
+label-show = false
+icon-color = "fg-default"
+icon-bg-color = "transparent"
+button-bg-color = "transparent"
+left-click = "dropdown:custom:ssh"
 
 # Disk alert — only visible above 80%
 [[modules.custom]]
@@ -366,3 +380,27 @@ icon-color = "fg-default"
 label-color = "fg-default"
 icon-bg-color = "transparent"
 button-bg-color = "transparent"
+
+# ---------------------------------------------------------------------------
+# Custom Dropdowns
+# ---------------------------------------------------------------------------
+
+[dropdowns.custom.scale]
+title = "Display Scale"
+icon = "ld-monitor-symbolic"
+width = 340
+
+[[dropdowns.custom.scale.sections]]
+type = "picker"
+list-command = "$HOME/.config/hypr/hypr-scale.sh list --json"
+select-command = '''$HOME/.config/hypr/hypr-scale.sh set "$WAYLE_SELECTED"'''
+
+[dropdowns.custom.ssh]
+title = "SSH Hosts"
+icon = "ld-terminal-symbolic"
+width = 300
+
+[[dropdowns.custom.ssh.sections]]
+type = "picker"
+list-command = "$HOME/.config/hypr/ssh-hosts.sh list"
+select-command = "$HOME/.config/hypr/ssh-hosts.sh connect"

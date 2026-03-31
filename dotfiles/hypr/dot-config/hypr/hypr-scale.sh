@@ -11,6 +11,7 @@
 #
 # Usage:
 #   hypr-scale.sh list              # List all valid scales for the focused monitor
+#   hypr-scale.sh list --json       # List as JSON lines (for wayle custom dropdown)
 #   hypr-scale.sh get               # Print current scale as JSON (for waybar)
 #   hypr-scale.sh set <scale>       # Apply a specific scale
 #   hypr-scale.sh up                # Switch to the next higher scale (smaller UI)
@@ -78,15 +79,32 @@ case "$cmd" in
         phys_mm=$(echo "$mon" | jq '.physicalWidth')
         current=$(echo "$mon" | jq '.scale')
         native_dpi=$(awk "BEGIN { printf \"%.1f\", $width / ($phys_mm / 25.4) }")
+        format=${2:-text}
 
-        printf "%-8s %-12s %-8s %s\n" "Scale" "Effective" "Eff DPI" ""
+        if [[ "$format" != "--json" ]]; then
+            printf "%-8s %-12s %-8s %s\n" "Scale" "Effective" "Eff DPI" ""
+        fi
         while read -r scale ew eh; do
             eff_dpi=$(awk "BEGIN { printf \"%.0f\", $native_dpi / $scale }")
-            marker=""
+            is_active=false
             if awk "BEGIN { exit !(($scale - $current) < 0.01 && ($current - $scale) < 0.01) }"; then
-                marker="<-- current"
+                is_active=true
             fi
-            printf "%-8s %-12s %-8s %s\n" "$scale" "${ew}x${eh}" "$eff_dpi" "$marker"
+
+            if [[ "$format" == "--json" ]]; then
+                jq -nc \
+                    --arg value "$scale" \
+                    --arg label "${scale}x" \
+                    --arg subtitle "${eff_dpi} DPI  ${ew}×${eh}" \
+                    --argjson active "$is_active" \
+                    '{value: $value, label: $label, subtitle: $subtitle, active: $active}'
+            else
+                marker=""
+                if [[ "$is_active" == "true" ]]; then
+                    marker="<-- current"
+                fi
+                printf "%-8s %-12s %-8s %s\n" "$scale" "${ew}x${eh}" "$eff_dpi" "$marker"
+            fi
         done < <(get_valid_scales "$width" "$height")
         ;;
 
