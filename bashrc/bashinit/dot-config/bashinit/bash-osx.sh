@@ -2,6 +2,8 @@
 
 # osx-specific bashinit scripts
 
+export PATH="$HOME/.cargo/bin:$PATH"
+
 # mac os uses python2 by default
 alias python=/usr/local/bin/python3
 alias pip=/usr/local/bin/pip3

@@ -8,6 +8,7 @@ stow
 openssh
 jq
 just
+rustup
 
 # Terminal and editors
 kitty

@@ -352,6 +352,42 @@ elif [[ "$OS" == "Darwin" ]]; then
     fi
 fi
 
+# ── Rust Toolchain ───────────────────────────────────────────────────
+
+echo -e "\n--- Rust Toolchain ---"
+
+if [[ "$OS" == "Linux" ]]; then
+    # rustup is installed via pacman; just ensure a default toolchain exists
+    if command -v rustup &>/dev/null; then
+        if ! rustup default &>/dev/null 2>&1; then
+            echo "-> Installing stable Rust toolchain via rustup..."
+            rustup default stable
+            echo "- Stable toolchain installed."
+        else
+            echo "- Rust toolchain already configured ($(rustup default | awk '{print $1}'))."
+        fi
+    else
+        echo "- rustup not found, skipping toolchain setup."
+    fi
+elif [[ "$OS" == "Darwin" ]]; then
+    # rustup-init is installed via Homebrew; initialize if no toolchain present
+    if command -v rustup &>/dev/null; then
+        if ! rustup default &>/dev/null 2>&1; then
+            echo "-> Installing stable Rust toolchain via rustup..."
+            rustup default stable
+            echo "- Stable toolchain installed."
+        else
+            echo "- Rust toolchain already configured ($(rustup default | awk '{print $1}'))."
+        fi
+    elif command -v rustup-init &>/dev/null; then
+        echo "-> Initializing rustup with stable toolchain..."
+        rustup-init -y --no-modify-profile
+        echo "- Stable toolchain installed."
+    else
+        echo "- rustup not found, skipping toolchain setup."
+    fi
+fi
+
 # ── Dotfiles ──────────────────────────────────────────────────────────
 
 echo -e "\n--- Dotfiles ---"

@@ -2,6 +2,7 @@
 stow
 jq
 vim
+rustup-init
 
 # Sketchybar
 lua
