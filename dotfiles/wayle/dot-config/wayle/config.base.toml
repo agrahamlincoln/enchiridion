@@ -81,7 +81,7 @@ center = [
 right = [
     "custom-updates",
     { name = "status", modules = ["cpu", "ram", "battery", "network", "bluetooth", "volume", "microphone"] },
-    { name = "controls", modules = ["custom-backlight", "custom-scale", "custom-ssh", "idle-inhibit"] },
+    { name = "controls", modules = ["custom-backlight", "hyprsunset", "custom-scale", "custom-ssh", "idle-inhibit"] },
     { name = "alerts", modules = ["custom-disk-alert", "custom-temp-alert"] },
     "notifications",
     "systray",
@@ -217,6 +217,20 @@ label-show = false
 icon-bg-color = "transparent"
 icon-color = "fg-default"
 button-bg-color = "transparent"
+
+# Hyprsunset — manual blue-light filter toggle (no auto scheduling)
+# left-click defaults to :toggle (identity <-> warm temperature below)
+[modules.hyprsunset]
+temperature = 4500
+gamma = 100
+icon-off = "ld-sun-symbolic"
+icon-on = "ld-moon-symbolic"
+icon-show = true
+label-show = false
+icon-color = "fg-default"
+icon-bg-color = "transparent"
+button-bg-color = "transparent"
+border-show = false
 
 # Idle inhibitor
 [modules.idle-inhibit]

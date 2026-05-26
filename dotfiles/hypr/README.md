@@ -7,7 +7,7 @@ wofi
 kitty
 thunar
 waybar
-gammastep
+hyprsunset
 phinger-cursors
 woff2-font-awesome
 ttf-firacode-nerd

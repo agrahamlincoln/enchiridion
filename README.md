@@ -13,7 +13,7 @@ This repository contains configurations for a variety of tools, including:
 *   **Terminal:** Kitty
 *   **Status Bars:** Waybar, Sketchybar
 *   **Shell:** Bash, with a custom prompt and virtualenvwrapper support
-*   **Other Tools:** Git, Gammastep, and more.
+*   **Other Tools:** Git, Hyprsunset, and more.
 
 ## Installation
 

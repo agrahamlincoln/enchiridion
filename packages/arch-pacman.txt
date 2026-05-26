@@ -18,11 +18,11 @@ hyprland
 hyprpaper
 hyprlock
 hypridle
+hyprsunset
 xdg-desktop-portal-hyprland
 
 # Desktop utilities
 wofi
-gammastep
 thunar
 
 # Icon theme

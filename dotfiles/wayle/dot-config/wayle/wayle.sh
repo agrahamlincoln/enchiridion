@@ -24,7 +24,7 @@ if [[ ! -d "$ICON_DIR" ]] || [[ -z "$(ls -A "$ICON_DIR" 2>/dev/null)" ]]; then
     wayle icons setup 2>&1 | systemd-cat -t "$LOGTAG"
 
     # Install icon sets we need for workspace app icons and modules
-    wayle icons install lucide terminal brain globe zap app-window sun monitor \
+    wayle icons install lucide terminal brain globe zap app-window sun moon monitor \
         thermometer bell bell-dot bell-off package hard-drive music cat 2>&1 | systemd-cat -t "$LOGTAG"
     wayle icons install tabler brand-vscode sword minus 2>&1 | systemd-cat -t "$LOGTAG"
     wayle icons install simple-icons discord steam firefox 2>&1 | systemd-cat -t "$LOGTAG"
