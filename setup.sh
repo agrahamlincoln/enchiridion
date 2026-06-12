@@ -309,6 +309,42 @@ if [[ "$OS" == "Linux" ]]; then
         echo "- No LUKS + systemd-boot detected, skipping swap/hibernate setup."
     fi
 
+    # Fallback kernel: linux-lts is installed via arch-pacman.txt as a known-good
+    # boot option for when the mainline 'linux' kernel regresses (e.g. the 7.0
+    # amdgpu/TTM hibernate-resume lockup). Create its boot entry by cloning the
+    # options line from arch.conf so LUKS/resume parameters stay in sync.
+    BOOT_ENTRY="/boot/loader/entries/arch.conf"
+    LTS_ENTRY="/boot/loader/entries/arch-lts.conf"
+    if [[ -f /boot/vmlinuz-linux-lts && -f "$BOOT_ENTRY" ]]; then
+        if [[ ! -f "$LTS_ENTRY" ]]; then
+            echo "-> Creating systemd-boot entry for linux-lts..."
+            {
+                echo "title   Arch Linux (LTS)"
+                echo "linux   /vmlinuz-linux-lts"
+                echo "initrd  /initramfs-linux-lts.img"
+                grep '^options' "$BOOT_ENTRY"
+            } | sudo tee "$LTS_ENTRY" > /dev/null
+            echo "- arch-lts.conf created."
+        else
+            echo "- linux-lts boot entry already exists."
+        fi
+    else
+        echo "- linux-lts or systemd-boot entry not present, skipping LTS boot entry."
+    fi
+
+    # SysRq safety net: enable the REISUB key sequence so a kernel soft lockup
+    # (interrupts still serviced) can be escaped with a synced reboot instead of
+    # a hard power-off. 244 = unraw(4) + sync(16) + remount-ro(32) +
+    # signal-tasks(64) + reboot(128); excludes console/dmesg dumping keys.
+    if [[ ! -f /etc/sysctl.d/99-sysrq.conf ]]; then
+        echo "-> Enabling SysRq keys for emergency recovery (REISUB)..."
+        printf 'kernel.sysrq = 244\n' | sudo tee /etc/sysctl.d/99-sysrq.conf > /dev/null
+        sudo sysctl --quiet kernel.sysrq=244
+        echo "- SysRq enabled (Alt+SysRq+R,E,I,S,U,B to recover from lockups)."
+    else
+        echo "- SysRq already configured."
+    fi
+
 elif [[ "$OS" == "Darwin" ]]; then
     echo "-> Checking Homebrew taps..."
     for tap in $(read_packages brew-taps.txt); do

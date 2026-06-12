@@ -10,6 +10,10 @@ jq
 just
 rustup
 
+# Fallback kernel (proven-stable boot option alongside mainline 'linux';
+# see setup.sh "Fallback Kernel" section for the boot entry)
+linux-lts
+
 # Terminal and editors
 kitty
 vim
