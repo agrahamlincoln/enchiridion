@@ -1,7 +1,7 @@
 # Suspend/Resume Freeze on Framework 13 (AMD Ryzen AI 300)
 
 **Date discovered:** 2026-03-21
-**Status:** Unresolved — hibernate (S4) workaround active
+**Status:** RESOLVED 2026-06-12 — root cause was the Intel AX210 wifi card; replaced with MediaTek MT7925 (see Resolution section)
 **Machine:** Framework Laptop 13 (AMD Ryzen AI 300 Series)
 
 ## Hardware
@@ -239,3 +239,21 @@ Multiple interacting issues exist in kernels 6.18–6.19 (CWSR/MES/VPE bugs). Th
 3. **Try `no_console_suspend` kernel param** to get debug output during the hang
 4. **Try suspend from bare TTY** (no Hyprland) to fully rule out compositor involvement
 5. **File a bug** at [FrameworkComputer/SoftwareFirmwareIssueTracker](https://github.com/FrameworkComputer/SoftwareFirmwareIssueTracker/issues) for AMD engineering visibility
+
+## Resolution (2026-06-12)
+
+The culprit was the **Intel AX210 wifi card**, not amdgpu, BIOS, or the kernel. Replacing it with the platform-validated MediaTek MT7925 (AMD RZ717) made suspend/resume fully reliable on kernel 7.1-rc7.
+
+What happened in June 2026, in order:
+
+1. A *separate* bug — an amdgpu/TTM NULL deref (`ttm_lru_bulk_move_del`) introduced in kernel 7.0 — started hard-freezing **hibernate** resume too. Fixed by running mainline 7.1-rc (commit `b2ed01e7ad3d`, first in v7.1-rc4). Three kernels are now installed: `linux`, `linux-lts` (fallback), `linux-mainline` (default until Arch ships 7.1 stable).
+2. With hibernate fixed, suspend testing on 7.1-rc7 showed the AX210 dying on s2idle resume: card off the PCI bus ("Unable to change power state from D3hot to D0, device inaccessible", config space all `0xffffffff`, firmware SecBoot `0x5a5a5a5a`), followed by a ~1-minute desktop hang (driver firmware-restart retries holding rtnl) and the *next* suspend aborting with "Device or resource busy" (screen stays on lock screen).
+3. Upstream research showed this AX210-on-AMD failure is known and unfixed: three AX210 firmware updates (Dec 2025–Mar 2026), a disputed un-merged kernel revert (`STATUS_SUSPENDED`), and an Intel resume workaround merged 2026-05-31 (`093305d801fa`, "for unclear reasons, grabbing NIC access was harmful") that was already in 7.1-rc7 and didn't help. See Framework thread [Intel AX210 system hang on resume](https://community.frame.work/t/intel-ax210-wifi-system-hang-on-resume-from-standby/79977) — same platform, same card, matching reports since January 2026.
+4. **Hardware swap to MT7925**: no driver work needed (`mt7925e` ships in every kernel; `linux-firmware-mediatek` already installed, including Bluetooth blobs). Suspend/resume now works, including back-to-back cycles.
+
+In hindsight, the original March freeze (journal ending at suspend entry, hard hang) matches the AX210 hang reports in the Framework thread above — the card likely was the root cause all along, masked by the concurrent amdgpu/kernel churn.
+
+Cleanup done with the swap:
+- `/etc/udev/rules.d/81-wifi-no-d3cold.rules` (AX210 workaround, live-only) — removed
+- The `~/.config/hypr/use-hibernate` flag mechanism described above — removed entirely (flag file, hypridle/wlogout runtime checks, setup.sh lid branching); recover it from git history if a future regression breaks suspend
+- Sleep mode is now **suspend-then-hibernate**: `HibernateDelaySec=2h` via `/etc/systemd/sleep.conf.d/hibernate-delay.conf`, lid via `/etc/systemd/logind.conf.d/lid-sleep.conf`, both written by `setup.sh`
