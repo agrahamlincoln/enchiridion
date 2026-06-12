@@ -235,8 +235,7 @@ if [[ "$OS" == "Linux" ]]; then
 
     # Swap and hibernate support: create swap file sized to RAM.
     # Swap file lives inside the LUKS volume, so it's encrypted at rest automatically.
-    # Hibernate is opt-in: only enabled when ~/.config/hypr/use-hibernate exists.
-    # hypridle and wlogout check this flag at runtime to choose hibernate vs suspend.
+    # Hibernate backs the suspend-then-hibernate sleep mode configured below.
     BOOT_ENTRY="/boot/loader/entries/arch.conf"
     SWAPFILE="/swapfile"
     # Swap must be >= RAM for hibernate to write the full memory image
@@ -282,27 +281,29 @@ if [[ "$OS" == "Linux" ]]; then
             echo "- Resume parameters already in boot entry."
         fi
 
-        # Hibernate opt-in: configure lid close and flag file
-        # Enable with: touch ~/.config/hypr/use-hibernate
-        # Disable with: rm ~/.config/hypr/use-hibernate
-        if [[ -f "$HOME/.config/hypr/use-hibernate" ]]; then
-            if [[ ! -f /etc/systemd/logind.conf.d/lid-hibernate.conf ]]; then
-                echo "-> Configuring lid close to hibernate (use-hibernate flag set)..."
-                sudo mkdir -p /etc/systemd/logind.conf.d
-                printf '[Login]\nHandleLidSwitch=hibernate\nHandleLidSwitchExternalPower=hibernate\nHandleLidSwitchDocked=ignore\n' \
-                    | sudo tee /etc/systemd/logind.conf.d/lid-hibernate.conf > /dev/null
-                echo "- Lid close set to hibernate."
-            else
-                echo "- Lid close hibernate already configured."
-            fi
+        # Lid close: suspend-then-hibernate (takes effect after reboot)
+        LID_CONF="/etc/systemd/logind.conf.d/lid-sleep.conf"
+        if ! grep -qs '^HandleLidSwitch=suspend-then-hibernate$' "$LID_CONF"; then
+            echo "-> Setting lid close to suspend-then-hibernate..."
+            sudo mkdir -p /etc/systemd/logind.conf.d
+            printf '[Login]\nHandleLidSwitch=suspend-then-hibernate\nHandleLidSwitchExternalPower=suspend-then-hibernate\nHandleLidSwitchDocked=ignore\n' \
+                | sudo tee "$LID_CONF" > /dev/null
+            sudo rm -f /etc/systemd/logind.conf.d/lid-hibernate.conf
+            echo "- Lid close set to suspend-then-hibernate."
         else
-            # Clean up hibernate lid config if flag was removed
-            if [[ -f /etc/systemd/logind.conf.d/lid-hibernate.conf ]]; then
-                echo "-> Removing hibernate lid config (use-hibernate flag not set)..."
-                sudo rm /etc/systemd/logind.conf.d/lid-hibernate.conf
-                echo "- Lid close reverted to default (suspend)."
-            fi
-            echo "- Hibernate not enabled (touch ~/.config/hypr/use-hibernate to enable)."
+            echo "- Lid close already configured."
+        fi
+
+        # Hand off from suspend to hibernate after 2h asleep (or early on low
+        # battery), so a forgotten laptop powers off instead of draining.
+        if [[ ! -f /etc/systemd/sleep.conf.d/hibernate-delay.conf ]]; then
+            echo "-> Setting suspend-to-hibernate handoff delay (2h)..."
+            sudo mkdir -p /etc/systemd/sleep.conf.d
+            printf '[Sleep]\nHibernateDelaySec=2h\n' \
+                | sudo tee /etc/systemd/sleep.conf.d/hibernate-delay.conf > /dev/null
+            echo "- HibernateDelaySec=2h configured."
+        else
+            echo "- Suspend-to-hibernate delay already configured."
         fi
     else
         echo "- No LUKS + systemd-boot detected, skipping swap/hibernate setup."

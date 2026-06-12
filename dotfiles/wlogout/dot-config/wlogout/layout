@@ -1,6 +1,6 @@
 {
     "label" : "sleep",
-    "action" : "bash -c 'killall wlogout; sleep 0.1; if [ -f ~/.config/hypr/use-hibernate ]; then systemctl hibernate; else systemctl suspend; fi'",
+    "action" : "bash -c 'killall wlogout; sleep 0.1; systemctl suspend-then-hibernate'",
     "text" : "Sleep",
     "keybind" : "u"
 }

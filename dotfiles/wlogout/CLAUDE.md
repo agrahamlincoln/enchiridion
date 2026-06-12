@@ -2,9 +2,9 @@
 
 Linux-only power menu (lock, logout, suspend/hibernate, reboot, shutdown).
 
-## Hibernate Support
+## Sleep Button Behavior
 
-The suspend button checks `~/.config/hypr/use-hibernate` at runtime. If the flag file exists, it runs `systemctl hibernate` instead of `systemctl suspend`. This is a workaround for an s2idle bug on Framework 13 AMD Ryzen AI 300 — see `docs/suspend-resume-issue.md`.
+The sleep button runs `systemctl suspend-then-hibernate` — sleeps now, hands off to hibernate after `HibernateDelaySec` (set in `/etc/systemd/sleep.conf.d/` by `setup.sh`).
 
 ## Key Files
 

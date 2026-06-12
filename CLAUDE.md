@@ -64,7 +64,7 @@ Most changes touch multiple files. Before considering a change complete, check e
 | **Color or font** | kitty.conf, wayle config.base.toml (palette), wofi style.css + scale-menu.css, wlogout style.css, hyprlock.conf, GTK settings.ini, bash-prompt.sh |
 | **Border-radius or spacing** | wayle config.base.toml (rounding), wofi style.css, wlogout style.css, hyprlock.conf, hyprland hosts/desktop + hosts/laptop settings |
 | **Wlogout invocation** | hyprland.conf (keybind + XF86PowerOff), wayle config.base.toml (power module) |
-| **Suspend/hibernate** | hypridle.conf, wlogout layout, setup.sh (swap/hibernate section), logind drop-in, `~/.config/hypr/use-hibernate` flag |
+| **Suspend/hibernate** | hypridle.conf, wlogout layout, setup.sh (swap/hibernate + lid sections), logind + sleep.conf.d drop-ins |
 | **Screenshot workflow** | hyprland.conf keybinds (3 binds: Print, Super+Print, Super+Shift+Print) |
 | **New dotfiles package** | See "Adding a New Dotfiles Package" above |
 | **System config change** | `setup.sh` (for new installs), use drop-in files under `/etc/systemd/*.conf.d/` rather than editing main configs |
