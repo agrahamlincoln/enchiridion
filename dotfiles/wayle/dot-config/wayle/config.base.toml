@@ -81,7 +81,7 @@ center = [
 right = [
     "custom-updates",
     { name = "status", modules = ["cpu", "ram", "battery", "network", "bluetooth", "volume", "microphone"] },
-    { name = "controls", modules = ["custom-backlight", "hyprsunset", "custom-scale", "custom-ssh", "idle-inhibit"] },
+    { name = "controls", modules = ["brightness", "hyprsunset", "custom-scale", "custom-ssh", "idle-inhibit"] },
     { name = "alerts", modules = ["custom-disk-alert", "custom-temp-alert"] },
     "notifications",
     "systray",
@@ -274,6 +274,16 @@ label-color = "#f43f5e"
 # System tray
 [modules.systray]
 
+# Brightness — native backlight module (event-driven, slider dropdown)
+[modules.brightness]
+left-click = "dropdown:brightness"
+icon-show = true
+label-show = false
+icon-color = "fg-default"
+icon-bg-color = "transparent"
+button-bg-color = "transparent"
+border-show = false
+
 # Window title — use same icons as workspace switcher
 [modules.window-title]
 icon-bg-color = "transparent"
@@ -287,22 +297,6 @@ button-bg-color = "transparent"
 # ---------------------------------------------------------------------------
 # Custom modules — all monochrome, transparent backgrounds
 # ---------------------------------------------------------------------------
-
-# Brightness
-[[modules.custom]]
-id = "backlight"
-command = "brightnessctl -m | awk -F, '{print $4}' | tr -d '%'"
-mode = "poll"
-interval-ms = 2000
-tooltip-format = "Brightness: {{ output }}%"
-icon-name = "ld-sun-symbolic"
-icon-show = true
-label-show = false
-icon-color = "fg-default"
-icon-bg-color = "transparent"
-button-bg-color = "transparent"
-scroll-up = "brightnessctl set 5%+"
-scroll-down = "brightnessctl set 5%-"
 
 # Scale picker — dropdown via custom picker
 [[modules.custom]]
