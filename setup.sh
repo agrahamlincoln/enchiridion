@@ -236,6 +236,9 @@ if [[ "$OS" == "Linux" ]]; then
     # Swap and hibernate support: create swap file sized to RAM.
     # Swap file lives inside the LUKS volume, so it's encrypted at rest automatically.
     # Hibernate backs the suspend-then-hibernate sleep mode configured below.
+    # NOTE: hibernate (S4) is only safe on linux-lts (6.18). The mainline 'linux'
+    # kernel (7.0+) has an amdgpu/TTM eviction NULL-deref (ttm_lru_bulk_move_del)
+    # that hard-hangs on resume — which is why the LTS entry is the default boot.
     BOOT_ENTRY="/boot/loader/entries/arch.conf"
     SWAPFILE="/swapfile"
     # Swap must be >= RAM for hibernate to write the full memory image
@@ -281,7 +284,10 @@ if [[ "$OS" == "Linux" ]]; then
             echo "- Resume parameters already in boot entry."
         fi
 
-        # Lid close: suspend-then-hibernate (takes effect after reboot)
+        # Lid close: suspend-then-hibernate (takes effect after reboot). Suspend
+        # (s2idle) for the first 6h saves battery with instant resume; after that
+        # it hands off to hibernate for zero drain. Safe on linux-lts; see the
+        # kernel note above re: the 7.0+ mainline TTM hibernate bug.
         LID_CONF="/etc/systemd/logind.conf.d/lid-sleep.conf"
         if ! grep -qs '^HandleLidSwitch=suspend-then-hibernate$' "$LID_CONF"; then
             echo "-> Setting lid close to suspend-then-hibernate..."
@@ -294,14 +300,16 @@ if [[ "$OS" == "Linux" ]]; then
             echo "- Lid close already configured."
         fi
 
-        # Hand off from suspend to hibernate after 2h asleep (or early on low
-        # battery), so a forgotten laptop powers off instead of draining.
-        if [[ ! -f /etc/systemd/sleep.conf.d/hibernate-delay.conf ]]; then
-            echo "-> Setting suspend-to-hibernate handoff delay (2h)..."
+        # Hand off from suspend to hibernate after 6h asleep (or early on low
+        # battery), so a forgotten laptop powers off instead of draining. 6h keeps
+        # instant-resume s2idle for typical daytime sleeps; only longer ones (e.g.
+        # overnight) fall through to zero-drain hibernate.
+        if ! grep -qs '^HibernateDelaySec=6h$' /etc/systemd/sleep.conf.d/hibernate-delay.conf; then
+            echo "-> Setting suspend-to-hibernate handoff delay (6h)..."
             sudo mkdir -p /etc/systemd/sleep.conf.d
-            printf '[Sleep]\nHibernateDelaySec=2h\n' \
+            printf '[Sleep]\nHibernateDelaySec=6h\n' \
                 | sudo tee /etc/systemd/sleep.conf.d/hibernate-delay.conf > /dev/null
-            echo "- HibernateDelaySec=2h configured."
+            echo "- HibernateDelaySec=6h configured."
         else
             echo "- Suspend-to-hibernate delay already configured."
         fi
@@ -327,6 +335,18 @@ if [[ "$OS" == "Linux" ]]; then
             echo "- arch-lts.conf created."
         else
             echo "- linux-lts boot entry already exists."
+        fi
+
+        # Default to the LTS entry: the mainline 'linux' kernel (7.0+) carries the
+        # amdgpu/TTM eviction NULL-deref regression that hard-hangs the machine;
+        # linux-lts 6.18 predates it and is the safe daily driver.
+        LOADER_CONF="/boot/loader/loader.conf"
+        if [[ -f "$LOADER_CONF" ]] && ! grep -qE '^default[[:space:]]+arch-lts\.conf$' "$LOADER_CONF"; then
+            echo "-> Setting linux-lts as the default boot entry..."
+            sudo sed -i 's/^default .*/default arch-lts.conf/' "$LOADER_CONF"
+            echo "- Default boot entry set to arch-lts.conf."
+        else
+            echo "- Default boot entry already arch-lts.conf (or no loader.conf)."
         fi
     else
         echo "- linux-lts or systemd-boot entry not present, skipping LTS boot entry."
