@@ -2,6 +2,7 @@
 
 **Date discovered:** 2026-03-21
 **Status:** RESOLVED 2026-06-12 — root cause was the Intel AX210 wifi card; replaced with MediaTek MT7925 (see Resolution section)
+**Active follow-up (2026-06-22):** a *separate* kernel-7.0+ TTM hibernate regression is mitigated by defaulting to `linux-lts`. See the final section, "TTM Hibernate Lockup (kernel 7.0+ regression) & linux-lts Pin," for the proven root cause and the exit criteria for swapping back.
 **Machine:** Framework Laptop 13 (AMD Ryzen AI 300 Series)
 
 ## Hardware
@@ -246,7 +247,7 @@ The culprit was the **Intel AX210 wifi card**, not amdgpu, BIOS, or the kernel. 
 
 What happened in June 2026, in order:
 
-1. A *separate* bug — an amdgpu/TTM NULL deref (`ttm_lru_bulk_move_del`) introduced in kernel 7.0 — started hard-freezing **hibernate** resume too. Fixed by running mainline 7.1-rc (commit `b2ed01e7ad3d`, first in v7.1-rc4). Three kernels are now installed: `linux`, `linux-lts` (fallback), `linux-mainline` (default until Arch ships 7.1 stable).
+1. A *separate* bug — an amdgpu/TTM NULL deref (`ttm_lru_bulk_move_del`) introduced in kernel 7.0 — started hard-freezing **hibernate** resume too. Fixed by running mainline 7.1-rc (commit `b2ed01e7ad3d`, first in v7.1-rc4). Three kernels are now installed: `linux`, `linux-lts` (fallback), `linux-mainline` (default until Arch ships 7.1 stable). **[Correction, 2026-06-22: this was wrong. `b2ed01e7ad3d` (a swapout LRU-walk fix) did NOT fix it — the TTM NULL deref persisted into 7.1.0 and was later proven by ramoops capture. The real fix is still in upstream review. See the final section.]**
 2. With hibernate fixed, suspend testing on 7.1-rc7 showed the AX210 dying on s2idle resume: card off the PCI bus ("Unable to change power state from D3hot to D0, device inaccessible", config space all `0xffffffff`, firmware SecBoot `0x5a5a5a5a`), followed by a ~1-minute desktop hang (driver firmware-restart retries holding rtnl) and the *next* suspend aborting with "Device or resource busy" (screen stays on lock screen).
 3. Upstream research showed this AX210-on-AMD failure is known and unfixed: three AX210 firmware updates (Dec 2025–Mar 2026), a disputed un-merged kernel revert (`STATUS_SUSPENDED`), and an Intel resume workaround merged 2026-05-31 (`093305d801fa`, "for unclear reasons, grabbing NIC access was harmful") that was already in 7.1-rc7 and didn't help. See Framework thread [Intel AX210 system hang on resume](https://community.frame.work/t/intel-ax210-wifi-system-hang-on-resume-from-standby/79977) — same platform, same card, matching reports since January 2026.
 4. **Hardware swap to MT7925**: no driver work needed (`mt7925e` ships in every kernel; `linux-firmware-mediatek` already installed, including Bluetooth blobs). Suspend/resume now works, including back-to-back cycles.
@@ -256,4 +257,62 @@ In hindsight, the original March freeze (journal ending at suspend entry, hard h
 Cleanup done with the swap:
 - `/etc/udev/rules.d/81-wifi-no-d3cold.rules` (AX210 workaround, live-only) — removed
 - The `~/.config/hypr/use-hibernate` flag mechanism described above — removed entirely (flag file, hypridle/wlogout runtime checks, setup.sh lid branching); recover it from git history if a future regression breaks suspend
-- Sleep mode is now **suspend-then-hibernate**: `HibernateDelaySec=2h` via `/etc/systemd/sleep.conf.d/hibernate-delay.conf`, lid via `/etc/systemd/logind.conf.d/lid-sleep.conf`, both written by `setup.sh`
+- Sleep mode is now **suspend-then-hibernate**: `HibernateDelaySec=6h` via `/etc/systemd/sleep.conf.d/hibernate-delay.conf`, lid via `/etc/systemd/logind.conf.d/lid-sleep.conf`, both written by `setup.sh`
+
+## TTM Hibernate Lockup (kernel 7.0+ regression) & linux-lts Pin
+
+**Date:** 2026-06-22
+**Status:** MITIGATED — boot `linux-lts` 6.18 by default (set in `loader.conf` by `setup.sh`, commit `f94433e`). Upstream fix is in review but **not yet merged**. Swap back to a mainline `linux` kernel once the fix lands — see **Exit Criteria** below.
+
+### Root cause (proven via ramoops capture)
+
+A NULL-pointer dereference in TTM's bulk-move LRU bookkeeping, in the buffer **eviction** path. Captured 2026-06-22 (`~/lockup-dump-20260622-143751.txt`, via `~/lockup-trap.sh`):
+
+```
+BUG: kernel NULL pointer dereference, address: 0x10   (RDI = 0)
+RIP: ttm_lru_bulk_move_del+0xd4/0x120 [ttm]
+  ttm_lru_bulk_move_del   <- faults on NULL
+  ttm_resource_free
+  amdgpu_bo_move           <- a buffer is being evicted/moved
+  ttm_bo_handle_move_mem
+  ttm_bo_validate
+  amdgpu_cs_bo_validate
+  amdgpu_cs_ioctl          <- during GPU command submission
+```
+
+The faulting task oopses **while holding `lru_lock` with IRQs disabled** (`exited with irqs disabled, preempt_count 1`). The spinlock is never released → every other GPU client deadlocks on it ~26s later in `native_queued_spin_lock_slowpath` → soft-lockup cascade → hard hang. **The lock-held-forever hang is the symptom; the NULL deref is the cause.** (Earlier diagnoses chasing the soft-lockup / an `pm_async` async-resume theory were wrong — they only ever saw the lock *waiters*, never the holder.)
+
+**Trigger:** GPU buffer eviction under VRAM pressure (only 512 MB VRAM). In practice: opening a heavy GPU client (Zen browser), worse with the `bijutsu` LLM service holding GPU/KFD memory. Often after a hibernate cycle, but NOT strictly resume-timing — it can fire minutes into normal use. The benign `VM memory stats … non-zero when fini` and `VPE queue reset failed` warnings appear on clean resumes too and are **not** the bug.
+
+### Why linux-lts fixes it
+
+Regression window: **6.19.11 good → 7.0+ bad**. The bug is fallout from the Jan-2025 refactor [*"drm/ttm: use ttm_resource_unevictable() to replace pin_count and swapped"*](https://www.mail-archive.com/dri-devel@lists.freedesktop.org/msg507817.html), which landed in 7.0. `linux-lts` 6.18.36 predates it (confirmed sideways: the 7.0-stable swapout backport *failed to apply to 6.18-stable* — 6.18 lacks the buggy code). Validated 2026-06-22: hibernate → resume → Zen under load on 6.18 = zero crash.
+
+### Upstream fix (in review, NOT merged as of 2026-06-22)
+
+Two overlapping series on dri-devel fix the bulk_move / unevictable-resource corruption:
+- **Samuel Ainsworth** — *"drm/ttm: fix bulk_move cursor use-after-free for unevictable resources"* / *"don't leave bulk_move cursor dangling for unevictable resources"* + regression tests. Reviewed by Christian König (TTM/amdgpu maintainer). June 2026.
+- **Thomas Hellström** — [*"drm/ttm: Really use a separate LRU list for swapped- and pinned objects"*](https://www.mail-archive.com/dri-devel@lists.freedesktop.org/msg508207.html) (v5). Deeper rework: pinned/swapped objects weren't being moved off the LRU list.
+
+**Do not file a new bug** — it would duplicate this active, maintainer-reviewed work. The only useful upstream contribution would be a `Tested-by:` confirming the fix on Ryzen AI 300, which needs a locally-built patched kernel (optional).
+
+### Exit Criteria — when to swap back off linux-lts default
+
+Swap the default boot entry back to mainline (`arch.conf` / `arch-mainline.conf`) once **both** hold:
+1. One of the fixes above has **merged to mainline and been backported into the Arch `linux` (or `linux-mainline`) version you're running** — check the package changelog / kernel `git log` for "bulk_move cursor" or the merged commit hash; and
+2. It **passes the reproducer** on this machine.
+
+Procedure (re-test periodically, e.g. monthly or when a new `linux` major lands):
+```bash
+~/lockup-trap.sh arm && sudo reboot       # then pick the NON-LTS entry at the menu
+~/lockup-trap.sh status                   # confirm "ramoops ACTIVE this boot"
+# Hammer the reproducer: systemctl hibernate -> resume -> open Zen + GPU/mem load,
+# churn windows. Bug is ~15%/cycle, so survive >=10 cycles before trusting it.
+~/lockup-trap.sh dump                     # should find nothing if fixed
+# If clean, make mainline the default again and tear down the pin:
+sudo sed -i 's/^default .*/default arch.conf/' /boot/loader/loader.conf
+~/lockup-trap.sh disarm
+```
+Then revert the `setup.sh` LTS-default block added in commit `f94433e`.
+
+**Why swap back at all:** the MT7925 wifi (mt76) hard-lockup fix landed in **7.1.0 mainline** — there is no single mainline version with *both* that wifi fix and the pre-7.0 TTM code, so on LTS 6.18 you depend on the wifi fix being backported to 6.18.x (probable but unverified). A current kernel with the TTM fix merged restores both. If a **wifi-related** freeze ever appears on LTS, that's the likely cause — check whether the mt76 fix is actually in 6.18.x.
