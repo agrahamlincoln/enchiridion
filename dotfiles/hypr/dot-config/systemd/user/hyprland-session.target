@@ -1,0 +1,11 @@
+[Unit]
+Description=Hyprland session
+Documentation=man:systemd.special(7)
+# BindsTo pulls up graphical-session.target (which has RefuseManualStart=yes and
+# is never reached otherwise, since Hyprland is launched directly, not via uwsm).
+# Without an active graphical-session.target, xdg-desktop-portal.service refuses
+# to start (Requisite=graphical-session.target), which breaks screen sharing in
+# Discord and other apps that use the ScreenCast portal.
+BindsTo=graphical-session.target
+Wants=graphical-session-pre.target
+After=graphical-session-pre.target
