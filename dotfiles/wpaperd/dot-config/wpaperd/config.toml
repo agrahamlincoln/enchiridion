@@ -1,0 +1,21 @@
+# wpaperd configuration
+# https://github.com/danyspin97/wpaperd
+#
+# Cycles through the wallpapers in ~/Images/Wallpapers, changing every minute.
+# hyprpaper (previously used here) has NO rotation feature — it only assigns one
+# static image per monitor — so cycling never worked. wpaperd is purpose-built for
+# directory rotation and is launched via `exec-once = wpaperd` in hyprland.conf.
+
+# The [default] section is the base for every display, so a single-monitor and a
+# multi-monitor machine both work with no hostname checks (multi-machine portable).
+[default]
+path = "~/Images/Wallpapers"
+duration = "1m"
+sorting = "random"
+
+# Display fit. wpaperd has no crop-to-fill ("cover") mode. For a 16:9 wallpaper on
+# a 16:9 screen `fit` is pixel-perfect full-screen; dark bars only appear for
+# off-aspect images and blend with the dark desktop. Alternatives:
+#   "stretch" — always fills, but distorts off-aspect images
+#   "center"  — native size, crops overflow (best only if every image >= screen res)
+mode = "fit"

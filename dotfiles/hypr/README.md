@@ -2,7 +2,6 @@ Packages to install:
 
 hyprland
 hyprlock
-hyprpaper
 wofi
 kitty
 thunar

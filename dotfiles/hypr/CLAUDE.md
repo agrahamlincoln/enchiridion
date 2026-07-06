@@ -1,12 +1,11 @@
 # Hyprland Configuration
 
-Linux-only desktop environment config for Hyprland (compositor), Hyprpaper (wallpapers), and Hyprlock (lock screen).
+Linux-only desktop environment config for Hyprland (compositor) and Hyprlock (lock screen). Wallpapers are handled by wpaperd, which lives in its own dotfiles package (`dotfiles/wpaperd/`).
 
 ## Key Files
 
 - `dot-config/hypr/hyprland.conf` - Main config, sources host-specific files
 - `dot-config/hypr/hyprlock.conf` - Lock screen appearance
-- `dot-config/hypr/hyprpaper.conf` - Wallpaper rotation (block syntax, IPC disabled)
 - `dot-config/hypr/hosts/desktop/` and `hosts/laptop/` - Host-type settings (gaps, touchpad, effects)
 - `dot-config/hypr/hosts/dvorak/` and `hosts/qwerty/` - Keyboard-layout keybinds
 - `dot-config/hypr/update-host-config.sh` - Generates `host-settings.conf` and `host-keybinds.conf` at startup
@@ -30,9 +29,9 @@ hyprctl reload        # Reload hyprland config live
 hyprctl monitors -j   # Query monitor info (JSON)
 ```
 
-## Hyprpaper
+## Wallpapers
 
-Hyprpaper uses block syntax for wallpaper configuration. IPC is disabled (`ipc = false`). Wallpapers are loaded from `~/Images/Wallpapers/` with automatic rotation. Do not attempt to interact with hyprpaper via `hyprctl hyprpaper` subcommands -- these are not supported in current versions; hyprpaper uses its own Unix socket.
+Wallpapers are handled by **wpaperd** (`exec-once = wpaperd` in `hyprland.conf`), configured in `dotfiles/wpaperd/dot-config/wpaperd/config.toml`. wpaperd natively cycles through a directory (`~/Images/Wallpapers`) on a timer. hyprpaper was used previously but has **no rotation feature** — it only assigns one static image per monitor — so directory cycling never worked with it. Do not reintroduce hyprpaper for rotation.
 
 ## Colors
 

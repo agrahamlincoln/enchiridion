@@ -455,7 +455,7 @@ if [[ "$OS" == "Darwin" ]]; then
         stow_target "$target"
     done
 else
-    for target in kitty hypr wayle wlogout zed vim wofi gtk; do
+    for target in kitty hypr wayle wlogout zed vim wofi gtk wpaperd; do
         stow_target "$target"
     done
 fi

@@ -20,11 +20,11 @@ vim
 
 # Hyprland compositor
 hyprland
-hyprpaper
 hyprlock
 hypridle
 hyprsunset
 xdg-desktop-portal-hyprland
+wpaperd
 
 # Desktop utilities
 wofi
