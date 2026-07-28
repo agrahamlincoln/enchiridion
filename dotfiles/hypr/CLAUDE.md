@@ -2,14 +2,6 @@
 
 Linux-only desktop environment config for Hyprland (compositor) and Hyprlock (lock screen). Wallpapers are handled by wpaperd, which lives in its own dotfiles package (`dotfiles/wpaperd/`).
 
-## Key Files
-
-- `dot-config/hypr/hyprland.conf` - Main config, sources host-specific files
-- `dot-config/hypr/hyprlock.conf` - Lock screen appearance
-- `dot-config/hypr/hosts/desktop/` and `hosts/laptop/` - Host-type settings (gaps, touchpad, effects)
-- `dot-config/hypr/hosts/dvorak/` and `hosts/qwerty/` - Keyboard-layout keybinds
-- `dot-config/hypr/update-host-config.sh` - Generates `host-settings.conf` and `host-keybinds.conf` at startup
-
 ## Host Configuration
 
 Configuration is split across two independent axes:

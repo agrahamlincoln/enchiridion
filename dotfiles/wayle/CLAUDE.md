@@ -2,13 +2,9 @@
 
 Linux-only desktop shell replacing both Waybar (statusbar) and mako (notification daemon).
 
-## Key Files
-
-- `dot-config/wayle/config.base.toml` — Source-of-truth config, stowed as symlink
-- `dot-config/wayle/config.toml` — Generated at launch by `wayle.sh` (not stowed, not committed)
-- `dot-config/wayle/wayle.sh` — Launcher: generates host-specific config, installs icons, starts panel
-
 ## Host-Type Config Generation
+
+`config.base.toml` is the source of truth (stowed as a symlink); `config.toml` is generated at launch by `wayle.sh` and is neither stowed nor committed.
 
 `wayle.sh` reads `~/.config/hypr/host-type` (same file as Hyprland) and generates `config.toml` from `config.base.toml` with host-specific overrides:
 
