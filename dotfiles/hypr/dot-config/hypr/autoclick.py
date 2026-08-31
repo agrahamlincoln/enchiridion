@@ -95,6 +95,11 @@ class Watcher:
 
     def drop(self, fd):
         self.holding.discard(self.fds.pop(fd, None))
+        # A device vanishing mid-hold is a release we will never see. Without
+        # this the clicker stays armed, and with no descriptors left to wait on
+        # the loop stops blocking and clicks until it is killed.
+        if not self.holding:
+            self.click_at = None
         try:
             os.close(fd)
         except OSError:
