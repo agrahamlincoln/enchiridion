@@ -534,6 +534,50 @@ if [[ "$OS" == "Linux" ]]; then
     fi
 fi
 
+# ── Autoclick (Linux, opt-in) ─────────────────────────────────────────
+
+# Hold-to-autoclick is a per-host opt-in: it grants this user read access to
+# every input device, which is not a trade worth making on a machine that will
+# never use it. Enable with:
+#     touch ~/.config/hypr/autoclick-enabled && ./setup.sh
+if [[ "$OS" == "Linux" && -f "$HOME/.config/hypr/autoclick-enabled" ]]; then
+    echo -e "\n--- Autoclick ---"
+
+    echo "-> Installing ydotool..."
+    sudo pacman -S --noconfirm --needed ydotool
+
+    # ydotoold opens /dev/uinput, which is root-only by default. Tagging the
+    # node "uaccess" makes logind grant an ACL to the seat user instead. Steam
+    # and game-devices-udev ship equivalent rules, but neither is a dependency
+    # here, so ship our own rather than inheriting uinput access by accident.
+    UINPUT_RULE=/etc/udev/rules.d/99-uinput-uaccess.rules
+
+    if [[ ! -f "$UINPUT_RULE" ]]; then
+        echo "-> Installing uinput udev rule..."
+        sudo tee "$UINPUT_RULE" > /dev/null <<'EOF'
+# Grant the seat-local user an ACL on /dev/uinput so ydotoold can run
+# unprivileged. Managed by the Enchiridion (setup.sh).
+KERNEL=="uinput", SUBSYSTEM=="misc", TAG+="uaccess", OPTIONS+="static_node=uinput"
+EOF
+        sudo udevadm control --reload-rules
+        sudo udevadm trigger --subsystem-match=misc --sysname-match=uinput
+        echo "- uinput udev rule installed."
+    else
+        echo "- uinput udev rule already present."
+    fi
+
+    # autoclick.py reads key state off /dev/input/event*, which is 0660
+    # root:input. Note this grants read access to every input device, i.e.
+    # anything typed on this machine -- the standard cost of unprivileged evdev.
+    if ! id -nG "$USER" | grep -qw input; then
+        echo "-> Adding $USER to the 'input' group (evdev read access)..."
+        sudo usermod -aG input "$USER"
+        echo "- Added. Log out and back in for it to take effect."
+    else
+        echo "- $USER already in the 'input' group."
+    fi
+fi
+
 # ── Available Upgrades (Linux) ────────────────────────────────────────
 
 if [[ "$OS" == "Linux" ]]; then
