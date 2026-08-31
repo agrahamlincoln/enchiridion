@@ -92,9 +92,19 @@ adding rules -- field names change across releases.
 ## Testing Changes
 
 ```bash
-hyprctl reload        # Reload hyprland config live
+# Parse-check a config without running it. This is the only way to test a
+# change to hyprland.lua before a restart, since the backend is chosen at
+# startup and `hyprctl reload` cannot switch to it.
+Hyprland --verify-config -c ~/.config/hypr/hyprland.lua
+
+hyprctl reload        # Reload hyprland config live (same backend only)
 hyprctl monitors -j   # Query monitor info (JSON)
 ```
+
+To verify a profile this machine doesn't use, copy the config dir elsewhere,
+set `host-type`/`kb-layout` in the copy, and point `XDG_CONFIG_HOME` at it --
+`hostenv.lua` reads the axes from there, so all four combinations can be
+checked without touching the live session.
 
 ## Wallpapers
 
