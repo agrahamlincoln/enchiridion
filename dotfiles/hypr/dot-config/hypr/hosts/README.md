@@ -9,27 +9,37 @@ This directory contains host-specific configurations split across two independen
 ```
 hosts/
 ├── desktop/
-│   └── settings.conf   # Desktop-specific settings (full visual effects, larger gaps)
+│   └── settings.lua    # Desktop-specific settings (full visual effects, larger gaps)
 ├── laptop/
-│   └── settings.conf   # Laptop-specific settings (touchpad, smaller gaps, battery-friendly)
+│   └── settings.lua    # Laptop-specific settings (touchpad, smaller gaps, battery-friendly)
 ├── dvorak/
-│   └── keybinds.conf   # Dvorak window-management keybinds (', . keys)
+│   └── keybinds.lua    # Dvorak window-management keybinds (', . keys)
 ├── qwerty/
-│   └── keybinds.conf   # QWERTY window-management keybinds (Q, V keys)
+│   └── keybinds.lua    # QWERTY window-management keybinds (Q, V keys)
 └── README.md
 ```
 
 ## How It Works
 
-1. **Profile Selection**: `update-host-config.sh` reads two files:
+1. **Profile Selection**: `hostenv.lua` reads two files:
    - `~/.config/hypr/host-type` → `desktop` (default) or `laptop`
    - `~/.config/hypr/kb-layout` → `dvorak` (default) or `qwerty`
 
-2. **Configuration Generation**: The script generates two files in the main hypr directory:
-   - `host-settings.conf` → Device-specific settings with `kb_variant` patched from kb-layout
-   - `host-keybinds.conf` → Layout-specific keybindings
+   An unknown value falls back to the default and logs a warning, so a typo
+   degrades to a working config rather than an error.
 
-3. **Auto-sourcing**: Main `hyprland.conf` sources these generated files
+2. **Direct require**: `hyprland.lua` requires `hosts.<type>.settings` and
+   `hosts.<layout>.keybinds`. Hyprland puts the config directory on
+   `package.path`, so these resolve to the files above.
+
+3. **Shared values**: `hostenv.lua` also exposes `kb_variant` (derived from the
+   layout) and `monitor_scale` (persisted by `hypr-scale.sh`), which the
+   settings modules read. `programs.lua` holds the terminal/file manager/menu
+   and the main modifier shared by the keybind modules.
+
+There is **no generated file and no codegen step** — the previous
+`host-settings.conf` / `host-keybinds.conf` pair was removed when the config
+moved to Lua.
 
 ## Current Machines
 
@@ -41,18 +51,11 @@ hosts/
 
 ## Manual Updates
 
-To change profile or force a configuration update:
+To change profile:
 ```bash
 echo "laptop" > ~/.config/hypr/host-type    # or "desktop"
 echo "dvorak" > ~/.config/hypr/kb-layout    # or "qwerty"
-~/.config/hypr/update-host-config.sh
 hyprctl reload
 ```
 
-## Generated Files
-
-These files are auto-generated and should not be edited manually:
-- `host-settings.conf`
-- `host-keybinds.conf`
-
-They are also gitignored to prevent conflicts across different machines.
+`hyprctl reload` is enough — the Lua config re-reads both files on every load.

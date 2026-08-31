@@ -31,11 +31,12 @@ Files in `dotfiles/<app>/dot-config/<app>/` become `~/.config/<app>/` when stowe
 
 ### Host-Specific Configuration (Linux / Hyprland)
 
-Two independent config axes, combined at startup by `update-host-config.sh`:
+Two independent config axes, read at config load by `hostenv.lua` and pulled in
+with `require`:
 - **Host type** (`~/.config/hypr/host-type`): `desktop` or `laptop` — gaps, touchpad, visual effects
 - **Keyboard layout** (`~/.config/hypr/kb-layout`): `dvorak` or `qwerty` — keybinds and `kb_variant`
 
-Edit the source files in `hosts/<type>/` and `hosts/<layout>/`, not the generated `host-settings.conf`/`host-keybinds.conf`.
+Edit the source files in `hosts/<type>/` and `hosts/<layout>/`. Hyprland's config is Lua (`hyprland.lua`) — the `.conf` format is removed in Hyprland 0.57.
 
 ### Display-Adaptive Configuration
 
@@ -57,9 +58,9 @@ Most changes touch multiple files. Before considering a change complete, check e
 |---|---|
 | **Color or font** | kitty.conf, wayle config.base.toml (palette), wofi style.css + scale-menu.css, wlogout style.css, hyprlock.conf, GTK settings.ini, bash-prompt.sh |
 | **Border-radius or spacing** | wayle config.base.toml (rounding), wofi style.css, wlogout style.css, hyprlock.conf, hyprland hosts/desktop + hosts/laptop settings |
-| **Wlogout invocation** | hyprland.conf (keybind + XF86PowerOff), wayle config.base.toml (power module) |
+| **Wlogout invocation** | hyprland.lua (keybind + XF86PowerOff), wayle config.base.toml (power module) |
 | **Suspend/hibernate** | hypridle.conf, wlogout layout, setup.sh (swap/hibernate + lid sections), logind + sleep.conf.d drop-ins |
-| **Screenshot workflow** | hyprland.conf keybinds (3 binds: Print, Super+Print, Super+Shift+Print) |
+| **Screenshot workflow** | hyprland.lua keybinds (3 binds: Print, Super+Print, Super+Shift+Print) |
 | **New dotfiles package** | See "Adding a New Dotfiles Package" above |
 | **System config change** | `setup.sh` (for new installs), use drop-in files under `/etc/systemd/*.conf.d/` rather than editing main configs |
 

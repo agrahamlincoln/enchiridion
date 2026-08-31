@@ -1,5 +1,5 @@
 #!/bin/bash
-# Launcher for tap-indicator.py — called from hyprland.conf exec-once.
+# Launcher for tap-indicator.py — called from hyprland.lua's startup hook.
 # Only starts if the opt-in flag file exists.
 
 FLAG="$HOME/.config/hypr/tap-indicator-enabled"

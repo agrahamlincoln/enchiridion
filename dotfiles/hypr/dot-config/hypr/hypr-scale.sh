@@ -38,6 +38,22 @@ get_monitor() {
     hyprctl monitors -j | jq -c '[.[] | select(.focused == true)][0]'
 }
 
+# Apply a monitor scale, working with either Hyprland config backend.
+#
+# Under a Lua config, hyprctl refuses `keyword` outright ("keyword can't work
+# with non-legacy parsers. Use eval."); under the legacy hyprlang config it
+# refuses `eval`. hyprctl exits 0 in both cases, so the active backend has to be
+# detected from the reply text rather than an exit status. Drop the keyword
+# fallback once hyprland.conf is removed.
+apply_monitor_scale() {
+    local name="$1" scale="$2" reply
+
+    reply=$(hyprctl eval "hl.monitor({ output = \"$name\", mode = \"preferred\", position = \"auto\", scale = \"$scale\" })" 2>&1)
+    [[ "$reply" == ok* ]] && return 0
+
+    hyprctl keyword monitor "$name,preferred,auto,$scale" >/dev/null 2>&1
+}
+
 # Get or compute cached valid scales for a resolution.
 # Cache file contains one "scale ew eh" per line, sorted ascending by scale.
 get_valid_scales() {
@@ -127,7 +143,7 @@ case "$cmd" in
         scale=${2:?Usage: hypr-scale.sh set <scale>}
         mon=$(get_monitor)
         name=$(echo "$mon" | jq -r '.name')
-        hyprctl keyword monitor "$name,preferred,auto,$scale" >/dev/null 2>&1
+        apply_monitor_scale "$name" "$scale"
         echo "$scale" > "$SCALE_FILE"
         ;;
 
@@ -160,7 +176,7 @@ case "$cmd" in
             [[ $next_idx -lt 0 ]] && exit 0
         fi
 
-        hyprctl keyword monitor "$name,preferred,auto,${scales[$next_idx]}" >/dev/null 2>&1
+        apply_monitor_scale "$name" "${scales[$next_idx]}"
         echo "${scales[$next_idx]}" > "$SCALE_FILE"
         ;;
 
@@ -178,7 +194,7 @@ case "$cmd" in
             saved_scale=$(tr -d '[:space:]' < "$SCALE_FILE")
             if [[ -n "$saved_scale" ]]; then
                 echo "Monitor $name: restoring saved scale ${saved_scale}"
-                hyprctl keyword monitor "$name,preferred,auto,$saved_scale" >/dev/null 2>&1
+                apply_monitor_scale "$name" "$saved_scale"
                 exit 0
             fi
         fi
@@ -208,7 +224,7 @@ case "$cmd" in
         if [[ -n "$best_scale" ]]; then
             eff_dpi=$(awk "BEGIN { printf \"%.0f\", $native_dpi / $best_scale }")
             echo "Monitor $name: ${native_dpi} native DPI, scale ${current} -> ${best_scale}, ${eff_dpi} effective DPI"
-            hyprctl keyword monitor "$name,preferred,auto,$best_scale" >/dev/null 2>&1
+            apply_monitor_scale "$name" "$best_scale"
             echo "$best_scale" > "$SCALE_FILE"
         fi
         ;;
@@ -247,7 +263,7 @@ case "$cmd" in
         # Extract scale value (skip the marker prefix)
         selected_scale=$(echo "$choice" | awk '{for(i=1;i<=NF;i++){if($i~"x$"){print $i; exit}}}' | tr -d 'x')
         if [[ -n "$selected_scale" ]]; then
-            hyprctl keyword monitor "$name,preferred,auto,$selected_scale" >/dev/null 2>&1
+            apply_monitor_scale "$name" "$selected_scale"
             echo "$selected_scale" > "$SCALE_FILE"
         fi
         ;;
