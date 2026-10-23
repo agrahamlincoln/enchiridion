@@ -32,6 +32,8 @@ thunar
 tumbler
 # STL/3MF/STEP thumbnails via tumbler (stl-thumb renders blank on Mesa/Wayland)
 f3d
+# Image viewer (f3d claims image/* and renders them through a 3D pipeline)
+loupe
 
 # Icon theme
 papirus-icon-theme

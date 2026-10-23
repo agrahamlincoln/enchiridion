@@ -534,6 +534,22 @@ if [[ "$OS" == "Linux" ]]; then
     fi
 fi
 
+# ── Default Image Viewer (Linux) ─────────────────────────────────────
+
+# f3d's native plugin claims image/* and would otherwise win the default,
+# rendering photos as lit textures in a 3D scene.
+if [[ "$OS" == "Linux" ]]; then
+    echo -e "\n--- Default Image Viewer ---"
+    if [[ -f /usr/share/applications/org.gnome.Loupe.desktop ]]; then
+        xdg-mime default org.gnome.Loupe.desktop \
+            image/png image/jpeg image/gif image/webp image/bmp image/tiff \
+            image/avif image/heif image/jxl image/svg+xml image/x-icon
+        echo "- Loupe set as default image viewer."
+    else
+        echo "- Loupe not installed, skipping image viewer default."
+    fi
+fi
+
 # ── Autoclick (Linux, opt-in) ─────────────────────────────────────────
 
 # Hold-to-autoclick is a per-host opt-in: it grants this user read access to
