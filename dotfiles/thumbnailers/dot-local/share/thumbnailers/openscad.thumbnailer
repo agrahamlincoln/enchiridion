@@ -1,0 +1,6 @@
+# Renders an OpenSCAD preview with the file's default customizer values.
+# timeout guards against a slow model stalling tumblerd's queue.
+[Thumbnailer Entry]
+TryExec=openscad
+Exec=timeout 30 openscad --export-format=png --imgsize=%s,%s --viewall --autocenter --colorscheme=DeepOcean -o %o %i
+MimeType=application/x-openscad;

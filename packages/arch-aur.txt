@@ -12,3 +12,6 @@ plymouth-theme-arch-logo
 
 # Browser
 zen-browser-bin
+
+# OpenSCAD (also renders .scad thumbnails via dotfiles/thumbnailers)
+openscad-snapshot-appimage

@@ -29,6 +29,9 @@ wpaperd
 # Desktop utilities
 wofi
 thunar
+tumbler
+# STL/3MF/STEP thumbnails via tumbler (stl-thumb renders blank on Mesa/Wayland)
+f3d
 
 # Icon theme
 papirus-icon-theme
