@@ -48,7 +48,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("~/.config/hypr/autoclick.sh")
     -- DPI-based monitor scaling. This config applies the host settings and
     -- keybinds itself, so the script only handles scaling now.
-    hl.exec_cmd("~/.config/hypr/update-host-config.sh")
+    hl.exec_cmd("~/.config/hypr/apply-scale.sh")
 end)
 
 -------------------------------
@@ -168,7 +168,7 @@ hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd("loginctl lock-session"))
 
 -- Re-apply DPI scaling and reload. The host profile is picked up by the reload
 -- itself, since this config reads host-type/kb-layout on every load.
-hl.bind(mainMod .. " + CTRL + R", hl.dsp.exec_cmd("~/.config/hypr/update-host-config.sh && hyprctl reload"))
+hl.bind(mainMod .. " + CTRL + R", hl.dsp.exec_cmd("~/.config/hypr/apply-scale.sh && hyprctl reload"))
 
 -- Mouse bindings
 -- Scroll through existing workspaces with mainMod + scroll

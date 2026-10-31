@@ -4,17 +4,8 @@ Linux-only desktop environment config for Hyprland (compositor) and Hyprlock (lo
 
 ## Config Format
 
-Hyprland's config is **Lua** (`hyprland.lua`). The old hyprlang `.conf` format is
-deprecated and support for it is removed in Hyprland 0.57. The `.conf` files are
-kept for now purely as a rollback path — Hyprland prefers `hyprland.lua` whenever
-it exists, and the choice of config backend is made once at compositor startup,
-so switching between them requires a full restart, not `hyprctl reload`.
-
-That rollback is not turnkey: `hyprland.conf` still `source`s the generated
-`host-settings.conf`/`host-keybinds.conf`, which nothing regenerates any more.
-Using it on a machine that lacks them means composing them from
-`hosts/<profile>/*.conf` by hand first. The `.conf` sources are also frozen —
-changes since the Lua switch land only in the `.lua` files.
+Hyprland's config is **Lua** (`hyprland.lua`). Hyprland 0.57 removed the old
+hyprlang `.conf` format, so there is no rollback path.
 
 API notes that aren't obvious from the wiki:
 
@@ -29,20 +20,13 @@ API notes that aren't obvious from the wiki:
 
 ### hyprctl under a Lua config
 
-This bites external scripts, not just the config, and it fails **silently** —
-`hyprctl` always exits 0, so `||` fallbacks and `2>/dev/null` hide the breakage.
-Detect the backend from the reply text instead.
+`hyprctl` always exits 0, so `||` fallbacks and `2>/dev/null` hide failures.
+Check the reply text when a call matters.
 
-| Command | Under Lua |
-|---|---|
-| `hyprctl keyword <k> <v>` | **Rejected** — "keyword can't work with non-legacy parsers. Use eval." Use `hyprctl eval '<lua>'` |
-| `hyprctl dispatch <legacy str>` | **Rejected** — rewritten to `hl.dispatch(<str>)`, which isn't valid Lua. Use `hyprctl dispatch 'hl.dsp.foo(...)'` |
-| `hyprctl eval '<lua>'` | Lua only — rejected by the legacy parser |
-| `reload`, `setcursor`, `monitors -j`, `clients -j` | Work on both |
+- `hyprctl keyword <k> <v>` is rejected. Use `hyprctl eval '<lua>'`.
+- `hyprctl dispatch` takes Lua: `hyprctl dispatch 'hl.dsp.foo(...)'`.
 
-Affected callers here: `hypr-scale.sh` (monitor scale) and `hypridle.conf`
-(dpms). Both currently issue the Lua form *and* the legacy form so they work
-either side of the cutover; drop the legacy half once `hyprland.conf` is removed.
+Callers here: `hypr-scale.sh` (monitor scale) and `hypridle.conf` (dpms).
 
 ## Host Configuration
 

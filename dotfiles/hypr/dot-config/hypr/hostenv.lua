@@ -1,9 +1,8 @@
 -- Host configuration axes, read once and shared between hyprland.lua and the
 -- host modules it require()s.
 --
--- This replaces the generate-and-sed step update-host-config.sh used to perform
--- against host-settings.conf. The Lua config reads these files directly at load
--- time, so there is no generated file that can drift from its sources.
+-- The config reads host-type and kb-layout directly at load time, so there is
+-- no generated file that can drift from its sources.
 
 local M = {}
 

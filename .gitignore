@@ -5,10 +5,6 @@
 .claude/settings.local.json
 .config/
 
-# Auto-generated Hyprland host configs (varies per machine)
-dotfiles/hypr/dot-config/hypr/layout-keybinds.conf
-dotfiles/hypr/dot-config/hypr/host-settings.conf
-dotfiles/hypr/dot-config/hypr/host-keybinds.conf
 dotfiles/hypr/dot-config/hypr/host-type
 dotfiles/hypr/dot-config/hypr/kb-layout
 

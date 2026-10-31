@@ -1,11 +1,9 @@
 #!/bin/bash
 # Apply DPI-based monitor scaling at startup.
 #
-# This script used to also generate host-settings.conf and host-keybinds.conf by
-# concatenating the hosts/<profile>/ sources and patching them with sed. The Lua
-# config reads ~/.config/hypr/host-type and ~/.config/hypr/kb-layout directly and
-# require()s the matching module (see hostenv.lua), so that codegen step is gone
-# and there is no generated file left to drift from its sources.
+# The Lua config reads ~/.config/hypr/host-type and ~/.config/hypr/kb-layout
+# directly and require()s the matching module (see hostenv.lua), so this script
+# only handles scaling.
 #
 # To change profiles: echo "laptop" > ~/.config/hypr/host-type && hyprctl reload
 #                     echo "dvorak" > ~/.config/hypr/kb-layout && hyprctl reload

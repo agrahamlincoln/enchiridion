@@ -37,9 +37,7 @@ hosts/
    settings modules read. `programs.lua` holds the terminal/file manager/menu
    and the main modifier shared by the keybind modules.
 
-There is **no generated file and no codegen step** — the previous
-`host-settings.conf` / `host-keybinds.conf` pair was removed when the config
-moved to Lua.
+There is **no generated file and no codegen step**.
 
 ## Current Machines
 

@@ -567,7 +567,7 @@ step 7 "Dotfiles"
 info "Running enchiridion setup.sh..."
 arch-chroot /mnt runuser -u graham -- bash /home/graham/projects/enchiridion/setup.sh
 
-# Write the Hyprland host profile selection (read by update-host-config.sh)
+# Write the Hyprland host profile selection (read by hostenv.lua)
 arch-chroot /mnt runuser -u graham -- bash -c "echo '$HOST_TYPE' > /home/graham/.config/hypr/host-type"
 
 # Derive keyboard layout for Hyprland from the console keymap selection
@@ -583,9 +583,6 @@ if [[ "$TAP_INDICATOR" == "y" ]]; then
     arch-chroot /mnt runuser -u graham -- touch /home/graham/.config/hypr/tap-indicator-enabled
     success "Tap indicator enabled."
 fi
-
-# Generate host-settings.conf and host-keybinds.conf so they exist on first boot
-arch-chroot /mnt runuser -u graham -- bash /home/graham/.config/hypr/update-host-config.sh
 
 # Remove temporary passwordless sudo (granted in step 6 for makepkg/paru/setup.sh)
 arch-chroot /mnt rm -f /etc/sudoers.d/enchiridion-install

@@ -38,20 +38,11 @@ get_monitor() {
     hyprctl monitors -j | jq -c '[.[] | select(.focused == true)][0]'
 }
 
-# Apply a monitor scale, working with either Hyprland config backend.
-#
-# Under a Lua config, hyprctl refuses `keyword` outright ("keyword can't work
-# with non-legacy parsers. Use eval."); under the legacy hyprlang config it
-# refuses `eval`. hyprctl exits 0 in both cases, so the active backend has to be
-# detected from the reply text rather than an exit status. Drop the keyword
-# fallback once hyprland.conf is removed.
+# Apply a monitor scale through the Lua config's `hyprctl eval`.
 apply_monitor_scale() {
-    local name="$1" scale="$2" reply
+    local name="$1" scale="$2"
 
-    reply=$(hyprctl eval "hl.monitor({ output = \"$name\", mode = \"preferred\", position = \"auto\", scale = \"$scale\" })" 2>&1)
-    [[ "$reply" == ok* ]] && return 0
-
-    hyprctl keyword monitor "$name,preferred,auto,$scale" >/dev/null 2>&1
+    hyprctl eval "hl.monitor({ output = \"$name\", mode = \"preferred\", position = \"auto\", scale = \"$scale\" })" >/dev/null 2>&1
 }
 
 # Get or compute cached valid scales for a resolution.
