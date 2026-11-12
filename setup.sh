@@ -370,7 +370,7 @@ elif [[ "$OS" == "Darwin" ]]; then
     for tap in $(read_packages brew-taps.txt); do
         if ! brew tap | grep -q "^${tap}$"; then
             echo "   Tapping $tap..."
-            brew tap "$tap"
+            brew tap "$tap" || echo "   ! could not tap $tap (check gh auth for private taps)"
         else
             echo "   - $tap already tapped."
         fi
@@ -378,6 +378,16 @@ elif [[ "$OS" == "Darwin" ]]; then
 
     echo "-> Installing Homebrew formulae..."
     brew install $(read_packages brew-formulae.txt) 2>/dev/null || true
+
+    echo "-> Installing dev tools..."
+    brew install $(read_packages brew-devtools.txt) 2>/dev/null || true
+
+    # Machine-local package list, gitignored and copied between machines by hand
+    if [[ -f "$REPO_DIR/packages/brew-private.txt" ]]; then
+        echo "-> Installing private packages..."
+        brew install $(read_packages brew-private.txt) 2>/dev/null \
+            || echo "   ! some private packages failed (run 'gh auth login', then re-run setup)"
+    fi
 
     echo "-> Installing Homebrew casks..."
     brew install --cask $(read_packages brew-casks.txt) 2>/dev/null || true
@@ -421,6 +431,8 @@ elif [[ "$OS" == "Darwin" ]]; then
     for svc in sketchybar borders; do
         brew services start "$svc" >/dev/null && echo "   - $svc service running."
     done
+
+    echo "-> Per-project tools install through each repo's 'just setup' recipe."
 fi
 
 # ── Rust Toolchain ───────────────────────────────────────────────────

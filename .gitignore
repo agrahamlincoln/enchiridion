@@ -43,3 +43,6 @@ archiso/airootfs/usr/local/bin/livecd-sound
 archiso/airootfs/root/.automated_script.sh
 archiso/airootfs/root/.zlogin
 archiso/airootfs/root/.gnupg/
+
+# Machine-local package list, copied between machines by hand
+packages/brew-private.txt

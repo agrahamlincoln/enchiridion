@@ -3,3 +3,7 @@ asmvik/formulae
 
 # Sketchybar and window borders
 felixkratz/formulae
+
+# Dev tools
+agrahamlincoln/katazuke
+atlassian/acli

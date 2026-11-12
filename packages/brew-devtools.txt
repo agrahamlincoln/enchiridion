@@ -1,0 +1,22 @@
+# Dev tools needed to clone repos and run their `just setup` recipes.
+# Ranked by shell history (Apr 2023 - Nov 2026); tools used in the last 12 months.
+#
+# Language toolchains, linters and per-project tools (go, scala/JDK, helm,
+# jsonnet, pre-commit, act, mkcert, yq, pnpm) are installed by each repo's own
+# `just setup` recipe.
+
+# Source control and cloud
+git
+gh
+awscli
+kubernetes-cli
+kubectx
+argocd
+
+# Workflow
+just
+direnv
+fnm
+tailscale
+atlassian/acli/acli
+agrahamlincoln/katazuke/katazuke

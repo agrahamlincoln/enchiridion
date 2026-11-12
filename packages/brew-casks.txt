@@ -12,3 +12,6 @@ sf-symbols
 
 # Utilities
 notunes
+
+# AI
+claude
