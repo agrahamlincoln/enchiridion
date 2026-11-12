@@ -87,6 +87,13 @@ else
     exit 1
 fi
 
+# ── macOS Defaults ────────────────────────────────────────────────────
+
+if [[ "$OS" == "Darwin" ]]; then
+    echo -e "\n--- macOS Defaults ---"
+    "$REPO_DIR/macos-defaults.sh"
+fi
+
 # ── System Packages ───────────────────────────────────────────────────
 
 echo -e "\n--- System Packages ---"
@@ -477,7 +484,7 @@ echo -e "\n--- Dotfiles ---"
 
 pushd "$DOTFILES_DIR" > /dev/null
 if [[ "$OS" == "Darwin" ]]; then
-    for target in kitty yabai skhd borders sketchybar zed vim; do
+    for target in kitty yabai skhd borders sketchybar git zed vim; do
         stow_target "$target"
     done
 else
@@ -662,6 +669,17 @@ if ! grep -q "source ~/.config/bashinit/bashinit.sh" ~/.bashrc; then
     echo "- Added source line to ~/.bashrc."
 else
     echo "- ~/.bashrc already configured."
+fi
+
+# macOS login shells read ~/.bash_profile, not ~/.bashrc
+if [[ "$OS" == "Darwin" ]] && ! grep -qs 'bashrc' ~/.bash_profile; then
+    echo '[ -r ~/.bashrc ] && . ~/.bashrc' >> ~/.bash_profile
+    echo "- Added ~/.bashrc source line to ~/.bash_profile."
+fi
+
+# Git identity and commit signing are machine-local (~/.gitconfig)
+if [[ -z "$(git config --global user.email 2>/dev/null)" ]]; then
+    echo "! Set your git identity: git config --global user.name/user.email (and commit.gpgsign if you sign)."
 fi
 
 # ──────────────────────────────────────────────────────────────────────
