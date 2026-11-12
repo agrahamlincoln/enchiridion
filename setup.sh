@@ -407,6 +407,20 @@ elif [[ "$OS" == "Darwin" ]]; then
     else
         echo "- sketchybar-app-font already installed."
     fi
+
+    # Start window-manager services (grant Accessibility to yabai/skhd in
+    # System Settings > Privacy & Security afterwards)
+    echo "-> Starting window-manager services..."
+    for svc in yabai skhd; do
+        if ! launchctl list | grep -q "com\.[a-z]*\.${svc}\$"; then
+            "$svc" --start-service || echo "   ! could not start $svc"
+        else
+            echo "   - $svc already running."
+        fi
+    done
+    for svc in sketchybar borders; do
+        brew services start "$svc" >/dev/null && echo "   - $svc service running."
+    done
 fi
 
 # ── Rust Toolchain ───────────────────────────────────────────────────
@@ -451,7 +465,7 @@ echo -e "\n--- Dotfiles ---"
 
 pushd "$DOTFILES_DIR" > /dev/null
 if [[ "$OS" == "Darwin" ]]; then
-    for target in kitty yabai skhd sketchybar zed vim; do
+    for target in kitty yabai skhd borders sketchybar zed vim; do
         stow_target "$target"
     done
 else

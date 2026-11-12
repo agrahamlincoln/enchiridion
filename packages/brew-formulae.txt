@@ -3,9 +3,15 @@ stow
 jq
 vim
 rustup-init
+bash-completion@2
+
+# Window management
+asmvik/formulae/yabai
+asmvik/formulae/skhd
+felixkratz/formulae/borders
 
 # Sketchybar
 lua
 switchaudio-osx
 nowplaying-cli
-sketchybar
+felixkratz/formulae/sketchybar

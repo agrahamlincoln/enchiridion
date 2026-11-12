@@ -1,2 +1,5 @@
-# Sketchybar
-FelixKratz/formulae
+# Window manager
+asmvik/formulae
+
+# Sketchybar and window borders
+felixkratz/formulae

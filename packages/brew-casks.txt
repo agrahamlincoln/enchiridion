@@ -1,7 +1,14 @@
 # Terminal
 kitty
 
-# Sketchybar fonts and icons
-sf-symbols
+# Fonts
+font-fira-code
+font-hack-nerd-font
 font-sf-mono
 font-sf-pro
+
+# Sketchybar icons
+sf-symbols
+
+# Utilities
+notunes
