@@ -15,3 +15,7 @@ notunes
 
 # AI
 claude
+
+# Browser and launcher
+zen
+alfred

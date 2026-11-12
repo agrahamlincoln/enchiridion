@@ -490,54 +490,58 @@ popd > /dev/null
 # Zen Browser: symlink theme into active profile (can't use stow — random profile dir)
 # Zen manages its own chrome/ directory, so we symlink individual files into it.
 # The workspace accent color lives in zen-sessions.jsonlz4 (binary), patched separately.
-# Zen stores profiles in ~/.zen or ~/.config/zen depending on install method.
-if [[ "$OS" == "Linux" ]]; then
-    ZEN_DIR=""
-    for candidate in "$HOME/.zen" "$HOME/.config/zen"; do
-        if [[ -f "$candidate/profiles.ini" ]]; then
-            ZEN_DIR="$candidate"
-            break
-        fi
-    done
-    ZEN_SRC="$DOTFILES_DIR/zen-browser"
-    if [[ -n "$ZEN_DIR" ]]; then
-        # Find the active profile — [Install*] Default= takes precedence
-        ZEN_PROFILE_REL=$(awk -F= '/^\[Install/{inst=1} /^\[/{if(!/^\[Install/)inst=0} inst && /^Default=/{print $2; exit}' "$ZEN_DIR/profiles.ini")
-        # Fallback: [Profile*] with Default=1
-        if [[ -z "$ZEN_PROFILE_REL" ]]; then
-            ZEN_PROFILE_REL=$(awk -F= '/^\[/{section=$0} /^Default=1/{found=section} /^Path=/{if(section==found) print $2}' "$ZEN_DIR/profiles.ini")
-        fi
-        if [[ -n "$ZEN_PROFILE_REL" ]]; then
-            ZEN_PROFILE="$ZEN_DIR/$ZEN_PROFILE_REL"
-            mkdir -p "$ZEN_PROFILE/chrome"
-            # Symlink userChrome.css and userContent.css into existing chrome/ dir
-            for cssfile in userChrome.css userContent.css; do
-                if [[ -L "$ZEN_PROFILE/chrome/$cssfile" ]]; then
-                    echo "- Zen Browser $cssfile already symlinked."
-                else
-                    ln -sf "$ZEN_SRC/chrome/$cssfile" "$ZEN_PROFILE/chrome/$cssfile"
-                    echo "  Symlinked Zen Browser $cssfile."
-                fi
-            done
-            # Symlink user.js
-            if [[ -L "$ZEN_PROFILE/user.js" ]]; then
-                echo "- Zen Browser user.js already symlinked."
+# Zen stores profiles in ~/.zen, ~/.config/zen or ~/Library/Application Support/zen.
+ZEN_DIR=""
+for candidate in "$HOME/.zen" "$HOME/.config/zen" "$HOME/Library/Application Support/zen"; do
+    if [[ -f "$candidate/profiles.ini" ]]; then
+        ZEN_DIR="$candidate"
+        break
+    fi
+done
+ZEN_SRC="$DOTFILES_DIR/zen-browser"
+if [[ -n "$ZEN_DIR" ]]; then
+    # Find the active profile — [Install*] Default= takes precedence
+    ZEN_PROFILE_REL=$(awk -F= '/^\[Install/{inst=1} /^\[/{if(!/^\[Install/)inst=0} inst && /^Default=/{print $2; exit}' "$ZEN_DIR/profiles.ini")
+    # Fallback: [Profile*] with Default=1
+    if [[ -z "$ZEN_PROFILE_REL" ]]; then
+        ZEN_PROFILE_REL=$(awk -F= '/^\[/{section=$0} /^Default=1/{found=section} /^Path=/{if(section==found) print $2}' "$ZEN_DIR/profiles.ini")
+    fi
+    if [[ -n "$ZEN_PROFILE_REL" ]]; then
+        ZEN_PROFILE="$ZEN_DIR/$ZEN_PROFILE_REL"
+        mkdir -p "$ZEN_PROFILE/chrome"
+        # Symlink userChrome.css and userContent.css into existing chrome/ dir
+        for cssfile in userChrome.css userContent.css; do
+            if [[ -L "$ZEN_PROFILE/chrome/$cssfile" ]]; then
+                echo "- Zen Browser $cssfile already symlinked."
             else
-                ln -sf "$ZEN_SRC/user.js" "$ZEN_PROFILE/user.js"
-                echo "  Symlinked Zen Browser user.js."
+                ln -sf "$ZEN_SRC/chrome/$cssfile" "$ZEN_PROFILE/chrome/$cssfile"
+                echo "  Symlinked Zen Browser $cssfile."
             fi
-            # Patch workspace accent color to Arch Blue
-            if [[ -f "$ZEN_PROFILE/zen-sessions.jsonlz4" ]]; then
-                python3 "$ZEN_SRC/patch-zen-theme.py"
-            else
-                echo "- Zen Browser: no session file yet. Launch Zen, close it, and re-run setup.sh."
-            fi
+        done
+        # Symlink user.js
+        if [[ -L "$ZEN_PROFILE/user.js" ]]; then
+            echo "- Zen Browser user.js already symlinked."
         else
-            echo "- Zen Browser: no profile found in profiles.ini."
+            ln -sf "$ZEN_SRC/user.js" "$ZEN_PROFILE/user.js"
+            echo "  Symlinked Zen Browser user.js."
+        fi
+        # Patch workspace accent color to Arch Blue
+        if [[ -f "$ZEN_PROFILE/zen-sessions.jsonlz4" ]]; then
+            ZEN_PY=python3
+            if ! python3 -c 'import lz4.block' 2>/dev/null; then
+                python3 -m venv "$HOME/.cache/enchiridion-venv" \
+                    && "$HOME/.cache/enchiridion-venv/bin/pip" install -q lz4 \
+                    && ZEN_PY="$HOME/.cache/enchiridion-venv/bin/python"
+            fi
+            "$ZEN_PY" "$ZEN_SRC/patch-zen-theme.py"
+        else
+            echo "- Zen Browser: no session file yet. Launch Zen, close it, and re-run setup.sh."
         fi
     else
-        echo "- Zen Browser: not installed or no profile yet, skipping theme."
+        echo "- Zen Browser: no profile found in profiles.ini."
     fi
+else
+    echo "- Zen Browser: not installed or no profile yet, skipping theme."
 fi
 
 # ── Desktop Theme (Linux) ────────────────────────────────────────────

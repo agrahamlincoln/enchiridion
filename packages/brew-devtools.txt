@@ -18,5 +18,4 @@ just
 direnv
 fnm
 tailscale
-atlassian/acli/acli
 agrahamlincoln/katazuke/katazuke

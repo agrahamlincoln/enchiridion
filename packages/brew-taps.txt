@@ -6,4 +6,3 @@ felixkratz/formulae
 
 # Dev tools
 agrahamlincoln/katazuke
-atlassian/acli

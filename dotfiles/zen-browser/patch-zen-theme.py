@@ -17,12 +17,15 @@ from pathlib import Path
 try:
     import lz4.block
 except ImportError:
-    print("Error: python-lz4 not installed. Run: sudo pacman -S python-lz4")
+    print("Error: python-lz4 not installed. Run: pip install lz4 (pacman: python-lz4)")
     sys.exit(1)
 
 ARCH_BLUE = [23, 147, 209]  # #1793d1
-# Zen stores profiles in ~/.zen or ~/.config/zen depending on install method
-ZEN_DIR_CANDIDATES = [Path.home() / ".zen", Path.home() / ".config" / "zen"]
+ZEN_DIR_CANDIDATES = [
+    Path.home() / ".zen",
+    Path.home() / ".config" / "zen",
+    Path.home() / "Library" / "Application Support" / "zen",
+]
 MAGIC = b"mozLz40\0"
 
 
