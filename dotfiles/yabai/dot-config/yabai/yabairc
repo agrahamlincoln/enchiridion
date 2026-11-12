@@ -2,38 +2,38 @@
 # this is just a shell script that runs when yabai starts
 # it should contain global preferences for yabai
 # for hotkeys - see skhdrc
+# window borders are drawn by JankyBorders (~/.config/borders/bordersrc)
 
 sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-# status bar configuration
-#yabai -m config external_bar main:20:0
 
-# default options
+# reserve room for sketchybar on every display
+yabai -m config external_bar all:35:0
+
+# layout
 yabai -m config layout bsp
+yabai -m config window_placement second_child
+yabai -m config split_type auto
+
+# focus and mouse
 yabai -m config mouse_follows_focus          on
 yabai -m config focus_follows_mouse          autofocus
-yabai -m config window_border                on
-yabai -m config window_border_placement      inset
-yabai -m config window_border_width          3
-yabai -m config window_border_radius         -1.0
-yabai -m config active_window_border_color 0xff007aff
-yabai -m config normal_window_border_color 0xff8e8e93
+yabai -m config mouse_modifier               alt
+yabai -m config mouse_action1                move
+yabai -m config mouse_action2                resize
+yabai -m config mouse_drop_action            stack
 
 # gaps
-yabai -m config top_padding	35
+yabai -m config top_padding 5
 yabai -m config bottom_padding 5
 yabai -m config left_padding 5
-yabai -m config right_padding	5
+yabai -m config right_padding 5
 yabai -m config window_gap 5
 
 # Ignore some windows
-yabai -m rule --add app="^System Preferences$" manage=off
+yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^zoom.us$" manage=off
-
-# Used for yabai window state and running yabai events from sketchybar
-yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
-yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
-yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces"
-
-# Bootstrap JankyBorders
-borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0 &
+# utility, management and short-lived windows stay floating
+yabai -m rule --add app="^(1Password|Okta Verify|Privileges|Self Service\+|Netskope Client|Falcon|Druva inSync|Tailscale|DisplayLink Manager|GPG Keychain|KeyStore Explorer|SF Symbols|GIMP|Finder)$" manage=off
+yabai -m rule --add app="^Google Chrome$" title="^Picture in Picture$" manage=off sticky=on
+yabai -m rule --add app="^IntelliJ IDEA$" title="^(Settings|Project Structure|Welcome to IntelliJ IDEA)" manage=off
