@@ -239,6 +239,16 @@ hl.window_rule({
     no_focus = true,
 })
 
+-- Java/AWT tooltip and popup windows (RuneLite, JetBrains) map as separate
+-- XWayland windows titled "winN" and grab keyboard focus on every hover.
+-- Match the title, not the class: RuneLite forks report different classes.
+hl.window_rule({
+    name  = "java-popup-no-focus",
+    match = { xwayland = true, title = "^win[0-9]+$" },
+
+    no_focus = true,
+})
+
 -- Steam's hidden zero-size helper window steals focus on launch unless it is
 -- kept focused and given a non-zero minimum size.
 hl.window_rule({
