@@ -672,6 +672,12 @@ if ! git config --global --get-all url."git@github.com:agrahamlincoln/".insteadO
 else
     echo "- Private GitHub ssh rewrite already configured."
 fi
+# makepkg ignores ~/.gitconfig (GIT_CONFIG_GLOBAL=/dev/null) and reads only
+# /etc/makepkg.d/gitconfig, so local tatara builds need the rewrite there too.
+if [[ "$OS" == "Linux" ]] && ! git config --file /etc/makepkg.d/gitconfig --get-all url."git@github.com:agrahamlincoln/".insteadOf 2>/dev/null | grep -qx "https://github.com/agrahamlincoln/"; then
+    sudo git config --file /etc/makepkg.d/gitconfig --add url."git@github.com:agrahamlincoln/".insteadOf "https://github.com/agrahamlincoln/"
+    echo "- makepkg fetches private GitHub modules over ssh."
+fi
 
 if ! grep -q "source ~/.config/bashinit/bashinit.sh" ~/.bashrc; then
     echo "source ~/.config/bashinit/bashinit.sh" >> ~/.bashrc
