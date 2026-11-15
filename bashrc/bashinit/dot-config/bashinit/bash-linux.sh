@@ -4,6 +4,10 @@
 # this assumes you're using arch linux
 
 export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
+
+# tatara publish/release/register target the home-lab build server. Unset,
+# publish writes to this machine's own (unused) repo.
+export TATARA_BUILD_SERVER=grahamcube
 alias pacman-orphans="sudo pacman -Rns $(pacman -Qtdq)"
 alias pacman-update="sudo pacman -Syu"
 
