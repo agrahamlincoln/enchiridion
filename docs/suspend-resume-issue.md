@@ -255,7 +255,7 @@ What happened in June 2026, in order:
 In hindsight, the original March freeze (journal ending at suspend entry, hard hang) matches the AX210 hang reports in the Framework thread above — the card likely was the root cause all along, masked by the concurrent amdgpu/kernel churn.
 
 Cleanup done with the swap:
-- `/etc/udev/rules.d/81-wifi-no-d3cold.rules` (AX210 workaround, live-only) — removed
+- `/etc/udev/rules.d/81-wifi-no-d3cold.rules` (AX210 workaround) — removed live, and from the archiso installer on 2026-11-14. The rule never prevented the failure: the AX210 died in D3hot with it active.
 - The `~/.config/hypr/use-hibernate` flag mechanism described above — removed entirely (flag file, hypridle/wlogout runtime checks, setup.sh lid branching); recover it from git history if a future regression breaks suspend
 - Sleep mode is now **suspend-then-hibernate**: `HibernateDelaySec=6h` via `/etc/systemd/sleep.conf.d/hibernate-delay.conf`, lid via `/etc/systemd/logind.conf.d/lid-sleep.conf`, both written by `setup.sh`
 
