@@ -2,7 +2,7 @@
 
 **Date discovered:** 2026-03-21
 **Status:** RESOLVED 2026-06-12 — root cause was the Intel AX210 wifi card; replaced with MediaTek MT7925 (see Resolution section)
-**Active follow-up (2026-06-22):** a *separate* kernel-7.0+ TTM hibernate regression is mitigated by defaulting to `linux-lts`. See the final section, "TTM Hibernate Lockup (kernel 7.0+ regression) & linux-lts Pin," for the proven root cause and the exit criteria for swapping back.
+**Active follow-up (updated 2026-11-14):** a *separate* kernel-7.0+ TTM hibernate regression is mitigated by defaulting to `linux-lts`. The upstream fix has merged (mainline 7.3, stable 7.2.15) and awaits the reproducer on this machine. See the final section, "TTM Hibernate Lockup (kernel 7.0+ regression) & linux-lts Pin," for the proven root cause and the exit criteria for swapping back.
 **Machine:** Framework Laptop 13 (AMD Ryzen AI 300 Series)
 
 ## Hardware
@@ -262,7 +262,7 @@ Cleanup done with the swap:
 ## TTM Hibernate Lockup (kernel 7.0+ regression) & linux-lts Pin
 
 **Date:** 2026-06-22
-**Status:** MITIGATED — boot `linux-lts` 6.18 by default (set in `loader.conf` by `setup.sh`, commit `f94433e`). Upstream fix is in review but **not yet merged**. Swap back to a mainline `linux` kernel once the fix lands — see **Exit Criteria** below.
+**Status (2026-11-14):** MITIGATED, FIX MERGED, UNTESTED HERE. `linux-lts` 6.18 still boots by default (set in `loader.conf` by `setup.sh`, commit `f94433e`). The upstream fix is in mainline 7.3 and stable 7.2.15. Swap back to Arch `linux` once it passes the reproducer. See **Exit Criteria** below.
 
 ### Root cause (proven via ramoops capture)
 
@@ -286,33 +286,49 @@ The faulting task oopses **while holding `lru_lock` with IRQs disabled** (`exite
 
 ### Why linux-lts fixes it
 
-Regression window: **6.19.11 good → 7.0+ bad**. The bug is fallout from the Jan-2025 refactor [*"drm/ttm: use ttm_resource_unevictable() to replace pin_count and swapped"*](https://www.mail-archive.com/dri-devel@lists.freedesktop.org/msg507817.html), which landed in 7.0. `linux-lts` 6.18.36 predates it (confirmed sideways: the 7.0-stable swapout backport *failed to apply to 6.18-stable* — 6.18 lacks the buggy code). Validated 2026-06-22: hibernate → resume → Zen under load on 6.18 = zero crash.
+Regression window: **6.19.11 good → 7.0+ bad**. The Jan-2025 refactor [*"drm/ttm: use ttm_resource_unevictable() to replace pin_count and swapped"*](https://www.mail-archive.com/dri-devel@lists.freedesktop.org/msg507817.html) landed in 7.0 and set up the fragile bookkeeping. `b2ed01e7ad3d` then broke it (see **Upstream fix** below). `linux-lts` 6.18 predates both: the 7.0-stable swapout backport *failed to apply to 6.18-stable* because 6.18 lacks the code. Validated 2026-06-22: hibernate → resume → Zen under load on 6.18 = zero crash.
 
-### Upstream fix (in review, NOT merged as of 2026-06-22)
+### Upstream fix (merged September 2026)
 
-Two overlapping series on dri-devel fix the bulk_move / unevictable-resource corruption:
-- **Samuel Ainsworth** — *"drm/ttm: fix bulk_move cursor use-after-free for unevictable resources"* / *"don't leave bulk_move cursor dangling for unevictable resources"* + regression tests. Reviewed by Christian König (TTM/amdgpu maintainer). June 2026.
-- **Thomas Hellström** — [*"drm/ttm: Really use a separate LRU list for swapped- and pinned objects"*](https://www.mail-archive.com/dri-devel@lists.freedesktop.org/msg508207.html) (v5). Deeper rework: pinned/swapped objects weren't being moved off the LRU list.
+Vadim Nikitushkin's two commits, reviewed by Christian König and Thomas Hellström. They close [drm/amd#5387](https://gitlab.freedesktop.org/drm/amd/-/issues/5387), building on Samuel Ainsworth's analysis there:
+- `3db7d7d58341` *"drm/ttm: fix swapped-out resources never leaving their bulk_move range"* (Cc: stable v7.1+)
+- `fcfe64715b42` *"drm/ttm: apply the swapout bulk_move fix to the intended condition"*. The first commit applied its one-line change to the wrong `if`. A kernel needs **both**.
 
-**Do not file a new bug** — it would duplicate this active, maintainer-reviewed work. The only useful upstream contribution would be a `Tested-by:` confirming the fix on Ryzen AI 300, which needs a locally-built patched kernel (optional).
+**Mechanism.** `ttm_tt_swapout()` returns the number of pages swapped out on success. `b2ed01e7ad3d` *"drm/ttm: Fix ttm_bo_swapout() infinite LRU walk on swapout failure"* (7.1-rc4, backported to 7.0.y) guarded the bulk_move removal in `ttm_bo_swapout_cb()` with `if (!ret)`, which only holds on failure. So every buffer swapped out during hibernate stayed inside its bulk_move range although it was unevictable. When the buffer was later freed, `ttm_resource_del_bulk_move()` skipped it, and the range cursor kept pointing at freed memory. The next eviction dereferenced it in `ttm_lru_bulk_move_del` while holding `lru_lock`. That matches the 2026-06-22 capture. The fix tests `if (ret > 0)`.
+
+**Where it is** (verified in `drivers/gpu/drm/ttm/ttm_bo.c`, 2026-11-14):
+
+| Kernel | Fix |
+|---|---|
+| mainline v7.3 (`linux-mainline` 7.3) | present |
+| stable v7.2.15 (Arch `linux` 7.2.15) | present |
+| stable v7.2.1 | absent |
+
+**What did not merge.** Ainsworth's defensive guard (*"don't leave bulk_move cursor dangling for unevictable resources"*) and Hellström's [separate-LRU-list series](https://www.mail-archive.com/dri-devel@lists.freedesktop.org/msg508207.html). The `!ttm_resource_unevictable()` guard in `ttm_resource_del_bulk_move()` is unchanged in 7.3.
+
+**Open question.** The first crash (2026-06-10) ran on a 7.0.x kernel believed to lack `b2ed01e`. If that is accurate, a second path to a dangling cursor may exist that this fix does not cover. The reproducer settles it. If the reproducer crashes on a fixed kernel, file a report on drm/amd#5387 with the ramoops dump. Otherwise do not file a bug.
 
 ### Exit Criteria — when to swap back off linux-lts default
 
-Swap the default boot entry back to mainline (`arch.conf` / `arch-mainline.conf`) once **both** hold:
-1. One of the fixes above has **merged to mainline and been backported into the Arch `linux` (or `linux-mainline`) version you're running** — check the package changelog / kernel `git log` for "bulk_move cursor" or the merged commit hash; and
+Swap the default boot entry to Arch `linux` (`arch.conf`) once **both** hold:
+1. The kernel carries both fix commits above. Arch `linux` 7.2.15+ does. ✅ as of 2026-11-14.
 2. It **passes the reproducer** on this machine.
 
-Procedure (re-test periodically, e.g. monthly or when a new `linux` major lands):
+**Use Arch `linux`, not `linux-mainline`.** `linux-mainline` was removed 2026-11-14. It is an AUR source build that takes hours to compile and tracks release candidates. Arch `linux` ships stable binaries, gets fixes like this one through stable backports, and is the kernel `setup.sh` installs. Keep `linux-lts` as the fallback entry.
+
+Procedure:
 ```bash
-~/lockup-trap.sh arm && sudo reboot       # then pick the NON-LTS entry at the menu
+~/lockup-trap.sh arm && sudo reboot       # the trap arms arch.conf: pick linux at the menu
 ~/lockup-trap.sh status                   # confirm "ramoops ACTIVE this boot"
 # Hammer the reproducer: systemctl hibernate -> resume -> open Zen + GPU/mem load,
 # churn windows. Bug is ~15%/cycle, so survive >=10 cycles before trusting it.
 ~/lockup-trap.sh dump                     # should find nothing if fixed
-# If clean, make mainline the default again and tear down the pin:
+# If clean, make Arch linux the default and tear down the pin:
 sudo sed -i 's/^default .*/default arch.conf/' /boot/loader/loader.conf
 ~/lockup-trap.sh disarm
 ```
-Then revert the `setup.sh` LTS-default block added in commit `f94433e`.
+`~/lockup-trap.sh` adds the ramoops cmdline to the entry named by `ENTRY=` (`arch.conf` since 2026-11-14; it was the now-deleted `arch-mainline.conf` before). The panic-on-lockup sysctls apply to every kernel while armed, including LTS.
 
-**Why swap back at all:** the MT7925 wifi (mt76) hard-lockup fix landed in **7.1.0 mainline** — there is no single mainline version with *both* that wifi fix and the pre-7.0 TTM code, so on LTS 6.18 you depend on the wifi fix being backported to 6.18.x (probable but unverified). A current kernel with the TTM fix merged restores both. If a **wifi-related** freeze ever appears on LTS, that's the likely cause — check whether the mt76 fix is actually in 6.18.x.
+After the switch, revert the `setup.sh` LTS-default block added in commit `f94433e`. Also update the hibernate note in `setup.sh` (around line 246), which says hibernate is only safe on `linux-lts`.
+
+**Why swap back at all:** the MT7925 wifi (mt76) hard-lockup fix landed in **7.1.0 mainline** — there is no single mainline version with *both* that wifi fix and the pre-7.0 TTM code, so on LTS 6.18 you depend on the wifi fix being backported to 6.18.x (probable but unverified). A current kernel with the TTM fix merged restores both. Arch `linux` 7.2.15 is that kernel. If a **wifi-related** freeze ever appears on LTS, that's the likely cause — check whether the mt76 fix is actually in 6.18.x.
