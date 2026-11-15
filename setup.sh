@@ -664,6 +664,15 @@ stow -t ~ --dotfiles --ignore='CLAUDE\.md' --ignore='README\.md' -S bashinit
 popd > /dev/null
 echo "- bashinit stowed."
 
+# Go fetches GOPRIVATE modules with git over https, which has no credentials
+# here. Rewrite the owner's GitHub URLs to ssh, which does.
+if ! git config --global --get-all url."git@github.com:agrahamlincoln/".insteadOf | grep -qx "https://github.com/agrahamlincoln/"; then
+    git config --global --add url."git@github.com:agrahamlincoln/".insteadOf "https://github.com/agrahamlincoln/"
+    echo "- Private GitHub modules fetch over ssh."
+else
+    echo "- Private GitHub ssh rewrite already configured."
+fi
+
 if ! grep -q "source ~/.config/bashinit/bashinit.sh" ~/.bashrc; then
     echo "source ~/.config/bashinit/bashinit.sh" >> ~/.bashrc
     echo "- Added source line to ~/.bashrc."
