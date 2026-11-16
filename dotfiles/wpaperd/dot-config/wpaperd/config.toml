@@ -1,7 +1,9 @@
 # wpaperd configuration
 # https://github.com/danyspin97/wpaperd
 #
-# Cycles through the wallpapers in ~/Images/Wallpapers, changing every minute.
+# Cycles through this machine's bijutsu pack, changing every minute. `bijutsu sync
+# <pack>` points ~/.local/share/bijutsu/packs/.active at the pack it synced, so
+# each machine picks its wallpapers by which pack it syncs.
 # hyprpaper (previously used here) has NO rotation feature — it only assigns one
 # static image per monitor — so cycling never worked. wpaperd is purpose-built for
 # directory rotation and is launched from hyprland.lua's startup hook.
@@ -9,7 +11,7 @@
 # The [default] section is the base for every display, so a single-monitor and a
 # multi-monitor machine both work with no hostname checks (multi-machine portable).
 [default]
-path = "~/Images/Wallpapers"
+path = "~/.local/share/bijutsu/packs/.active"
 duration = "1m"
 sorting = "random"
 
@@ -19,3 +21,4 @@ sorting = "random"
 #   "stretch" — always fills, but distorts off-aspect images
 #   "center"  — native size, crops overflow (best only if every image >= screen res)
 mode = "fit"
+
